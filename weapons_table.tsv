@@ -52,7 +52,7 @@ Exotic	Thermal Lance	Energy	7d6	1	1	10	2000	5.0	Standard	Rare	Shoulder	Energy We
 Exotic	Needler Pistol	Exotic	2d6 (AP)	30	3	75	1200	1.0	Low	Rare	Jacket	Exotic Weapons	REF + Exotic skill vs. DV	14	Armor piercing needle barrage	Blackhand’s
 Exotic	Gas Gun (C-22)	Gas	3d6/round	2	1	50	1800	2.2	Standard	Rare	Shoulder	Exotic Weapons	BODY vs. DV	13	Persistent cloud, inhalation effect	Chromebook 1
 Exotic	Taser Implant	Implant	Stun	—	1	1	0	750	0.3	Reliable	Uncommon	Internal	Melee	REF vs. DV	12	Stuns target for 1d3 rounds
-Exotic	Sonic Stunner	Pistol	Stun	1d6 (Stun)	5	2	30	950	1.0	Standard	Common	Jacket	Stun Weapons	REF vs. DV	11	May cause disorientation for 1 round	Protect & Serve
+Exotic	Sonic Stunner	Pistol	Stun	1d6 (Stun)	5	2	30	950	1.0	Standard	Common	Jacket	Stun Weapons	REF vs. DV	11	May cause disorientation for 1 round
 Exotic	Spider Mine	Drone	3d6 (Explosive)	N/A	1	—	1200	1.2	Standard	Rare	None	Tech/Remote	TECH vs. DV	14	Autonomous crawling explosive	Chromebook 3
 Stun	C-22 Stun Baton	Baton	1d6 (Stun)	—	1	1	300	1.2	High	Common	Jacket	Melee	REF vs. DV	10	+2 to disarm rolls, may shock on hit	Protect & Serve
 Stun	Netgun 9000	Net	Stun (Restrains)	1	1	15	450	2.0	Standard	Rare	Shoulder	Exotic	REF vs. DV	12	Immobilizes target, -4 to escape attempts	Wilde Side
