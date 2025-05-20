@@ -1,0 +1,13 @@
+Event	Type	Effect	Complication	Resist/Check
+Gang Shakedown	Social/Threat	Lose cash or gear, risk injury	Escalates if resisted	COOL vs. 13 to deescalate; Solo: reroll, Fixer: +2 to negotiate
+Street Chase	Physical/Pursuit	Chase through alleys, risk injury	Obstacles, bystanders	REF vs. 14 to escape; Nomad: reroll, Solo: +1 to evade
+Fixer Deal	Social/Job	Offer of illegal work	Sting operation possible	INT vs. 12 to spot setup; Fixer: reroll
+Police Patrol	Authority	Check licenses or detain	Searched, fined, arrested	COOL vs. 12 to talk way out; Netrunner: hack records for bonus
+Sudden Shootout	Combat/Crisis	Take cover or get caught in crossfire	Risk of stray fire, panic	REF vs. 15 to avoid harm; Solo: +2 to defense
+Corporate Courier	Opportunity	Job offer for risky delivery	Ambush en route	COOL vs. 13 to bargain pay; Techie: +1 for tech jobs
+Public Protest	Event/Crowd	Crowd crush, tear gas	Heat if involved	BODY vs. 13 to avoid harm; Nomad: reroll escape
+Black Market Pop-Up	Commerce	Access rare gear, but at risk	Raid, price gouging	INT vs. 14 to spot scam; Fixer: +2 to negotiate
+Ripperdoc Encounter	Service	Get illicit surgery, upgrade	Infection risk, data theft	BODY vs. 12 to resist infection; Medtech: reroll, Techie: +1 on install
+Media Blitz	Event/Attention	Fame opportunity or false accusation	Loss of rep, legal trouble	COOL vs. 12 to manage rep; Rockerboy: reroll, Fixer: +1 to spin
+AI Glitch	Weird/Event	Street system malfunction	Drone attack, traffic chaos	TECH vs. 14 to fix or avoid; Netrunner: reroll hack, Nomad: +1 if vehicles involved
+Random Body	Discovery	Rumor or trauma, possible evidence	Gang heat, police interest	COOL vs. 13 to avoid trauma; Medtech: identify cause, Fixer: reroll on hiding involvement

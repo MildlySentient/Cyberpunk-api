@@ -1,0 +1,13 @@
+Event/Trigger	Type/Scene	Outcome/Clue	Complication	Resist/Check
+Corp Exec Murdered	Mystery/Crime	Unlocks rival plot, police heat	False lead, media blitz	INT vs. 14 to spot real clue; Netrunner: reroll hack, Fixer: +1 to rumor
+Key Witness Disappears	Drama/Threat	Progress blocked, new suspect	Betrayal, ransom	COOL vs. 13 to stay focused; Fixer: reroll, Solo: +1 to intimidate for info
+Ripperdoc Hides Evidence	Medical/Crime	Delays outcome, forges trail	Trauma, corruption	INT vs. 13 to spot fake; Medtech: reroll, Techie: +1 forensics
+Gang War Ignites	Action/Street	Maps/factions shift, heat rises	Innocents caught, property loss	COOL vs. 14 to stay composed; Solo: reroll, Nomad: +1 to escape
+Media Leak	Social/Exposure	Reputation at risk, job offer	Slander, blackmail	COOL vs. 12 to manage fallout; Rockerboy: reroll, Fixer: +2 to spin
+Sabotage Discovered	Tech/Heist	Unlocks traitor, disables gear	Time pressure, evidence loss	TECH vs. 14 to fix, INT vs. 13 to deduce; Techie: reroll, Netrunner: +1
+PC Betrayed	Drama/Trust	Lose contact/resource, rival gains	Event triggers flaw	EMP vs. 13 to resist paranoia; Fixer: reroll, Solo: +1
+Netrunner Breach	Hack/Cyber	Unlock data or ICE fight	Alarm, physical attack	INT vs. 15 to succeed; Netrunner: reroll, Techie: +1
+Police Raid	Authority/Escalation	Arrests, gear loss, pressure	Violence, mistaken ID	COOL vs. 14 to avoid panic, REF vs. 13 to escape; Solo: reroll
+Allies Turn On You	Drama/Downturn	New enemy/faction, job loss	Betrayal, trauma	COOL vs. 13 to negotiate; EMP vs. 14 to recover (Fixer: reroll)
+Disaster Strikes	Event/Emergency	Scene chaos, potential loot	Panic, injury	BODY vs. 13 to endure, REF vs. 13 to escape; Nomad: reroll, Medtech: +2
+Contact Arrives	Social/Opportunity	New clue, job, or gear	Complicated demand, moral risk	INT vs. 12 to spot con; Fixer: reroll, Techie: +1 if technical job

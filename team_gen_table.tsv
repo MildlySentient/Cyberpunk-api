@@ -1,0 +1,19 @@
+Role	Specialty/Background	Quirk/Complication	Bonus/Drawback	Stat/Role Hook
+Solo	Combat, security, black ops	Obsessed with personal code, never betrays a client	+1 to intimidation or violence rolls, but risks going rogue	COOL vs. 13 to maintain discipline; Solo: reroll
+Netrunner	Hacking, digital intrusion, ICEbreaking	Paranoid about backdoors—always leaves a kill-switch	Auto-succeeds on simple hacks, but triggers alarms on fail	INT vs. 14 to prevent trace; Netrunner: reroll
+Techie	Gear repair, jury-rig, sabotage	Collects trophies from every job, can't resist a new gadget	Can improvise any tool, but slow to trust others	TECH vs. 13 to fix/disable; Techie: reroll
+Fixer	Broker, logistics, street connections	Runs side hustles during every job—sometimes double-books	Always knows a guy, but may “owe a favor” at the worst time	COOL vs. 14 to keep team loyal; Fixer: reroll
+Nomad	Transport, smuggling, convoy defense	Drives like a maniac, but never abandons family	Always finds a route, but draws police/gang attention	REF vs. 14 to evade pursuit; Nomad: reroll
+Medtech	Street medicine, trauma care, biotech	Has a dark secret: past patient out for revenge	Can heal almost anything, but risks being blackmailed	BODY vs. 13 to save a life; Medtech: reroll
+Media	Exposure, scandal, infiltration	Secretly records every op for “future insurance”	Can manipulate news, but leaks risk the job	EMP vs. 13 to resist blackmail; Rockerboy: reroll
+Rockerboy	Morale, distraction, riot starter	Needs to “make a statement” every gig—even quiet ones	Boosts team COOL/EMP, but may escalate to chaos	COOL vs. 14 to avoid overexposure; Rockerboy: reroll
+Cop	Undercover, law enforcement, bounty	Always on the take—may “report” team if not cut in	Can call in backup, but heat rises fast	COOL vs. 13 to resist bribe; Fixer: reroll
+Ripperdoc	Cyberware, illegal installs, surgery	Gambling problem—may pawn team gear for debts	Can patch team mid-job, but risks unwanted “mods”	TECH vs. 13 to install; Medtech: reroll
+Nomad Pack (Group)	Logistics, backup, vehicle support	Feuds with other packs, hates city jobs	Can swarm any target, but slow to coordinate	COOL vs. 13 for group action; Nomad: reroll
+Gang Muscle (Any)	Brutality, intimidation, street war	Often “on loan,” might turn for a better offer	Extra firepower, but risky loyalty	BODY vs. 13 to intimidate; Solo: reroll
+Corporate Asset	Funding, tech, legal cover	Has hidden agenda—always “reporting up”	Can get high-end gear, but brings corporate risk	INT vs. 14 to spot double-cross; Netrunner: reroll
+Black Market Broker	Gear, contacts, rare info	Will betray for right price or under pressure	Can source anything, but always with a catch	COOL vs. 14 to avoid being played; Fixer: reroll
+Solo/Rockerboy Duo	Hits and distraction, “good cop/bad cop”	Argue over approach, may split during job	Can cover all angles—if they stay together	COOL vs. 13 to keep united; Solo or Rockerboy: reroll
+Medtech/Techie Pair	Field hospital and repair truck	Constantly bicker over priorities, hate sharing supplies	Auto-patch any team break, but risk critical supply shortfall	TECH vs. 13 to improvise; Medtech: reroll
+Netrunner/Fixer Pair	Digital infiltration/logistics	Secretly distrusts each other after past job gone bad	Can crack and run any system, but may compete for payout	INT vs. 13 to sync; Fixer: reroll
+Nomad/Media Team	Smuggling/investigation with coverage	Always debating ethics, risk exposing job for ratings	Always has exit route, but leaks risk job	REF vs. 14 to escape; Media: reroll

@@ -1,0 +1,12 @@
+Category	Tracker/Metric	Effect/Usage	Stat/Role Interaction
+Street Rep	Reputation Score	Influences gang/fixer reactions, job offers	COOL vs. 12 for street checks; Fixer: reroll, Solo: +1 intimidation, Nomad: +1 with Nomads
+IP (Improvement)	IP Points	Used to buy skill/rank increases	None directly; INT vs. 13 to fast-learn, Techie: +1 to technical IP gain
+Role Rank	Current Level	Tracks advancement in role-specific abilities	Role bonus: +2 to role-specific checks; see role table for details
+Heat	Police Attention	Risk of NCPD pursuit, legal fallout	COOL vs. 13 to avoid patrols, INT vs. 14 for clean-up; Netrunner: hack records, Fixer: reroll social
+Notoriety	Negative Rep	Attracts assassins, bounty hunters, rivals	COOL vs. 13 to avoid trouble, EMP vs. 12 to sway opinions; Solo: reroll intimidation, Fixer: +1 manipulate
+Ally	Faction/Contact Name	Rep benefit, resource, or favor owed	EMP vs. 12 to call in aid; Fixer: reroll, Nomad: +1 with nomad contacts, Techie: +1 for gear requests
+Enemy	Faction/Contact Name	Increased difficulty, targeted events	COOL vs. 13 to resist provocation, EMP vs. 12 for negotiation; Solo: +1 to threat checks
+Faction Standing	Faction Rep score	Access to resources, safehouses, info	COOL vs. 12 for trust, INT vs. 13 for favors; Fixer: reroll for deals, Nomad: +1 for travel networks
+Corporate Status	Corp Rep score	Unlocks contracts, funding, and gear	INT vs. 13 for negotiation; Netrunner: hack bonuses, Techie: +1 for gear upgrades
+Job Record	Completed Jobs	Unlocks higher-tier work, bonuses	COOL vs. 13 to leverage history; Fixer: reroll for negotiation
+Debt	Owed favors/credits	Triggers jobs, risk of bounty	COOL vs. 12 to negotiate leniency; Fixer: reroll, Solo: +1 to intimidate collectors

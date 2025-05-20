@@ -1,0 +1,29 @@
+Vehicle Name	Weapon System	Weapon Type	Damage	Ammo	RoF	Range (meters)	Cost (eb)	Weight (kg)	Reliability	Availability	Crew Requirement	Vs Stat/Check	DV	Special Notes	Source
+Militech Behemoth APC	20mm Autocannon	Autocannon	[TBD]	[TBD]	[TBD]	[TBD]	480,000	12,000	TBD	TBD	2	REF	[TBD]	Turret-mounted, can swap for 40mm Auto-GL	Maximum-Metal.pdf, p.48
+Militech Behemoth APC	40mm Auto Grenade Launcher	Auto-GL	[TBD]	[TBD]	[TBD]	[TBD]	480,000	12,000	TBD	TBD	2	REF	[TBD]	Turret-mounted, can swap with 20mm Autocannon	Maximum-Metal.pdf, p.48
+Army M-15 IFV	Stabilized 30mm Autocannon	Autocannon	[TBD]	[TBD]	[TBD]	[TBD]	1,600,000	20,000	TBD	TBD	2	REF	[TBD]	Turret-mounted, stabilized, fire support	Maximum-Metal.pdf, p.48
+Army M-15 IFV	HATGM	Missile Launcher	[TBD]	7 missiles	[TBD]	[TBD]	1,600,000	20,000	TBD	TBD	2	REF	[TBD]	Active optic/thermal missiles	Maximum-Metal.pdf, p.48
+U.S. M-50 Tank Hunter	Missile System	Missile Launcher	[TBD]	[TBD]	[TBD]	[TBD]	[TBD]	[TBD]	TBD	TBD	[TBD]	REF	[TBD]	Long-range, behind cover	Maximum-Metal.pdf, p.48
+U.S. M-75 Light Battle Tank	Stabilized 75mm Gun	Cannon	[TBD]	10 magazines in hull	[TBD]	[TBD]	1,400,000	14,000	TBD	TBD	2	REF	[TBD]	+3 fire control computer, turret, may add cybernetic linkage	Maximum-Metal.pdf, p.47
+U.S. M-75 Light Battle Tank	12.7mm Machinegun	MG	[TBD]	[TBD]	[TBD]	[TBD]	1,400,000	14,000	TBD	TBD	2	REF	[TBD]	Turret-mounted with main gun	Maximum-Metal.pdf, p.47
+Militech A-20 ACAV	25mm Cannon	Cannon	[TBD]	2 magazines	[TBD]	[TBD]	730,000	10,000	TBD	TBD	3	REF	[TBD]	Stabilized turret, one AP magazine	Maximum-Metal.pdf, p.34
+Militech A-20 ACAV	Light ATGM	Missile Launcher	[TBD]	5 extra rounds	[TBD]	[TBD]	730,000	10,000	TBD	TBD	3	REF	[TBD]	Stabilized turret	Maximum-Metal.pdf, p.34
+Militech A-20 ACAV	[TBD]	[TBD]	[TBD]	[TBD]	[TBD]	[TBD]	730,000	10,000	TBD	TBD	3	REF	[TBD]	Cyber-assisted systems, radar, ejection seats	Maximum-Metal.pdf, p.34
+Duster Hover	Pintle-Mounted Weapon	Pintle	[TBD]	[TBD]	[TBD]	[TBD]	85,000	2,500	TBD	TBD	1	REF	[TBD]	Pintle-mount for light MG or GL	Maximum-Metal.pdf, p.33
+IMI Hovertruck	Auto Grenade Launcher	Auto-GL	[TBD]	[TBD]	[TBD]	[TBD]	220,000	10,000	TBD	TBD	2	REF	[TBD]	Pintle-mounted on cab	Maximum-Metal.pdf, p.34
+M-100 Superheavy (MST)	Stabilized 3cm Rail Gun	Rail Gun	[TBD]	Extra magazine	[TBD]	[TBD]	23,500,000	100,000	TBD	TBD	3	REF	[TBD]	Main turret, +5 fire control computer	Maximum-Metal.pdf, p.47
+M-100 Superheavy (MST)	AGAMS (Grenade System)	Grenade Launcher	[TBD]	[TBD]	[TBD]	[TBD]	23,500,000	100,000	TBD	TBD	3	REF	[TBD]	Mounted atop main turret	Maximum-Metal.pdf, p.47
+M-100 Superheavy (MST)	30mm Autocannon	Autocannon	[TBD]	[TBD]	[TBD]	[TBD]	23,500,000	100,000	TBD	TBD	3	REF	[TBD]	Articulated side hull mounts, robotic control	Maximum-Metal.pdf, p.47
+M-100 Superheavy (MST)	HATGM (Missile)	Missile Launcher	[TBD]	11 missiles	[TBD]	[TBD]	23,500,000	100,000	TBD	TBD	3	REF	[TBD]	Fixed hull mount forward	Maximum-Metal.pdf, p.47
+M-100 Superheavy (MST)	[TBD]	[TBD]	[TBD]	[TBD]	[TBD]	[TBD]	23,500,000	100,000	TBD	TBD	3	REF	[TBD]	Composite armor, anti-laser aerosol, multiple sensors	Maximum-Metal.pdf, p.47
+US MBT-60	Stabilized LATG	Cannon	[TBD]	[TBD]	[TBD]	[TBD]	16,400,000	60,000	TBD	TBD	[TBD]	REF	[TBD]	Main turret, +4 fire control	Maximum-Metal.pdf, p.46
+US MBT-60	2cm Rail Gun	Rail Gun	[TBD]	Extra magazine	[TBD]	[TBD]	16,400,000	60,000	TBD	TBD	[TBD]	REF	[TBD]	Main turret, +3 fire control	Maximum-Metal.pdf, p.46
+US MBT-60	AGAMS (Grenade System)	Grenade Launcher	[TBD]	[TBD]	[TBD]	[TBD]	16,400,000	60,000	TBD	TBD	[TBD]	REF	[TBD]	Small turret atop main turret	Maximum-Metal.pdf, p.46
+US MBT-60	30mm Autocannon	Autocannon	[TBD]	[TBD]	[TBD]	[TBD]	16,400,000	60,000	TBD	TBD	[TBD]	REF	[TBD]	Small turret atop main turret	Maximum-Metal.pdf, p.46
+US MBT-60	6x Hellfire Missiles	Missile Launcher	[TBD]	6	[TBD]	[TBD]	16,400,000	60,000	TBD	TBD	[TBD]	REF	[TBD]	Main turret	Maximum-Metal.pdf, p.46
+US MBT-60	7.62mm Machinegun	MG	[TBD]	[TBD]	[TBD]	[TBD]	16,400,000	60,000	TBD	TBD	[TBD]	REF	[TBD]	Articulated mount on hull front	Maximum-Metal.pdf, p.46
+Spinelli Autotech Shiltron Twin Cab	7.62mm MG	MG	[TBD]	300	[TBD]	[TBD]	55,000	3,200	TBD	TBD	1	REF	[TBD]	Pintle mount	Chromebook-3-4, p.[TBD]
+MacLaren/Jaguar XJ220C-P Police Interceptor	40mm Auto Grenade Launcher	Auto-GL	[TBD]	[TBD]	[TBD]	[TBD]	165,000	4,000	TBD	TBD	2	REF	[TBD]	Optional front mount	Chromebook-3-4, p.[TBD]
+MacLaren/Jaguar XJ220C-P Police Interceptor	7.62mm MG	MG	[TBD]	[TBD]	[TBD]	[TBD]	165,000	4,000	TBD	TBD	2	REF	[TBD]	Optional front mount	Chromebook-3-4, p.[TBD]
+MacLaren/Jaguar XJ220C-P Police Interceptor	12.7mm MG	MG	[TBD]	[TBD]	[TBD]	[TBD]	165,000	4,000	TBD	TBD	2	REF	[TBD]	Optional front mount	Chromebook-3-4, p.[TBD]
+MacLaren/Jaguar XJ220C-P Police Interceptor	37mm LATG	Cannon	[TBD]	[TBD]	[TBD]	[TBD]	165,000	4,000	TBD	TBD	2	REF	[TBD]	Optional front mount	Chromebook-3-4, p.[TBD]

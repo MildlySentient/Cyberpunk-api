@@ -1,0 +1,12 @@
+Event	Type	Effect	Complication	Resist/Check
+High-Speed Chase	Pursuit	Vehicle pursuit, risk of crash	Roadblock, crossfire	REF vs. 15 to maintain control; Nomad: reroll, Solo: +1
+Ambush at Toll Booth	Combat/Trap	Attack while stopped, potential robbery	Explosives, gang reinforcements	COOL vs. 13 to stay calm; Solo: reroll, Techie: +1 to spot bombs
+Breakdown/Mechanical Failure	Technical	Vehicle stops, risk of attack	Parts needed, timed repair	TECH vs. 13 to fix; Techie: reroll, Nomad: +1
+Nomad Convoy Encounter	Social/Opportunity	Negotiate passage or trade	Betrayal, sabotage	INT vs. 13 to spot deceit; Fixer: reroll, Nomad: +2 to trust
+Corp Convoy Blockade	Authority	Detained for search, potential bribe	Searches, illegal cargo found	COOL vs. 14 to talk free; Netrunner: reroll hack, Fixer: +1
+Wreckage in Road	Event/Hazard	Obstacle, possible loot	Trap, police investigation	REF vs. 13 to avoid crash; Nomad: reroll, Techie: +1 for salvage
+Sandstorm/Weather Hazard	Environmental	Obscures vision, disables tech	Get lost, crash risk	BODY vs. 13 to endure; Nomad: reroll, Medtech: +2 to treat
+Biker Gang Overtake	Combat/Social	Intimidation, possible alliance or fight	Chase, heat, sabotage	COOL vs. 13 to negotiate; Solo: reroll, Fixer: +1 for deals
+Surprise Police Stop	Authority/Threat	Checkpoint, fine or arrest	Search, data scan, bribe	COOL vs. 12 to talk way out; Netrunner: +2 to hack records
+Refugee Caravan	Event/Aid	Need supplies, risk theft or rumor	Slowdown, empathy test	EMP vs. 12 to remain calm; Medtech: reroll, Fixer: +1 for barter
+Drone Attack	Weird/Tech	Vehicle strafed, scan/attack	Hack, EMP, data theft	TECH vs. 14 to disable; Netrunner: reroll, Nomad: +1 to evade

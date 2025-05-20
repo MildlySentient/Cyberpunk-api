@@ -1,0 +1,16 @@
+Device	Type	Detection Method	Cost	Notes	Source
+Microbug	Audio	Voice, sound	100eb	Battery: 24hr	Chromebook 1
+Spy Camera	Visual	Remote feed	150eb	Motion alert, battery 12hr	Chromebook 2
+GhostScanner	Netware	Signal trace	700eb	Hacks unshielded devices	Virtual Front
+EMP Grenade	Disabler	Area net/gear disrupt	400eb	One use, disables local devices	Blackhand’s
+Laser Tripwire	Alarm	Break beam	250eb	Triggers silent alarm	Chromebook 1
+Netwatch Tap	Netware	Data stream intercept	1200eb	Requires access port	Core
+Stealth Drone	Mobile	Remote video, audio	2600eb	Silent, 30min flight	Chromebook 3+4
+White Noise Generator	Audio	Jams microphones	350eb	Blocks audio recording	Wildside
+Thermal Camera	Visual	Heat signature	800eb	See through light cover	Chromebook 2
+CryptoCell	Netware	Encrypted comms	1100eb	Requires paired device	Virtual Front
+Tracker Dart	Tracking	GPS beacon	300eb	Embedded, 24hr battery	Chromebook 2
+Bug Detector	Countermeasure	Active scan	400eb	Finds active bugs, 10m	Core
+Sensor Grenade	Area	Detects movement/sound	450eb	Disposable, 1 min	Blackhand’s
+Optical Camouflage Sheet	Visual	Camouflage, blocks cameras	1800eb	Reusable, not against thermal	Chromebook 3+4
+TapLine	Audio/Wire	Jacks phone/data line	220eb	Requires physical wire access	Chromebook 2

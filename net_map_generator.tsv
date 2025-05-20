@@ -1,0 +1,19 @@
+Node Type	Description	Security Level	Special Rules	Vs Stat/Check	DV	Source
+Access Point	Physical jack-in: terminal, wall port, remote link	1–3	May be hidden, requires local access	Interface vs. Security Level	10–15	Core Rulebook
+Password Gate	Simple login (password/PIN, biometric)	1–4	May be brute-forced, alerts ICE on fail	Interface vs. Security Level	10–20	Core Rulebook
+Data Store	Data archive for files, secrets, accounts	2–8	Encrypted or booby-trapped	INT vs. Encryption DV or Interface vs. Security	12–25	VirtualFront, Core Rulebook
+CPU/Mainframe	System’s central node, controls net ops	4–10	Crash disables whole net, may have AI	Interface vs. Security Level + d10	18–25	VirtualFront
+Control Node	Controls real-world system: doors, cams, bots	2–7	May require hardware or credentials	Interface vs. Security or REF for physical override	15–22	Core Rulebook, Chromebook 2
+Alarm Node	Triggers alarms, raises security/ICE	3–8	Deploys ICE, may alert guards	Interface vs. Security Level or INT to bypass	15–22	Core Rulebook
+ICE Node	Hosts ICE program(s), defense/attack routines	3–10	Random ICE or GM pick	Interface or Program vs. ICE Strength	15–25	Core Rulebook, Chromebook 3/4
+Black ICE Node	Deadly ICE (damage, trace, shock, neural)	6–10	EMP disables for 1d6 rounds	Interface vs. ICE Strength or BODY vs. Damage	18–25	Core Rulebook, Listen Up
+Trap Node	Auto-triggers harmful program (dump shock, etc.)	5–9	Roll for effect: stun, damage, trace	INT or Interface vs. Security Level	16–23	Core Rulebook, Listen Up
+Wormhole Node	Connects to remote/deep system	4–10	Random destination, feedback risk	Interface vs. Security Level + Random Event	15–22	VirtualFront
+Social/VR Node	Chatroom, club, VR sim	2–6	May have hidden ICE/social hack	COOL or Persuasion vs. NPC; Interface for hidden ICE	12–18	VirtualFront, Chromebook 3/4
+Data Haven	Runner market, safe node, exchange	5–9	Restricted access, hidden node	Interface vs. Security Level to access; EMP for social deals	17–24	Chromebook 3/4
+AI Node	AI, expert system, virtual agent	7–12	Unique logic, may parley	COOL or Persuasion vs. AI; Interface for override	20–26	VirtualFront, Listen Up
+Backdoor/Hidden Node	Secret admin/dev node, unlisted	6–12	Revealed by scan, exploit	Interface or INT vs. Security Level + d10	18–28	Core Rulebook, Listen Up
+Interface Node	Jack into device (vehicle, turret, cyberarm)	3–9	Device-specific hack or control	Interface vs. Security Level or REF for manual override	14–22	Core Rulebook, Chromebook 1
+Node Cluster	Redundant nodes (file mirrors, archive)	Varies	One breach = all nodes	Interface vs. Security Level, may roll once per cluster	15–22	Chromebook 2, VirtualFront
+Legacy Node	Old net, obsolete protocols	2–7	May confuse ICE/programs	INT vs. DV; Interface for compatibility patch	13–18	Chromebook 1/2
+Maze/Loop Node	Recursive or confusing netspace	4–8	Netrunner may get stuck	INT vs. 15 to escape loop; Interface for map	15	VirtualFront, Listen Up

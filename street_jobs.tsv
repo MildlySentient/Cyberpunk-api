@@ -1,0 +1,26 @@
+Job Type	Broker/Source	Target/Main Faction	Main Task	Complication	Reward/Outcome	Resist/Check
+Street Race	Chopshop fixer	Rival racer	Win illegal street race	Police patrol route, sabotage	Cash, car parts, rep	REF vs. 14 to win; Nomad: reroll
+Pawn Hustle	Pawnshop owner	Desperate seller	Flip stolen goods for quick profit	Stolen item is tracked, seller is NCPD snitch	Cash, gear, risk	COOL vs. 13 to spot setup; Fixer: reroll
+Scavenger Run	Street kid	Abandoned site	Salvage tech before gangers arrive	Gangers show up early, site is booby-trapped	Gear, info, favor	TECH vs. 13 to spot trap; Techie: reroll
+Run the Door	Bouncer	Fixer club	Keep peace at night, deny troublemakers	Club is raided, rival gangs crash	Cash, drink tokens, club contact	COOL vs. 13 to control crowd; Solo: reroll
+Food Heist	Fixer cook	Food truck	Steal/sell gourmet supplies before dawn	Food is toxic or tagged, rival cooks catch on	Cash, food, favor	EMP vs. 12 to detect issue; Medtech: reroll
+Fake Doc Delivery	Street doc	Local hustler	Deliver bootleg meds to neighborhood	Cops stop PC, meds are counterfeit	Cash, doc favor, or jail	COOL vs. 13 to bluff police; Fixer: reroll
+Graffiti Blitz	Street artist	Rival block	Cover wall with art/tag before dawn	Cameras, gang owns block	Rep, art gear, risk	REF vs. 13 to evade; Nomad: reroll
+Lowlife Smuggle	Scavenger	Black market	Bury package in Combat Zone	Package is hot, buyer is a cop	Cash, future job, gear	COOL vs. 13 to spot trap; Fixer: reroll
+Public Performance	Rockerboy	Fixer crowd	Stage show to distract or hype crowd	Police or rival media disrupts	Gear, rep, future gig	COOL vs. 13 to maintain hype; Rockerboy: reroll
+Runner’s Errand	Fixer	Nomad enclave	Deliver message, no questions	Nomads want “fee,” gangers intercept	Cash, info, nomad intro	COOL vs. 12 to negotiate; Nomad: reroll
+Debt Collection	Street enforcer	Street vendor	Collect on gambling debt	Vendor flees, is protected by Moxes	Cash, rep, bruises	COOL vs. 13 to intimidate; Solo: reroll
+Hot Hand	Street gambler	Rival crew	Win big at rigged table	House cheats, gang loses patience	Cash, info, beatdown	INT vs. 13 to spot cheat; Fixer: reroll
+Fake ID Hustle	Fixer cop	Rockerboy	Produce/distribute fake IDs	Fake gets flagged, buyer rats PCs	Cash, arrest risk, doc contact	COOL vs. 13 to spot cop; Fixer: reroll
+Night Market Watch	Market guard	Petty thief	Patrol market, catch thieves	Thief is fixer’s protege, market riot	Cash, favor, loot	REF vs. 13 to catch thief; Solo: reroll
+Runaway Recovery	Street doc	Teen runaway	Find and bring home before gang claims	Runaway resists, cops looking too	Cash, info, future job	COOL vs. 13 to talk down runaway; Medtech: reroll
+Crowd Control	Media influencer	Celebrity event	Keep peace, move crowd fast	Fans riot, security cracks down	Cash, gear, possible exposure	COOL vs. 14 to avoid riot; Rockerboy: reroll
+Barkeep’s Favor	Bartender	Fixer patron	Remove unruly client quietly	Client is powerful or dangerous	Favor, info, drink tab	COOL vs. 13 to avoid escalation; Solo: reroll
+Tag and Go	Street artist	Corporate plaza	Tag corpo building, escape unnoticed	Cameras, security drones	Cash, rep, street art gear	REF vs. 13 to dodge; Nomad: reroll
+Underground Fight	Pit boss	Combat Zone	Fight or bet in illegal match	Fight is fixed, cops hit arena	Cash, trauma, contact	BODY vs. 14 to stay standing; Solo: reroll
+Dumpster Dive	Scavenger	Corporate dumpsters	Find valuable trash before crew arrives	Security patrols, rival scavenger	Cash, gear, blackmail	COOL vs. 13 to avoid patrol; Techie: reroll
+Street Oracle	Psychic/Scammer	Wealthy mark	Run fortune scam on VIP	VIP’s bodyguards intervene	Cash, info, possible heat	COOL vs. 13 to bluff; Fixer: reroll
+Rent-a-Mob	Fixer	Corpo protestor	Rent crowd for fake protest	Police escalate, rival mob shows	Cash, rep, favor	COOL vs. 13 to avoid crackdown; Fixer: reroll
+Smuggle Pets	Nomad contact	Rockerboy	Move illegal pets to buyer	Pet is exotic, buyer is scammer	Cash, animal gear, risk	COOL vs. 12 to spot scam; Nomad: reroll
+Bargain Hunt	Street vendor	Fixer client	Find/flip rare item in market	Item is counterfeit, fixer’s rival wants it	Cash, gear, trouble	INT vs. 13 to spot fake; Techie: reroll
+Lost Kid Run	Community worker	Gang safehouse	Rescue missing kid without violence	Gang won’t negotiate, kid won’t leave	Favor, info, trouble	EMP vs. 13 to talk down gang; Fixer: reroll

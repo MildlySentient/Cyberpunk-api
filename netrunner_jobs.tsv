@@ -1,0 +1,23 @@
+Job Type	Broker/Contact	Target/System	Main Task	Complication	Reward/Outcome	Resist/Check
+Data Heist	Fixer Netrunner	Arasaka subnet	Extract research data, leave no trace	ICE is adaptive AI, rival netrunner watching	Cash, code, fixer favor	INT vs. 14 to hack; Netrunner: reroll
+System Sabotage	Corporate handler	Biotechnica R&D	Crash test server, plant malware	Sysadmin logs in early, alert triggers lockdown	Cash, blackmail, custom program	TECH vs. 14 to plant safely; Techie: reroll
+Deep Dive	Old-school netrunner	Underground archive	Find lost data cache	Archive has psychic ICE, partial deletion	Cash, fame, rare software	INT vs. 14 to resist psychic ICE; Netrunner: reroll
+Trace and Expose	Media runner	Corrupt cop’s comm	Trace bribes, pull blackmail evidence	Cop counter-traces, fixer intervenes	Favor, data, risk	INT vs. 13 to avoid trace; Netrunner: reroll
+ICEbusting	Fixer/Nomad	SovOil shipping node	Crack ICE, unlock logistics map	ICE is boobytrapped, node is monitored	Cash, access codes, nomad rep	TECH vs. 13 to crack safely; Techie: reroll
+Blackmail Extraction	Corporate mole	Night Corp mainframe	Find incriminating files, don’t trigger logs	Files are encrypted, mole is traitor	Cash, corp favor, secrets	INT vs. 13 to decrypt; Netrunner: reroll
+Virtual Break-In	Gang netrunner	Rival gang’s network	Pull gang rosters, schedules, turf plans	Gang’s netwatcher is hostile, traces back	Gear, drugs, street cred	COOL vs. 13 to resist panic; Netrunner: reroll
+Virus Plant	Edge-runner contact	Police records node	Plant worm to erase charges	ICE is “smart,” alarm triggers live backup	Cash, immunity, future job	TECH vs. 14 to install; Netrunner: reroll
+AI Hunt	Fixer/Media	Rogue AI hub	Locate, isolate, report on rogue AI	AI is mobile, attacks in VR	Cash, rare data, fame	INT vs. 15 to evade attack; Netrunner: reroll
+Deep Fake/Forge	Media broker	Corporation	Forge video/audio, plant evidence	Corporation’s netrunner suspects, bribes PC	Cash, blackmail, future gig	EMP vs. 13 to resist bribe; Netrunner: reroll
+Backdoor Setup	Nomad tech	Freight node	Install backdoor for smuggling ops	Node is under audit, ICE is “new school”	Credits, smuggler favor, free ride	TECH vs. 14 to install; Techie: reroll
+Dark Web Rescue	Cyberdoc	Netrunner in distress	Pull stuck runner out of hostile node	Rival crew intervenes, runner is unstable	Favor, software, gear	COOL vs. 13 to avoid ICE; Netrunner: reroll
+Wipe & Clean	Fixer	Fixer’s own record	Erase old jobs, reset rep	Fixer owes rival, data is spread across city	Cash, debt erased, fixer loyalty	INT vs. 13 to find all traces; Netrunner: reroll
+Biohack	Rogue scientist	Biotech lab	Inject code into bioware firmware	Bioware fights back, alert triggers lockdown	Bio-upgrade, black market contact	TECH vs. 14 to hack firmware; Techie: reroll
+Net War Sabotage	Corporate handler	Enemy corp	Escalate digital war: crash key node	Retaliation is immediate, net burns hot	Stock, immunity, blackmail	INT vs. 15 to hold node; Netrunner: reroll
+Reality Hack	Media influencer	Public VR node	Rewrite event, frame target as villain	Event is live, rival netrunner counter-hacks	Cash, notoriety, sponsorship	INT vs. 14 to rewrite; Netrunner: reroll
+Code Recovery	Netrunner friend	Old system	Salvage classic code from dangerous site	System is haunted by rogue program	Cash, rep, rare exploit	INT vs. 13 to escape program; Netrunner: reroll
+Grid Jump	Nomad pack	Multiple cities	Piggyback data, cross city lines	Network is unstable, time limit	Credits, free travel, info	COOL vs. 14 to hold connection; Nomad: reroll
+ICE Reverse-Engineering	Tech fixer	Black market ICE	Steal, analyze, and sell custom ICE	ICE fights back, buyer is undercover	Tech, new program, trouble	TECH vs. 14 to disable ICE; Techie: reroll
+Denial of Service	Fixer/Gang	Government site	Launch massive DDoS for diversion	Site routes attack to PC, trace starts	Cash, gear, heat	INT vs. 13 to reroute; Netrunner: reroll
+Node Hijack	AI/Corp Runner	Smart city system	Take over node, run operations for 24h	AI resists, law enforcement alert	Cash, data, net fame	COOL vs. 14 to hold node; Netrunner: reroll
+Reputation Hack	Media agent	Rival fixer	Forge/bury fixer’s rep on job boards	Fixer catches on, rival gangs respond	Favor, credits, notoriety	EMP vs. 13 to negotiate; Fixer: reroll

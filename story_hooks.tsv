@@ -1,0 +1,32 @@
+Hook/Event	Type/Trigger	Complication/Outcome	Resist/Check
+Double-Crossed by Fixer	Betrayal/Job	Fixer takes payment, vanishes; PCs blamed	COOL vs. 13 to spot setup; Fixer: reroll, Solo: +1 to trace
+Lost Cargo	Transport/Nomad	Critical shipment missing, Nomad pack suspects PCs	EMP vs. 12 to regain trust; Nomad: reroll
+Bad Chrome Batch	Cyberware/Street	Implant glitches, Medtech discovers tampering	TECH vs. 13 to fix; Medtech: reroll, Techie: +1 for diagnostics
+Frame-Up	Corp/Legal	PCs accused of crime by corp, police hunt	COOL vs. 14 to evade; Netrunner: reroll, Fixer: +1 to spin
+Gang War Erupts	Gang/Territory	PC safehouse attacked, territory shifts	REF vs. 14 to escape; Solo: reroll
+Blackmail File Found	Info/Drama	Compromising data on ally or rival	COOL vs. 13 to keep secret; Fixer: reroll, Rockerboy: +1
+Netrunner's Ghost	Net/Weird	AI or dead netrunner leaves trap in system	INT vs. 14 to avoid ICE; Netrunner: reroll
+Rival Crew Poaches Job	Competition	PCs must outmaneuver or sabotage rival crew	INT vs. 13 to anticipate; Fixer: reroll, Nomad: +1
+Street Rescue	Medtech/Violence	Someone bleeding out—can you save them?	BODY vs. 13 to stabilize; Medtech: reroll
+Ripperdoc Debt	Black Market PCs owe for surgery, ripperdoc demands dangerous favor	COOL vs. 13 to negotiate; Fixer: reroll
+Secret Corporate Agenda	Intrigue/Contract	Job turns out to be a corp proxy war	INT vs. 14 to spot manipulation; Netrunner: reroll
+Psycho Squad Hits Block	Panic/Authority	Any cybered PC may be targeted	COOL vs. 13 to pass as clean; Solo: reroll
+Nomad Caravan Blocked	Travel/Badlands	Border guards or Raffen Shiv want bribes	COOL vs. 13 to parley; Nomad: reroll
+AI-Run Hustle	Weird/Net	A rogue AI “employs” PCs for unclear job	INT vs. 14 to understand; Netrunner: reroll
+Unexpected Heat	Police/Street	PCs on every scanner—random sweeps, checkpoints	COOL vs. 13 to stay low; Netrunner: reroll
+Rival Contact Betrayal	Contacts/NPC	Trusted NPC is a mole, leaks plans	EMP vs. 13 to detect; Fixer: reroll
+Media Sting	Media/Social	Job draws media attention, spins out of control	COOL vs. 14 to dodge press; Rockerboy: reroll
+Booby-Trapped Deal	Underworld/Crime	Job location is wired, rival shows	BODY vs. 13 to survive; Solo: reroll
+Cyberpsychosis in Party	Cyberware/Drama	PC/NPC cracks under chrome, threatens crew	EMP vs. 14 to calm; Medtech: reroll, Techie: +1
+Chrome Shortage	Market/Street	Cyberware, ammo, or drugs suddenly scarce	INT vs. 13 to find supply; Fixer: reroll, Nomad: +1
+Fixer Sets Up Rivalry	Broker/Street	Contact “sells” two groups the same job	COOL vs. 13 to realize; Fixer: reroll
+Heist Goes Wrong	Crime/Heist	Alarm trips, corp security or police response	REF vs. 14 to escape; Solo: reroll
+Shadowrunner Offer	Job/Net	Rogue AI or foreign agent offers high-risk hack	INT vs. 14 to spot risk; Netrunner: reroll
+Nomad Feud	Travel/Faction	Nomad families feud, drag PCs into drama	EMP vs. 12 to negotiate; Nomad: reroll
+Toxic Spill	Event/Badlands	Chem leak, biohazard, threat to health	BODY vs. 14 to resist; Medtech: reroll
+Ex-Lover Turns Rival	Past/Drama	Old flame sabotages or aids from the shadows	COOL vs. 13 to spot motives; Rockerboy: reroll, Fixer: +1
+Ganger Ambush	Gang/Combat	PCs set up for a mugging or abduction	REF vs. 13 to fight/flee; Solo: reroll
+Corporate Blackout	Power/City	Zone loses all power, violence/chaos rises	COOL vs. 13 to stay safe; Nomad: reroll
+Deep Cover Botched	Stealth/Undercover	Fake IDs or biomods fail at checkpoint	COOL vs. 14 to bluff; Fixer: reroll
+Black Market Double-Cross	Crime/Deal	Buy goes bad, rival appears, police close in	COOL vs. 13 to avoid arrest; Solo: reroll
+Militech vs. Arasaka War Job	Faction/War	PCs forced to choose a side in active firefight	COOL vs. 14 to negotiate; Solo: reroll, Fixer: +1

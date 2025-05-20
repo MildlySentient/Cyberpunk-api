@@ -1,0 +1,12 @@
+Event	Type	Effect	Complication	Resist/Check
+Nomad Ambush	Combat/Travel	Vehicle or foot attack, risk of loss	Chase or firefight	REF vs. 14 to escape; Nomad: reroll, Solo: +1 to fight back
+Rogue AI Drone	Weird/Tech	Drone attacks travelers, scans gear	Hacks or malfunctions	TECH vs. 13 to disable; Netrunner: reroll, Techie: +2
+Toxic Dump Discovery	Environmental	Physical harm, data leak	Mutant wildlife, poison risk	BODY vs. 14 to avoid illness; Medtech: +2 to treat, Nomad: reroll
+Wilderness Standoff	Social/Threat	Nomad/faction demands toll or tribute	Escalates if refused	COOL vs. 13 to negotiate; Nomad: reroll, Fixer: +2
+Outland Trade Meet	Commerce/Opportunity	Buy/sell rare items, info leak	Priced high, ambush possible	INT vs. 12 to spot trap; Fixer: reroll, Techie: +1 on gear
+Border Patrol	Authority	Inspection, possible arrest	Bribe or flee	COOL vs. 13 to bluff; Nomad: reroll, Solo: +1 to fight
+Natural Hazard	Event/Environment	Landslide, dust storm, sinkhole	Separation, lost supplies	BODY vs. 14 to endure; Nomad: reroll, Medtech: +1 to treat wounds
+Wandering Corp Scout	Corporate/Espionage	Spying, sabotage, rare aid	Heat, bounty, job offer	INT vs. 13 to notice; Netrunner: reroll, Fixer: +1 for contact
+Refugee Convoy	Aid/Drama	Charity, supplies, or conflict	Spread thin, possible theft	EMP vs. 13 to help calmly; Medtech: reroll aid, Fixer: +1 to network
+Hidden Enclave	Event/Discovery	Chance to make rare contact	Entrance is booby-trapped	COOL vs. 14 to avoid panic; Techie: reroll to bypass, Nomad: +2
+Smuggler’s Cache	Opportunity	Loot, rare gear, or info	Guarded or trapped	INT vs. 14 to spot danger; Fixer: reroll, Netrunner: +1 for data

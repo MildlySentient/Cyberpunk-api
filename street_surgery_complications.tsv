@@ -1,0 +1,11 @@
+Complication	Trigger	Effect	Resolution	Source	Stat/Role Check
+Infection	Failed roll	-2 REF, slow healing	Antibiotics, downtime	Wildside	BODY vs. 12 to resist; Medtech: reroll, Techie: sanitize gear
+Nerve Damage	Critical fail	Loss of limb function	Advanced surgery	Wildside	TECH vs. 14 to repair; Medtech: +1, Solo: risk trauma
+Chrome Overload	Multiple implants	Cyberpsychosis risk	Roll on cyberpsychosis_progression.tsv	Chromebook 2	EMP vs. 13 to resist; Medtech: therapy, Techie: hardware patch
+Memory Loss	Botched install	Lose 1d6 skill points	Neurological therapy	Wildside	INT vs. 13 to retain; Techie: restore backup, Medtech: reroll
+Organ Rejection	Failed bio install	1 HP/turn damage until treated	Immunosuppressants	Core	BODY vs. 14 to recover; Medtech: +2 to treatment
+Septic Shock	Bad street surgery	Immediate coma, 1d10 hours	ICU, rare drugs	Wildside	BODY vs. 15 to avoid coma; Medtech: emergency stabilize
+Phantom Pain	Sloppy nerve work	Random pain, -1 to all rolls	Pain editor install	Chromebook 3+4	COOL vs. 13 to ignore; Medtech: therapy, Techie: implant patch
+Implant Malfunction	Cheap part/glitch	Device fails, spasms/damage	Replace part, downtime	Wildside	TECH vs. 13 to fix; Techie: reroll, Medtech: emergency fix
+Allergic Reaction	Unregistered chrome	1d6 damage, swelling	Antihistamine, surgery	Wildside	BODY vs. 12 to recover; Medtech: +1, Solo: risk permanent loss
+Data Loss	Memory chip error	Lose 1d10 personal memories	Reinstall/therapy	Core	INT vs. 14 to restore; Netrunner: reroll

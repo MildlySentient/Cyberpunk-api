@@ -1,0 +1,52 @@
+Name	Type	Zone	Main NPC/Faction	Contact/Notes	Hooks/Quirks	Hours	Security
+The Atlantis	Bar/Nightclub	Downtown	Valentino Fixer	Secret entrance for solos	Celebrity sightings, illegal deals	22:00–05:00	Bouncers, mob ties
+Afterlife	Bar	Old Warehouse Row	Legendary Fixers	Entrance: old freezer door	“Ghosts” of old solos, body storage	20:00–04:00	Heavily armed, selective
+The Slammer	Combat Bar	Combat Zone	Maelstrom Gang	Brawling pit in back room	Cage fights, debts paid in pain	All night	Minimal, armed staff
+Raffen Clinic	Ripperdoc	Industrial	Solo NPC	No questions asked, cash only	Illegal mods, cyberware black market	18:00–02:00	Pitbull, silent alarm
+NCPD Precinct 1	Police Station	Downtown	Lt. Greene	Cops hate paperwork, love bribes	Stolen gear auctioned monthly	08:00–20:00	Locked, armed
+Ziggurat	Mega-Mall	City Center	Bozo Gangs	Carnival rides, crime den	Shops, black market, hidden fixer	10:00–23:00	Sparse, random patrols
+Fingers' Clinic	Ripperdoc	Japantown	Fingers	Unhygienic, discount mods	Street docs “fix what they can”	12:00–20:00	None, Tyger Claws watch
+Totentanz	Nightclub	Westbrook	Animals Gang	No cover, no rules	Weapons allowed, open brawls	22:00–late	Animals as “bouncers”
+Data Pool	Node	Downtown	Netrunner Collective	Open terminal, free WiFi	Secret net meetings, blackmail drops	All hours	Drones, sysadmins
+El Coyote Cojo	Bar/Fixer Hangout	Heywood	Mama Welles	Mexican cuisine, biker crowd	Mission board, family jobs	10:00–03:00	Friendly, but armed
+The Forlorn Hope	Bar/Vet Hangout	City Center	Ex-Militech Fixers	Job board for solos	Veterans, private merc deals	18:00–04:00	Discreet, tight door
+Cargo Container Market	Street Market	Watson	Dock Nomads	Roaming market, changes location	Fence, fixer hub	09:00–20:00	Nomad guards
+Misty’s Esoterica	Shop	Watson	Misty	Occult trinkets, netrunner hangout	Tarot readings, rumor mill	10:00–19:00	None
+Buck-A-Slice	Fast Food	Everywhere	Local teens	Cheap pizza, secret dead drop	Fixers use as meet spot	All hours	None
+The Glitz	Corporate Tower	City Center	Biotechnica	Corporate PR, public lobby	Pop-up fashion shows	09:00–19:00	Corp security
+Arasaka Tower	Corp HQ	City Center	Arasaka	Restricted, by appointment only	Secret labs, black ops rumors	09:00–18:00	Military-grade
+Militech North America	Corp HQ	Marina	Gen. Lundee	Public showroom, weapons expo	Tanks on display, job offers	10:00–18:00	Military, cameras
+All Foods Factory	Plant	Watson	Maelstrom	Food production, gang lair	Cyberware smuggling, cage fights	24/7	Armed, cybered guards
+The Hole-In-The-Wall	Bar	Combat Zone	Local Fixers	Dive bar, rumor exchange	Illegal weapon market	18:00–04:00	Minimal, owner armed
+Dreamland Club	Brothel/Bar	Westbrook	Moxes	No questions, no IDs	Therapist/fixer in back room	18:00–06:00	Moxes protection
+Tom’s Diner	Diner	Downtown	Old timers	Classic booths, gossip	Routine police/bribe scene	06:00–22:00	None
+The Nuage	Nightclub	Pacific District	Celeb DJs, Netrunners	High fashion, synthwave nights	Secret corporate parties	21:00–late	Face control
+NCPD Precinct 2	Police Station	Pacifica	Capt. Toombs	Frequent power outages	Community policing only by day	08:00–18:00	Light, cheap locks
+Crash Palace	Squat Hotel	Combat Zone	Homeless Fixers	No reservation, no ID	Safe house for gangs	24/7	None
+Jinguji	Clothing Shop	City Center	Rei Shintani	Ultra high-end suits	Back room: corpo meetings	10:00–21:00	Discreet, armed
+Rockerboy Plaza	Event Space	Heywood	Tour managers	Busking, open mic, live streams	Talent scouts, gang brawls	12:00–24:00	Rare, light
+The Chapel	Fixer HQ	Pacifica	Mother Helman	Secret job board, rumors	Only open for rituals	After dark	Guarded, invite only
+Danger Gal HQ	Private Security	City Center	Amanda Dae	Rent-a-cop corp, bodyguards	Rival of NCPD, bribes possible	09:00–18:00	Corp guards
+Sublime Funeral Home	Service	Watson	Undertaker Fixers	Body storage, black market organs	Night runners, morgue hacks	All hours	Discrete, lockbox
+Mikoshi Data Center	Net/AI Site	City Center	Arasaka	Brain dance black site	Netrunner raids, lost data	By appt	Military, ICE
+Red Dirt Bar	Live Music	Heywood	Rockerboys, Valentinos	Open stage, band gigs	Fight night on weekends	19:00–04:00	Valentino protection
+Moxes Safehouse	Shelter	Westbrook	Moxes	Only for “family”	Protection, healing, rumors	24/7	None, secret
+Kendachi Gun Shop	Weapons Shop	Watson	Black market dealer	Firearms, “no refunds”	Illegal mod sales at midnight	10:00–24:00	Armed, cameras
+The Arena	Underground Arena	Combat Zone	Animals Gang	Pit fights, betting	Solos can earn big cash	All night	Animals muscle
+Kibble & Sips	Café/Diner	Watson	Nomad teens	Cheap, hot, weird crowd	Network for couriers	05:00–22:00	None
+The Hive	Club/Pub	Pacific District	Netrunner “Swarm”	Secret LAN parties, illegal VR	Rumors of new black ICE	18:00–04:00	Doorcode, sysadmins
+Watson Memorial Hospital	Hospital	Watson	Medtechs, ripperdocs	Public ER, black market after hours	Cheap, risky, never empty	24/7	Security, but bribable
+The Crystal Palace	Penthouse/Casino	City Center	Casino bosses, corpo elite	High stakes, hush money	Secret meeting rooms, blackmail	18:00–06:00	Heavily armed
+Pacifica Pier	Boardwalk	Pacifica	Nomad traders	Illegal imports, pirate market	Night city scav runs	09:00–23:00	Nomad patrols
+The Dollhouse	Entertainment	Westbrook	Dollgirls/bois	Custom fantasies, neural links	Blackmail vaults in basement	24/7	Discrete, Moxes guards
+Metroplex Garage	Auto Shop	Industrial	Techies, nomads	Quick mods, parts, “no records”	Chop shop, gang wars	08:00–21:00	Guard dog, sensors
+All Saints Church	Refuge	Heywood	Ex-priest, “Father Mercy”	Soup kitchen, safe zone	Gang truces respected	06:00–22:00	None, sacred ground
+Subway Station: Halsey	Transit	Watson	NCPD, gangs	Routine standoffs, bribes	Pickpockets, riot drills	All hours	Moderate, police cameras
+Pyramid Hotel	Corp Hotel	City Center	Exec fixers, tourists	Rented by corpos for deals	Fixer meetups, room bugs	All hours	Corp security
+Tyger Claws Arcade	Arcade/Den	Japantown	Tyger Claws	Illegal gambling, hacking comps	Drugs, VR blackjack	12:00–02:00	Gang enforcers
+The Dumpyard	Junkyard	Industrial	Junkmen, techies	Parts scavenging, dog fights	Solos sell stolen goods	07:00–21:00	Light, dog patrols
+Biotechnica Farm	Lab/Plant	Outskirts	Biotechnica	Bio-aug foods, test crops	Eco-terrorist attacks rumored	08:00–18:00	Heavy, drones
+Viktor’s Clinic	Ripperdoc	Watson	Viktor	Respected, “old pro”	Will help for favors, sports fan	10:00–22:00	Friend of Moxes, rare guards
+Quantum Dreams	Cybercafe	Pacifica	Netrunner cults	Esoteric code, future-casting	Illegal AI training after midnight	14:00–03:00	Doorcode, ICE
+Jenkins Tower	Corp Offices	City Center	Arasaka/Euro execs	Exec meetings, legal wrangling	PCs can break in for data	08:00–19:00	Corp security
+The Wasteland	Illegal Dump	Badlands	Nomads, scavvers	Dump site, barter post	Vehicle chop shop, mutant rumors	All hours	Light, informal

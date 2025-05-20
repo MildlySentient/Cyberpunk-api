@@ -1,0 +1,12 @@
+Encounter	Type/Trigger	Effect	Complication	Resist/Check
+Threatening Negotiation	Gang/Fixer	High reward, high risk	Escalates to violence	COOL vs. 13 to hold ground; Fixer: reroll, Solo: +1 to intimidate
+Seduction Attempt	Social/Charm	Leverage, info, or asset	Jealousy, betrayal	ATTR vs. 13 to succeed; Rockerboy: reroll, Fixer: +1
+Corporate Interview	Job/Opportunity	New contract, info leak	Background check, sabotage	INT vs. 14 to impress; Techie: +1 for tech jobs, Fixer: reroll
+Bribe/Blackmail	Corruption	Short-term gain, long-term risk	Rep loss, evidence	COOL vs. 12 to avoid panic; Netrunner: reroll, Fixer: +2 to cover tracks
+Street Rumor	Faction/Drama	Leads to job or trouble	False info, heat	INT vs. 12 to discern truth; Netrunner: reroll, Fixer: +1
+Police Interrogation	Authority	Release or arrest	False confession, threat	COOL vs. 14 to resist, EMP vs. 13 to spot cues; Solo: reroll, Fixer: +1
+Public Debate	Event/Attention	Fame, rep, or enemy	Hecklers, viral spin	ATTR vs. 13 to win crowd; Rockerboy: reroll, Netrunner: +1 to manage media
+Betrayal Revealed	Drama/Trust	Lose contact, gain enemy	Panic, job loss	EMP vs. 14 to keep composure; Fixer: reroll, Solo: +1
+Business Deal	Opportunity	Gain resource or info	Shady contract	INT vs. 13 to spot fraud; Fixer: reroll, Techie: +1 to negotiate tech
+Gang Recruitment	Social/Threat	Gain gang ally or protection	Ongoing obligation, rival heat	COOL vs. 13 to refuse; Solo: reroll, Nomad: +1 for street cred
+Charity/Appeal	Human Drama	Favor, rep, resource	Scam, loss of funds	EMP vs. 12 to spot con; Medtech: reroll, Fixer: +1

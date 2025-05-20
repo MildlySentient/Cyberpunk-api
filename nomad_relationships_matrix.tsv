@@ -1,0 +1,6 @@
+	Faction	Aldecaldos	Jodes	Steel Vaqueros	MetaCorp Nomads	Road Pirates
+Aldecaldos		+1	-1	+1	-2
+Jodes	+1		0	+1	-1
+Steel Vaqueros	-1	0		0	-2
+MetaCorp Nomads	+1	+1	0		-1
+Road Pirates	-2	-1	-2	-1	

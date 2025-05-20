@@ -1,0 +1,9 @@
+Section	Topic	Rule/Checklist
+Combat	Turn Order	All actions resolved in initiative order.
+Combat	Actions	Declare intent, check DV, roll d10.
+Combat	Damage	Apply wounds, armor reduction, check trauma.
+Cyberware	Install/Upgrade	Requires ripperdoc or medtech, roll surgery DV.
+Job Flow	Assignment	Fixer or contact provides details, set payment.
+Encounters	Random Event	Roll on urban_encounters.tsv when pacing slows.
+Session	Start	Load Bootloader.md, check session staging.
+Session	End	Log major events, update IP/reputation.

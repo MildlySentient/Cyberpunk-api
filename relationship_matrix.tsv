@@ -1,0 +1,13 @@
+Relationship	Type/Event	Positive Outcome	Negative Outcome	Resist/Check
+New Ally	Job/Hook	Access to new resources, job, or gear	Potential betrayal	COOL vs. 12 to build trust; Fixer: reroll, Solo: +1 for intimidation
+Rivalry Emerges	Conflict/Past	Boost to skill in competition	Chance of sabotage	EMP vs. 13 to avoid paranoia; Solo: reroll, Nomad: +1 to outmaneuver
+Old Flame Returns	Drama/History	Renewed bond, secret aid	Jealousy, betrayal	COOL vs. 13 to maintain focus; Rockerboy: reroll, Fixer: +1 to social
+Gang/Pack Loyalty	Gang/Nomad	Faction aid, rescue, discounts	Heat with rivals	COOL vs. 13 to keep loyalty; Nomad: reroll, Fixer: +1 to negotiate
+Contact Owes Favor	Social/Job	Leverage, reduced job cost	Resentment, burned bridge	EMP vs. 12 to keep contact; Fixer: reroll
+Corporate Backer	Power/Money	Funding, legal aid, high-end gear	Obligation, job pressure	INT vs. 13 to avoid manipulation; Netrunner: reroll, Techie: +1
+Fixer Feud	Street/Job	Better deals with rivals	Blacklisting, sabotage	COOL vs. 13 to avoid fallout; Fixer: reroll
+Family Drama	Event/Past	Temporary ally or support	Rep loss, emotional cost	COOL vs. 12 to maintain composure; EMP vs. 12 to avoid flaw
+Turncoat Ally	Betrayal/Event	Insight into enemy, rescue chance	Burned, lose resource	EMP vs. 14 to trust again; Fixer: reroll, Solo: +1 to defend
+Netrunner/AI Bond	Cyber/Weird	Exclusive info, bonus hacks	ICE trace, betrayal	INT vs. 14 to avoid breach; Netrunner: reroll
+Mentor/Protégé	Event/History	Skill boost, unique job access	Jealousy, sabotage	EMP vs. 12 to avoid flaw; Techie: reroll, Fixer: +1 to maintain bond
+Broken Trust	Event/Drama	Lesson learned, flaw resolved	Paranoia, disadvantage	COOL vs. 14 to recover; Fixer: reroll, Medtech: +1 to mediate
