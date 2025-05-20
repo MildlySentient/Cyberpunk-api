@@ -1,10 +1,11 @@
 import logging
 import os
+import json
 from typing import List, Union, Optional, Dict, Any
 
 import pandas as pd
 import spacy
-from fastapi import FastAPI, Query
+from fastapi import FastAPI, Query, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field
 from rapidfuzz import fuzz
@@ -153,6 +154,14 @@ class CombatResolveModel(BaseModel):
     weapon: str
     armor: str
 
+# --- Game Save/Load Models ---
+class SaveGameRequest(BaseModel):
+    game_id: str
+    state: dict
+
+class LoadGameRequest(BaseModel):
+    game_id: str
+
 # --- Pydantic Models: Output ---
 class DataResultModel(BaseModel):
     source: str
@@ -167,6 +176,10 @@ class CombatResultModel(BaseModel):
     result: Optional[Any] = None
     error: Optional[str] = None
 
+# --- Save folder ---
+SAVE_DIR = os.path.join(os.path.dirname(__file__), "saves")
+os.makedirs(SAVE_DIR, exist_ok=True)
+
 # --- Startup: load everything on boot ---
 @app.on_event("startup")
 def startup_event():
@@ -175,9 +188,6 @@ def startup_event():
 # --- Hot reload endpoint ---
 @app.post("/reload", response_model=DataResultModel)
 def reload_files():
-    """
-    Hot-reload Bootloader.md, index.tsv, and all _core.tsv files.
-    """
     load_files()
     logger.info("Hot reload complete.")
     return DataResultModel(source="reload", result="Reloaded all core files and index.")
@@ -187,10 +197,8 @@ def reload_files():
 @app.post("/get-data", response_model=DataResultModel)
 async def get_data(payload: QueryRequest):
     query = payload.query
-    # Bootloader shortcut
     if any(kw in query.lower() for kw in ["boot", "what is this", "intro"]):
         return DataResultModel(source="Bootloader.md", result=cache["bootloader"])
-    # Index match
     index = cache.get("index")
     index_row = match_query(query, "LemDescription", index)
     core_file = index_row.get("Filename", "")
@@ -257,3 +265,29 @@ def resolve_attack_endpoint(payload: CombatResolveModel):
     except Exception as e:
         logger.error("Combat resolve error: %s", e)
         return CombatResultModel(error=str(e))
+
+# --- JSON Save/Load Endpoints ---
+
+@app.post("/save-game")
+def save_game(data: SaveGameRequest):
+    path = os.path.join(SAVE_DIR, f"{data.game_id}.json")
+    try:
+        with open(path, "w", encoding="utf-8") as f:
+            json.dump(data.state, f)
+        return {"status": "saved", "game_id": data.game_id}
+    except Exception as e:
+        logger.error("Save game error: %s", e)
+        raise HTTPException(status_code=500, detail=str(e))
+
+@app.post("/load-game")
+def load_game(data: LoadGameRequest):
+    path = os.path.join(SAVE_DIR, f"{data.game_id}.json")
+    if not os.path.exists(path):
+        raise HTTPException(status_code=404, detail="Game not found.")
+    try:
+        with open(path, "r", encoding="utf-8") as f:
+            state = json.load(f)
+        return {"status": "loaded", "game_id": data.game_id, "state": state}
+    except Exception as e:
+        logger.error("Load game error: %s", e)
+        raise HTTPException(status_code=500, detail=str(e))
