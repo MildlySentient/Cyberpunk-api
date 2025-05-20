@@ -1,0 +1,16 @@
+Complication	Type/Trigger	Outcome/Threat	Resist/Check
+Inside Mole	Betrayal/Job	Contact is a traitor, leaks plan	EMP vs. 13 to sense; Fixer: reroll
+Sniper in Overwatch	Violence/Heist	Random fire, ambush, lethal shot	REF vs. 14 to dodge; Solo: reroll
+Corpo Pulls Funding	Job/Contract	Mission aborts, payment halved	COOL vs. 13 to renegotiate; Fixer: reroll
+Gang Escalates	Street/Violence	Minor job becomes turf war	COOL vs. 13 to deescalate; Solo: reroll
+Dirty Data	Net/Info	File is infected, trace or virus	TECH vs. 13 to debug; Netrunner: reroll
+Gear Failure	Tech/Combat	Key weapon or cyber fails at climax	TECH vs. 14 to repair; Techie: reroll
+Police Raid	Heat/Social	Job attracts patrol, PCs must flee	COOL vs. 13 to talk way out; Netrunner: reroll, Fixer: +1
+Random Civilian	Wild Card/Drama	Witness complicates job, demands payoff	COOL vs. 12 to avoid entanglement; Fixer: reroll
+Unexpected ICE	Netrun/Virtual	Extra security on system, time pressure	INT vs. 14 to breach; Netrunner: reroll
+False Intel	Job/Street	Payload or target is fake, rival got real deal	INT vs. 13 to spot fake; Fixer: reroll
+Weather Shift	Event/Badlands	Storm or blackout ruins escape	REF vs. 13 to drive/flee; Nomad: reroll
+Delayed Drop-Off	Logistics	Time window closes, target moves	COOL vs. 13 to adapt; Nomad: reroll
+Infection/Injury	Bio/Violence	Random wound, infection risk	BODY vs. 13 to endure; Medtech: reroll
+AI Interference	Net/Weird	System or city AI subverts plan	INT vs. 15 to counter; Netrunner: reroll
+Hostage Situation	Social/Violence	Job turns into a negotiation/stand-off	EMP vs. 13 to calm; Rockerboy: reroll, Fixer: +1

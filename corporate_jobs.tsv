@@ -1,0 +1,29 @@
+Job Type	Corporation/Division	Target/Main Faction	Main Task	Complication	Reward/Outcome	Resist/Check
+Espionage	Arasaka	Biotechnica	Steal R&D data, leave no trace	ICE is AI, Biotechnica’s agent infiltrated	Stock, rare cyber, corp favor	INT vs. 14 to avoid ICE; Netrunner: reroll
+Sabotage	Petrochem	SovOil	Disrupt fuel line, cause supply delay	SovOil counter-saboteurs on site, Nomads watching	Cash, inside info, asset	COOL vs. 13 to evade detection; Nomad: reroll
+Data Heist	Kang Tao	Militech	Steal prototype specs, exfil in one night	Specs are split on three servers, Netrunner rival	Credits, high-end weapons, secrets	INT vs. 14 to hack servers; Netrunner: reroll
+Asset Extraction	Biotechnica	Arasaka exec	Extract/disappear key exec before contract	Exec resists, corp tracks PCs	Cash, biotech mods, corp immunity	COOL vs. 13 to persuade exec; Fixer: reroll, Solo: +1 to extract
+Blackmail	Night Corp	City Council member	Gather dirt for leverage	Target’s fixer is ex-corp, media on tail	Power, bribe, city contract	EMP vs. 13 to manipulate; Fixer: reroll
+Market Manipulation	Arasaka	Petrochem	Crash Petrochem stock via rumor	Arasaka insider gets cold feet, rumor backfires	Stock, favor, debt erased	COOL vs. 13 to salvage plan; Fixer: reroll
+Hostile Takeover	Militech	Small startup	Force acquisition or sabotage bid	Startup is protected by Nomads, legal snags	Stock, prototype tech, promotion	INT vs. 14 to bypass legal; Fixer: reroll, Nomad: +1 to smuggle assets
+Bodyguard Duty	Biotechnica	VIP scientist	Protect VIP at public event	Target is double agent, rival corp tries hit	Pay, bio-upgrades, inside track	COOL vs. 14 to spot betrayal; Solo: reroll
+Bury Scandal	Petrochem	Media outlet	Bribe/blackmail media to kill story	Media refuses, evidence leaks	Bribe, contract, risk	EMP vs. 14 to sway media; Rockerboy: reroll, Fixer: +1
+Frame Rival	Kang Tao	Arasaka exec	Plant evidence of illegal activity	Exec’s fixer is onto PCs, counter-frame	Stock, corp favor, secrets	COOL vs. 13 to avoid frame-up; Fixer: reroll
+PR Campaign	Night Corp	Citizens, public	Stage PR event, improve image	Event goes viral wrong, activists disrupt	Pay, gear, inside contact	COOL vs. 14 to recover; Rockerboy: reroll
+Secret Project	GREX International	Gang (Maelstrom)	Recruit gang to test prototype	Prototype malfunctions, gang double-crosses	Rare cyber, gang loyalty, payout	TECH vs. 14 to fix; Techie: reroll
+Elimination	Militech	Tyger Claws	Remove rival’s street enforcer	Gang is expecting hit, full protection	Weapons, corp rep, risk	REF vs. 14 to escape; Solo: reroll
+Cybersecurity Audit	Biotechnica	Rival netrunner	Trace hack, patch vulnerabilities	Netrunner is PC’s ally, hidden data	INT vs. 14 to find threat; Netrunner: reroll
+Trade Deal	Petrochem	Nomad tribe	Negotiate/sabotage trade deal	Tribe is hostile, fixer intervenes	Fuel, smuggling routes, debt	COOL vs. 13 to negotiate; Fixer: reroll, Nomad: +1
+Product Recall	Kang Tao	Customers, media	Quietly recall defective smartguns	Media sniffs scandal, gang won’t return guns	Stock, clean PR, debt erased	EMP vs. 13 to calm buyers; Medtech: reroll
+Steal R&D	Arasaka	Biotechnica	Smuggle samples, erase records	Lab is watched by rival corp, samples are unstable	Rare bio, cash, new contract	COOL vs. 13 to bluff guards; Solo: reroll
+False Flag	Biotechnica	Rival corp	Stage crime to implicate rival	Cop gets suspicious, fixer wants bribe	Power, secrets, blackmail	COOL vs. 13 to evade suspicion; Fixer: reroll
+Body Disposal	Petrochem	Solo team	Erase evidence, clear site of failed op	Site is on camera, NCPD sweeps early	Cash, future gig, heat	COOL vs. 13 to avoid surveillance; Techie: reroll
+Hostage Swap	Arasaka	Petrochem	Exchange execs, prevent bloodbath	Petrochem double-cross, Arasaka backup	Stock, secrets, gear	COOL vs. 14 to spot double-cross; Fixer: reroll
+Legal Manipulation	Night Corp	Court/precinct	Change legal outcome, bribe judge	Judge is incorruptible, media leaks	Bribe, legal immunity, inside scoop	COOL vs. 14 to bribe; Fixer: reroll
+Smuggle Goods	Militech	Nomads	Move illegal arms via Nomad route	Nomad wants cut, cops patrol route	Weapons, pay, black market favor	REF vs. 13 to outdrive patrol; Nomad: reroll
+Reverse Engineering	Kang Tao	Biotechnica tech	Steal, copy, and return prototype	Tech is booby-trapped, tracker inside	Cache, tech, future jobs	TECH vs. 14 to disable tracker; Techie: reroll
+Insider Recruitment	Petrochem	Arasaka asset	Turn exec into Petrochem spy	Asset is loyal, rival fixer tries to flip	Cache, info, corp bonus	EMP vs. 13 to win over asset; Fixer: reroll
+False Advertising	Arasaka	Consumers, media	Plant viral campaign to cover up flaw	Media digs too deep, public backlash	Cache, PR, risk	COOL vs. 13 to manage fallout; Rockerboy: reroll
+Clean House	Militech	Internal staff	Fire or “handle” problematic execs	Execs threaten to leak info, union protests	Cache, corp favor, secrecy	COOL vs. 14 to silence execs; Fixer: reroll
+Arms Deal	GREX International	Gang, fixer	Arrange big weapons deal	Buyers set up sting, rival corp intervenes	Cash, stock, trouble	COOL vs. 13 to avoid sting; Fixer: reroll
+Brain Drain	Night Corp	University	Recruit or poach top netrunners	University is corp-run, PCs flagged	Cash, data, legal threat	INT vs. 14 to hack university; Netrunner: reroll

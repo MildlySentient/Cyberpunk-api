@@ -1,0 +1,11 @@
+Style	Bonus/Move	Effect	Resist/Check
+Boxing	+1 Damage to Punch	Stun on 10+	BODY vs. 13 to resist stun (Solo: +1, Medtech: first aid reroll)
+Aikido	Redirect	Disarm, throw, or trip	REF vs. 12 to avoid throw (Solo: reroll, Techie: +1 if cyberlimb)
+Judo	Throw	Take opponent to ground, reposition	BODY vs. 12 to stay upright (Solo: +2, Nomad: reroll on soft terrain)
+Karate	Strike	+1 Attack with kicks, parries	BODY vs. 13 to resist knockback (Solo: +1, Medtech: treat injury reroll)
+Muay Thai	Knee/Elbow	+2 Damage at close range	BODY vs. 14 to resist stun, EMP vs. 12 to act under pain (Solo: reroll)
+Savate	Footwork/Dodge	+2 Evasion vs. melee	REF vs. 13 to hit, MA vs. 12 for chase escape (Nomad: reroll, Solo: +1)
+Street Brawling	Dirty Tricks	Attack ignores armor on 10	COOL vs. 13 to avoid fighting dirty (Fixer: reroll, Solo: +1 to intimidation)
+Krav Maga	Weapon Retention	Disarm, disable weapon	REF vs. 14 to retain weapon (Solo: reroll, Techie: +1 if cyberarm)
+Tae Kwon Do	High Kick	+2 Attack with kicks, knockdown	BODY vs. 13 to avoid being knocked prone (Solo: +1, Medtech: injury reroll)
+Systema	Joint Locks	Immobilize limb, -2 REF	BODY vs. 14 to escape, EMP vs. 12 to resist pain (Solo: reroll)

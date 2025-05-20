@@ -1,0 +1,11 @@
+Model/Type	Borg Archetype	Statline/Quirk	Complication/Event	Resist/Check
+Gladiator	Battle/Solo	BODY/REF max, melee focus, showboat	EMP loss, show-off flaw	EMP vs. 14 to resist psych loss; Solo: reroll
+Sapper/Demolitions	Demo/Heavy	BODY/TECH max, armor, blast gear	Explosive mishap, trauma	BODY vs. 14 to avoid injury; Techie: reroll, Medtech: +1 for patch
+Assassin	Bioform/Stealth	REF/INT high, camo, nanoblade	Paranoia, memory wipes	INT vs. 14 for mission recall; Netrunner: reroll, Solo: +1 for pursuit
+Recon/Scout	Speed/Surveillance	MA/REF max, sensors, jetpack	Overclock burn, detection	REF vs. 13 to escape glitch; Nomad: reroll
+Enforcer	Heavy Support	COOL/BODY max, crowd control, intimidation	System overload, rampage risk	COOL vs. 13 to control; Solo: reroll, Techie: +1 to patch
+Infiltrator	Spy/Bioform	INT/COOL, infiltration, pass as human	Cyberware glitch, loyalty fail	EMP vs. 13 to resist betrayal; Fixer: reroll
+Security Model	Sec/Borg	REF/COOL high, loyal, programmed	Boss override, logic loop	INT vs. 13 to detect override; Netrunner: reroll, Techie: +1 to repair
+Prototype	XO/Experimental	Mixed stats, unstable, rare mods	Unreliable, power surge, meltdown	TECH vs. 15 to fix; Techie: reroll, Medtech: +1 for system reboot
+Support/Med	Borg/Medtech	TECH/EMP, medical mods, triage	Overclock, psych loss risk	EMP vs. 14 to resist; Medtech: reroll, Techie: +1 to patch
+Gang Muscle	Street/Borg	BODY/COOL, chromed, low empathy	Street feud, cyberpsychosis	COOL vs. 13 to control; Fixer: reroll, Medtech: +1 to treat

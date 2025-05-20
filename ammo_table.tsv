@@ -1,0 +1,17 @@
+Ammo Type	Compatible Weapons	Effect	Cost (per 10)	Availability	Vs Stat/Check	DV	Special Notes	Source
+Armor-Piercing (AP)	Handguns, Rifles, SMGs	-½ target SP	120eb	Uncommon	REF vs. DV	—	Can jam in cheap weapons	Blackhand’s
+Hollow-Point (HP)	Handguns, SMGs	+1d6 vs. unarmored targets	100eb	Common	REF vs. DV	—	Double armor resistance	Chromebook 1
+Caseless	SMGs, Rifles	Reduces weapon weight by 10%	80eb	Common	—	—	Used in smartgun-compatible weapons	Core Rulebook
+Rubber Rounds	Shotguns, Pistols	Stun only, no lethal damage	50eb	Common	COOL vs. 10 to avoid panic	—	-2 initiative on hit	Protect & Serve
+Tracer	Rifles, Machine Guns	+1 to hit after 1st round	90eb	Rare	—	—	Visibly exposes position	Blackhand’s
+Incendiary	Rifles, Shotguns	1d6 fire per round for 1d3 turns	150eb	Rare	BODY vs. 12 to resist flame	—	Ignites targets on 13+ hit	Chromebook 2
+Smart Ammo (Guided)	Smartguns only	+2 accuracy, auto-tracks	300eb	Very Rare	REF + Smartgun Link vs. DV	—	Requires Smartgun System	Chromebook 3/4
+EMP-Tipped Rounds	Handguns, Rifles	Shorts electronics on hit	400eb	Rare	TECH vs. 13	—	Effective against drones, cybergear	Chromebook 3
+Gas-Tipped Rounds	Pistols, Rifles	Releases knockout gas in 2m	200eb	Rare	BODY vs. 10 or unconscious	—	Illegal in most regions	Blackhand’s
+Cryo Ammo	Rifles	Slows target by -2 MOVE for 1d3 rounds	250eb	Rare	COOL vs. 12	—	No effect on cyberwear	Chromebook 4
+Explosive (HE)	Rifles, Launchers	+2d6 area effect	400eb	Very Rare	REF vs. 14	—	Minimum DV 16 for direct hit	Blackhand’s
+Tangler Foam	Shotguns, Netguns	Restrains in 2m radius	180eb	Uncommon	BODY vs. 15 to break free	—	Used for riot control	Wildside
+Taser Darts	Taser Systems	Stun 1d3 rounds on hit	80eb	Common	REF vs. 10	—	EMP-sensitive systems vulnerable	Protect & Serve
+Subsonic	Rifles, Pistols	Silent, +2 to stealth rolls	110eb	Uncommon	—	—	-1 damage penalty	Chromebook 2
+Teflon-Coated	SMGs, Pistols	Ignores ¾ soft armor	200eb	Rare	REF vs. DV	—	Illegal in most jurisdictions	Blackhand’s
+High-Velocity (HV)	SMGs, Rifles	+1 damage, +1 recoil	120eb	Rare	REF vs. 13	—	May jam if gun not reinforced	Chromebook 1

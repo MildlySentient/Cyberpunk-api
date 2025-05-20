@@ -1,0 +1,13 @@
+Fault/Flaw	Trigger/Condition	Effect/Penalty	Check/Resist
+Addiction	Drugs, alcohol, cyberware	-2 to all rolls if craving/withdrawal	BODY vs. 13 to resist, EMP vs. 12 for relapse (Medtech: reroll, Fixer: +1 if social)
+Paranoia	After betrayal or failed job	Disadvantage in trust/social scenes	COOL vs. 14 to overcome (Solo: +2, Fixer: reroll)
+Debt	Owes money or favors	Heat with fixers, risk of bounty	COOL vs. 13 to avoid penalty, INT vs. 12 to negotiate terms (Fixer: reroll, Nomad: +1)
+Trauma	Post-violence or loss	Occasional flashbacks, -1 to certain rolls	COOL vs. 13 or skip turn, EMP vs. 13 to recover (Medtech: therapy reroll)
+Betrayer	Has betrayed PC/NPC	Locked out of some contacts/jobs	EMP vs. 14 to regain trust (Fixer: reroll social)
+Cyberpsychosis	Chrome or violence threshold	Roll on cyberpsychosis_progression.tsv	EMP vs. 15 to resist, COOL vs. 14 to hide signs (Medtech: reroll, Techie: stabilize)
+Cowardice	Failed major event/rescue	-2 initiative when surprised	COOL vs. 12 to overcome, REF vs. 13 to act anyway (Solo: +2, Nomad: reroll)
+Disloyal	Repeated broken promises	Contacts lose trust, pay -25%	EMP vs. 14 to rebuild trust (Fixer: reroll)
+Obsession	Must pursue specific goal	-2 to unrelated tasks, miss key events	INT vs. 13 to refocus (Netrunner: reroll, Techie: +1)
+Overconfident	Past successes	Attempts risky actions, attracts heat	COOL vs. 13 to pause, EMP vs. 12 to accept feedback (Solo: -1 DV, Fixer: +1)
+Unstable	Mental or emotional trauma	Roll for psych_loss on stress, -1 to COOL	EMP vs. 14 to stabilize, Medtech: therapy reroll
+Guilt	Killed or ruined NPC/ally	Disadvantage on social, sleep issues	COOL vs. 12 to function, EMP vs. 13 for closure (Medtech: therapy reroll)

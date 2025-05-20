@@ -1,0 +1,26 @@
+Section	Option/Range	Event/Description	Linked Table	Resist/Check
+Background	1-3	Corporate family	region_npc_stat_table.tsv	INT vs. 12 for bonus role skill; Netrunner: reroll
+Background	4-6	Street orphan	gang_npcs.tsv	COOL vs. 13 to resist flaw: Cowardice/Paranoia; Fixer: reroll
+Background	7-9	Nomad pack/road family	nomad_factions.tsv	EMP vs. 12 to avoid distrust of outsiders; Nomad: reroll
+
+Family Crisis	1	All family dead or vanished		COOL vs. 13 to avoid Fault: Paranoia
+Family Crisis	2-3	Family status in doubt (disgrace, exile, debt)		COOL vs. 13 or gain Flaw: Debt
+Family Crisis	4-6	Family lost due to gang or corp rivalry	gangs_table.tsv	EMP vs. 13 to resist grudge; Solo: +1, Fixer: reroll
+
+Friends	1-2	Childhood friend resurfaces	npc_templates.tsv	COOL vs. 12 to trust, EMP vs. 12 to avoid old grudge
+Friends	3-4	Saved by a stranger (now in debt)		COOL vs. 13 to avoid flaw: Debt, Fixer: reroll
+Friends	5-6	Old ally gone crooked, now a fixer/fence	fixers_table.tsv	COOL vs. 13 to avoid betrayal; Fixer: reroll
+
+Enemies	1-2	Personal enemy (gang or corp)	gangs_table.tsv	COOL vs. 13 to avoid paranoia; Solo: reroll, Fixer: +1
+Enemies	3-4	Corporate asset frames you	corporations_table.tsv	INT vs. 14 to clear name; Netrunner: reroll
+Enemies	5-6	Ex-lover in criminal organization		EMP vs. 13 to resist flaw: Guilt
+
+Life Events	1	Betrayal: friend or employer sets you up	story_hooks.tsv	COOL vs. 13 to avoid flaw: Disloyal; Fixer: reroll
+Life Events	2	Windfall: score, inheritance, or valuable item	economy_table.tsv	LUCK vs. 10 for lasting benefit; Techie: reroll
+Life Events	3	Disaster: injury or psych trauma	psych_loss_table.tsv	BODY vs. 13 to avoid flaw; Medtech: reroll
+Life Events	4	Survived a job gone wrong	job_generator.md	COOL vs. 13 to avoid trauma; Solo: reroll
+Life Events	5	Burned by the law or NCPD	cop_npc_templates.tsv	COOL vs. 13 to avoid heat; Fixer: reroll
+
+Hook/Event	1-3	Blackmail, secret, or family debt to pay	contract_management_table.tsv	COOL vs. 13 to resist paranoia; Fixer: reroll
+Hook/Event	4-6	New contact, fixer, or job broker	fixers_table.tsv	COOL vs. 12 to establish trust; Fixer: reroll
+Hook/Event	7-9	Reputation: major faction, corp, or gang interaction	relationship_matrix.tsv	EMP vs. 13 to avoid hubris; Fixer: +1, Solo: reroll

@@ -1,0 +1,8 @@
+	Corporation	Arasaka	Militech	Petrochem	Trauma Team	Biotechnica	Kang Tao	Night Corp
+Arasaka		-2	0	0	-1	-1	0
+Militech	-2		-1	+1	0	-1	0
+Petrochem	0	-1		0	-1	0	0
+Trauma Team	0	+1	0		0	0	+1
+Biotechnica	-1	0	-1	0		0	0
+Kang Tao	-1	-1	0	0	0		0
+Night Corp	0	0	0	+1	0	0	

@@ -1,0 +1,12 @@
+Location	Type/Scene	Quirk/Complication	Resist/Check
+Night Market	Street Bazaar	Gear deals, scams, fixer drama	INT vs. 13 to spot scam; Fixer: reroll
+Corporate Lobby	Office/Power	Surveillance, badge check, data risk	COOL vs. 13 to pass scrutiny; Netrunner: reroll
+Afterlife	Club/Underworld	Exclusive, fixer-only, violence risk	COOL vs. 14 to enter; Solo: reroll
+Combat Zone	Block/Ruin	Ambush, random violence, loot	REF vs. 14 to spot danger; Solo: reroll
+Med Center	Clinic/Street	Crowded, black market drugs, infection	BODY vs. 13 to resist infection; Medtech: reroll
+Ganger Alley	Territory/Crime	Gang tax, possible mugging	COOL vs. 12 to avoid trouble; Fixer: reroll
+Arcology	Enclave/Corpo	High security, secret deals, AI eyes	INT vs. 14 to hack or avoid; Netrunner: reroll
+Chop Shop	Garage/Illegal Mods	Bad parts, theft, law risk	TECH vs. 13 to spot flaw; Techie: reroll
+City Plaza	Event/Public	Festival, riot, media, pickpockets	COOL vs. 12 to stay safe; Rockerboy: reroll
+Data Haven	Net Cafe/Hidden Node	ICE risk, corporate data, netrunners	INT vs. 13 to avoid net trap; Netrunner: reroll
+Safehouse	Secure/Social	Bugged, rival contact shows up	COOL vs. 13 to spot tail; Fixer: reroll

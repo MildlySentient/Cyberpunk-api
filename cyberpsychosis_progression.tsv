@@ -1,0 +1,8 @@
+uuid,created_at,created_longitude,created_latitude,modified_at,modified_longitude,modified_latitude,accessed_at,content,tags,folder,flagged,languageGrammar
+"7B0FC999-225E-4C49-9DC3-E15041F2F6E5",2025-05-19T04:58:05Z,0.0,0.0,2025-05-19T04:58:09Z,0.0,0.0,2025-05-19T04:58:05Z,"Stage	Humanity Range	Symptoms	Mechanical Effects	Social/Roleplay Flags	Recovery
+1	70+	Detached, emotionally numb	-1 Empathy, minor withdrawal	Avoids intimacy, prefers work/solo activity	Standard therapy
+2	40–69	Paranoid, erratic, impulsive	-2 Empathy, +1 initiative, -1 persuasion	Sees betrayal everywhere, avoids social contact	Difficult, slow
+3	10–39	Violent, sociopathic, delusional	-4 Empathy, resist social checks, possible blackouts	Treats others as threats, “ends” relationships	Rare, major cost
+4	0–9	Complete breakdown—PC becomes NPC	No empathy, loses PC status, referee/AI takes control	Treated as dangerous, asset, or rogue	Impossible
+Trigger	—	Threshold crossed by cyberware, trauma, fullborg, or major event	Special: rapid loss may skip stages	Roleplay withdrawal, coldness, paranoia, violence	N/A
+Notes	—	Recovery possible only with therapy (except Stage 4)	Sudden fullborg install or catastrophic trauma may drop instantly to Stage 3/4	—","",0,false,Markdown

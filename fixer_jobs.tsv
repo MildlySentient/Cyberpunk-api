@@ -1,0 +1,27 @@
+Job Type	Location	Target/Main Faction	Main Task	Complication	Reward	Fixer	Resist/Check
+Extraction	Japantown	Corpo exec	Get the exec out of a gang trap	Target’s data is wanted by rival fixer	Credits, rare cyberware	Wakako Okada	COOL vs. 13 to spot betrayal; Solo: reroll
+Delivery	Watson	Maelstrom gang	Deliver illegal package to back alley	Police checkpoint, package is a decoy	Reputation, favor, gear	Dexter DeShawn	REF vs. 13 to avoid checkpoint; Nomad: reroll, Fixer: +1
+Sabotage	Old Downtown	Arasaka lab	Plant bug, escape undetected	Facility lockdown, rival crew	Stock, secrets, fixer favor	Regina Jones	TECH vs. 14 to bypass security; Netrunner: reroll
+Theft/Recovery	Westbrook	Valentinos gang	Retrieve stolen car for client	Client lied about ownership, rival gang wants car	Cash, info, future work	Padre Ibarra	COOL vs. 13 to handle negotiation; Fixer: reroll
+Protection	Heywood	Media whistleblower	Guard source during exposé	Gang hitmen tipped off, client unreliable	Reputation, contact, payout	Mama Welles	REF vs. 13 to block attack; Solo: reroll, Fixer: +1 to defuse
+Frame-up	Corpo Plaza	Militech exec	Plant evidence to ruin career	Exec has blackmail on fixer, security is high	Credits, corp favor, weapon	Heidi Gutierrez	INT vs. 14 to avoid being traced; Netrunner: reroll
+Rescue	Industrial district	Solo merc	Extract wounded merc from botched run	Rival fixer wants merc dead, medtech needed	Cash, merc loyalty, cyberware	Chucho Ortiz	BODY vs. 13 to treat wounds; Medtech: reroll, Solo: +1 to cover
+Intimidation	Combat Zone	Local shop owner	Convince shopkeeper to pay protection	Turf war between gangs, shop owner is a cop’s cousin	Favor, street rep, gear	Salvatore Morelli	COOL vs. 13 to avoid heat; Fixer: reroll, Solo: +1 intimidate
+Data Heist	City Center	Biotechnica	Steal data on new drug	ICE is experimental, inside man is unreliable	Credits, blackmail, drug sample	Mr. Kernighan	INT vs. 14 to hack; Netrunner: reroll
+Blackmail	Old City Center	Fixer rival	Get dirt on rival, hand over files	Rival fixer’s gang catches on, files are encrypted	Credits, secret, fixer hook	Blue Glass	COOL vs. 13 to spot setup; Fixer: reroll, Netrunner: +1
+Assassination	Combat Zone	Gang boss	Silence the boss, make it look accidental	Target replaced with double, rival fixer wants proof	Credits, rare weapon, street cred	Jax “Merc Man” Lucas	COOL vs. 13 to verify target; Solo: reroll, Fixer: +1
+Art Heist	City Center	Corpo art vault	Steal high-value art piece	Laser traps, client provides faulty blueprints	Fake ID, payout, high-end gear	Heidi Gutierrez	TECH vs. 14 to bypass security; Techie: reroll
+Fence Hot Goods	Watson	Maelstrom fence	Sell stolen chrome	Buyer is undercover cop, deal set up by rival fixer	Cash, debt erased, gang favor	Chucho Ortiz	COOL vs. 13 to spot cop; Fixer: reroll, Solo: +1 to evade
+Clean Up	Old Downtown	Rockerboy club	Dispose of “problematic” body before police arrive	Club is bugged, media crew nearby	Credits, favor, inside info	Miss Molly	COOL vs. 13 to avoid cameras; Fixer: reroll
+Witness Relocation	Heywood	City judge	Get judge to safehouse until trial	Media leaks judge’s location, NCPD pressure	Favor, ongoing legal aid	Mama Welles	REF vs. 13 to evade tail; Solo: reroll, Fixer: +1
+Sabotage	Industrial Zone	Biotechnica plant	Contaminate production line	Inside contact turns out to be traitor	Biotech, cash, blackmail info	Mr. Kernighan	COOL vs. 13 to spot betrayal; Fixer: reroll
+Escort Service	Downtown	Corporate heir	Deliver heir to secret meeting	Heir’s tracker is hacked by rival corps	Reputation, corp favor, payout	Salvatore Morelli	INT vs. 14 to block tracker; Techie: reroll, Nomad: +1
+Fix the Fixer	Japantown	Rival fixer	Frame or ruin a competitor	Fixer’s gang is tipped off, client is unreliable	Credits, rumor, protection	Wakako Okada	COOL vs. 13 to bluff out; Fixer: reroll
+Double-Cross	Combat Zone	Client’s own crew	Help client betray their team	Client’s plan is a setup, betrayal risk	Cash, safehouse, future jobs	Lester “Big Man” Banks	EMP vs. 13 to sense double-cross; Fixer: reroll, Solo: +1 for defense
+Smuggle Tech	Badlands	Nomad convoy	Get prototype device past border patrol	Smuggler contact is compromised, border lockdown	Credits, nomad favor, rare tech	Mickey “Quick” Reese	COOL vs. 13 to handle bribe; Nomad: reroll
+Discredit Media	City Center	Media star	Plant evidence of scandal	Public blowback, media agent is a fixer’s ally	Cash, secret, dirt on rival	Blue Glass	COOL vs. 14 to avoid exposure; Rockerboy: reroll
+Crash the Net	Cyber Cafe	Netrunner crew	Sabotage net infrastructure	ICE is sentient, netrunner is a double-agent	Credits, stolen data, virus	Mr. Kernighan	INT vs. 14 to survive ICE; Netrunner: reroll
+Hostile Takeover	Corpo Plaza	Startup	Force merger or sabotage deal	Client is playing both sides, rival corpo responds	Stock, blackmail, gear	Heidi Gutierrez	INT vs. 14 to spot setup; Netrunner: reroll, Fixer: +1
+Rescue Kidnapped Exec	Old Downtown	Valentinos gang	Free exec before ransom drop	Exec doesn’t want to be rescued, rival fixer wants him dead	Cash, info, corp rep	Padre Ibarra	COOL vs. 13 to talk exec out; Fixer: reroll, Solo: +1
+Secret Delivery	Westbrook	Mystery buyer	Deliver package, never open	Client tails PCs, package is tracked	Favor, cash, fixer contact	Wakako Okada	INT vs. 13 to spot tracker; Nomad: reroll
+Destroy Evidence	Night Market	NCPD evidence locker	Burn or retrieve files before morning	Evidence is digital and physical, alarm triggers backup	Credits, legal immunity, fixer hook	Regina Jones	TECH vs. 14 to destroy data; Netrunner: reroll

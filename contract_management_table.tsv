@@ -1,0 +1,11 @@
+Contract Type	Issuer	Role/Party	Terms/Condition	Complication	Resolution/Outcome	Stat/Role Hook
+Standard Fixer Contract	Fixer/Street broker	Any role	“Complete job, payout on delivery”	Delayed payment, fixer “vanishes”	Wait, find new fixer, risk escalation	COOL vs. 13 to track payment; Fixer: reroll
+Corporate Black Ops	MegaCorp	Corporate asset/Solo/Netrunner	“No record, failure = liability”	Clean-up team sent for failures	Payout, blackmail, or hit squad	INT vs. 14 to spot setup; Solo: reroll
+Nomad Pack Deal	Nomad pack/Smuggler	Nomad/Techie	“Smuggle goods, no questions”	Goods are tracked/stolen, cops on route	Payout, debt, or loss of vehicle	REF vs. 14 to evade; Nomad: reroll
+Media “Exclusive”	Media broker	Media/Rockerboy	“Deliver proof, on-camera, exclusive rights”	Client leaks story first, targets retaliate	Pay, story credit, or scandal	COOL vs. 13 to keep exclusive; Rockerboy: reroll
+Gang Pact	Street gang/Gang boss	Fixer/Solo	“Protect turf, split profits”	Gang betrayal, rival hits turf	Pay, street cred, new enemy	COOL vs. 14 to survive; Solo: reroll
+Netrunner Commission	Fixer/Corpo	Netrunner/Techie	“Hack node, erase all traces”	ICE is sentient, NCPD is monitoring	Cash, data, wanted status	INT vs. 14 to erase logs; Netrunner: reroll
+Ripperdoc Retainer	Ripperdoc/Clinic	Fixer/Medtech	“Guaranteed surgery/patch for jobs”	Clinic raided mid-op, client dies	Patch, payout, legal heat	BODY vs. 13 to survive botch; Medtech: reroll
+Corporate Bounty	MegaCorp	Any role	“Bring in target alive—no questions”	Target is protected/PC’s friend	Pay, corp favor, lose ally	EMP vs. 13 to avoid betrayal; Fixer: reroll
+Wildcard “Handshake”	Fixer/Nomad	Any role	“Handshake deal, cash up front”	Fixer double-crosses, money is fake	Quick pay, lose trust, set-up	COOL vs. 13 to spot scam; Fixer: reroll
+Legal Clean-Up	Corrupt lawyer/Fixer	Media/Netrunner	“Scrub records for a fee”	City Hall or corp spots tampering	Clean slate, arrest, or blackmail	INT vs. 14 to avoid trace; Netrunner: reroll

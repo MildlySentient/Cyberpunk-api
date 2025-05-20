@@ -1,0 +1,33 @@
+Sensor Name	Detection Type	Range (meters)	Power Consumption	Cost (eb)	Availability	Vs Stat/Check	DV	Special Notes	Source
+Lowlight Optic	Visual	[TBD]	[TBD]	[TBD]	[TBD]	[TBD]	[TBD]	Image enhancement linked to expert system, antidazzle, targeting scope	Maximum-Metal.pdf p.67, Chromebook 3-4, Cyberpunk 2020 Core p.77
+Thermographic Imager	Thermal/Visual	10 (through walls)	[TBD]	[TBD]	[TBD]	[TBD]	[TBD]	Negates darkness, +5 to detect 125°C+ targets, see through walls at 10m, image enhancement, antidazzle, targeting scope	Maximum-Metal.pdf p.67, Chromebook 3-4
+Telescoptics	Visual	-1 Awareness per 800m	[TBD]	[TBD]	[TBD]	[TBD]	[TBD]	Extreme range, image enhancement, antidazzle, targeting scope	Maximum-Metal.pdf p.271, Chromebook 3-4
+Infra-Red Sensor	Infrared (visual)	[TBD]	[TBD]	1000 (passive), 1500 (active)	C (active)	[TBD]	[TBD]	Active includes IR spotlight/headlights, passive as Thermograph -3	Maximum-Metal.pdf p.67, p.19, Chromebook 3-4, Core p.77
+Times Square Plus HUD	Visual/Info Overlay	[TBD]	[TBD]	[TBD]	[TBD]	[TBD]	[TBD]	Heads-up display, antidazzle	Chromebook 1 p.38, Chromebook 3-4
+Video Cam/Transmitter	Visual (broadcast)	[TBD]	[TBD]	[TBD]	[TBD]	[TBD]	[TBD]	Broadcasts on radio, audio also transmittable	Chromebook 1 p.39, Chromebook 3-4
+Video Imager/Receiver	Visual/Audio	[TBD]	[TBD]	[TBD]	[TBD]	[TBD]	[TBD]	Receives audio, image enhancement, lowlight	Chromebook 1 p.39, Chromebook 3-4
+Microoptics	Visual (close detail)	[TBD]	[TBD]	[TBD]	[TBD]	[TBD]	[TBD]	Image enhancement, antidazzle, lowlight, expert system	Chromebook 3-4, Core p.77
+Acoustic Alarm System	Audio	[TBD]	[TBD]	[TBD]	[TBD]	Audio Awareness	[TBD]	Sound editor, level damper, amplified/enhanced hearing, +1 to audio Awareness	Chromebook 3-4, Maximum-Metal.pdf p.67
+Military Radio	Comm/Electronic	500,000 (500 km)	[TBD]	[TBD]	[TBD]	[TBD]	[TBD]	Band-jumping, IFF, scrambler, burst transmission	Chromebook 3-4, Maximum-Metal.pdf p.67
+Parabolic Microphone	Audio	Normal at extreme range	[TBD]	[TBD]	[TBD]	Awareness	[TBD]	-1 Awareness per 800m, audio pickup	Chromebook 3-4
+Tight Beam Laser Communications	Comm (line-of-sight)	Line-of-sight	[TBD]	[TBD]	[TBD]	[TBD]	[TBD]	Shoulder sensor boom mount	Chromebook 3-4
+Cellular Phone	Comm	20,000 (20 km)	[TBD]	[TBD]	[TBD]	[TBD]	[TBD]	Advanced, scrambler	Maximum-Metal.pdf p.67, Chromebook 3-4
+Satellite Uplink	Comm/Electronic	Realtime orbital	[TBD]	[TBD]	[TBD]	[TBD]	[TBD]	Back/torso antenna array	Maximum-Metal.pdf p.67, Chromebook 3-4
+RaserTM Scanner	Visual/Color Silhouette	[TBD]	[TBD]	[TBD]	[TBD]	Awareness	[TBD]	Eliminates camouflage modifiers, +2 Awareness, 1 torso space	Maximum-Metal.pdf p.68, Chromebook 3-4
+AN Recorder	Audio/Visual	[TBD]	[TBD]	[TBD]	[TBD]	[TBD]	[TBD]	6 hours audio/video per chip, 2 chips at once, 1 R. leg space	Maximum-Metal.pdf p.68, Chromebook 3-4
+Olfactory Booster/Chem Analyzer	Smell/Chemical	[TBD]	[TBD]	[TBD]	[TBD]	Awareness/Shadow-Track	[TBD]	+1 smell Awareness, 50% chance +2 Shadow/Track, 0 spaces	Maximum-Metal.pdf p.68, Chromebook 3-4
+Radiation Detector	Radiation	10	[TBD]	[TBD]	[TBD]	[TBD]	[TBD]	Built into right shoulder, 0 space	Maximum-Metal.pdf p.68, Chromebook 3-4
+Remote Targeting Link	Electronic/Fire Control	[TBD]	[TBD]	[TBD]	[TBD]	[TBD]	[TBD]	Indirect fire data, 0 space	Maximum-Metal.pdf p.68, Chromebook 3-4
+Motion Detectors	Seismic/Vibration	125	[TBD]	[TBD]	[TBD]	[TBD]	[TBD]	Vibration geophones in feet, detects all movement (mod. by size/bg vibration)	Maximum-Metal.pdf p.68, Chromebook 3-4
+Magnetometer	Magnetic/Metal	100–200	[TBD]	3,000	P	[TBD]	[TBD]	Pinpoints large metal masses (100–200m), detects railguns (300m when firing), left arm mount	Maximum-Metal.pdf p.68, Chromebook 3-4
+Microwave Detector	Microwave	[TBD]	[TBD]	5,000	P	[TBD]	[TBD]	Detects focused microwave (e.g., rangefinders) 90% of time, can trigger chaff	Maximum-Metal.pdf p.68, Chromebook 3-4
+Navigation System	Comm/Electronic	Global (satlink)	[TBD]	1,000	C	[TBD]	[TBD]	Satellite/computer navigation, gives exact location	Maximum-Metal.pdf p.68, Chromebook 3-4
+Radar (Military)	Radar	50,000 (50 km)	[TBD]	10,000	P	[TBD]	[TBD]	Hard to detect/jam, options: Look-down radar, radar ID, terrain-follow, detector	Maximum-Metal.pdf p.68, Chromebook 3-4
+Look-down Radar	Radar (aerial, low targets)	[TBD]	[TBD]	10,000	R	[TBD]	[TBD]	Detects low-flying targets, only with military radar	Maximum-Metal.pdf p.68, Chromebook 3-4
+Radar ID	Radar/Electronic	[TBD]	[TBD]	100,000	R	[TBD]	[TBD]	Matches signature after 2 turns, unknown targets imaged after 4 turns	Maximum-Metal.pdf p.68, Chromebook 3-4
+Terrain-Follow Radar	Radar/Obstacle	[TBD]	[TBD]	1,000	C	[TBD]	[TBD]	Detects obstacles in darkness, can autosteer with autopilot	Maximum-Metal.pdf p.68, Chromebook 3-4
+Radar Detector	Radar/Electronic	Detects radars at 150% of range	[TBD]	5,000	P	[TBD]	[TBD]	Detects civilian (100%), military (50%), can trigger chaff	Maximum-Metal.pdf p.68, Chromebook 3-4
+Laser Detector	Laser/Optical	[TBD]	[TBD]	1,000	P	[TBD]	[TBD]	Detects laser strikes 90% of time, can trigger countermeasures	Maximum-Metal.pdf p.68, Chromebook 3-4
+Light Amplification	Visual	[TBD]	[TBD]	500	C	[TBD]	[TBD]	Negates darkness mods, polarizes vs. searchlights	Maximum-Metal.pdf p.68, Chromebook 3-4
+Image Enhancement	Visual/Electronic	[TBD]	[TBD]	2,500	C	[TBD]	[TBD]	Links to sensors, computer-assisted optics bonus	Maximum-Metal.pdf p.68, Chromebook 3-4
+ECCM (Counter-Countermeasures)	Electronic	[TBD]	[TBD]	100,000	P	[TBD]	[TBD]	Negates ECM (electronic jamming) on 4-10, 1 space	Maximum-Metal.pdf p.68, Chromebook 3-4

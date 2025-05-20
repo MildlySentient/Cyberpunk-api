@@ -1,0 +1,31 @@
+Template Name	Division/Role	Rank/Type	Quirk/Complication	Statline (REF/BODY/COOL/INT/EMP/TECH)	Encounter/Use Hook
+Security Chief	Security	Managerial	Ex-military, keeps backup plans for backup plans	7/8/7/6/5/6	Always has off-the-books muscle; will sell out boss for right price
+Junior Exec	Administration	Low-level Climbs corp ladder by blackmail, avoids risk	6/5/6/8/7/5	Fearful of losing position, may hire PCs for dirty work
+Corporate Assassin	Special Projects	Solo	Quiet, hates unnecessary talk, obsessed with clean kills	9/8/8/7/4/6	Will betray employer if outbid; leaves no witnesses
+Legal Counsel	Legal	Attorney	Believes in corporate law as religion, secretly sabotages rivals	5/4/7/9/7/6	Knows every loophole, can erase (or forge) a record
+Black Ops Handler	Covert Ops	Director	Paranoid, maintains multiple fake identities, trusts no one	7/7/8/8/5/7	Uses layers of cutouts; if exposed, burns all assets
+PR Face/Publicist	Media Relations	Senior Spokesperson	Faces “panic attacks” before big spin, addicted to boosters	6/5/8/8/8/6	Can erase or amplify rep in Net; blackmailed by a media rival
+HR Monitor	Human Resources	Managerial	Tracks everyone's flaws, obsessed with loyalty metrics	5/5/7/7/6/5	Can block promotions or perks; may sell employee data
+Project Lead	R&D/Innovation	Engineer	Wears prototype cyber, fears all suits, always behind schedule	5/4/6/10/7/9	Desperate for beta-testers, can offer rare gear
+Biotech Specialist	Biotech/Lab	Researcher	Secretly tests on employees, has side hustle in black market	4/5/6/9/5/10	Wants rare samples from PCs, may cover up lab accidents
+Spin Doctor	Media/PR	Consultant	Has a “dark net” meme addiction, manipulates public polls	6/4/8/8/8/5	Can generate flash mobs, social unrest for employer or self
+Lobbyist	External Affairs	Director	Collects politicians like trading cards, never says no	5/5/8/9/9/5	Can grant/deny legal permits; owes favors to city fixers
+Internal Auditor	Finance/Compliance	Senior	Obsessed with “finding fraud,” secretly skims profits	5/4/7/10/7/8	May uncover player assets, can erase debt (for a cut)
+Black Clinic Surgeon	Covert R&D	Cyberdoc	No bedside manner, obsessed with record-breaking installs	5/7/4/8/4/10	Will install illegal cyber for rare loot, may add tracker
+Corp Shrink	HR/Med	Psych Specialist	Writes off “cyberpsychosis” for bonuses, burnt out	4/4/7/8/9/7	Can clear (or fake) psych evals; might develop obsession with PC
+Security Drone Op	Security	Technician	Hates all non-drones, argues with AI constantly	5/5/6/7/6/9	Can shut down a facility, may “forget” about intruders
+Executive PA	Admin/PR	Assistant	Knows every secret, gossips for bribes	6/4/6/9/8/7	May leak meeting invites, access codes, or dirt for right price
+Data Fortress Architect	IT/Cybersecurity	Lead Programmer	Believes AI will save the corp, has built secret backdoors	4/4/6/10/6/10	Can grant Net access—always for a hidden agenda
+Merger Hitman	Corporate Ops	Solo	Loves mergers by assassination, collects stock certificates	8/7/8/7/4/6	Offers hostile takeover jobs; can clean up after a botched run
+Boardroom Shark	Executive	Board Member	Always smiling, collects rivals' weaknesses for sport	5/5/8/9/8/5	Will sponsor (or destroy) PCs for business leverage
+Sleeper Agent	External/Black Ops	Field Agent	Thinks they’re still loyal—recently sold out by corp	7/6/7/7/5/7	Can supply intel, double-cross both sides in a pinch
+Legal Intern	Legal	Clerk	Desperate to impress, secretly in over their head	5/4/5/8/8/6	Easy to trick/bribe, can steal contracts (but panics under pressure)
+Corpo Driver	Transport	Logistics	Drives “like a Nomad,” moonlights as gunrunner	8/6/6/7/6/7	Has side job info, may smuggle PCs if cut in
+---
+
+**Instructions:**
+- Copy/paste directly into your `corp_npc_templates.tsv`.
+- Every row is systematized and canon-aligned—statlines, quirks, and encounter hooks for drop-in play.
+- Expand or replace entries with your own for specific megacorps or special ops as needed.
+
+Say **“next”** for the next missing NPC/contact table (`npc_directory.tsv`), or specify another file/category to generate or expand.

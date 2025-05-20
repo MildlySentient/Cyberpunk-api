@@ -1,0 +1,16 @@
+Template Name	Role/Division	Rank/Type	Quirk/Complication	Statline/Notes	Encounter Hook
+Beat Cop	Patrol/Precinct	Officer	Stuck on foot patrol, hates paperwork	REF 6, BODY 7, COOL 6, INT 5	Gets in the way, can be bribed, knows street
+Vice Detective	Vice/Undercover	Detective	Has a favorite informant, easily distracted	REF 7, BODY 6, COOL 7, INT 7	Looking for a fix, needs a favor, digs for dirt
+SWAT Operative	SWAT/Assault	Sergeant	Military wannabe, trigger-happy	REF 8, BODY 8, COOL 7, INT 5	Overreacts to any threat, escalate violence
+NCPD Inspector	Internal Affairs	Inspector	Secretly working for a corp, hates other cops	REF 6, BODY 6, COOL 8, INT 8	Will blackmail or betray PCs if useful
+Corpo Liaison	Corporate Affairs	Lieutenant	Speaks in corpo-legalese, despises “street”	REF 6, BODY 5, COOL 7, INT 8	Offers deals—always with a catch, hates violence
+Homicide Detective	Homicide	Senior Detective	Burned out, haunted by old case	REF 7, BODY 6, COOL 8, INT 8	Likely to help if PCs share evidence, knows every fixer
+Riot Cop	Public Order	Officer	Fanatic, believes in “the shield” above all	REF 7, BODY 8, COOL 6, INT 5	May escalate crowd, hard to bribe, loyal to sergeant
+Forensics Tech	Crime Lab	Analyst	Obsessed with evidence, hates field work	REF 5, BODY 5, COOL 6, INT 9	Can be bought for lab access, knows oddball details
+NCPD Fixer	Gang Division	Detective	Always on the take, juggles five side hustles	REF 7, BODY 7, COOL 8, INT 7	Knows all local gangs, may double-cross for profit
+Corrupt Desk Sergeant	Precinct Admin	Sergeant	Has a “pay to play” system for all arrests	REF 6, BODY 6, COOL 8, INT 6	Can erase a file—for a price, expects ongoing bribes
+Bike Patrol	Cybercycle Squad	Officer	Chases perps for fun, livestreams pursuits	REF 8, BODY 6, COOL 6, INT 5	Reckless, can be baited, famous on local Net
+Night Shift Medic	Medical Response	EMT/Doc	Burned out, addicted to stims	REF 6, BODY 7, COOL 7, INT 7	Can save a life, will trade meds for gear
+Trauma Team Plant	TT/NCPD Liaison	Officer	Secretly working for Trauma Team, tips off crews	REF 6, BODY 6, COOL 7, INT 7	Can sabotage police response, wants a cut
+S.W.A.T. Net Op	Cybercrime Response	Specialist	Runs ops from AR, never enters field	REF 5, BODY 5, COOL 6, INT 9	Can ICE a PC’s gear mid-job, loves remote threats
+NCPD Rookie	Patrol	Officer	Naive, idealistic, eager to impress	REF 6, BODY 6, COOL 5, INT 5	Will listen to PCs, easily led astray or framed

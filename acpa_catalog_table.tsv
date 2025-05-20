@@ -1,0 +1,7 @@
+Model	Manufacturer	Armor Value (Front)	Armor Value (Side)	Armor Value (Rear)	Strength	Speed (kph)	Crew	Weight (tons)	Armament	Sensors/ECM	Price (eb)	Availability	Special Notes	Source Book	Vs Stat	INT	REF	CL	TECH	LK	ATT	MA	EMP
+Arasaka DaiOni	Arasaka	60	50	45	+10	40	1	8.0	Heavy autocannon, micro-missile launcher	Advanced radar, IR, ECM	8,500,000	Extremely Rare	Arasaka flagship assault suit, limited deployment	Maximum Metal	REF	-	+2	-	-	-	-	+2	-
+Arasaka Standard B	Arasaka	45	40	35	+7	55	1	5.5	Auto-rifle, grenade launcher	Radar, IR, Targeting Assist	4,000,000	Military Only	Standard Arasaka infantry ACPA	Maximum Metal	REF	-	+1	-	-	-	-	+1	-
+Militech Commando	Militech	50	45	40	+8	60	1	5.2	2x 30mm autocannon, grenade launcher	Radar, IR, Targeting Suite	4,500,000	Military Only	Militech special forces	Maximum Metal	REF	-	+2	-	-	-	-	+1	-
+Russian Arms Boris 1	Russian Arms	55	45	40	+9	45	1	6.8	Autocannon, flamethrower	Basic sensors	3,800,000	Rare	Export unit, used by eastern bloc	Maximum Metal	REF	-	+1	-	-	-	-	+1	-
+Russian Arms Bombardier	Russian Arms	65	60	55	+12	30	2	12.0	Heavy artillery cannon, minigun	Radar, ECM, NBC protection	7,800,000	Extremely Rare	Heavy siege ACPA, slow and armored	Maximum Metal	REF	-	+1	-	-	-	-	+1	-
+Zetatech Grasshopper	Zetatech	35	30	25	+5	80	1	4.0	Light autocannon, jump jets	Basic sensors, jump pack	2,900,000	Uncommon	Recon/scout model, highly mobile	Maximum Metal	REF	-	+3	-	-	-	-	+3	-

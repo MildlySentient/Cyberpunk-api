@@ -1,0 +1,8 @@
+	Gang	Maelstrom	Tyger Claws	Valentinos	6th Street	Moxes	Animals	Bozos
+Maelstrom		-2	0	-1	-1	+1	+1
+Tyger Claws	-2		-1	-1	-1	-1	0
+Valentinos	0	-1		+1	0	-1	0
+6th Street	-1	-1	+1		0	0	-1
+Moxes	-1	-1	0	0		-2	0
+Animals	+1	-1	-1	0	-2		0
+Bozos	+1	0	0	-1	0	0	

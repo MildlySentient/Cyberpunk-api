@@ -1,0 +1,44 @@
+Job Type	Division/Unit	Target/Main Faction	Main Task	Complication	Reward	Resist/Check
+Sting Operation	Narcotics/Undercover	Drug syndicate	Infiltrate and bust dealers	Dealers are wired, rival gang hits back	Reputation, promotion, asset	COOL vs. 13 to maintain cover; Fixer: reroll
+Crime Scene Cleanup	Forensics	Trauma Team/Medtech	Secure evidence, avoid contamination	Biohazard leak, media presence	Merit, lab bonus, favor	TECH vs. 13 to sanitize; Medtech: reroll
+Hostage Negotiation	PsyOps/Negotiator	Gang, disgruntled corp	Free hostages, avoid violence	Sniper, inside mole, demands	Reputation, hazard pay, commendation	EMP vs. 14 to de-escalate; Rockerboy: reroll
+Undercover Surveillance	Vice/Patrol	Corpo, fixer, media	Shadow target for info	Target spots tail, fixer’s rival intervenes	Info, promotion, gear	COOL vs. 13 to avoid exposure; Fixer: reroll
+Pursuit/Chase	Traffic/Chase	Nomad gang, getaway crew	Stop or disable fleeing vehicle	Roadblock, civilians, AV drones	Credits, new AV, commendation	REF vs. 14 to keep up; Nomad: reroll
+Raid/Assault	SWAT/MaxTac	Maelstrom, gang stronghold	Apprehend leader, secure site	Building is booby-trapped, backup delayed	Gear, commendation, street rep	BODY vs. 14 to break in; Solo: reroll
+Internal Affairs Probe	IA/Command	NCPD officer	Expose corruption, survive backlash	Targeted by police union, fake evidence	Promotion, merit, hazard pay	COOL vs. 14 to resist pressure; Fixer: reroll
+Riot Control	Public Order	Crowd, street protest	Restore order, minimize harm	Instigator, media coverage, property loss	Reputation, gear, commendation	COOL vs. 13 to avoid escalation; Solo: reroll
+Evidence Recovery	Forensics/CSI	Corporate, fixer, gang	Retrieve or destroy evidence	Evidence is digital and physical, ICE on site	Gear, legal favor, bonus	TECH vs. 14 to bypass ICE; Netrunner: reroll
+Stakeout	Detectives/Narcotics	Dealer, fixer, hitman	Wait and watch, ID suspects	PCs targeted by rival stakeout, loss of sleep	Credits, info, merit	COOL vs. 12 to stay alert; Fixer: reroll
+Cyberpsychosis Sweep	PsyOps/MaxTac	Cybered solo/ganger	Apprehend or neutralize threat	Threat is family/friend, media on scene	Cash, hazard pay, trauma team link	EMP vs. 13 to avoid trauma; Medtech: reroll
+Job Type	Unit/Division	Target	Main Task	Complication	Reward/Outcome	Resist/Check
+Warrant Service	Patrol	Gang hideout	Serve warrant, secure suspect	Suspect is armed, rival gang arrives	Pay, promotion, gear	COOL vs. 13 to avoid escalation; Solo: reroll
+Surveillance	Detective	Corpo exec	Shadow target, gather evidence	Exec has private security, surveil fails	Case progress, court favor	INT vs. 13 to maintain cover; Netrunner: reroll
+Undercover Buy	Vice	Drug dealer	Purchase illegal goods, make arrest	Dealer is undercover fixer, drugs are poisoned	Cash, promotion, blackmail	COOL vs. 13 to spot double-cross; Fixer: reroll
+Stakeout	Narcotics	Drug den	Watch site, wait for deal	Deal is canceled, rival cops show up	Overtime, case credit	COOL vs. 12 to stay alert; Fixer: reroll
+Hostage Rescue	SWAT	Gang safehouse	Free hostages, minimize casualties	Safehouse is rigged, one hostage is traitor	Commendation, media attention	EMP vs. 14 to negotiate; Rockerboy: reroll
+Internal Affairs	IA	Crooked officer	Collect proof, force confession	Officer has dirt on PC, higher-up interference	Case cleared, IA favor, blackmail	COOL vs. 14 to resist pressure; Fixer: reroll
+Black Bag Pickup	Vice	Fixer’s office	Collect payoff, don’t get caught	Media is watching, fixer’s rivals intervene	Cash, dirt on fixer, or demotion	COOL vs. 13 to avoid press; Fixer: reroll
+Patrol	Beat Patrol	Combat Zone	Standard patrol, write tickets/stop crime	Gang activity spikes, riot begins	Steady pay, info, “nothing happened”	COOL vs. 12 to maintain control; Solo: reroll
+Vice Raid	Vice	Illegal club	Raid, arrest ringleaders	Club is owned by cop’s family, media there	Cash, reputation, or scandal	COOL vs. 13 to avoid scandal; Fixer: reroll
+Protection Detail	SWAT/Bodyguard	Exec/celebrity	Protect during event/deal	Target is secretly a criminal, rival hits	Reputation, future contract, legal risk	COOL vs. 13 to spot setup; Solo: reroll
+Interrogation	Detective	Gang member	Break suspect for info	Suspect dies in custody, video leaks	Case break, scandal, blackmail	COOL vs. 13 to avoid scandal; Fixer: reroll
+Evidence Destruction	Corrupt Cop	NCPD Evidence Locker	Destroy evidence, avoid cameras	Fellow cop is IA informant, alarm triggers	Bribe, favor, risk of firing	TECH vs. 14 to bypass alarms; Techie: reroll
+Asset Recovery	SWAT/Patrol	Stolen police gear	Retrieve gear from black market	Booby-trapped, fixer wants to buy gear back	Commendation, street cred, gear	BODY vs. 13 to avoid trap; Techie: reroll
+Escort Prisoner	Jail Transport	Rival gang	Move prisoner to lockup	Gang attempts rescue, rival cops sabotage	Favor, pay, or shootout	COOL vs. 13 to avoid ambush; Solo: reroll
+Vice Collection	Vice	Pimp/bookie	Collect cut for precinct	Pimp is protected by a fixer, cameras on	Cash, blackmail, fixer contact	EMP vs. 13 to negotiate; Fixer: reroll
+Back Alley Deal	Corrupt Cop	Nomad fixer	Broker illegal deal for quick cash	Fixer double-crosses, gang shows up	Cash, demotion, new contact	COOL vs. 13 to spot betrayal; Nomad: reroll
+Riot Control	SWAT/Patrol	Crowd/Media	Break up riot, minimize damage	Crowd includes family/friends, media streams	Commendation, media hit piece, trauma	COOL vs. 13 to avoid escalation; Solo: reroll
+Setup/Bust	Detective	Fixer rival	Set up rival, arrange bust	Bust is blown, rival tips off media	Promotion, grudge, case lost	COOL vs. 13 to keep cool; Fixer: reroll
+Surprise Inspection	Internal Affairs	Precinct/partner	Inspect for corruption, gather evidence	Partner covers for suspects, plants evidence	IA rep, case credit, enemies	INT vs. 13 to spot deception; Fixer: reroll
+Crash Squad	SWAT	Stolen AV	Stop/disable flying car	Pilot is a kid, car is rigged	Rescue, PR win, gear salvage	REF vs. 14 to control vehicle; Nomad: reroll
+Community Policing	Beat Patrol	Neighborhood leader	Negotiate truce, reduce gang violence	Leader demands bribe, rival cop interferes	Favor, local intel, new problem	EMP vs. 13 to mediate; Fixer: reroll
+Tech Raid	Cybercrimes/Netrunner	Illegal netrunner crew	Shut down illegal net hub	Netrunner sets trap, ICE fries evidence	Data, rep, rare software	INT vs. 14 to counter hack; Netrunner: reroll
+Missing Persons	Detective/Community	Street kids	Find, rescue missing kids	Gang is using kids as bait, kids run	Hero status, scandal, gang grudge	COOL vs. 13 to maintain cover; Fixer: reroll
+Rescue Officer	SWAT	Trapped cop	Extract cop from failed bust	Gang outnumbers, building is rigged	Reputation, commendation, survivor’s guilt	BODY vs. 14 to break through; Solo: reroll
+Illegal Arms Bust	Vice/Detective	Gun runners	Buy, bust, recover illegal arms	Deal is sting on cops, arms are booby-trapped	Cash, gear, street cred	COOL vs. 13 to avoid setup; Fixer: reroll
+Shut Down Ripperdoc	Cybercrimes	Ripperdoc clinic	Raid illegal clinic, arrest doc	Doc flees, media protects, cyberware trap	Credits, cyberware, lawsuit risk	COOL vs. 13 to catch doc; Techie: reroll
+Witness Protection	Detective/IA	Witness/Informant	Protect during trial/transfer	Witness wants to escape, rival tries to kill	Legal favor, scandal, safehouse access	COOL vs. 13 to avoid betrayal; Fixer: reroll
+Frame Up	Corrupt Cop	Media/Fixer	Plant evidence, create false charges	Media exposes frame, fixer blackmails	Case closed, risk, scandal	COOL vs. 14 to keep story straight; Fixer: reroll
+Falsify Report	Corrupt Cop	Internal Affairs	Cover up incident, rewrite evidence	IA double-checks, partner threatens to snitch	Job saved, future blackmail	COOL vs. 13 to stay calm; Fixer: reroll
+Bribe Collection	Corrupt Cop	Local business	Collect routine bribe	New management refuses, threatens to go public	Cash, risk, media heat	COOL vs. 13 to handle negotiation; Fixer: reroll
+Pension Scam	Detective/Corrupt Cop	Retired cop	Help scam department pension	Partner has a conscience, IA smells a rat	Cash, favor, or gets caught	COOL vs. 13 to maintain deception; Fixer: reroll

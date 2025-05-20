@@ -1,0 +1,9 @@
+File Name	Description	Status	Linked Files/Notes
+vehicle_catalog.tsv	Master vehicle directory, all major models and stats	TBD	
+vehicles_table.tsv	Common vehicle statlines and upgrades	TBD	
+vehicle_mods_table.tsv	Mods, upgrades, and quirks for vehicles	TBD	
+vehicle_chase_rules.tsv	Chase mechanics and complications for vehicle pursuits	TBD	
+acpa_table.tsv	ACPA (mech) directory and stats	TBD	
+vehicle_combat_table.tsv	Vehicle combat rules, damage, maneuvers	TBD	
+acpa_sensors_table.tsv	Sensors, targeting suites for ACPA	TBD	
+acpa_catalog_table.tsv	ACPA models/templates, quirks, upgrades	TBD	
