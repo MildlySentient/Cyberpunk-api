@@ -1,14 +1,15 @@
 # combat_tracker.py
-# Modular Combat Tracker for Cyberpunk 2020 (Merged Logic)
+# Modular Combat Tracker for Cyberpunk 2020
 
 from cyberpunk2020_engine import roll_d10
 
+# Global combat state (in-memory; reset on app restart)
 combatants = []
 initiative_order = []
-current_turn = 0  # Index in initiative_order (0-based)
-current_round = 1 # Human-facing round number (starts at 1)
+current_turn = 0   # Index in initiative_order (0-based)
+current_round = 1  # Human-facing round (starts at 1)
 
-def add_combatant(name, ref, hp, type='NPC'):
+def add_combatant(name: str, ref: int, hp: int, type: str = 'NPC'):
     """Add a combatant with REF stat and base HP."""
     roll = roll_d10()
     initiative = roll + ref
@@ -25,20 +26,45 @@ def add_combatant(name, ref, hp, type='NPC'):
     })
 
 def roll_initiative():
-    """Generate and sort initiative order for this encounter."""
+    """Sort combatants by initiative."""
     global initiative_order, current_turn, current_round
     initiative_order = sorted(combatants, key=lambda x: x['init'], reverse=True)
     current_turn = 0
     current_round = 1
 
+def start_combat(combatant_list):
+    """
+    Start a new combat with a provided list of combatants.
+    Each item can be a dict (with keys: name, ref, hp, type) or tuple (name, ref, hp, type).
+    """
+    reset_combat()
+    for c in combatant_list:
+        if isinstance(c, dict):
+            add_combatant(
+                c.get('name', 'Unknown'), 
+                c.get('ref', 5), 
+                c.get('hp', 10), 
+                c.get('type', 'NPC')
+            )
+        else:
+            # Assume tuple: (name, ref, hp, [type])
+            add_combatant(*c)
+    roll_initiative()
+    return list_combatants()
+
 def get_current_actor():
-    """Return current actor in initiative order."""
+    """Return the current actor in initiative order."""
     if not initiative_order:
         return None
     return initiative_order[current_turn % len(initiative_order)]
 
+def get_current_turn():
+    """Return info about whose turn it is now."""
+    actor = get_current_actor()
+    return actor if actor else {}
+
 def next_turn():
-    """Advance turn order, update round/acted state."""
+    """Advance to the next turn, update acted/round state."""
     global current_turn, current_round
     if not initiative_order:
         return None
@@ -52,13 +78,13 @@ def next_turn():
         current_round += 1
     return actor
 
-def apply_wound(name, damage):
-    """Apply damage to named combatant, update status."""
+def apply_wound(name: str, damage: int):
+    """Apply damage to a combatant and update status."""
     for c in combatants:
         if c['name'] == name and c['status'] == 'alive':
             c['wounds'] += damage
             c['hp'] -= damage
-            # Critical status (tweak thresholds for your house rules)
+            # Simple thresholds for demo purposes
             if c['hp'] <= 0:
                 c['status'] = 'dead'
             elif c['hp'] <= 2:
@@ -68,14 +94,14 @@ def apply_wound(name, damage):
             return c['status']
     return None
 
-def remove_combatant(name):
-    """Remove combatant from tracker."""
+def remove_combatant(name: str):
+    """Remove a combatant by name."""
     global combatants, initiative_order
     combatants = [c for c in combatants if c['name'] != name]
     initiative_order = [c for c in initiative_order if c['name'] != name]
 
 def list_combatants():
-    """List all combatants and their states."""
+    """List all combatants and their states (ordered)."""
     return [
         {
             'name': c['name'],
@@ -90,7 +116,7 @@ def list_combatants():
     ]
 
 def reset_combat():
-    """Reset all combat data for a new encounter."""
+    """Reset all combat state (use to start a new encounter)."""
     global combatants, initiative_order, current_turn, current_round
     combatants = []
     initiative_order = []
