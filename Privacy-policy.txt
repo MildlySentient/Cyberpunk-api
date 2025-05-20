@@ -1,0 +1,37 @@
+Privacy Policy for Cyberpunk 2020 GPT Tools
+
+Last updated: [2024-05-20]
+
+1. Data Collection
+
+This application (Cyberpunk 2020 GPT API and Custom GPT) does **not** intentionally collect, store, or share any personal information about users. All interactions with the API and the custom GPT are transient and are not saved by the backend or the developers.
+
+2. Data Processing
+
+- Any queries sent to the API or GPT may be processed in memory to generate a response, but are **not logged** or stored after processing.
+- Uploaded files (e.g., game data, scenario tables) are only used for the immediate purpose of serving game queries and are not retained or used for other purposes.
+
+3. Third Parties
+
+- The backend is hosted on [Render.com](https://render.com/), and usage is subject to their privacy and security practices.
+- No analytics, tracking, or third-party advertising services are used.
+
+4. Security
+
+Reasonable efforts are made to secure the server and codebase, but no system is perfectly secure. Do not submit sensitive or personal information through this tool.
+
+5. Children's Privacy
+
+This tool is not intended for children under 13. No information is knowingly collected from minors.
+
+6. Changes to This Policy
+
+This policy may be updated at any time. Changes will be committed to the public GitHub repository.
+
+7. Contact
+
+For questions or concerns about privacy, please open an issue in the GitHub repository: [Your Repo URL Here]
+
+---
+
+By using this tool, you agree to this privacy policy.
