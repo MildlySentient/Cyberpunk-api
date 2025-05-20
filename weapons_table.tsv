@@ -1,5 +1,4 @@
-Category | Weapon | Type | Damage | Ammo | RoF | Range (m) | Cost (eb) | Weight (kg) | Reliability | Availability | Concealability | Skill Used | Vs Stat/Check | DV | Special Notes | Source
-
+Category	Weapon	Type	Damage	Ammo	RoF	Range (m)	Cost (eb)	Weight (kg)	Reliability	Availability	Concealability	Skill Used	Vs Stat/Check	DV	Special Notes	Source
 Handgun	Beretta 93R	Pistol	1d6+1	20	3	50	200	1.1	Reliable	Common	Jacket	Handgun	REF + Handgun vs. DV	12	3-round burst, common upgrade to Beretta 92	Blackhand’s
 Handgun	Colt AMT 2000	Pistol	2d6	12	1	50	350	1.2	Standard	Common	Jacket	Handgun	REF + Handgun vs. DV	13	Powerful, standard corp sidearm	Core Rulebook
 Handgun	Glock 17	Pistol	1d6+1	17	2	50	250	1.0	Standard	Common	Jacket	Handgun	REF vs. DV	12	Polymer build, high reliability	Blackhand’s
@@ -12,8 +11,6 @@ Handgun	Sternmeyer Type 35	Pistol	1d6	10	2	25	120	1.3	Low	Common	Pocket	Handgun	
 Handgun	Nomad Reclaimer .357	Pistol	2d6+1	6	1	30	450	1.5	Medium	Uncommon	Jacket	Handgun	REF vs. DV	14	Custom-built revolver, used by nomads	Core Rulebook
 Handgun	FN Five-seveN	Pistol	1d6	20	2	75	600	1.0	High	Common	Jacket	Handgun	REF vs. DV	11	Armor-piercing round compatibility	Chromebook 2
 Handgun	Auto-9 (Robocop Special)	Pistol	3d6	30	3	75	1200	2.5	High	Unique	Jacket	Handgun	REF + Handgun vs. DV	16	Cinematic use only, bursts and cinematic recoil	Custom/Homebrew
-
-
 SMG	Heckler & Koch MP5A3	SMG	2d6	30	3	150	500	2.5	Reliable	Common	Jacket	SMG	REF + SMG vs. DV	12	Classic design, used by corpos and spec ops	Core Rulebook
 SMG	Ingram MAC-10	SMG	2d6	30	5	100	350	2.0	Standard	Common	Jacket	SMG	REF vs. DV	10	Loud, spray-heavy, street favorite	Blackhand’s
 SMG	Arasaka Minismg 10	SMG	2d6	25	3	100	800	2.2	High	Rare	Jacket	SMG	REF + SMG vs. DV	13	Lightweight, preferred by security forces	Chromebook 2
@@ -22,9 +19,6 @@ SMG	G-20 Caseless	SMG	2d6	30	3	200	300	2.3	High	Common	Jacket	SMG	REF + SMG vs. 
 SMG	Nomad SMG-11	SMG	1d6+1	28	4	90	280	1.8	Low	Uncommon	Jacket	SMG	REF vs. DV	10	Often rigged for full auto by scavvers	Core Rulebook
 SMG	Sternmeyer Viper	SMG	2d6	20	2	150	750	2.0	High	Uncommon	Shoulder	SMG	REF + SMG vs. DV	13	Elite Eurocorp weapon, limited spread	Blackhand’s
 SMG	Uzi-9mm	SMG	2d6	32	4	120	300	2.1	Standard	Common	Jacket	SMG	REF vs. DV	11	Widely available, durable and overclocked	Core Rulebook
-
-
-Category	Weapon	Type	Damage	Ammo	RoF	Range (m)	Cost (eb)	Weight (kg)	Reliability	Availability	Concealability	Skill Used	Vs Stat/Check	DV	Special Notes	Source
 Rifle	AK-47	Rifle	2d6	30	3	350	300	4.0	Standard	Common	Shoulder	Rifle	REF + Rifle vs. DV	12	Durable, widely available, mod-friendly	Blackhand’s
 Rifle	Armalite AR-7	Rifle	2d6	30	3	400	1200	3.5	Standard	Common	Shoulder	Rifle	REF + Rifle vs. DV	13	Standard issue, versatile platform	Blackhand’s
 Rifle	M16A2	Rifle	2d6+1	30	3	400	500	3.5	Reliable	Common	Shoulder	Rifle	REF + Rifle vs. DV	13	Military burst fire rifle	Core Rulebook
@@ -34,8 +28,6 @@ Rifle	Gepard Anti-Material	Rifle	7d6	5	1	800	3500	9.0	Special	Rare	Shoulder	Rifl
 Rifle	Nomad Carbine 5.56	Rifle	2d6	25	3	250	400	3.2	Standard	Common	Shoulder	Rifle	REF + Rifle vs. DV	12	Common among vehicle convoys	Core Rulebook
 Rifle	Tsunami Arms “TAR-21”	Rifle	2d6+2	30	3	450	1500	3.6	High	Rare	Shoulder	Rifle	REF + Rifle vs. DV	14	Bullpup, advanced optics	Chromebook 3
 Rifle	Ruger Mini-14	Rifle	2d6	20	2	300	750	3.0	Standard	Common	Shoulder	Rifle	REF vs. DV	12	Civilian config, simple mods	Blackhand’s
-
-Category	Weapon	Type	Damage	Ammo	RoF	Range (m)	Cost (eb)	Weight (kg)	Reliability	Availability	Concealability	Skill Used	Vs Stat/Check	DV	Special Notes	Source
 Shotgun	Remington 870	Shotgun	6d6	8	1/3	50	800	3.8	Reliable	Common	Shoulder	Shotgun	REF + Shotgun vs. DV	12	Pump action, common law enforcement model	Core Rulebook
 Shotgun	Benelli M4	Shotgun	7d6	7	1/2	50	1200	3.2	Reliable	Uncommon	Shoulder	Shotgun	REF vs. DV	13	Semi-auto, rapid fire capable	Blackhand’s
 Shotgun	Mossberg CMDT	Shotgun	5d6	6	1	30	400	3.6	Standard	Common	Shoulder	Shotgun	REF vs. DV	11	Short-barrel, close quarters	Blackhand’s
@@ -43,8 +35,6 @@ Shotgun	SPAS-12	Shotgun	6d6	8	1/3	40	900	4.0	High	Uncommon	Shoulder	Shotgun	REF 
 Shotgun	Nomad Shotpistol	Shotgun	4d6	2	1	15	250	1.8	Low	Uncommon	Jacket	Shotgun	REF vs. DV	10	Pistol grip, compact scattergun	Core Rulebook
 Shotgun	Tsunami Arms SA-12	Shotgun	6d6	10	2	50	1400	3.9	High	Rare	Shoulder	Shotgun	REF + Shotgun vs. DV	14	Military-style semi-auto	Chromebook 2
 Shotgun	ONI Autoshootgun	Shotgun	4d6+3	180	1/3/5	75	1200	10.5	Special	Rare	Shoulder	Shotgun	BODY ≥ 8 & REF + Shotgun vs. DV	18	Mounted, PA-compatible, belt-fed	Blackhand’s
-
-Category	Weapon	Type	Damage	Ammo	RoF	Range (m)	Cost (eb)	Weight (kg)	Reliability	Availability	Concealability	Skill Used	Vs Stat/Check	DV	Special Notes	Source
 Melee	Mono-Katana	Blade	3d6	—	1	1	500	2.0	High	Rare	Jacket	Melee	REF + Melee vs. DV	12	Ignores ½ SP of soft armor	Streetfighting
 Melee	Cyberblade	Implant	4d6	—	1	1	2000	2.0	Special	Very Rare	Internal	Melee	BODY vs. DV	14	Mounted in forearm, retractable	Chromebook 2
 Melee	Electric Cestus	Glove	2d6+Stun	—	1	1	1000	1.5	High	Rare	Glove	Melee	REF vs. DV	11	Shock effect on hit, EMP vulnerable	Blackhand’s
@@ -55,9 +45,6 @@ Melee	Neural Whip	Cyber	3d6	—	1	2	1500	1.8	Special	Rare	Jacket	Melee	BODY vs. 
 Melee	Cyberarm Sledge	Implant	5d6	—	1	1	2500	5.0	Special	Very Rare	Internal	Melee	BODY ≥ 10 vs. DV	16	Devastating strike, slow recovery	Max Metal
 Melee	Mono-Garrote	Wire	2d6	—	1	1	350	0.5	Standard	Rare	Pocket	Melee	REF vs. DV	12	Can silently incapacitate if surprise hit	Streetfighting
 Melee	Panther Claws	Implant	3d6	—	2	1	2000	1.0	Special	Rare	Internal	Melee	REF + Melee vs. DV	13	Retractable hand blades	Chromebook 4
-
-
-Category	Weapon	Type	Damage	Ammo	RoF	Range (m)	Cost (eb)	Weight (kg)	Reliability	Availability	Concealability	Skill Used	Vs Stat/Check	DV	Special Notes	Source
 Exotic	Railgun Rifle	Rifle	8d6	5	1	800	15000	20.0	Special	Extreme	Shoulder	Rifle	BODY ≥ 12 & REF + Rifle vs. DV	20	Penetrates vehicles and bunkers	Maximum Metal
 Exotic	Smartgun HRR	Smart	Variable	—	—	—	7000	1.5	High	Very Rare	Shoulder	Smartgun	REF + Smartgun Link vs. DV	18	Variable ammo modes, only usable with smartlink	Chromebook 3
 Exotic	Pulse Laser Rifle	Energy	6d6	20	2	500	18000	10.0	Special	Rare	Shoulder	Energy Weapons	REF + Energy skill vs. DV	17	Bypasses most soft armor	Chromebook 4
@@ -67,9 +54,6 @@ Exotic	Gas Gun (C-22)	Gas	3d6/round	2	1	50	1800	2.2	Standard	Rare	Shoulder	Exoti
 Exotic	Taser Implant	Implant	Stun	—	1	1	0	750	0.3	Reliable	Uncommon	Internal	Melee	REF vs. DV	12	Stuns target for 1d3 rounds	Chromebook 2
 Exotic	Sonic Stunner	Pistol	Stun	1d6 (Stun)	5	2	30	950	1.0	Standard	Common	Jacket	Stun Weapons	REF vs. DV	11	May cause disorientation for 1 round	Protect & Serve
 Exotic	Spider Mine	Drone	3d6 (Explosive)	N/A	1	—	1200	1.2	Standard	Rare	None	Tech/Remote	TECH vs. DV	14	Autonomous crawling explosive	Chromebook 3
-
-
-Category	Weapon	Type	Damage	Ammo	RoF	Range (m)	Cost (eb)	Weight (kg)	Reliability	Availability	Concealability	Skill Used	Vs Stat/Check	DV	Special Notes	Source
 Stun	C-22 Stun Baton	Baton	1d6 (Stun)	—	1	1	300	1.2	High	Common	Jacket	Melee	REF vs. DV	10	+2 to disarm rolls, may shock on hit	Protect & Serve
 Stun	Netgun 9000	Net	Stun (Restrains)	1	1	15	450	2.0	Standard	Rare	Shoulder	Exotic	REF vs. DV	12	Immobilizes target, -4 to escape attempts	Wilde Side
 Utility	Tactical Laser Dazzler	Light	Stun	3	1	30	600	1.0	High	Rare	Pocket	Stun Devices	REF vs. DV	11	Blinds targets, no damage	Protect & Serve
