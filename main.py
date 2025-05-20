@@ -16,6 +16,9 @@ from cyberpunk2020_engine import roll_d6, roll_d10, roll_d100
 from combat_tracker import start_combat, next_turn, get_current_turn
 from combat_resolution import resolve_attack
 
+# --- Config ---
+MAX_RESULTS = 10  # Max records returned in a single API call from tables
+
 # --- Logging Setup ---
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger("cyberpunk_api")
@@ -25,7 +28,7 @@ app = FastAPI()
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["https://yourfrontend.com"],  # TODO: Set your real frontend here before launch!
+    allow_origins=["*"],  # For dev; restrict in prod!
     allow_methods=["*"],
     allow_headers=["*"],
 )
@@ -213,7 +216,13 @@ async def get_data(payload: QueryRequest):
         sub_path = os.path.join(os.path.dirname(__file__), sub_file)
         if os.path.exists(sub_path):
             sub_df = pd.read_csv(sub_path, sep="\t")
-            return DataResultModel(source=sub_file, result=sub_df.to_dict(orient="records"))
+            # Truncate results to avoid oversized responses
+            if len(sub_df) > MAX_RESULTS:
+                result = sub_df.head(MAX_RESULTS).to_dict(orient="records")
+                note = f"Truncated to first {MAX_RESULTS} records"
+                return DataResultModel(source=sub_file, result=result, note=note)
+            else:
+                return DataResultModel(source=sub_file, result=sub_df.to_dict(orient="records"))
         else:
             return DataResultModel(source=core_file, result=core_row, note=f"Linked file {sub_file} not found.")
     return DataResultModel(source=core_file, result=core_row)
