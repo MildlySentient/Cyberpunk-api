@@ -27,7 +27,6 @@ cache = {
 
 # Synonyms (expand this as you go)
 synonyms = {
-synonyms = {
     "steal": ["rob", "robbery", "theft"],
     "fight": ["attack", "punch", "strike"],
     "alarm": ["alert", "siren"], 
