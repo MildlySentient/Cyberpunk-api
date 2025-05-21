@@ -1,54 +1,32 @@
 # combat_tracker.py
-# Modular Combat Tracker for Cyberpunk 2020
+# Modular Combat Tracker for Cyberpunk 2020 — with typo-tolerant TSV lookup
 
-from cyberpunk2020_engine import roll_d10
 import os
 import pandas as pd
 import random
 import difflib
 
-# === NEW: Conservative, typo-tolerant file loader ===
+# --- Data loading abstraction ---
 DATA_DIR = os.path.dirname(__file__)
 
-def conservative_match(basename, directory, extensions=('.tsv', '.csv'), cutoff=0.90):
-    """
-    Load a file with minor typo/variant tolerance but *not* major conceptual shifts.
-    Only matches with high similarity (default 0.90) and blocks 'upgrade' or similar suffix mismatch.
-    """
-    candidates = [f for f in os.listdir(directory) if f.lower().endswith(extensions)]
-    # Try exact match first
-    if basename in candidates:
-        return pd.read_csv(os.path.join(directory, basename), sep="\t")
-    # Conservative: Only match if basename minus extension is in candidate minus extension
-    base_no_ext = os.path.splitext(basename)[0].lower()
-    similar_candidates = []
-    for cand in candidates:
-        cand_no_ext = os.path.splitext(cand)[0].lower()
-        # Must share prefix before underscore
-        base_prefix = base_no_ext.split("_")[0]
-        cand_prefix = cand_no_ext.split("_")[0]
-        if base_prefix == cand_prefix:
-            # If 'upgrade' is in one but not the other, skip
-            if ('upgrade' in base_no_ext) != ('upgrade' in cand_no_ext):
-                continue
-            sim = difflib.SequenceMatcher(None, base_no_ext, cand_no_ext).ratio()
-            if sim >= cutoff:
-                similar_candidates.append((cand, sim))
-    if similar_candidates:
-        # Pick the best match
-        similar_candidates.sort(key=lambda x: -x[1])
-        match = similar_candidates[0][0]
-        print(f"[WARN] File '{basename}' not found. Using similar file: {match}")
-        return pd.read_csv(os.path.join(directory, match), sep="\t")
-    raise FileNotFoundError(f"No suitable file found for {basename} in {directory}")
+def find_tsv(target, cutoff=0.85):
+    """Fuzzy-match a .tsv file in DATA_DIR. Returns full path or raises."""
+    files = [f for f in os.listdir(DATA_DIR) if f.endswith('.tsv')]
+    matches = difflib.get_close_matches(target, files, n=1, cutoff=cutoff)
+    if not matches:
+        raise FileNotFoundError(f"No TSV resembling '{target}' found. Searched: {files}")
+    return os.path.join(DATA_DIR, matches[0])
 
-# === Use typo-tolerant loader for dataframes ===
-weapons_df = conservative_match("weapons_table.tsv", DATA_DIR)
-armor_df = conservative_match("gear_upgrade_table.tsv", DATA_DIR)
+def load_table(target, sep="\t", cutoff=0.85):
+    """Load a TSV table by fuzzy-matched name."""
+    path = find_tsv(target, cutoff)
+    return pd.read_csv(path, sep=sep)
 
-# =================== Original logic below ====================
+# Load weapon and armor tables (names can be approximate, e.g. 'weapon' finds 'weapons_table.tsv')
+weapons_df = load_table("weapons_table.tsv")
+armor_df = load_table("gear_upgrade_table.tsv")  # Adjust this to match your actual armor TSV
 
-# Global combat state (in-memory; reset on app restart)
+# --- Combat state (in-memory) ---
 combatants = []
 initiative_order = []
 current_turn = 0   # Index in initiative_order (0-based)
@@ -56,7 +34,7 @@ current_round = 1  # Human-facing round (starts at 1)
 
 def add_combatant(name: str, ref: int, hp: int, type: str = 'NPC'):
     """Add a combatant with REF stat and base HP."""
-    roll = roll_d10()
+    roll = random.randint(1, 10)
     initiative = roll + ref
     combatants.append({
         'name': name,
@@ -78,10 +56,7 @@ def roll_initiative():
     current_round = 1
 
 def start_combat(combatant_list):
-    """
-    Start a new combat with a provided list of combatants.
-    Each item can be a dict (with keys: name, ref, hp, type) or tuple (name, ref, hp, type).
-    """
+    """Start a new combat with a provided list of combatants."""
     reset_combat()
     for c in combatant_list:
         if isinstance(c, dict):
@@ -92,7 +67,6 @@ def start_combat(combatant_list):
                 c.get('type', 'NPC')
             )
         else:
-            # Assume tuple: (name, ref, hp, [type])
             add_combatant(*c)
     roll_initiative()
     return list_combatants()
@@ -116,7 +90,6 @@ def next_turn():
     actor = initiative_order[current_turn % len(initiative_order)]
     actor['acted'] = True
     current_turn += 1
-    # If we looped through all, reset 'acted' and increment round
     if current_turn % len(initiative_order) == 0:
         for c in initiative_order:
             c['acted'] = False
@@ -129,7 +102,6 @@ def apply_wound(name: str, damage: int):
         if c['name'] == name and c['status'] == 'alive':
             c['wounds'] += damage
             c['hp'] -= damage
-            # Simple thresholds for demo purposes
             if c['hp'] <= 0:
                 c['status'] = 'dead'
             elif c['hp'] <= 2:
@@ -168,7 +140,7 @@ def reset_combat():
     current_turn = 0
     current_round = 1
 
-# --- Combat Resolution Section (clean and portable) ---
+# --- Combat Resolution Section ---
 def roll_hit_location():
     roll = random.randint(1, 10)
     locations = {
@@ -185,35 +157,33 @@ def roll_hit_location():
     }
     return locations.get(roll, "chest")
 
+def conservative_name_match(df, col, name, cutoff=0.85):
+    """Return row with the closest name match in a DataFrame column (case-insensitive, cutoff)."""
+    names = df[col].astype(str).str.lower().tolist()
+    matches = difflib.get_close_matches(name.lower(), names, n=1, cutoff=cutoff)
+    if not matches:
+        return None
+    return df[df[col].str.lower() == matches[0]].iloc[0]
+
 def get_weapon(weapon_name):
-    match = weapons_df[weapons_df['Name'].str.lower() == weapon_name.lower()]
-    # Fuzzy match with cutoff if not found
-    if match.empty:
-        names = weapons_df['Name'].str.lower().tolist()
-        closest = difflib.get_close_matches(weapon_name.lower(), names, n=1, cutoff=0.85)
-        if closest:
-            print(f"[WARN] No exact weapon '{weapon_name}'. Using closest: {closest[0]}")
-            match = weapons_df[weapons_df['Name'].str.lower() == closest[0]]
-    return match.iloc[0] if not match.empty else None
+    return conservative_name_match(weapons_df, 'Name', weapon_name)
 
 def get_armor_sp(armor_name, location):
-    match = armor_df[armor_df['Name'].str.lower() == armor_name.lower()]
-    if match.empty:
-        # Fuzzy match with cutoff if not found
-        names = armor_df['Name'].str.lower().tolist()
-        closest = difflib.get_close_matches(armor_name.lower(), names, n=1, cutoff=0.85)
-        if closest:
-            print(f"[WARN] No exact armor '{armor_name}'. Using closest: {closest[0]}")
-            match = armor_df[armor_df['Name'].str.lower() == closest[0]]
-    if match.empty:
+    row = conservative_name_match(armor_df, 'Name', armor_name)
+    if row is None:
         return 0
     sp_field = f"SP_{location.lower().replace(' ', '_')}"
-    return match.iloc[0].get(sp_field, 0)
+    return row.get(sp_field, 0) if sp_field in row else 0
 
 def calculate_damage(weapon, armor_sp):
     try:
-        dice_count, dice_size = map(int, weapon["Damage"].lower().split("d"))
-        dmg = sum(random.randint(1, dice_size) for _ in range(dice_count))
+        # Expects Damage like '2d6+1' or '1d10'
+        import re
+        m = re.match(r"(\d+)d(\d+)(\+\d+)?", str(weapon["Damage"]))
+        dice_count = int(m.group(1))
+        dice_size = int(m.group(2))
+        bonus = int(m.group(3) or 0)
+        dmg = sum(random.randint(1, dice_size) for _ in range(dice_count)) + bonus
     except:
         dmg = 0
     reduced = max(dmg - armor_sp, 0)
