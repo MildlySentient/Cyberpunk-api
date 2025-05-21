@@ -1,9 +1,9 @@
-""" 
+"""
 COMBAT RESOLUTION MODULE
 -------------------------
 Handles weapon damage, armor mitigation, and hit location using TSVs:
 - weapons_table.tsv
-- gear_tables.tsv
+- gear_upgrade_table.tsv (formerly gear_tables.tsv)
 - combat_actions_table.tsv
 
 Main functions:
@@ -11,14 +11,30 @@ Main functions:
 - roll_hit_location()
 - calculate_damage()
 - apply_injury()
-""" 
+"""
 
+import os
 import random
 import pandas as pd
+import difflib
 
-# Load TSV tables (must exist in working directory or mounted path)
-weapons_df = pd.read_csv("/mnt/data/weapons_table.tsv", sep="\t")
-armor_df = pd.read_csv("/mnt/data/gear_tables.tsv", sep="\t")
+# --- Portable, typo-tolerant TSV loader ---
+DATA_DIR = os.path.dirname(__file__)
+
+def find_tsv(target, cutoff=0.88):
+    files = [f for f in os.listdir(DATA_DIR) if f.endswith('.tsv')]
+    matches = difflib.get_close_matches(target, files, n=1, cutoff=cutoff)
+    if not matches:
+        raise FileNotFoundError(f"No TSV resembling '{target}' found. Searched: {files}")
+    return os.path.join(DATA_DIR, matches[0])
+
+def load_table(target, sep="\t", cutoff=0.88):
+    path = find_tsv(target, cutoff)
+    return pd.read_csv(path, sep=sep)
+
+# --- Load tables, forgiving but category-aware ---
+weapons_df = load_table("weapons_table.tsv")
+armor_df = load_table("gear_upgrade_table.tsv")
 
 def roll_hit_location():
     roll = random.randint(1, 10)
@@ -37,6 +53,7 @@ def roll_hit_location():
     return locations.get(roll, "chest")
 
 def get_weapon(weapon_name):
+    # Case-insensitive, exact match only; relax if you want fuzzy matching here too
     match = weapons_df[weapons_df['Name'].str.lower() == weapon_name.lower()]
     return match.iloc[0] if not match.empty else None
 
@@ -51,7 +68,7 @@ def calculate_damage(weapon, armor_sp):
     try:
         dice_count, dice_size = map(int, weapon["Damage"].lower().split("d"))
         dmg = sum(random.randint(1, dice_size) for _ in range(dice_count))
-    except:
+    except Exception:
         dmg = 0
     reduced = max(dmg - armor_sp, 0)
     return {"raw": dmg, "after_armor": reduced}
@@ -60,7 +77,7 @@ def resolve_attack(attacker, target, weapon_name, armor_name):
     weapon = get_weapon(weapon_name)
     if weapon is None:
         return {"error": "Weapon not found"}
-    
+
     location = roll_hit_location()
     armor_sp = get_armor_sp(armor_name, location)
     damage = calculate_damage(weapon, armor_sp)
