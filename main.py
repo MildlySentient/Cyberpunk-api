@@ -170,14 +170,34 @@ def reload_files():
 async def get_data(payload: QueryRequest = Body(...)):
     """
     Flexible search endpoint with pagination and field filtering.
+    Dice intent (roll d10, roll d6, roll d100, etc) is handled directly.
     """
     query = payload.query.strip()
     page = max(payload.page or 1, 1)
     page_size = min(payload.page_size or MAX_RESULTS, ALLOWED_PAGE_SIZE)
     fields = [f.strip() for f in (payload.fields or "").split(",") if f.strip()] if payload.fields else None
 
+    # ---- DICE SHORT-CIRCUIT BLOCK ----
+    qlow = query.lower()
+    # Supported patterns: "roll d10", "roll 1d6", "roll d100", etc.
+    if any(
+        kw in qlow
+        for kw in [
+            "roll d10", "roll 1d10",
+            "roll d6", "roll 1d6",
+            "roll d100", "roll 1d100"
+        ]
+    ):
+        if "d10" in qlow:
+            return DataResultModel(source="dice", result={"roll": roll_d10()}, note="Rolled d10")
+        if "d100" in qlow:
+            return DataResultModel(source="dice", result={"roll": roll_d100()}, note="Rolled d100")
+        if "d6" in qlow:
+            return DataResultModel(source="dice", result={"roll": roll_d6()}, note="Rolled d6")
+    # ---- END DICE SHORT-CIRCUIT ----
+
     # Handle intro
-    if any(kw in query.lower() for kw in ["boot", "what is this", "intro"]):
+    if any(kw in qlow for kw in ["boot", "what is this", "intro"]):
         return DataResultModel(source="Bootloader.md", result=cache["bootloader"])
     index = cache.get("index")
     if index is None or index.empty:
