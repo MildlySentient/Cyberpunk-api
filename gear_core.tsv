@@ -6,3 +6,10 @@ gear_upgrade_table.tsv
 medkit_table.tsv
 price_reference.tsv
 surveillance_table.tsv
+medtech_tools_table.tsv
+medical_supplies_table.tsv
+novelty_items_table.tsv
+utility_items_table.tsv
+clothing_and_wearables_table.tsv
+armor_table.tsv
+
