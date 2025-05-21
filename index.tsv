@@ -13,163 +13,163 @@ corporate_core.tsv	Corporate, industrial, organizational	Corporate / Org	Root
 campaigns_core.tsv	Campaigns, scenario arcs, timelines	Campaigns	Root
 plugins_core.tsv	Plugins, macros, API, integrations	Plugins	Root
 assets_core.tsv	Maps, art, sound, VTT modules, handouts	Assets	Root
-# Appendix: All Other TSV Files By Category 			
-## System 			
-difficulty_table.tsv 			
-downtime_table.tsv 			
-faults_table.tsv 			
-lifepath_generator.tsv 			
-martial_arts_table.tsv 			
-psych_loss_table.tsv 			
-reputation_tracker.tsv 			
-rules_checklists.tsv 			
-team_gen_table.tsv 			
-## Roles 			
-roles_table.tsv 			
-solo_role.tsv 			
-cop_role.tsv 			
-fixer_role.tsv 			
-rockerboy_role.tsv 			
-nomad_role.tsv 			
-media_role.tsv 			
-netrunner_role.tsv 			
-medtech_role.tsv 			
-techie_role.tsv 			
-exec_role.tsv 			
-lawman_role.tsv 			
-virtualist_role.tsv 			
-biotechnician_role.tsv 			
-## NPCs / Contacts / Factions 			
-npc_directory.tsv 			
-cop_npc_templates.tsv 			
-corp_npc_templates.tsv 			
-npc_templates.tsv 			
-gang_npcs.tsv 			
-npc_quirks.tsv 			
-fullborg_statlines.tsv 			
-ripperdoc_contacts.tsv 			
-fixers_table.tsv 			
-gangs_table.tsv 			
-nomad_factions.tsv 			
-corporations_table.tsv 			
-relationship_matrix.tsv 			
-gang_contacts_table.tsv 			
-gang_relationships_matrix.tsv 			
-nomad_relationships_matrix.tsv 			
-other_brokers_table.tsv 			
-fixers_master_index.tsv 			
-## Gear 			
-gear_table.tsv 			
-cyberware_table.tsv 			
-gear_upgrade_table.tsv 			
-gear_maintenance_table.tsv 			
-price_reference.tsv 			
-cyberpets_table.tsv 			
-surveillance_table.tsv 			
-medkit_table.tsv 			
-medtech_tools_table.tsv 			
-medical_supplies_table.tsv 			
-novelty_items_table.tsv 			
-utility_items_table.tsv 			
-clothing_and_wearables_table.tsv 			
-armor_table.tsv 			
-## Weapons 			
-weapons_table.tsv 			
-heavy_weapons_table.tsv 			
-explosives_table.tsv 			
-emp_devices_table.tsv 			
-ammo_table.tsv 			
-weapon_mod_table.tsv 			
-weapon_mods_table.tsv 			
-cyberware_glitch_table.tsv 			
-## Services 			
-ripperdoc_table.tsv 			
-street_surgery_complications.tsv 			
-black_market_table.tsv 			
-fixers_table.tsv 			
-ripperdoc_contacts.tsv 			
-service_price_table.tsv 			
-ripperdoc_contacts_table.tsv 			
-ripperdoc_jobs.tsv 			
-ripperdoc_loyalty_hooks.tsv 			
-## Encounters / Events 			
-urban_encounters.tsv 			
-regional_encounters.tsv 			
-road_encounters.tsv 			
-street_events.tsv 			
-location_generator.tsv 			
-scenario_timeline_table.tsv 			
-social_encounters.tsv 			
-event_randomizers.tsv 			
-story_hooks.tsv 			
-mission_complication_table.tsv 			
-npc_encounter_generator.tsv 			
-city_event_generator.tsv 			
-location_event_generator.tsv 			
-scenario_jobs.tsv 			
-solo_jobs.tsv 			
-cop_jobs.tsv 			
-fixer_jobs.tsv 			
-gang_jobs.tsv 			
-media_jobs.tsv 			
-netrunner_jobs.tsv 			
-nomad_pack_jobs.tsv 			
-street_jobs.tsv 			
-trauma_team_jobs.tsv 			
-## Vehicles / ACPA 			
-vehicle_catalog.tsv 			
-vehicles_table.tsv 			
-vehicle_mods_table.tsv 			
-vehicle_chase_rules.tsv 			
-acpa_table.tsv 			
-vehicle_combat_table.tsv 			
-acpa_sensors_table.tsv 			
-acpa_catalog_table.tsv 			
-## Cyberdecks / Virtuality 			
-cyberdecks_virtuality_core.tsv 			
-net_map_generator.tsv 			
-ice_table.tsv 			
-data_fortress.tsv 			
-virtuality_overlay_table.tsv 			
-net_law_table.tsv 			
-net_social_events_table.tsv 			
-netrunner_trauma_table.tsv 			
-vr_deck_mod_table.tsv 			
-net_npc_personality_table.tsv 			
-## Setting / Region / Politics 			
-region_encounters_table.tsv 			
-region_npc_stat_table.tsv 			
-region_economy_table.tsv 			
-education_sin_table.tsv 			
-political_hooks_table.tsv 			
-night_city_locations.tsv 			
-faction_reactions.tsv 			
-## Corporate / Org 			
-corp_personnel_table.tsv 			
-corp_security_gear.tsv 			
-facility_security_layout.tsv 			
-corp_asset_tracker.tsv 			
-corp_scenario_generator.tsv 			
-corp_war_timeline.tsv 			
-industrial_personnel_table.tsv 			
-petrochem_hazard_table.tsv 			
-corporate_jobs.tsv 			
-corporate_relationships_matrix.tsv 			
-contract_management_table.tsv 			
-## Campaigns 			
-campaign_manifest.tsv 			
-scenario_timeline_table.tsv 			
-story_hooks.tsv 			
-campaign_notes.tsv 			
-player_handouts.tsv 			
-## Plugins 			
-vtt_plugin_table.tsv 			
-ai_tools_table.tsv 			
-macro_scripts_table.tsv 			
-external_integration_table.tsv 			
-## Assets 			
-map_assets_table.tsv 			
-art_assets_table.tsv 			
-soundtrack_table.tsv 			
-vtt_module_table.tsv 			
-prop_library.tsv 			
+# Appendix: All Other TSV Files By Category			
+## System			
+difficulty_table.tsv			
+downtime_table.tsv			
+faults_table.tsv			
+lifepath_generator.tsv			
+martial_arts_table.tsv			
+psych_loss_table.tsv			
+reputation_tracker.tsv			
+rules_checklists.tsv			
+team_gen_table.tsv			
+## Roles			
+roles_table.tsv			
+solo_role.tsv			
+cop_role.tsv			
+fixer_role.tsv			
+rockerboy_role.tsv			
+nomad_role.tsv			
+media_role.tsv			
+netrunner_role.tsv			
+medtech_role.tsv			
+techie_role.tsv			
+exec_role.tsv			
+lawman_role.tsv			
+virtualist_role.tsv			
+biotechnician_role.tsv			
+## NPCs / Contacts / Factions			
+npc_directory.tsv			
+cop_npc_templates.tsv			
+corp_npc_templates.tsv			
+npc_templates.tsv			
+gang_npcs.tsv			
+npc_quirks.tsv			
+fullborg_statlines.tsv			
+ripperdoc_contacts.tsv			
+fixers_table.tsv			
+gangs_table.tsv			
+nomad_factions.tsv			
+corporations_table.tsv			
+relationship_matrix.tsv			
+gang_contacts_table.tsv			
+gang_relationships_matrix.tsv			
+nomad_relationships_matrix.tsv			
+other_brokers_table.tsv			
+fixers_master_index.tsv			
+## Gear			
+gear_table.tsv			
+cyberware_table.tsv			
+gear_upgrade_table.tsv			
+gear_maintenance_table.tsv			
+price_reference.tsv			
+cyberpets_table.tsv			
+surveillance_table.tsv			
+medkit_table.tsv			
+medtech_tools_table.tsv			
+medical_supplies_table.tsv			
+novelty_items_table.tsv			
+utility_items_table.tsv			
+clothing_and_wearables_table.tsv			
+armor_table.tsv			
+## Weapons			
+weapons_table.tsv			
+heavy_weapons_table.tsv			
+explosives_table.tsv			
+emp_devices_table.tsv			
+ammo_table.tsv			
+weapon_mod_table.tsv			
+weapon_mods_table.tsv			
+cyberware_glitch_table.tsv			
+## Services			
+ripperdoc_table.tsv			
+street_surgery_complications.tsv			
+black_market_table.tsv			
+fixers_table.tsv			
+ripperdoc_contacts.tsv			
+service_price_table.tsv			
+ripperdoc_contacts_table.tsv			
+ripperdoc_jobs.tsv			
+ripperdoc_loyalty_hooks.tsv			
+## Encounters / Events			
+urban_encounters.tsv			
+regional_encounters.tsv			
+road_encounters.tsv			
+street_events.tsv			
+location_generator.tsv			
+scenario_timeline_table.tsv			
+social_encounters.tsv			
+event_randomizers.tsv			
+story_hooks.tsv			
+mission_complication_table.tsv			
+npc_encounter_generator.tsv			
+city_event_generator.tsv			
+location_event_generator.tsv			
+scenario_jobs.tsv			
+solo_jobs.tsv			
+cop_jobs.tsv			
+fixer_jobs.tsv			
+gang_jobs.tsv			
+media_jobs.tsv			
+netrunner_jobs.tsv			
+nomad_pack_jobs.tsv			
+street_jobs.tsv			
+trauma_team_jobs.tsv			
+## Vehicles / ACPA			
+vehicle_catalog.tsv			
+vehicles_table.tsv			
+vehicle_mods_table.tsv			
+vehicle_chase_rules.tsv			
+acpa_table.tsv			
+vehicle_combat_table.tsv			
+acpa_sensors_table.tsv			
+acpa_catalog_table.tsv			
+## Cyberdecks / Virtuality			
+cyberdecks_virtuality_core.tsv			
+net_map_generator.tsv			
+ice_table.tsv			
+data_fortress.tsv			
+virtuality_overlay_table.tsv			
+net_law_table.tsv			
+net_social_events_table.tsv			
+netrunner_trauma_table.tsv			
+vr_deck_mod_table.tsv			
+net_npc_personality_table.tsv			
+## Setting / Region / Politics			
+region_encounters_table.tsv			
+region_npc_stat_table.tsv			
+region_economy_table.tsv			
+education_sin_table.tsv			
+political_hooks_table.tsv			
+night_city_locations.tsv			
+faction_reactions.tsv			
+## Corporate / Org			
+corp_personnel_table.tsv			
+corp_security_gear.tsv			
+facility_security_layout.tsv			
+corp_asset_tracker.tsv			
+corp_scenario_generator.tsv			
+corp_war_timeline.tsv			
+industrial_personnel_table.tsv			
+petrochem_hazard_table.tsv			
+corporate_jobs.tsv			
+corporate_relationships_matrix.tsv			
+contract_management_table.tsv			
+## Campaigns			
+campaign_manifest.tsv			
+scenario_timeline_table.tsv			
+story_hooks.tsv			
+campaign_notes.tsv			
+player_handouts.tsv			
+## Plugins			
+vtt_plugin_table.tsv			
+ai_tools_table.tsv			
+macro_scripts_table.tsv			
+external_integration_table.tsv			
+## Assets			
+map_assets_table.tsv			
+art_assets_table.tsv			
+soundtrack_table.tsv			
+vtt_module_table.tsv			
+prop_library.tsv			
