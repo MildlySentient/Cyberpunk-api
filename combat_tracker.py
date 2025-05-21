@@ -5,11 +5,48 @@ from cyberpunk2020_engine import roll_d10
 import os
 import pandas as pd
 import random
+import difflib
 
-# --- Data loading (portable, no /mnt/data/) ---
+# === NEW: Conservative, typo-tolerant file loader ===
 DATA_DIR = os.path.dirname(__file__)
-weapons_df = pd.read_csv(os.path.join(DATA_DIR, "weapons_table.tsv"), sep="\t")
-armor_df = pd.read_csv(os.path.join(DATA_DIR, "gear_tables.tsv"), sep="\t")
+
+def conservative_match(basename, directory, extensions=('.tsv', '.csv'), cutoff=0.90):
+    """
+    Load a file with minor typo/variant tolerance but *not* major conceptual shifts.
+    Only matches with high similarity (default 0.90) and blocks 'upgrade' or similar suffix mismatch.
+    """
+    candidates = [f for f in os.listdir(directory) if f.lower().endswith(extensions)]
+    # Try exact match first
+    if basename in candidates:
+        return pd.read_csv(os.path.join(directory, basename), sep="\t")
+    # Conservative: Only match if basename minus extension is in candidate minus extension
+    base_no_ext = os.path.splitext(basename)[0].lower()
+    similar_candidates = []
+    for cand in candidates:
+        cand_no_ext = os.path.splitext(cand)[0].lower()
+        # Must share prefix before underscore
+        base_prefix = base_no_ext.split("_")[0]
+        cand_prefix = cand_no_ext.split("_")[0]
+        if base_prefix == cand_prefix:
+            # If 'upgrade' is in one but not the other, skip
+            if ('upgrade' in base_no_ext) != ('upgrade' in cand_no_ext):
+                continue
+            sim = difflib.SequenceMatcher(None, base_no_ext, cand_no_ext).ratio()
+            if sim >= cutoff:
+                similar_candidates.append((cand, sim))
+    if similar_candidates:
+        # Pick the best match
+        similar_candidates.sort(key=lambda x: -x[1])
+        match = similar_candidates[0][0]
+        print(f"[WARN] File '{basename}' not found. Using similar file: {match}")
+        return pd.read_csv(os.path.join(directory, match), sep="\t")
+    raise FileNotFoundError(f"No suitable file found for {basename} in {directory}")
+
+# === Use typo-tolerant loader for dataframes ===
+weapons_df = conservative_match("weapons_table.tsv", DATA_DIR)
+armor_df = conservative_match("gear_upgrade_table.tsv", DATA_DIR)
+
+# =================== Original logic below ====================
 
 # Global combat state (in-memory; reset on app restart)
 combatants = []
@@ -150,10 +187,24 @@ def roll_hit_location():
 
 def get_weapon(weapon_name):
     match = weapons_df[weapons_df['Name'].str.lower() == weapon_name.lower()]
+    # Fuzzy match with cutoff if not found
+    if match.empty:
+        names = weapons_df['Name'].str.lower().tolist()
+        closest = difflib.get_close_matches(weapon_name.lower(), names, n=1, cutoff=0.85)
+        if closest:
+            print(f"[WARN] No exact weapon '{weapon_name}'. Using closest: {closest[0]}")
+            match = weapons_df[weapons_df['Name'].str.lower() == closest[0]]
     return match.iloc[0] if not match.empty else None
 
 def get_armor_sp(armor_name, location):
     match = armor_df[armor_df['Name'].str.lower() == armor_name.lower()]
+    if match.empty:
+        # Fuzzy match with cutoff if not found
+        names = armor_df['Name'].str.lower().tolist()
+        closest = difflib.get_close_matches(armor_name.lower(), names, n=1, cutoff=0.85)
+        if closest:
+            print(f"[WARN] No exact armor '{armor_name}'. Using closest: {closest[0]}")
+            match = armor_df[armor_df['Name'].str.lower() == closest[0]]
     if match.empty:
         return 0
     sp_field = f"SP_{location.lower().replace(' ', '_')}"
