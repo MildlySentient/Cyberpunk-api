@@ -1,5 +1,3 @@
-# Core System Index (AI/Automation-Ready)
-
 File Name	Description	Category	Status
 system_core.tsv	System meta: rules, configs, global mechanics	System	Root
 roles_core.tsv	All roles/classes master manifest	Roles	Root
@@ -15,13 +13,18 @@ corporate_core.tsv	Corporate, industrial, organizational	Corporate / Org	Root
 campaigns_core.tsv	Campaigns, scenario arcs, timelines	Campaigns	Root
 plugins_core.tsv	Plugins, macros, API, integrations	Plugins	Root
 assets_core.tsv	Maps, art, sound, VTT modules, handouts	Assets	Root
-
-# Appendix: All Other TSV Files By Category
-
-## System
-[Add any meta tables or homebrew rules here as needed]
-
-## Roles
+# Appendix: All Other TSV Files By Category			
+## System			
+difficulty_table.tsv
+downtime_table.tsv
+faults_table.tsv
+lifepath_generator.tsv
+martial_arts_table.tsv
+psych_loss_table.tsv
+reputation_tracker.tsv
+rules_checklists.tsv
+team_gen_table.tsv
+## Roles			
 roles_table.tsv
 solo_role.tsv
 cop_role.tsv
@@ -36,8 +39,7 @@ exec_role.tsv
 lawman_role.tsv
 virtualist_role.tsv
 biotechnician_role.tsv
-
-## NPCs / Contacts / Factions
+## NPCs / Contacts / Factions			
 npc_directory.tsv
 cop_npc_templates.tsv
 corp_npc_templates.tsv
@@ -51,8 +53,12 @@ gangs_table.tsv
 nomad_factions.tsv
 corporations_table.tsv
 relationship_matrix.tsv
-
-## Gear
+gang_contacts_table.tsv
+gang_relationships_matrix.tsv
+nomad_relationships_matrix.tsv
+other_brokers_table.tsv
+fixers_master_index.tsv
+## Gear			
 gear_table.tsv
 cyberware_table.tsv
 gear_upgrade_table.tsv
@@ -61,25 +67,33 @@ price_reference.tsv
 cyberpets_table.tsv
 surveillance_table.tsv
 medkit_table.tsv
-
-## Weapons
+medtech_tools_table.tsv
+medical_supplies_table.tsv
+novelty_items_table.tsv
+utility_items_table.tsv
+clothing_and_wearables_table.tsv
+armor_table.tsv
+## Weapons			
 weapon_table.tsv
+weapons_table.tsv
 heavy_weapons_table.tsv
 explosives_table.tsv
 emp_devices_table.tsv
 ammo_table.tsv
 weapon_mod_table.tsv
+weapon_mods_table.tsv
 cyberware_glitch_table.tsv
-
-## Services
+## Services			
 ripperdoc_table.tsv
 street_surgery_complications.tsv
 black_market_table.tsv
 fixers_table.tsv
 ripperdoc_contacts.tsv
 service_price_table.tsv
-
-## Encounters / Events
+ripperdoc_contacts_table.tsv
+ripperdoc_jobs.tsv
+ripperdoc_loyalty_hooks.tsv
+## Encounters / Events			
 urban_encounters.tsv
 regional_encounters.tsv
 road_encounters.tsv
@@ -90,8 +104,20 @@ social_encounters.tsv
 event_randomizers.tsv
 story_hooks.tsv
 mission_complication_table.tsv
-
-## Vehicles / ACPA
+npc_encounter_generator.tsv
+city_event_generator.tsv
+location_event_generator.tsv
+scenario_jobs.tsv
+solo_jobs.tsv
+cop_jobs.tsv
+fixer_jobs.tsv
+gang_jobs.tsv
+media_jobs.tsv
+netrunner_jobs.tsv
+nomad_pack_jobs.tsv
+street_jobs.tsv
+trauma_team_jobs.tsv
+## Vehicles / ACPA			
 vehicle_catalog.tsv
 vehicles_table.tsv
 vehicle_mods_table.tsv
@@ -100,8 +126,8 @@ acpa_table.tsv
 vehicle_combat_table.tsv
 acpa_sensors_table.tsv
 acpa_catalog_table.tsv
-
-## Cyberdecks / Virtuality
+## Cyberdecks / Virtuality			
+cyberdecks_virtuality_core.tsv
 net_map_generator.tsv
 ice_table.tsv
 data_fortress.tsv
@@ -111,8 +137,7 @@ net_social_events_table.tsv
 netrunner_trauma_table.tsv
 vr_deck_mod_table.tsv
 net_npc_personality_table.tsv
-
-## Setting / Region / Politics
+## Setting / Region / Politics			
 region_encounters_table.tsv
 region_npc_stat_table.tsv
 region_economy_table.tsv
@@ -120,8 +145,7 @@ education_sin_table.tsv
 political_hooks_table.tsv
 night_city_locations.tsv
 faction_reactions.tsv
-
-## Corporate / Org
+## Corporate / Org			
 corp_personnel_table.tsv
 corp_security_gear.tsv
 facility_security_layout.tsv
@@ -130,21 +154,21 @@ corp_scenario_generator.tsv
 corp_war_timeline.tsv
 industrial_personnel_table.tsv
 petrochem_hazard_table.tsv
-
-## Campaigns
+corporate_jobs.tsv
+corporate_relationships_matrix.tsv
+contract_management_table.tsv
+## Campaigns			
 campaign_manifest.tsv
 scenario_timeline_table.tsv
 story_hooks.tsv
 campaign_notes.tsv
 player_handouts.tsv
-
-## Plugins
+## Plugins			
 vtt_plugin_table.tsv
 ai_tools_table.tsv
 macro_scripts_table.tsv
 external_integration_table.tsv
-
-## Assets
+## Assets			
 map_assets_table.tsv
 art_assets_table.tsv
 soundtrack_table.tsv
