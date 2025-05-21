@@ -1,0 +1,32 @@
+uuid,created_at,created_longitude,created_latitude,modified_at,modified_longitude,modified_latitude,accessed_at,content,tags,folder,flagged,languageGrammar
+"CAD5C719-D791-4901-980F-0C7B66C1EF94",2025-05-21T08:32:53Z,0.0,0.0,2025-05-21T08:32:56Z,0.0,0.0,2025-05-21T08:32:53Z,"Item Name	Gear Type	Description/Function	Effect/Modifier	Required Stat/Skill	Cost (eb)	Weight (kg)	Power Requirement	Maintenance/Failure	Availability	Source	Special Notes
+Utopian Small Wonders NanoAgents	Novelty/Utility	Programmable micro cleaning agents (e.g., Kleen Bore, Nanair, AutoGloss)	Cleans/waxes/etc. per application	None	50 per tube	0.01	None	Single use	Common	Chromebook 3, p.3	10 uses per tube
+Banzai Bonsai	Novelty/Decorative	Genetically engineered houseplant	None—decor only	None	50	0.3	None	Weekly watering	Common	Chromebook 2, p.37	Color-changing leaves
+PartyPopper Fetti-Grenade	Novelty/Party	Self-contained confetti popper	Bursts in lights and noise	None	10	0.1	None	Single use	Common	Chromebook 2, p.38	No damage, just fun
+VirtuaPet MicroDragon	Novelty/Entertainment	Animated, programmable desk pet	No effect—entertainment	None	80	0.2	Battery	Charge weekly	Common	Chromebook 2, p.39	3 moods, ""breathes fire""
+Fashionware Color-Shift Tie	Clothing/Novelty	Color-changing programmable tie	Changes to 10 colors	Fashion	30	0.05	None	None	Common	Chromebook 2, p.41	Washable, voice control
+MoodChime Key Fob	Novelty/Personal	Wind/touch-activated chime key fob	No effect—style only	None	4	0.01	None	None	Common	Chromebook 4, p.115	12 sounds
+MiniSynth Pocket Music	Novelty/Entertainment	Personal synth, programmable beats	Recreational only	Fashion	105	0.2	Battery	Charge monthly	Common	Chromebook 4, p.32	Audio out for headphones
+GlowPen Personal Light	Novelty/Utility	Marker pen/flashlight combo	Illuminates small area	None	10	0.02	Battery	Replace after 200h	Common	Chromebook 4, p.22	Pen cap style
+VibePen Fidget Stylus	Novelty/Personal	Stylus/fidget toy for phone/tablet	No effect—stress relief	None	8	0.02	None	None	Common	V3.0 Core, p.115	Refillable ink
+MoodWave Desk Display	Novelty/Personal	Sound-activated LED wave/mood toy	No effect—stress relief	None	17	0.13	Battery	Replace yearly	Common	V3.0 Core, p.115	Programmable colors
+MoodGlow Sticker Set	Novelty/Personal	Glowing stick-on mood stickers	No effect—style only	Fashion	4	0.01	None	None	Common	V3.0 Core, p.115	Pack of 24
+GlowTat Bio-LED Sticker	Novelty/Clothing	Programmable skin-adhesive glowing sticker	No effect—style only	Fashion	12	0.01	None	None	Common	V3.0 Core, p.142	Reuse up to 10x
+SnapGlow Band	Novelty/Personal	Color-changing LED party band	No effect—fashion only	Fashion	7	0.01	Battery	Replace yearly	Common	V3.0 Core, p.115	Set of 2
+MoodChip Color Pin	Novelty/Personal	Programmable LED lapel/button pin	No effect—style only	Fashion	5	0.01	Battery	Replace yearly	Common	V3.0 Core, p.115	Set of 4
+MoodSpot Window Sticker	Novelty/Personal	Color shifts with sun/clouds/rain/temp	No effect—decor only	Fashion	6	0.01	None	None	Common	V3.0 Core, p.115	Pack of 4
+LightSnap LED Button	Novelty/Utility	Push-activated, battery locker/drawer light	No effect—illumination	None	8	0.01	Battery	Replace yearly	Common	V3.0 Core, p.115	Pack of 4
+HoloBadge 3D Name Tag	Clothing/Novelty	Programmable 3D hologram ID tag	Animates, customizable ID	Fashion	25	0.04	Battery	Replace quarterly	Common	Chromebook 4, p.14	Custom logos
+PulseWear Moodband	Clothing/Novelty	Emotional-state sensing LED wristband	Color shifts with mood	None	80	0.06	Battery	Yearly battery	Common	V3.0 Core, p.115	Popular with youth
+GlowChip Light Coin	Novelty/Utility	Battery, coin-size programmable LED	No effect—visibility/style	None	5	0.01	Battery	Replace yearly	Common	V3.0 Core, p.115	Pack of 4
+MoodMark Pen Holder	Novelty/Personal	Color-shifting stick-on pen holder	No effect—convenience	None	4	0.01	None	None	Common	V3.0 Core, p.115	Pack of 3
+VibeBead Stress Ball	Novelty/Personal	Pocket squishable, vibro-motor stress relief	No effect—comfort	None	9	0.04	Battery	Replace yearly	Common	V3.0 Core, p.115	3 colors
+AirScent Room Freshener	Novelty/Utility	Programmable air fragrance stick	No effect—scent only	Fashion	10	0.01	None	None	Common	V3.0 Core, p.115	Auto or home
+HeatSync Thermo-Mug	Novelty/Utility	Self-heating/cooling mug, 24h temp	No effect—convenience	None	30	0.25	Battery	Charge monthly	Common	V3.0 Core, p.190	Auto-stirs
+GlowTread Shoe Lights	Clothing/Novelty	Snap-on, LED shoe lights	No effect—fashion/safety	Fashion	8	0.01	Battery	Replace yearly	Common	V3.0 Core, p.142	Pack of 2
+MagiSocks Self-Cleaners	Clothing/Novelty	Smart fabric, self-clean, odor free	No effect—novelty	Fashion	18	0.07	None	None	Common	Chromebook 4, p.12	Auto-drying
+PatchMark Glow Marker	Novelty/Personal	Pen-size, paint-on, glows 24h	No effect—marking only	None	7	0.02	None	Wash after use	Common	V3.0 Core, p.115	Blue, green, pink
+MoodShade Desk Light	Novelty/Personal	Smart, color-shifting desk lamp	No effect—style/stress	Fashion	27	0.23	Battery	Recharge monthly	Common	V3.0 Core, p.115	Touch, voice, or app
+GlowTag Safety Patch	Clothing/Utility	Clip-on, LED for visibility on bag/clothes	No effect—safety only	Fashion	8	0.01	Battery	Replace yearly	Common	V3.0 Core, p.142	Red, green, yellow, blue
+SnapMark Key Label	Novelty/Personal	Color-coded, writable, reusable key label ring	No effect—organization only	None	3	0.01	None	None	Common	V3.0 Core, p.113	Pack of 8
+PulseKey Wireless Key Finder	Novelty/Personal	Finds lost keys/wallet up to 50m	Beep/flash to fob	None	35	0.02	Battery	Replace yearly	Common	V3.0 Core, p.113	Fob, card, sticker versions","",0,false,Markdown

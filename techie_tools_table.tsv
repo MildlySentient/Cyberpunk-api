@@ -1,0 +1,28 @@
+uuid,created_at,created_longitude,created_latitude,modified_at,modified_longitude,modified_latitude,accessed_at,content,tags,folder,flagged,languageGrammar
+"A83D465F-8943-40EF-839A-5DC995469153",2025-05-21T08:27:12Z,0.0,0.0,2025-05-21T08:27:27Z,0.0,0.0,2025-05-21T08:27:12Z,"Item Name	Gear Type	Description/Function	Effect/Modifier	Stat/Skill	Cost (eb)	Weight (kg)	Power/Maint	Avail	Source	Special Notes
+Techie’s Deluxe Tool Roll	Tool/Kit	Comprehensive field tool roll	+1 Tech field repairs	Tech	950	3	None/Clean after use	Common	Chromebook 2, p.14	Diagnostics, torque, micro-tools
+Field Diagnostic Kit	Tool	Portable kit for field technical diagnosis	+1 repair/diagnose	Tech	500	1.5	None/Clean after use	Common	Chromebook 1, p.14	Common tools/testers
+Portable Repair Kit	Tool	General-purpose tech repair kit	+1 field repairs	Tech	200	1.1	None/Clean after use	Common	Chromebook 1, p.14	Spares/multi-use tools
+Saf-T-Blade Utility Cutter	Tool	Cutting/repair, retractable blade	+1 repair/cutting	Tech	22	0.11	None/Clean after use	Common	V3.0 Core, p.197	Belt clip
+Francesca Techscanner	Tool/Scanner	Multi-probe diagnostic scanner	+2 Tech analyze faults	Tech	1200	0.7	Battery/Monthly	Uncommon	Chromebook 3, p.7	Advanced, stylish
+ProField Tech Analyzer	Tool/Scanner	Multi-sensor all-in-one analyzer	+2 Tech analyze faults	Tech	1350	1.1	Battery/Monthly	Uncommon	Chromebook 4, p.21	Displays, prints analysis
+NanoTorch Fingertip Light	Tool/Accessory	Clip-on micro-LED for repairs in dark	+1 Tech for repairs in dark	Tech	14	0.01	Battery/Replace battery	Common	V3.0 Core, p.197	Fits all fingers
+Telectronics Micromanipulator Rig	Tool/Lab Equipment	Cyber-controlled fine manipulation rig	+1 Cyber Tech, Electronics, Weaponsmith	Tech	3000	10	Power/Quarterly	Rare	Chromebook 3, p.3	Not portable, needs MLINK
+AutoWeld MiniTorch	Tool	Handheld battery micro-welder	+1 field welds/repairs	Tech	160	0.45	Battery/Recharge	Common	V3.0 Core, p.197	Mini-gas optional
+Tasker Multi-Tool	Tool	Knife, driver, wrench, pliers combo	+1 jury-rig/quick repairs	Tech	80	0.3	None/Clean after use	Common	V3.0 Core, p.197	Pocket size, all-metal
+FastPatch Self-Adhesive Tape	Tool/Accessory	Waterproof tape, 1m	+1 Tech jury-rig/field repair	Tech	7	0.01	None/None	Common	V3.0 Core, p.197	6 colors
+FlexKey Combo Tool	Tool/Accessory	Key w/ screwdriver, file, opener	Quick repairs, utility	Tech	9	0.02	None/None	Common	V3.0 Core, p.113	Keyring compatible
+NanoMend Flex Patch	Tool/Accessory	Elastic, waterproof gear repair strip	Field repairs	Tech	6	0.01	None/Single use	Common	V3.0 Core, p.197	Clear/gray
+NanoBuff Utility Sponge	Tool/Accessory	Antimicrobial, odor-free, for field/kitchen/bath	Cleaning tools, gear	Tech	7	0.02	None/Wash	Common	V3.0 Core, p.195	Pack of 6
+ClipMate Tool Strip	Tool/Accessory	Stick-on, holds 6 tools/utensils for work/org	Org only	—	8	0.03	None/None	Common	V3.0 Core, p.113	Reusable
+FlexGuard Utility Band	Tool/Accessory	Wearable, holds pens, tools, USB, mini-lights	Org only	—	13	0.02	None/Wash	Common	V3.0 Core, p.113	Wrist/ankle fit
+ClipSnap Tool Holder	Tool/Accessory	Clip-on, holds tools on belt/pocket	Org only	—	5	0.02	None/None	Common	V3.0 Core, p.113	Set of 2
+UltraStrap MultiTool Belt	Clothing/Utility	Heavy-duty work belt w/ loops	Repair -1 round	Tech	175	0.5	None/As needed	Common	Chromebook 4, p.13	Fits all sizes
+NanoTorch Fingertip Light	Tool/Accessory	Clip-on LED for finger, reading, repair	+1 Tech repairs dark	Tech	14	0.01	Battery/Replace battery	Common	V3.0 Core, p.197	Fits all finger sizes
+Adjuvant Arc Furnace	Tool/Utility	Reduces waste to atoms, destroys material	Complete destruction	—	1000	20	Power (300eb/day)/Annual	Rare	Chromebook 3, p.3	Can't neutralize arsenic
+SkyEye Micro-Drone	Utility/Field Tool	Tiny observation drone, visual surveillance	+1 Awareness if used	Awareness	1200	0.6	Battery/Charge after 3h	Rare	Chromebook 4, p.29	Range 1km, silent
+Mister Micro Maintenance Bot	Utility/Field Tool	Programmable micro repair drone	+1 Tech repairs (Ref discretion)	Tech	1800	0.3	Battery/Charge after 6h	Rare	Chromebook 4, p.19	Remote/autonomous
+BubbleMesh Shelter	Utility/Field Gear	Inflatable personal tent, weather-resistant	+2 Endurance vs. cold/rain	—	450	1.7	None/Air-dry	Uncommon	V3.0 Core, p.193	Sleeps 2, glows at night
+GlowPen Personal Light	Utility/Accessory	LED marker pen/flashlight	Small work illumination	—	10	0.02	Battery/200h	Common	Chromebook 4, p.22	Pen cap style
+SolarSkin Personal Panel	Utility	Clip-on wearable solar cell	Charges small gadgets	—	60	0.12	None/Wipe clean	Common	V3.0 Core, p.23	Weatherproof
+FlexNote Sticky Tablet	Personal Electronics	Peel-off, digital notepad, 20 reusable sheets	+1 Education note-taking	Education	24	0.04	Battery/Monthly	Common	V3.0 Core, p.113	Sync to phone","",0,false,Markdown

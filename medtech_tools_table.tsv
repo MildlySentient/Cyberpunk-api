@@ -1,0 +1,20 @@
+Item Name	Gear Type	Description/Function	Effect/Modifier	Stat/Skill	Cost (eb)	Weight (kg)	Power/Maint	Avail	Source	Special Notes
+Medscanner	Tool/Diagnostic	Portable medical diagnostic device	+2 Diagnose (with Medtech)	Medtech	1200	2	Battery/Annual calibration	Uncommon	Chromebook 3, p.6	Works with Intern Units
+Portable Intern Unit	Diagnostic/Tool	Haemalyser + cerebroscanner; portable aid	+2 Diagnose, +1 Stabilize	Medtech	1200	2	Battery/Annual	Uncommon	Chromebook 3, p.6	Displays EEG/blood data
+Interface Monitor	Diagnostic/Tool	Monitors cyberware repair interface	+2 Cyber Tech repair	Cyber Tech	1000	1	Battery/Annual	Uncommon	Chromebook 3, p.3	Auto-cutout safety
+Mini Medkit	Tool/Kit	Compact emergency medical kit	+1 Stabilize (single use)	Medtech	100	0.5	None/Single use	Common	Core Rulebook, p.78	Bandages, antiseptic
+Standard Medkit	Tool/Kit	Full-size portable medical kit	+2 Stabilize (10 uses)	Medtech	500	2	None/Restock after 10	Common	Core Rulebook, p.78	Surgical tools, drugs
+Deluxe Medkit	Tool/Kit	Enhanced medkit, diagnostics, drugs	+3 Stabilize, auto-injectors	Medtech	1500	4	Battery/Restock 10 uses	Uncommon	Core Rulebook, p.78	Autoinjector, painkillers
+Combat Drug Kit	Tool/Kit	Field drug kit for trauma use	+1 Recovery roll, pain relief	Medtech	300	1	None/Single use	Rare	Chromebook 1, p.15	Field/trauma only
+Medtech Trauma Pack	Tool/Kit	Sealed trauma care kit	+2 Stabilize (single patient)	Medtech	500	1	None/Single use	Uncommon	Chromebook 1, p.15	Quick-clot, nanobandage
+Archaesthetic	Tool/Therapeutic	Electronic acupuncture for pain control	+1 Diagnose, +1 Medtech	Medtech	1000	0.2	Battery/Annual	Uncommon	Chromebook 3, p.6	Improves feedback
+AutoDoc Portable Medical AI	Tool/Diagnostic	Autonomous portable med-AI	+2 Diagnose, treats injuries	Medtech	3000	4	Battery/Weekly charge	Rare	V3.0 Core, p.193	Voice/trauma protocols
+Lifesaver Portable Defibrillator	Tool/Field	Handheld cardiac defib unit	+1 Stabilize (arrest)	Medtech	1100	2	Battery/Annual check	Uncommon	Chromebook 4, p.18	Single-patient pads
+Pocket Health Tester	Tool/Field	Quick saliva/blood scan	Detects drugs/infection/dehydration	Medtech	175	0.1	Battery/Replace strips	Common	Chromebook 4, p.18	Disposable sticks
+DocGuard TraumaCard	Tool/Field	AI triage card: records, guides first aid	+1 Stabilize, stores data	Medtech	220	0.04	Battery/2yr	Uncommon	V3.0 Core, p.194	Voice prompts
+NanoSwab Tox Tester	Tool/Field	Detects toxins/poisons in field	+2 Pharma/Medtech (toxins)	Medtech	110	0.01	None/Single use	Common	V3.0 Core, p.178	Color-coded results
+FlashPatch Adhesive Band	Tool/Field	Fast-acting adhesive bandage	+1 Stabilize/minor injuries	Medtech	25	0.02	None/Single use	Common	V3.0 Core, p.178	Multiple skin tones
+Medtech SteriGloves	Tool/Field	Sterile, single-use med gloves	Reduces infection, +1 surgery	Medtech	15	0.01	None/Single use	Common	Chromebook 2, p.21	All sizes
+Pocket MedAlert	Tool/Personal	Personal med data chip, alerts EMTs	+1 Diagnose	Medtech	60	0.02	Battery/2yr	Common	Chromebook 4, p.18	Attaches to clothes
+NanoMark Stain Tag	Tool/Field	Detects protein, blood on gear/surface	+1 Medtech/Forensics (detect)	Medtech/Forensics	12	0.01	None/Single use	Common	V3.0 Core, p.194	5 per pack
+LPTU (Limb Preservation Unit)	Tool/Field	Keeps severed limb viable for reattachment	Preserves limb for Body Bank	Medtech	500	2	Battery/Weekly	Uncommon	Chromebook 3, p.6	1 leg or 2 arms
