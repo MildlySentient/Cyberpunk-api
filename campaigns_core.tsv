@@ -1,6 +1,6 @@
-File Name	Description	Status	Linked Files/Notes
-campaign_manifest.tsv	Master list of campaigns, arcs, scenario packs	TBD	
-scenario_timeline_table.tsv	Scenario timelines, key events, triggers		
-story_hooks.tsv	Campaign-specific plot hooks and seeds		
-campaign_notes.tsv	GM notes, prep sheets, session logs	TBD	
-player_handouts.tsv	Session/player handout docs	TBD	
+campaign_manifest.tsv
+scenario_timeline_table.tsv
+story_hooks.tsv
+campaign_notes.tsv
+player_handouts.tsv
+mission_complication_table.tsv	
