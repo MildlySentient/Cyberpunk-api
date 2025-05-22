@@ -1,9 +1,12 @@
-File Name	Description	Status	Linked Files/Notes
-corp_personnel_table.tsv	Corporate staff, roles, quick stats		
-corp_security_gear.tsv	Corporate security gear, loadouts, SOPs		
-facility_security_layout.tsv	Sample facility security structures		
-corp_asset_tracker.tsv	Corporate assets, sites, and key resources		
-corp_scenario_generator.tsv	Corporate mission generators, black ops, plot hooks		
-corp_war_timeline.tsv	Corp war/hostile takeover event log		
-industrial_personnel_table.tsv	Industrial workers, staff, role templates	
-petrochem_hazard_table.tsv	Petrochem/radiation/industrial hazards	
+corp_personnel_table.tsv
+corp_security_gear.tsv
+facility_security_layout.tsv
+corp_asset_tracker.tsv
+corp_scenario_generator.tsv
+corp_war_timeline.tsv
+industrial_personnel_table.tsv
+petrochem_hazard_table.tsv
+corporate_jobs.tsv
+corporate_relationships_matrix.tsv
+corporations_table.tsv
+contract_management_table.tsv
