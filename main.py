@@ -1,6 +1,6 @@
-
 import logging
 import os
+import glob
 import json
 from typing import List, Union, Optional, Dict, Any, Tuple
 
@@ -47,7 +47,7 @@ synonyms = {
     "hack": ["netrun", "breach", "jack in", "netrunning", "run the net", "crack", "intrude", "exploit", "penetrate", "bypass", "ICE breaker", "cyberjack", "data tap", "deck", "backdoor", "console cowboy", "run a hack"],
     "netrunner": ["hacker", "net jockey", "decker", "cyberjack", "runner", "console cowboy", "sysop", "black hat", "white hat", "cowboy", "cracker", "data thief", "script kiddie", "netrat", "netscape"],
     "cyberware": ["cyberwear", "chrome", "implant", "ware", "cybertech", "augmentation", "aug", "cybermod", "cybernetics", "hardware", "wetware", "nanoware", "neuralware", "mod", "modded", "chrome up", "socket", "cyber up", "plug-in"],
-    # ... (include all expanded terms as previously provided)
+    # ... add many more for all core terms and slang ...
 }
 
 # --- spaCy model ---
@@ -67,7 +67,7 @@ def load_files():
     try:
         with open(os.path.join(data_folder, "Bootloader.md"), "r", encoding="utf-8") as f:
             cache["bootloader"] = f.read()
-    except Exception as e:
+    except Exception:
         cache["bootloader"] = "[ERROR] Bootloader.md not found."
     try:
         index_path = os.path.join(data_folder, "index.tsv")
@@ -75,7 +75,7 @@ def load_files():
         index["Description"] = index["Description"].fillna("").astype(str)
         index["LemDescription"] = index["Description"].apply(lemmatize)
         cache["index"] = index
-    except Exception as e:
+    except Exception:
         cache["index"] = pd.DataFrame([{"Filename": "", "Description": "", "LemDescription": ""}])
     cache["cores"] = {}
     for file in os.listdir(data_folder):
@@ -118,23 +118,32 @@ def match_query(query, col, df):
             return best
     return {}
 
-def get_best_matches(query: str, col: str, df: pd.DataFrame, top_n: int = 3) -> Tuple[list, list]:
-    if df is None or df.empty or col not in df.columns:
-        return [], []
-    query_lem = lemmatize(query)
-    for base, syns in synonyms.items():
-        if any(term in query_lem for term in [base] + syns):
-            mask = df[col].str.contains(base, na=False, case=False)
-            match = df[mask]
-            if not match.empty:
-                return match.head(top_n).to_dict(orient='records'), [100]*min(top_n, len(match))
-    fuzz_scores = df[col].apply(lambda x: fuzz.partial_ratio(query_lem, str(x)))
-    top_idx = fuzz_scores.nlargest(top_n).index
-    top_rows = df.loc[top_idx].to_dict(orient='records')
-    scores = fuzz_scores.loc[top_idx].tolist()
-    return top_rows, scores
+def fallback_file_lookup(query, data_folder):
+    # Find any .tsv in the data folder
+    all_tsvs = [os.path.basename(p) for p in glob.glob(os.path.join(data_folder, "*.tsv"))]
+    candidates = [(f, fuzz.partial_ratio(query.lower(), f.lower())) for f in all_tsvs]
+    candidates.sort(key=lambda x: x[1], reverse=True)
+    # Only strong matches, e.g., >60
+    for fname, score in candidates:
+        if score > 60:
+            try:
+                df = pd.read_csv(os.path.join(data_folder, fname), sep="\t")
+                # Optional: Search inside file for the query as well
+                for col in df.columns:
+                    if df[col].astype(str).str.contains(query, case=False, na=False).any():
+                        return fname, df
+            except Exception:
+                continue
+    # If still nothing, just return top filename as a last resort
+    if candidates:
+        try:
+            df = pd.read_csv(os.path.join(data_folder, candidates[0][0]), sep="\t")
+            return candidates[0][0], df
+        except Exception:
+            pass
+    return None, None
 
-# --- Models ---
+# --- Models (same as before) ---
 class QueryRequest(BaseModel):
     query: str = Field(..., description="Text query for game data")
     page: Optional[int] = Field(1, description="Page number for pagination")
@@ -206,67 +215,57 @@ async def get_data(payload: QueryRequest = Body(...)):
     if any(kw in qlow for kw in ["boot", "what is this", "intro"]):
         return DataResultModel(source="Bootloader.md", result=cache["bootloader"])
     index = cache.get("index")
-    if index is None or index.empty:
-        return DataResultModel(source="index.tsv", result={}, note="Index is empty or not loaded.")
-    index_row = match_query(query, "LemDescription", index)
-    core_file = index_row.get("Filename", "")
-    if not core_file:
-        return DataResultModel(source="index.tsv", result=index_row, note="No matching index.")
-    core_df = cache["cores"].get(core_file)
-    if core_df is None or "LemTrigger" not in core_df.columns:
-        return DataResultModel(source="index.tsv", result=index_row, note="No valid core trigger.")
-    core_row = match_query(query, "LemTrigger", core_df)
-    sub_file = core_row.get("Filename", "")
-    if sub_file:
-        sub_path = os.path.join(os.path.dirname(__file__), sub_file)
-        if os.path.exists(sub_path):
-            sub_df = pd.read_csv(sub_path, sep="\t")
-            match_row = match_query(query, "LemTrigger", sub_df) if "LemTrigger" in sub_df.columns else None
-            if match_row:
-                if fields:
-                    match_row = {k: v for k, v in match_row.items() if k in fields}
-                return DataResultModel(source=sub_file, result=match_row)
-            mask = sub_df.apply(lambda row: query.lower() in str(row).lower(), axis=1)
-            results = sub_df[mask] if not sub_df.empty else pd.DataFrame()
-            total = len(results)
-            if not results.empty:
-                start = (page - 1) * page_size
-                end = start + page_size
-                paged = results.iloc[start:end]
-                if fields:
-                    paged = paged[fields]
-                out = paged.to_dict(orient="records")
-                note = f"{total} results; page {page}, page size {page_size}" + ("; truncated" if total > page_size else "")
-                return DataResultModel(source=sub_file, result=out, note=note)
-            return DataResultModel(source=sub_file, result=[], note="No results found in sub-table.")
-        else:
-            return DataResultModel(source=core_file, result=core_row, note=f"Linked file {sub_file} not found.")
-    if fields and isinstance(core_row, dict):
-        core_row = {k: v for k, v in core_row.items() if k in fields}
-    return DataResultModel(source=core_file, result=core_row)
+    if index is not None and not index.empty:
+        index_row = match_query(query, "LemDescription", index)
+        core_file = index_row.get("Filename", "")
+        if core_file:
+            core_df = cache["cores"].get(core_file)
+            if core_df is not None and "LemTrigger" in core_df.columns:
+                core_row = match_query(query, "LemTrigger", core_df)
+                sub_file = core_row.get("Filename", "")
+                if sub_file:
+                    sub_path = os.path.join(os.path.dirname(__file__), sub_file)
+                    if os.path.exists(sub_path):
+                        sub_df = pd.read_csv(sub_path, sep="\t")
+                        match_row = match_query(query, "LemTrigger", sub_df) if "LemTrigger" in sub_df.columns else None
+                        if match_row:
+                            if fields:
+                                match_row = {k: v for k, v in match_row.items() if k in fields}
+                            return DataResultModel(source=sub_file, result=match_row)
+                        mask = sub_df.apply(lambda row: query.lower() in str(row).lower(), axis=1)
+                        results = sub_df[mask] if not sub_df.empty else pd.DataFrame()
+                        total = len(results)
+                        if not results.empty:
+                            start = (page - 1) * page_size
+                            end = start + page_size
+                            paged = results.iloc[start:end]
+                            if fields:
+                                paged = paged[fields]
+                            out = paged.to_dict(orient="records")
+                            note = f"{total} results; page {page}, page size {page_size}" + ("; truncated" if total > page_size else "")
+                            return DataResultModel(source=sub_file, result=out, note=note)
+                        return DataResultModel(source=sub_file, result=[], note="No results found in sub-table.")
+                    else:
+                        return DataResultModel(source=core_file, result=core_row, note=f"Linked file {sub_file} not found.")
+            if fields and isinstance(core_row, dict):
+                core_row = {k: v for k, v in core_row.items() if k in fields}
+            return DataResultModel(source=core_file, result=core_row)
+    # --- Hybrid Fallback: Directory-wide Scan ---
+    data_folder = os.path.dirname(__file__)
+    file, df = fallback_file_lookup(query, data_folder)
+    if file and df is not None:
+        # Return top N rows or best fuzzy matches
+        mask = df.apply(lambda row: query.lower() in str(row).lower(), axis=1)
+        results = df[mask] if not df.empty else pd.DataFrame()
+        if not results.empty:
+            return DataResultModel(source=file, result=results.head(page_size).to_dict(orient="records"),
+                                   note="Result from direct file scan (hybrid fallback).")
+        # Fallback: Just return top N rows
+        return DataResultModel(source=file, result=df.head(page_size).to_dict(orient="records"),
+                               note="Result from direct file scan, no strong row match.")
+    return DataResultModel(source="none", result={}, note="No matching file or data found.")
 
-@app.post("/smart-query", response_model=DataResultModel)
-async def smart_query(payload: QueryRequest = Body(...)):
-    query = payload.query.strip()
-    index = cache.get("index")
-    if index is None or index.empty:
-        return DataResultModel(source="index.tsv", result={}, note="Index is empty or not loaded.")
-    index_row = match_query(query, "LemDescription", index)
-    core_file = index_row.get("Filename", "")
-    if not core_file or core_file not in cache["cores"]:
-        return DataResultModel(source="index.tsv", result=index_row, note="No matching index/core.")
-    core_df = cache["cores"][core_file]
-    core_row = match_query(query, "LemTrigger", core_df)
-    sub_file = core_row.get("Filename", "")
-    if not sub_file or not os.path.exists(os.path.join(os.path.dirname(__file__), sub_file)):
-        matches, scores = get_best_matches(query, "LemTrigger", core_df, top_n=3)
-        return DataResultModel(source=core_file, result=matches, note="No subfile found; best core matches.")
-    sub_df = pd.read_csv(os.path.join(os.path.dirname(__file__), sub_file), sep="\t")
-    col = "LemTrigger" if "LemTrigger" in sub_df.columns else sub_df.columns[0]
-    matches, scores = get_best_matches(query, col, sub_df, top_n=3)
-    note = f"Top 3 from {sub_file} (scores: {scores})" if matches else f"No matches in {sub_file}"
-    return DataResultModel(source=sub_file, result=matches, note=note)
-
+# --- Remaining endpoints (unchanged) ---
 @app.get("/roll", response_model=DiceResultModel)
 def roll_dice(type: str = Query(..., description="Type of die: d6, d10, or d100")):
     t = type.lower()
