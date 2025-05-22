@@ -11,3 +11,10 @@ npc_templates.tsv
 nomad_factions.tsv
 relationship_matrix.tsv
 ripperdoc_contacts.tsv
+npc_encounter_generator.tsv
+gang_contacts_table.tsv
+gang_jobs.tsv
+gang_relationships_matrix.tsv
+nomad_relationships_matrix.tsv
+reputation_tracker.tsv
+psych_loss_table.tsv
