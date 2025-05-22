@@ -2,3 +2,7 @@ regional_encounters.tsv
 social_encounters.tsv
 street_events.tsv
 urban_encounters.tsv
+city_event_generator.tsv
+event_randomizers.tsv
+location_event_generator.tsv
+road_encounters.tsv
