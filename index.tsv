@@ -1,175 +1,161 @@
 File Name	Description	Category	Status
-system_core.tsv	System meta: rules, configs, global mechanics	System	Root
-roles_core.tsv	All roles/classes master manifest	Roles	Root
-npc_core.tsv	NPCs, contacts, factions master manifest	NPCs / Contacts / Factions	Root
-gear_core.tsv	All standard gear, cyberware, tech gear	Gear	Root
-weapons_core.tsv	All weapons, explosives, heavy ordnance	Weapons	Root
-services_core.tsv	Services, clinics, black market, fixers	Services	Root
-encounters_core.tsv	Encounters, events, story hooks	Encounters / Events	Root
-vehicle_core.tsv	Vehicles, ACPA, mods, chases, combat	Vehicles / ACPA	Root
-cyberdecks_virtuality_core.tsv	Netrunner tools, cyberdecks, ICE, VR/AR/AI	Cyberdecks / Virtuality	Root
-setting_core.tsv	Settings, regions, locations, factions	Setting / Region / Politics	Root
-corporate_core.tsv	Corporate, industrial, organizational	Corporate / Org	Root
-campaigns_core.tsv	Campaigns, scenario arcs, timelines	Campaigns	Root
-plugins_core.tsv	Plugins, macros, API, integrations	Plugins	Root
-assets_core.tsv	Maps, art, sound, VTT modules, handouts	Assets	Root
-# Appendix: All Other TSV Files By Category			
-## System			
-difficulty_table.tsv			
-downtime_table.tsv			
-faults_table.tsv			
-lifepath_generator.tsv			
-martial_arts_table.tsv			
-psych_loss_table.tsv			
-reputation_tracker.tsv			
-rules_checklists.tsv			
-team_gen_table.tsv			
-## Roles			
-roles_table.tsv			
-solo_role.tsv			
-cop_role.tsv			
-fixer_role.tsv			
-rockerboy_role.tsv			
-nomad_role.tsv			
-media_role.tsv			
-netrunner_role.tsv			
-medtech_role.tsv			
-techie_role.tsv			
-exec_role.tsv			
-lawman_role.tsv			
-virtualist_role.tsv			
-biotechnician_role.tsv			
-## NPCs / Contacts / Factions			
-npc_directory.tsv			
-cop_npc_templates.tsv			
-corp_npc_templates.tsv			
-npc_templates.tsv			
-gang_npcs.tsv			
-npc_quirks.tsv			
-fullborg_statlines.tsv			
-ripperdoc_contacts.tsv			
-fixers_table.tsv			
-gangs_table.tsv			
-nomad_factions.tsv			
-corporations_table.tsv			
-relationship_matrix.tsv			
-gang_contacts_table.tsv			
-gang_relationships_matrix.tsv			
-nomad_relationships_matrix.tsv			
-other_brokers_table.tsv			
-fixers_master_index.tsv			
-## Gear			
-gear_table.tsv			
-cyberware_table.tsv			
-gear_upgrade_table.tsv			
-gear_maintenance_table.tsv			
-price_reference.tsv			
-cyberpets_table.tsv			
-surveillance_table.tsv			
-medkit_table.tsv			
-medtech_tools_table.tsv			
-medical_supplies_table.tsv			
-novelty_items_table.tsv			
-utility_items_table.tsv			
-clothing_and_wearables_table.tsv			
-armor_table.tsv			
-## Weapons			
-weapons_table.tsv			
-heavy_weapons_table.tsv			
-explosives_table.tsv			
-emp_devices_table.tsv			
-ammo_table.tsv			
-weapon_mod_table.tsv			
-weapon_mods_table.tsv			
-cyberware_glitch_table.tsv			
-## Services			
-ripperdoc_table.tsv			
-street_surgery_complications.tsv			
-black_market_table.tsv			
-fixers_table.tsv			
-ripperdoc_contacts.tsv			
-service_price_table.tsv			
-ripperdoc_contacts_table.tsv			
-ripperdoc_jobs.tsv			
-ripperdoc_loyalty_hooks.tsv			
-## Encounters / Events			
-urban_encounters.tsv			
-regional_encounters.tsv			
-road_encounters.tsv			
-street_events.tsv			
-location_generator.tsv			
-scenario_timeline_table.tsv			
-social_encounters.tsv			
-event_randomizers.tsv			
-story_hooks.tsv			
-mission_complication_table.tsv			
-npc_encounter_generator.tsv			
-city_event_generator.tsv			
-location_event_generator.tsv			
-scenario_jobs.tsv			
-solo_jobs.tsv			
-cop_jobs.tsv			
-fixer_jobs.tsv			
-gang_jobs.tsv			
-media_jobs.tsv			
-netrunner_jobs.tsv			
-nomad_pack_jobs.tsv			
-street_jobs.tsv			
-trauma_team_jobs.tsv			
-## Vehicles / ACPA			
-vehicle_catalog.tsv			
-vehicles_table.tsv			
-vehicle_mods_table.tsv			
-vehicle_chase_rules.tsv			
-acpa_table.tsv			
-vehicle_combat_table.tsv			
-acpa_sensors_table.tsv			
-acpa_catalog_table.tsv			
-## Cyberdecks / Virtuality			
-cyberdecks_virtuality_core.tsv			
-net_map_generator.tsv			
-ice_table.tsv			
-data_fortress.tsv			
-virtuality_overlay_table.tsv			
-net_law_table.tsv			
-net_social_events_table.tsv			
-netrunner_trauma_table.tsv			
-vr_deck_mod_table.tsv			
-net_npc_personality_table.tsv			
-## Setting / Region / Politics			
-region_encounters_table.tsv			
-region_npc_stat_table.tsv			
-region_economy_table.tsv			
-education_sin_table.tsv			
-political_hooks_table.tsv			
-night_city_locations.tsv			
-faction_reactions.tsv			
-## Corporate / Org			
-corp_personnel_table.tsv			
-corp_security_gear.tsv			
-facility_security_layout.tsv			
-corp_asset_tracker.tsv			
-corp_scenario_generator.tsv			
-corp_war_timeline.tsv			
-industrial_personnel_table.tsv			
-petrochem_hazard_table.tsv			
-corporate_jobs.tsv			
-corporate_relationships_matrix.tsv			
-contract_management_table.tsv			
-## Campaigns			
-campaign_manifest.tsv			
-scenario_timeline_table.tsv			
-story_hooks.tsv			
-campaign_notes.tsv			
-player_handouts.tsv			
-## Plugins			
-vtt_plugin_table.tsv			
-ai_tools_table.tsv			
-macro_scripts_table.tsv			
-external_integration_table.tsv			
-## Assets			
-map_assets_table.tsv			
-art_assets_table.tsv			
-soundtrack_table.tsv			
-vtt_module_table.tsv			
-prop_library.tsv			
+system_core.tsv	system, rules, configs, global mechanics, meta, settings, rulebook, configuration, options, parameters, game engine, core system, system core	System	Root
+roles_core.tsv	roles, classes, character classes, jobs, archetypes, professions, templates, PC roles, playbooks, specializations, career paths, builds, backgrounds, character types, role, class, archetype, build, profession, job, specialization, background, playbook, path, character type, PC role, template, occupation, roles core	Roles	Root
+npc_core.tsv	NPCs, non-player characters, contacts, factions, organizations, allies, enemies, personalities, gangs, corporations, fixers, netrunners, solo, medtechs, cops, bosses, info brokers, street gangs, corp agents, underworld, fixers, mentors, nemesis, NPCs, contacts, non-player, ally, enemy, rival, faction, fixers, netrunner NPC, medtech NPC, cop NPC, corporate NPC, gang member, boss, informant, patron, nemesis, mentor, npc core	NPCs / Contacts / Factions	Root
+gear_core.tsv	gear, equipment, items, tools, cyberware, armor, gadgets, supplies, tech, personal gear, cyberpets, utility items, medical supplies, novelty items, wearables, upgrades, enhancements, loot, swag, chrome, junk, mods, loot, loadout, inventory, street gear, gear, equipment, loot, swag, street gear, inventory, supplies, gadgets, tools, personal gear, tech gear, loadout, stuff, carry, stims, medkit, packs, cyberpets, scanner, scanner, gadgets, street stuff, gear core	Gear	Root
+weapons_core.tsv	weapons, guns, firearms, ranged weapons, melee weapons, explosives, pistols, rifles, SMGs, shotguns, heavy weapons, grenades, ordnance, ammo, blades, bows, clubs, shooters, armament, pew-pew, firepower, weapon mods, gunplay, weapons, guns, shooters, firepower, armament, ranged, melee, ammo, explosives, pew pew, arms, pistols, rifles, blades, grenades, big iron, boomsticks, ordnance, weapons core	Weapons	Root
+services_core.tsv	services, clinics, ripperdocs, black market, fixers, medtech, surgery, providers, street docs, medical, healing, bribery, employment, hire, mercenaries, bribes, gigs, street services, underworld, favors, insurance, trauma team, aftercare, services core	Services	Root
+encounters_core.tsv	encounters, events, story hooks, jobs, missions, random events, complications, story seeds, scenario, gigs, happenings, meetups, situations, street action, adventure hooks, jobs board, quest, run, plot twist, distractions, encounters, events, meetings, situations, random, scenarios, street action, jobs, runs, mission, story hook, plot, complication, adventure, encounters core	Encounters / Events	Root
+vehicle_core.tsv	vehicles, cars, motorcycles, AVs, trucks, bikes, rides, chases, combat vehicles, ACPA, mechs, mods, upgrades, transport, wheels, rides, getaway, armored vehicle, hovercar, chase rules, vehicle, car, bike, motorcycle, AV, truck, ride, chase, transport, wheels, combat vehicle, ACPA, mech, upgrade, mod, getaway, vehicle core	Vehicles / ACPA	Root
+cyberdecks_virtuality_core.tsv	cyberdecks, netrunner, netrunning, VR, AR, ICE, programs, virtuality, hacking, matrix, cyberspace, net combat, interface plugs, virtual reality, AI, deck, brain dance, net tools, neural link, cybermodem, net ops, deckers, net gear, cyberdeck, netrunner tool, VR, hacking gear, cybermodem, interface, deck, neural link, cyberspace, matrix, ICE, brain dance, virtuality, net ops, cyberdecks virtuality core	Cyberdecks / Virtuality	Root
+setting_core.tsv	setting, regions, locations, factions, politics, districts, neighborhoods, hot zones, city, towns, landmarks, corp turf, territory, places, area, POI, night city, locale, power, political, turf war, map, environment, setting, region, locale, location, map, city, district, area, turf, landmark, point of interest, night city, hot zone, neighborhood, political, environment, corp turf, setting core	Setting / Region / Politics	Root
+corporate_core.tsv	corporate, corporations, megacorp, org, companies, businesses, syndicates, execs, bosses, corp wars, company, industrial, asset, personnel, security, management, suits, fixers, boardroom, corp power, corp assets, corp gear, corporate, corporation, business, syndicate, company, org, executive, asset, personnel, boss, management, megacorp, power, corp war, corp asset, corp suit, exec, industrial, boardroom, corporate core	Corporate / Org	Root
+campaigns_core.tsv	campaigns, story arcs, scenarios, adventures, plotlines, campaign notes, timeline, saga, long-term play, missions, campaigns manifest, play session, session notes, player handouts, arcs, epic, plot, campaign, story arc, adventure, timeline, notes, plotline, session, player handout, story, mission, epic, saga, campaign board, play session, quest, campaigns core	Campaigns	Root
+plugins_core.tsv	plugins, macros, scripts, API, integration, extensions, add-ons, external tools, VTT, automation, mod, custom features, external integration, macro scripts, plugin tools, plugin, macro, script, API, integration, automation, extension, addon, VTT, mod, tool, macro script, plugin feature, external tool, plugins core	Plugins	Root
+assets_core.tsv	assets, maps, art, soundtrack, handouts, VTT modules, props, visuals, sound, music, prop library, resources, visuals, handouts, module, tokens, background art, player aids, media, asset, map, art, handout, prop, VTT module, token, soundtrack, music, visual, resource, media, player aid, module, visual, background art, prop library, assets core	Assets	Root
+difficulty_table.tsv	difficulty table	Misc	
+downtime_table.tsv	downtime table	Misc	
+faults_table.tsv	faults table	Misc	
+lifepath_generator.tsv	lifepath generator	Misc	
+martial_arts_table.tsv	assets, maps, art, soundtrack, handouts, VTT modules, props, visuals, sound, music, prop library, resources, visuals, handouts, module, tokens, background art, player aids, media, martial arts table	Assets	
+psych_loss_table.tsv	psych loss table	Misc	
+reputation_tracker.tsv	reputation tracker	Misc	
+rules_checklists.tsv	rules checklists	Misc	
+team_gen_table.tsv	team gen table	Misc	
+roles_table.tsv	roles, classes, character classes, jobs, archetypes, professions, templates, PC roles, playbooks, specializations, career paths, builds, backgrounds, character types, role, class, archetype, build, profession, job, specialization, background, playbook, path, character type, PC role, template, occupation, roles table	Roles	
+solo_role.tsv	roles, classes, character classes, jobs, archetypes, professions, templates, PC roles, playbooks, specializations, career paths, builds, backgrounds, character types, role, class, archetype, build, profession, job, specialization, background, playbook, path, character type, PC role, template, occupation, solo role	Roles	
+cop_role.tsv	roles, classes, character classes, jobs, archetypes, professions, templates, PC roles, playbooks, specializations, career paths, builds, backgrounds, character types, role, class, archetype, build, profession, job, specialization, background, playbook, path, character type, PC role, template, occupation, cop role	Roles	
+fixer_role.tsv	roles, classes, character classes, jobs, archetypes, professions, templates, PC roles, playbooks, specializations, career paths, builds, backgrounds, character types, role, class, archetype, build, profession, job, specialization, background, playbook, path, character type, PC role, template, occupation, fixer role	Roles	
+rockerboy_role.tsv	roles, classes, character classes, jobs, archetypes, professions, templates, PC roles, playbooks, specializations, career paths, builds, backgrounds, character types, role, class, archetype, build, profession, job, specialization, background, playbook, path, character type, PC role, template, occupation, rockerboy role	Roles	
+nomad_role.tsv	roles, classes, character classes, jobs, archetypes, professions, templates, PC roles, playbooks, specializations, career paths, builds, backgrounds, character types, role, class, archetype, build, profession, job, specialization, background, playbook, path, character type, PC role, template, occupation, nomad role	Roles	
+media_role.tsv	roles, classes, character classes, jobs, archetypes, professions, templates, PC roles, playbooks, specializations, career paths, builds, backgrounds, character types, role, class, archetype, build, profession, job, specialization, background, playbook, path, character type, PC role, template, occupation, media role	Roles	
+netrunner_role.tsv	roles, classes, character classes, jobs, archetypes, professions, templates, PC roles, playbooks, specializations, career paths, builds, backgrounds, character types, role, class, archetype, build, profession, job, specialization, background, playbook, path, character type, PC role, template, occupation, netrunner role	Roles	
+medtech_role.tsv	roles, classes, character classes, jobs, archetypes, professions, templates, PC roles, playbooks, specializations, career paths, builds, backgrounds, character types, role, class, archetype, build, profession, job, specialization, background, playbook, path, character type, PC role, template, occupation, medtech role	Roles	
+techie_role.tsv	roles, classes, character classes, jobs, archetypes, professions, templates, PC roles, playbooks, specializations, career paths, builds, backgrounds, character types, role, class, archetype, build, profession, job, specialization, background, playbook, path, character type, PC role, template, occupation, techie role	Roles	
+exec_role.tsv	roles, classes, character classes, jobs, archetypes, professions, templates, PC roles, playbooks, specializations, career paths, builds, backgrounds, character types, role, class, archetype, build, profession, job, specialization, background, playbook, path, character type, PC role, template, occupation, exec role	Roles	
+lawman_role.tsv	roles, classes, character classes, jobs, archetypes, professions, templates, PC roles, playbooks, specializations, career paths, builds, backgrounds, character types, role, class, archetype, build, profession, job, specialization, background, playbook, path, character type, PC role, template, occupation, lawman role	Roles	
+virtualist_role.tsv	roles, classes, character classes, jobs, archetypes, professions, templates, PC roles, playbooks, specializations, career paths, builds, backgrounds, character types, role, class, archetype, build, profession, job, specialization, background, playbook, path, character type, PC role, template, occupation, virtualist role	Roles	
+biotechnician_role.tsv	roles, classes, character classes, jobs, archetypes, professions, templates, PC roles, playbooks, specializations, career paths, builds, backgrounds, character types, role, class, archetype, build, profession, job, specialization, background, playbook, path, character type, PC role, template, occupation, biotechnician role	Roles	
+npc_directory.tsv	NPCs, non-player characters, contacts, factions, organizations, allies, enemies, personalities, gangs, corporations, fixers, netrunners, solo, medtechs, cops, bosses, info brokers, street gangs, corp agents, underworld, fixers, mentors, nemesis, NPCs, contacts, non-player, ally, enemy, rival, faction, fixers, netrunner NPC, medtech NPC, cop NPC, corporate NPC, gang member, boss, informant, patron, nemesis, mentor, npc directory	NPCs / Contacts / Factions	
+cop_npc_templates.tsv	NPCs, non-player characters, contacts, factions, organizations, allies, enemies, personalities, gangs, corporations, fixers, netrunners, solo, medtechs, cops, bosses, info brokers, street gangs, corp agents, underworld, fixers, mentors, nemesis, NPCs, contacts, non-player, ally, enemy, rival, faction, fixers, netrunner NPC, medtech NPC, cop NPC, corporate NPC, gang member, boss, informant, patron, nemesis, mentor, cop npc templates	NPCs / Contacts / Factions	
+corp_npc_templates.tsv	NPCs, non-player characters, contacts, factions, organizations, allies, enemies, personalities, gangs, corporations, fixers, netrunners, solo, medtechs, cops, bosses, info brokers, street gangs, corp agents, underworld, fixers, mentors, nemesis, NPCs, contacts, non-player, ally, enemy, rival, faction, fixers, netrunner NPC, medtech NPC, cop NPC, corporate NPC, gang member, boss, informant, patron, nemesis, mentor, corp npc templates	NPCs / Contacts / Factions	
+npc_templates.tsv	NPCs, non-player characters, contacts, factions, organizations, allies, enemies, personalities, gangs, corporations, fixers, netrunners, solo, medtechs, cops, bosses, info brokers, street gangs, corp agents, underworld, fixers, mentors, nemesis, NPCs, contacts, non-player, ally, enemy, rival, faction, fixers, netrunner NPC, medtech NPC, cop NPC, corporate NPC, gang member, boss, informant, patron, nemesis, mentor, npc templates	NPCs / Contacts / Factions	
+gang_npcs.tsv	NPCs, non-player characters, contacts, factions, organizations, allies, enemies, personalities, gangs, corporations, fixers, netrunners, solo, medtechs, cops, bosses, info brokers, street gangs, corp agents, underworld, fixers, mentors, nemesis, NPCs, contacts, non-player, ally, enemy, rival, faction, fixers, netrunner NPC, medtech NPC, cop NPC, corporate NPC, gang member, boss, informant, patron, nemesis, mentor, gang npcs	NPCs / Contacts / Factions	
+npc_quirks.tsv	NPCs, non-player characters, contacts, factions, organizations, allies, enemies, personalities, gangs, corporations, fixers, netrunners, solo, medtechs, cops, bosses, info brokers, street gangs, corp agents, underworld, fixers, mentors, nemesis, NPCs, contacts, non-player, ally, enemy, rival, faction, fixers, netrunner NPC, medtech NPC, cop NPC, corporate NPC, gang member, boss, informant, patron, nemesis, mentor, npc quirks	NPCs / Contacts / Factions	
+fullborg_statlines.tsv	corporate, corporations, megacorp, org, companies, businesses, syndicates, execs, bosses, corp wars, company, industrial, asset, personnel, security, management, suits, fixers, boardroom, corp power, corp assets, corp gear, fullborg statlines	Corporate / Org	
+ripperdoc_contacts.tsv	NPCs, non-player characters, contacts, factions, organizations, allies, enemies, personalities, gangs, corporations, fixers, netrunners, solo, medtechs, cops, bosses, info brokers, street gangs, corp agents, underworld, fixers, mentors, nemesis, ripperdoc contacts	NPCs / Contacts / Factions	
+fixers_table.tsv	services, clinics, ripperdocs, black market, fixers, medtech, surgery, providers, street docs, medical, healing, bribery, employment, hire, mercenaries, bribes, gigs, street services, underworld, favors, insurance, trauma team, aftercare, fixers table	Services	
+gangs_table.tsv	NPCs, non-player characters, contacts, factions, organizations, allies, enemies, personalities, gangs, corporations, fixers, netrunners, solo, medtechs, cops, bosses, info brokers, street gangs, corp agents, underworld, fixers, mentors, nemesis, gangs table	NPCs / Contacts / Factions	
+nomad_factions.tsv	NPCs, non-player characters, contacts, factions, organizations, allies, enemies, personalities, gangs, corporations, fixers, netrunners, solo, medtechs, cops, bosses, info brokers, street gangs, corp agents, underworld, fixers, mentors, nemesis, nomad factions	NPCs / Contacts / Factions	
+corporations_table.tsv	corporate, corporations, megacorp, org, companies, businesses, syndicates, execs, bosses, corp wars, company, industrial, asset, personnel, security, management, suits, fixers, boardroom, corp power, corp assets, corp gear, corporations table	Corporate / Org	
+relationship_matrix.tsv	cyberdecks, netrunner, netrunning, VR, AR, ICE, programs, virtuality, hacking, matrix, cyberspace, net combat, interface plugs, virtual reality, AI, deck, brain dance, net tools, neural link, cybermodem, net ops, deckers, net gear, relationship matrix	Cyberdecks / Virtuality	
+gang_contacts_table.tsv	NPCs, non-player characters, contacts, factions, organizations, allies, enemies, personalities, gangs, corporations, fixers, netrunners, solo, medtechs, cops, bosses, info brokers, street gangs, corp agents, underworld, fixers, mentors, nemesis, gang contacts table	NPCs / Contacts / Factions	
+gang_relationships_matrix.tsv	NPCs, non-player characters, contacts, factions, organizations, allies, enemies, personalities, gangs, corporations, fixers, netrunners, solo, medtechs, cops, bosses, info brokers, street gangs, corp agents, underworld, fixers, mentors, nemesis, gang relationships matrix	NPCs / Contacts / Factions	
+nomad_relationships_matrix.tsv	cyberdecks, netrunner, netrunning, VR, AR, ICE, programs, virtuality, hacking, matrix, cyberspace, net combat, interface plugs, virtual reality, AI, deck, brain dance, net tools, neural link, cybermodem, net ops, deckers, net gear, nomad relationships matrix	Cyberdecks / Virtuality	
+other_brokers_table.tsv	other brokers table	Misc	
+fixers_master_index.tsv	services, clinics, ripperdocs, black market, fixers, medtech, surgery, providers, street docs, medical, healing, bribery, employment, hire, mercenaries, bribes, gigs, street services, underworld, favors, insurance, trauma team, aftercare, fixers master index	Services	
+gear_table.tsv	gear, equipment, items, tools, cyberware, armor, gadgets, supplies, tech, personal gear, cyberpets, utility items, medical supplies, novelty items, wearables, upgrades, enhancements, loot, swag, chrome, junk, mods, loot, loadout, inventory, street gear, gear, equipment, loot, swag, street gear, inventory, supplies, gadgets, tools, personal gear, tech gear, loadout, stuff, carry, stims, medkit, packs, cyberpets, scanner, scanner, gadgets, street stuff, gear table	Gear	
+cyberware_table.tsv	gear, equipment, items, tools, cyberware, armor, gadgets, supplies, tech, personal gear, cyberpets, utility items, medical supplies, novelty items, wearables, upgrades, enhancements, loot, swag, chrome, junk, mods, loot, loadout, inventory, street gear, cyberware, chrome, implants, mods, enhancements, neuralware, bioware, nanotech, wetware, borg, fullborg, prosthetic, upgrades, augmentations, cyberlimb, interface plug, cyber eyes, cyber ears, cyberarms, cybereyes, cyberlegs, cyber mods, cyberware table	Gear	
+gear_upgrade_table.tsv	gear, equipment, items, tools, cyberware, armor, gadgets, supplies, tech, personal gear, cyberpets, utility items, medical supplies, novelty items, wearables, upgrades, enhancements, loot, swag, chrome, junk, mods, loot, loadout, inventory, street gear, gear, equipment, loot, swag, street gear, inventory, supplies, gadgets, tools, personal gear, tech gear, loadout, stuff, carry, stims, medkit, packs, cyberpets, scanner, scanner, gadgets, street stuff, gear upgrade table	Gear	
+gear_maintenance_table.tsv	gear, equipment, items, tools, cyberware, armor, gadgets, supplies, tech, personal gear, cyberpets, utility items, medical supplies, novelty items, wearables, upgrades, enhancements, loot, swag, chrome, junk, mods, loot, loadout, inventory, street gear, gear, equipment, loot, swag, street gear, inventory, supplies, gadgets, tools, personal gear, tech gear, loadout, stuff, carry, stims, medkit, packs, cyberpets, scanner, scanner, gadgets, street stuff, gear maintenance table	Gear	
+price_reference.tsv	cyberdecks, netrunner, netrunning, VR, AR, ICE, programs, virtuality, hacking, matrix, cyberspace, net combat, interface plugs, virtual reality, AI, deck, brain dance, net tools, neural link, cybermodem, net ops, deckers, net gear, price reference	Cyberdecks / Virtuality	
+cyberpets_table.tsv	cyberpets table	Misc	
+surveillance_table.tsv	surveillance table	Misc	
+medkit_table.tsv	medkit table	Misc	
+medtech_tools_table.tsv	gear, equipment, items, tools, cyberware, armor, gadgets, supplies, tech, personal gear, cyberpets, utility items, medical supplies, novelty items, wearables, upgrades, enhancements, loot, swag, chrome, junk, mods, loot, loadout, inventory, street gear, medtech tools table	Gear	
+medical_supplies_table.tsv	medical supplies table	Misc	
+novelty_items_table.tsv	gear, equipment, items, tools, cyberware, armor, gadgets, supplies, tech, personal gear, cyberpets, utility items, medical supplies, novelty items, wearables, upgrades, enhancements, loot, swag, chrome, junk, mods, loot, loadout, inventory, street gear, novelty items table	Gear	
+utility_items_table.tsv	gear, equipment, items, tools, cyberware, armor, gadgets, supplies, tech, personal gear, cyberpets, utility items, medical supplies, novelty items, wearables, upgrades, enhancements, loot, swag, chrome, junk, mods, loot, loadout, inventory, street gear, utility items table	Gear	
+clothing_and_wearables_table.tsv	gear, equipment, items, tools, cyberware, armor, gadgets, supplies, tech, personal gear, cyberpets, utility items, medical supplies, novelty items, wearables, upgrades, enhancements, loot, swag, chrome, junk, mods, loot, loadout, inventory, street gear, clothing and wearables table	Gear	
+armor_table.tsv	gear, equipment, items, tools, cyberware, armor, gadgets, supplies, tech, personal gear, cyberpets, utility items, medical supplies, novelty items, wearables, upgrades, enhancements, loot, swag, chrome, junk, mods, loot, loadout, inventory, street gear, armor table	Gear	
+weapons_table.tsv	weapons, guns, firearms, ranged weapons, melee weapons, explosives, pistols, rifles, SMGs, shotguns, heavy weapons, grenades, ordnance, ammo, blades, bows, clubs, shooters, armament, pew-pew, firepower, weapon mods, gunplay, weapons, guns, shooters, firepower, armament, ranged, melee, ammo, explosives, pew pew, arms, pistols, rifles, blades, grenades, big iron, boomsticks, ordnance, weapons table	Weapons	
+heavy_weapons_table.tsv	weapons, guns, firearms, ranged weapons, melee weapons, explosives, pistols, rifles, SMGs, shotguns, heavy weapons, grenades, ordnance, ammo, blades, bows, clubs, shooters, armament, pew-pew, firepower, weapon mods, gunplay, weapons, guns, shooters, firepower, armament, ranged, melee, ammo, explosives, pew pew, arms, pistols, rifles, blades, grenades, big iron, boomsticks, ordnance, heavy weapons table	Weapons	
+explosives_table.tsv	weapons, guns, firearms, ranged weapons, melee weapons, explosives, pistols, rifles, SMGs, shotguns, heavy weapons, grenades, ordnance, ammo, blades, bows, clubs, shooters, armament, pew-pew, firepower, weapon mods, gunplay, explosives table	Weapons	
+emp_devices_table.tsv	weapons, guns, firearms, ranged weapons, melee weapons, explosives, pistols, rifles, SMGs, shotguns, heavy weapons, grenades, ordnance, ammo, blades, bows, clubs, shooters, armament, pew-pew, firepower, weapon mods, gunplay, emp devices table	Weapons	
+ammo_table.tsv	weapons, guns, firearms, ranged weapons, melee weapons, explosives, pistols, rifles, SMGs, shotguns, heavy weapons, grenades, ordnance, ammo, blades, bows, clubs, shooters, armament, pew-pew, firepower, weapon mods, gunplay, ammo table	Weapons	
+weapon_mod_table.tsv	weapons, guns, firearms, ranged weapons, melee weapons, explosives, pistols, rifles, SMGs, shotguns, heavy weapons, grenades, ordnance, ammo, blades, bows, clubs, shooters, armament, pew-pew, firepower, weapon mods, gunplay, weapon mod table	Weapons	
+weapon_mods_table.tsv	weapons, guns, firearms, ranged weapons, melee weapons, explosives, pistols, rifles, SMGs, shotguns, heavy weapons, grenades, ordnance, ammo, blades, bows, clubs, shooters, armament, pew-pew, firepower, weapon mods, gunplay, weapon mods table	Weapons	
+cyberware_glitch_table.tsv	gear, equipment, items, tools, cyberware, armor, gadgets, supplies, tech, personal gear, cyberpets, utility items, medical supplies, novelty items, wearables, upgrades, enhancements, loot, swag, chrome, junk, mods, loot, loadout, inventory, street gear, cyberware, chrome, implants, mods, enhancements, neuralware, bioware, nanotech, wetware, borg, fullborg, prosthetic, upgrades, augmentations, cyberlimb, interface plug, cyber eyes, cyber ears, cyberarms, cybereyes, cyberlegs, cyber mods, cyberware glitch table	Gear	
+ripperdoc_table.tsv	services, clinics, ripperdocs, black market, fixers, medtech, surgery, providers, street docs, medical, healing, bribery, employment, hire, mercenaries, bribes, gigs, street services, underworld, favors, insurance, trauma team, aftercare, ripperdoc table	Services	
+street_surgery_complications.tsv	services, clinics, ripperdocs, black market, fixers, medtech, surgery, providers, street docs, medical, healing, bribery, employment, hire, mercenaries, bribes, gigs, street services, underworld, favors, insurance, trauma team, aftercare, street surgery complications	Services	
+black_market_table.tsv	services, clinics, ripperdocs, black market, fixers, medtech, surgery, providers, street docs, medical, healing, bribery, employment, hire, mercenaries, bribes, gigs, street services, underworld, favors, insurance, trauma team, aftercare, black market table	Services	
+fixers_table.tsv	services, clinics, ripperdocs, black market, fixers, medtech, surgery, providers, street docs, medical, healing, bribery, employment, hire, mercenaries, bribes, gigs, street services, underworld, favors, insurance, trauma team, aftercare, fixers table	Services	
+ripperdoc_contacts.tsv	NPCs, non-player characters, contacts, factions, organizations, allies, enemies, personalities, gangs, corporations, fixers, netrunners, solo, medtechs, cops, bosses, info brokers, street gangs, corp agents, underworld, fixers, mentors, nemesis, ripperdoc contacts	NPCs / Contacts / Factions	
+service_price_table.tsv	services, clinics, ripperdocs, black market, fixers, medtech, surgery, providers, street docs, medical, healing, bribery, employment, hire, mercenaries, bribes, gigs, street services, underworld, favors, insurance, trauma team, aftercare, service price table	Services	
+ripperdoc_contacts_table.tsv	NPCs, non-player characters, contacts, factions, organizations, allies, enemies, personalities, gangs, corporations, fixers, netrunners, solo, medtechs, cops, bosses, info brokers, street gangs, corp agents, underworld, fixers, mentors, nemesis, ripperdoc contacts table	NPCs / Contacts / Factions	
+ripperdoc_jobs.tsv	services, clinics, ripperdocs, black market, fixers, medtech, surgery, providers, street docs, medical, healing, bribery, employment, hire, mercenaries, bribes, gigs, street services, underworld, favors, insurance, trauma team, aftercare, ripperdoc jobs	Services	
+ripperdoc_loyalty_hooks.tsv	services, clinics, ripperdocs, black market, fixers, medtech, surgery, providers, street docs, medical, healing, bribery, employment, hire, mercenaries, bribes, gigs, street services, underworld, favors, insurance, trauma team, aftercare, ripperdoc loyalty hooks	Services	
+urban_encounters.tsv	encounters, events, story hooks, jobs, missions, random events, complications, story seeds, scenario, gigs, happenings, meetups, situations, street action, adventure hooks, jobs board, quest, run, plot twist, distractions, encounters, events, meetings, situations, random, scenarios, street action, jobs, runs, mission, story hook, plot, complication, adventure, urban encounters	Encounters / Events	
+regional_encounters.tsv	encounters, events, story hooks, jobs, missions, random events, complications, story seeds, scenario, gigs, happenings, meetups, situations, street action, adventure hooks, jobs board, quest, run, plot twist, distractions, encounters, events, meetings, situations, random, scenarios, street action, jobs, runs, mission, story hook, plot, complication, adventure, regional encounters	Encounters / Events	
+road_encounters.tsv	encounters, events, story hooks, jobs, missions, random events, complications, story seeds, scenario, gigs, happenings, meetups, situations, street action, adventure hooks, jobs board, quest, run, plot twist, distractions, encounters, events, meetings, situations, random, scenarios, street action, jobs, runs, mission, story hook, plot, complication, adventure, road encounters	Encounters / Events	
+street_events.tsv	encounters, events, story hooks, jobs, missions, random events, complications, story seeds, scenario, gigs, happenings, meetups, situations, street action, adventure hooks, jobs board, quest, run, plot twist, distractions, street events	Encounters / Events	
+location_generator.tsv	setting, regions, locations, factions, politics, districts, neighborhoods, hot zones, city, towns, landmarks, corp turf, territory, places, area, POI, night city, locale, power, political, turf war, map, environment, location generator	Setting / Region / Politics	
+scenario_timeline_table.tsv	encounters, events, story hooks, jobs, missions, random events, complications, story seeds, scenario, gigs, happenings, meetups, situations, street action, adventure hooks, jobs board, quest, run, plot twist, distractions, scenario timeline table	Encounters / Events	
+social_encounters.tsv	encounters, events, story hooks, jobs, missions, random events, complications, story seeds, scenario, gigs, happenings, meetups, situations, street action, adventure hooks, jobs board, quest, run, plot twist, distractions, encounters, events, meetings, situations, random, scenarios, street action, jobs, runs, mission, story hook, plot, complication, adventure, social encounters	Encounters / Events	
+event_randomizers.tsv	encounters, events, story hooks, jobs, missions, random events, complications, story seeds, scenario, gigs, happenings, meetups, situations, street action, adventure hooks, jobs board, quest, run, plot twist, distractions, event randomizers	Encounters / Events	
+story_hooks.tsv	encounters, events, story hooks, jobs, missions, random events, complications, story seeds, scenario, gigs, happenings, meetups, situations, street action, adventure hooks, jobs board, quest, run, plot twist, distractions, story hooks	Encounters / Events	
+mission_complication_table.tsv	encounters, events, story hooks, jobs, missions, random events, complications, story seeds, scenario, gigs, happenings, meetups, situations, street action, adventure hooks, jobs board, quest, run, plot twist, distractions, mission complication table	Encounters / Events	
+npc_encounter_generator.tsv	NPCs, non-player characters, contacts, factions, organizations, allies, enemies, personalities, gangs, corporations, fixers, netrunners, solo, medtechs, cops, bosses, info brokers, street gangs, corp agents, underworld, fixers, mentors, nemesis, NPCs, contacts, non-player, ally, enemy, rival, faction, fixers, netrunner NPC, medtech NPC, cop NPC, corporate NPC, gang member, boss, informant, patron, nemesis, mentor, encounters, events, meetings, situations, random, scenarios, street action, jobs, runs, mission, story hook, plot, complication, adventure, npc encounter generator	NPCs / Contacts / Factions	
+city_event_generator.tsv	encounters, events, story hooks, jobs, missions, random events, complications, story seeds, scenario, gigs, happenings, meetups, situations, street action, adventure hooks, jobs board, quest, run, plot twist, distractions, city event generator	Encounters / Events	
+location_event_generator.tsv	encounters, events, story hooks, jobs, missions, random events, complications, story seeds, scenario, gigs, happenings, meetups, situations, street action, adventure hooks, jobs board, quest, run, plot twist, distractions, location event generator	Encounters / Events	
+scenario_jobs.tsv	encounters, events, story hooks, jobs, missions, random events, complications, story seeds, scenario, gigs, happenings, meetups, situations, street action, adventure hooks, jobs board, quest, run, plot twist, distractions, scenario jobs	Encounters / Events	
+solo_jobs.tsv	encounters, events, story hooks, jobs, missions, random events, complications, story seeds, scenario, gigs, happenings, meetups, situations, street action, adventure hooks, jobs board, quest, run, plot twist, distractions, solo jobs	Encounters / Events	
+cop_jobs.tsv	encounters, events, story hooks, jobs, missions, random events, complications, story seeds, scenario, gigs, happenings, meetups, situations, street action, adventure hooks, jobs board, quest, run, plot twist, distractions, cop jobs	Encounters / Events	
+fixer_jobs.tsv	services, clinics, ripperdocs, black market, fixers, medtech, surgery, providers, street docs, medical, healing, bribery, employment, hire, mercenaries, bribes, gigs, street services, underworld, favors, insurance, trauma team, aftercare, fixer jobs	Services	
+gang_jobs.tsv	NPCs, non-player characters, contacts, factions, organizations, allies, enemies, personalities, gangs, corporations, fixers, netrunners, solo, medtechs, cops, bosses, info brokers, street gangs, corp agents, underworld, fixers, mentors, nemesis, gang jobs	NPCs / Contacts / Factions	
+media_jobs.tsv	encounters, events, story hooks, jobs, missions, random events, complications, story seeds, scenario, gigs, happenings, meetups, situations, street action, adventure hooks, jobs board, quest, run, plot twist, distractions, media jobs	Encounters / Events	
+netrunner_jobs.tsv	encounters, events, story hooks, jobs, missions, random events, complications, story seeds, scenario, gigs, happenings, meetups, situations, street action, adventure hooks, jobs board, quest, run, plot twist, distractions, netrunner jobs	Encounters / Events	
+nomad_pack_jobs.tsv	encounters, events, story hooks, jobs, missions, random events, complications, story seeds, scenario, gigs, happenings, meetups, situations, street action, adventure hooks, jobs board, quest, run, plot twist, distractions, nomad pack jobs	Encounters / Events	
+street_jobs.tsv	encounters, events, story hooks, jobs, missions, random events, complications, story seeds, scenario, gigs, happenings, meetups, situations, street action, adventure hooks, jobs board, quest, run, plot twist, distractions, street jobs	Encounters / Events	
+trauma_team_jobs.tsv	encounters, events, story hooks, jobs, missions, random events, complications, story seeds, scenario, gigs, happenings, meetups, situations, street action, adventure hooks, jobs board, quest, run, plot twist, distractions, trauma team jobs	Encounters / Events	
+vehicle_catalog.tsv	vehicles, cars, motorcycles, AVs, trucks, bikes, rides, chases, combat vehicles, ACPA, mechs, mods, upgrades, transport, wheels, rides, getaway, armored vehicle, hovercar, chase rules, vehicle, car, bike, motorcycle, AV, truck, ride, chase, transport, wheels, combat vehicle, ACPA, mech, upgrade, mod, getaway, vehicle catalog	Vehicles / ACPA	
+vehicles_table.tsv	vehicles, cars, motorcycles, AVs, trucks, bikes, rides, chases, combat vehicles, ACPA, mechs, mods, upgrades, transport, wheels, rides, getaway, armored vehicle, hovercar, chase rules, vehicle, car, bike, motorcycle, AV, truck, ride, chase, transport, wheels, combat vehicle, ACPA, mech, upgrade, mod, getaway, vehicles table	Vehicles / ACPA	
+vehicle_mods_table.tsv	vehicles, cars, motorcycles, AVs, trucks, bikes, rides, chases, combat vehicles, ACPA, mechs, mods, upgrades, transport, wheels, rides, getaway, armored vehicle, hovercar, chase rules, vehicle, car, bike, motorcycle, AV, truck, ride, chase, transport, wheels, combat vehicle, ACPA, mech, upgrade, mod, getaway, vehicle mods table	Vehicles / ACPA	
+vehicle_chase_rules.tsv	vehicles, cars, motorcycles, AVs, trucks, bikes, rides, chases, combat vehicles, ACPA, mechs, mods, upgrades, transport, wheels, rides, getaway, armored vehicle, hovercar, chase rules, vehicle, car, bike, motorcycle, AV, truck, ride, chase, transport, wheels, combat vehicle, ACPA, mech, upgrade, mod, getaway, vehicle chase rules	Vehicles / ACPA	
+acpa_table.tsv	vehicles, cars, motorcycles, AVs, trucks, bikes, rides, chases, combat vehicles, ACPA, mechs, mods, upgrades, transport, wheels, rides, getaway, armored vehicle, hovercar, chase rules, acpa table	Vehicles / ACPA	
+vehicle_combat_table.tsv	vehicles, cars, motorcycles, AVs, trucks, bikes, rides, chases, combat vehicles, ACPA, mechs, mods, upgrades, transport, wheels, rides, getaway, armored vehicle, hovercar, chase rules, vehicle, car, bike, motorcycle, AV, truck, ride, chase, transport, wheels, combat vehicle, ACPA, mech, upgrade, mod, getaway, vehicle combat table	Vehicles / ACPA	
+acpa_sensors_table.tsv	vehicles, cars, motorcycles, AVs, trucks, bikes, rides, chases, combat vehicles, ACPA, mechs, mods, upgrades, transport, wheels, rides, getaway, armored vehicle, hovercar, chase rules, acpa sensors table	Vehicles / ACPA	
+acpa_catalog_table.tsv	vehicles, cars, motorcycles, AVs, trucks, bikes, rides, chases, combat vehicles, ACPA, mechs, mods, upgrades, transport, wheels, rides, getaway, armored vehicle, hovercar, chase rules, acpa catalog table	Vehicles / ACPA	
+cyberdecks_virtuality_core.tsv	cyberdecks, netrunner, netrunning, VR, AR, ICE, programs, virtuality, hacking, matrix, cyberspace, net combat, interface plugs, virtual reality, AI, deck, brain dance, net tools, neural link, cybermodem, net ops, deckers, net gear, cyberdeck, netrunner tool, VR, hacking gear, cybermodem, interface, deck, neural link, cyberspace, matrix, ICE, brain dance, virtuality, net ops, cyberdecks virtuality core	Cyberdecks / Virtuality	Root
+net_map_generator.tsv	cyberdecks, netrunner, netrunning, VR, AR, ICE, programs, virtuality, hacking, matrix, cyberspace, net combat, interface plugs, virtual reality, AI, deck, brain dance, net tools, neural link, cybermodem, net ops, deckers, net gear, net map generator	Cyberdecks / Virtuality	
+ice_table.tsv	cyberdecks, netrunner, netrunning, VR, AR, ICE, programs, virtuality, hacking, matrix, cyberspace, net combat, interface plugs, virtual reality, AI, deck, brain dance, net tools, neural link, cybermodem, net ops, deckers, net gear, ice table	Cyberdecks / Virtuality	
+data_fortress.tsv	data fortress	Misc	
+virtuality_overlay_table.tsv	cyberdecks, netrunner, netrunning, VR, AR, ICE, programs, virtuality, hacking, matrix, cyberspace, net combat, interface plugs, virtual reality, AI, deck, brain dance, net tools, neural link, cybermodem, net ops, deckers, net gear, virtuality overlay table	Cyberdecks / Virtuality	
+net_law_table.tsv	cyberdecks, netrunner, netrunning, VR, AR, ICE, programs, virtuality, hacking, matrix, cyberspace, net combat, interface plugs, virtual reality, AI, deck, brain dance, net tools, neural link, cybermodem, net ops, deckers, net gear, net law table	Cyberdecks / Virtuality	
+net_social_events_table.tsv	encounters, events, story hooks, jobs, missions, random events, complications, story seeds, scenario, gigs, happenings, meetups, situations, street action, adventure hooks, jobs board, quest, run, plot twist, distractions, net social events table	Encounters / Events	
+netrunner_trauma_table.tsv	cyberdecks, netrunner, netrunning, VR, AR, ICE, programs, virtuality, hacking, matrix, cyberspace, net combat, interface plugs, virtual reality, AI, deck, brain dance, net tools, neural link, cybermodem, net ops, deckers, net gear, netrunner trauma table	Cyberdecks / Virtuality	
+vr_deck_mod_table.tsv	vehicles, cars, motorcycles, AVs, trucks, bikes, rides, chases, combat vehicles, ACPA, mechs, mods, upgrades, transport, wheels, rides, getaway, armored vehicle, hovercar, chase rules, vr deck mod table	Vehicles / ACPA	
+net_npc_personality_table.tsv	NPCs, non-player characters, contacts, factions, organizations, allies, enemies, personalities, gangs, corporations, fixers, netrunners, solo, medtechs, cops, bosses, info brokers, street gangs, corp agents, underworld, fixers, mentors, nemesis, NPCs, contacts, non-player, ally, enemy, rival, faction, fixers, netrunner NPC, medtech NPC, cop NPC, corporate NPC, gang member, boss, informant, patron, nemesis, mentor, net npc personality table	NPCs / Contacts / Factions	
+region_encounters_table.tsv	encounters, events, story hooks, jobs, missions, random events, complications, story seeds, scenario, gigs, happenings, meetups, situations, street action, adventure hooks, jobs board, quest, run, plot twist, distractions, encounters, events, meetings, situations, random, scenarios, street action, jobs, runs, mission, story hook, plot, complication, adventure, region encounters table	Encounters / Events	
+region_npc_stat_table.tsv	NPCs, non-player characters, contacts, factions, organizations, allies, enemies, personalities, gangs, corporations, fixers, netrunners, solo, medtechs, cops, bosses, info brokers, street gangs, corp agents, underworld, fixers, mentors, nemesis, NPCs, contacts, non-player, ally, enemy, rival, faction, fixers, netrunner NPC, medtech NPC, cop NPC, corporate NPC, gang member, boss, informant, patron, nemesis, mentor, region npc stat table	NPCs / Contacts / Factions	
+region_economy_table.tsv	setting, regions, locations, factions, politics, districts, neighborhoods, hot zones, city, towns, landmarks, corp turf, territory, places, area, POI, night city, locale, power, political, turf war, map, environment, region economy table	Setting / Region / Politics	
+education_sin_table.tsv	education sin table	Misc	
+political_hooks_table.tsv	setting, regions, locations, factions, politics, districts, neighborhoods, hot zones, city, towns, landmarks, corp turf, territory, places, area, POI, night city, locale, power, political, turf war, map, environment, political hooks table	Setting / Region / Politics	
+night_city_locations.tsv	setting, regions, locations, factions, politics, districts, neighborhoods, hot zones, city, towns, landmarks, corp turf, territory, places, area, POI, night city, locale, power, political, turf war, map, environment, night city locations	Setting / Region / Politics	
+faction_reactions.tsv	NPCs, non-player characters, contacts, factions, organizations, allies, enemies, personalities, gangs, corporations, fixers, netrunners, solo, medtechs, cops, bosses, info brokers, street gangs, corp agents, underworld, fixers, mentors, nemesis, faction reactions	NPCs / Contacts / Factions	
+corp_personnel_table.tsv	corporate, corporations, megacorp, org, companies, businesses, syndicates, execs, bosses, corp wars, company, industrial, asset, personnel, security, management, suits, fixers, boardroom, corp power, corp assets, corp gear, corp personnel table	Corporate / Org	
+corp_security_gear.tsv	gear, equipment, items, tools, cyberware, armor, gadgets, supplies, tech, personal gear, cyberpets, utility items, medical supplies, novelty items, wearables, upgrades, enhancements, loot, swag, chrome, junk, mods, loot, loadout, inventory, street gear, gear, equipment, loot, swag, street gear, inventory, supplies, gadgets, tools, personal gear, tech gear, loadout, stuff, carry, stims, medkit, packs, cyberpets, scanner, scanner, gadgets, street stuff, corp security gear	Gear	
+facility_security_layout.tsv	facility security layout	Misc	
+corp_asset_tracker.tsv	corporate, corporations, megacorp, org, companies, businesses, syndicates, execs, bosses, corp wars, company, industrial, asset, personnel, security, management, suits, fixers, boardroom, corp power, corp assets, corp gear, asset, map, art, handout, prop, VTT module, token, soundtrack, music, visual, resource, media, player aid, module, visual, background art, prop library, corp asset tracker	Corporate / Org	
+corp_scenario_generator.tsv	encounters, events, story hooks, jobs, missions, random events, complications, story seeds, scenario, gigs, happenings, meetups, situations, street action, adventure hooks, jobs board, quest, run, plot twist, distractions, corp scenario generator	Encounters / Events	
+corp_war_timeline.tsv	corporate, corporations, megacorp, org, companies, businesses, syndicates, execs, bosses, corp wars, company, industrial, asset, personnel, security, management, suits, fixers, boardroom, corp power, corp assets, corp gear, corp war timeline	Corporate / Org	
+industrial_personnel_table.tsv	corporate, corporations, megacorp, org, companies, businesses, syndicates, execs, bosses, corp wars, company, industrial, asset, personnel, security, management, suits, fixers, boardroom, corp power, corp assets, corp gear, industrial personnel table	Corporate / Org	
+petrochem_hazard_table.tsv	corporate, corporations, megacorp, org, companies, businesses, syndicates, execs, bosses, corp wars, company, industrial, asset, personnel, security, management, suits, fixers, boardroom, corp power, corp assets, corp gear, petrochem hazard table	Corporate / Org	
+corporate_jobs.tsv	encounters, events, story hooks, jobs, missions, random events, complications, story seeds, scenario, gigs, happenings, meetups, situations, street action, adventure hooks, jobs board, quest, run, plot twist, distractions, corporate, corporation, business, syndicate, company, org, executive, asset, personnel, boss, management, megacorp, power, corp war, corp asset, corp suit, exec, industrial, boardroom, corporate jobs	Encounters / Events	
+corporate_relationships_matrix.tsv	cyberdecks, netrunner, netrunning, VR, AR, ICE, programs, virtuality, hacking, matrix, cyberspace, net combat, interface plugs, virtual reality, AI, deck, brain dance, net tools, neural link, cybermodem, net ops, deckers, net gear, corporate, corporation, business, syndicate, company, org, executive, asset, personnel, boss, management, megacorp, power, corp war, corp asset, corp suit, exec, industrial, boardroom, corporate relationships matrix	Cyberdecks / Virtuality	
+contract_management_table.tsv	corporate, corporations, megacorp, org, companies, businesses, syndicates, execs, bosses, corp wars, company, industrial, asset, personnel, security, management, suits, fixers, boardroom, corp power, corp assets, corp gear, contract management table	Corporate / Org	
+campaign_manifest.tsv	campaigns, story arcs, scenarios, adventures, plotlines, campaign notes, timeline, saga, long-term play, missions, campaigns manifest, play session, session notes, player handouts, arcs, epic, plot, campaign, story arc, adventure, timeline, notes, plotline, session, player handout, story, mission, epic, saga, campaign board, play session, quest, campaign manifest	Campaigns	Root
+scenario_timeline_table.tsv	encounters, events, story hooks, jobs, missions, random events, complications, story seeds, scenario, gigs, happenings, meetups, situations, street action, adventure hooks, jobs board, quest, run, plot twist, distractions, scenario timeline table	Encounters / Events	
+story_hooks.tsv	encounters, events, story hooks, jobs, missions, random events, complications, story seeds, scenario, gigs, happenings, meetups, situations, street action, adventure hooks, jobs board, quest, run, plot twist, distractions, story hooks	Encounters / Events	
+campaign_notes.tsv	campaigns, story arcs, scenarios, adventures, plotlines, campaign notes, timeline, saga, long-term play, missions, campaigns manifest, play session, session notes, player handouts, arcs, epic, plot, campaign, story arc, adventure, timeline, notes, plotline, session, player handout, story, mission, epic, saga, campaign board, play session, quest, campaign notes	Campaigns	
+player_handouts.tsv	campaigns, story arcs, scenarios, adventures, plotlines, campaign notes, timeline, saga, long-term play, missions, campaigns manifest, play session, session notes, player handouts, arcs, epic, plot, player handouts	Campaigns	
+vtt_plugin_table.tsv	plugins, macros, scripts, API, integration, extensions, add-ons, external tools, VTT, automation, mod, custom features, external integration, macro scripts, plugin tools, plugin, macro, script, API, integration, automation, extension, addon, VTT, mod, tool, macro script, plugin feature, external tool, vtt plugin table	Plugins	
+ai_tools_table.tsv	plugins, macros, scripts, API, integration, extensions, add-ons, external tools, VTT, automation, mod, custom features, external integration, macro scripts, plugin tools, ai tools table	Plugins	
+macro_scripts_table.tsv	plugins, macros, scripts, API, integration, extensions, add-ons, external tools, VTT, automation, mod, custom features, external integration, macro scripts, plugin tools, macro scripts table	Plugins	
+external_integration_table.tsv	plugins, macros, scripts, API, integration, extensions, add-ons, external tools, VTT, automation, mod, custom features, external integration, macro scripts, plugin tools, external integration table	Plugins	
+map_assets_table.tsv	assets, maps, art, soundtrack, handouts, VTT modules, props, visuals, sound, music, prop library, resources, visuals, handouts, module, tokens, background art, player aids, media, asset, map, art, handout, prop, VTT module, token, soundtrack, music, visual, resource, media, player aid, module, visual, background art, prop library, map assets table	Assets	
+art_assets_table.tsv	assets, maps, art, soundtrack, handouts, VTT modules, props, visuals, sound, music, prop library, resources, visuals, handouts, module, tokens, background art, player aids, media, asset, map, art, handout, prop, VTT module, token, soundtrack, music, visual, resource, media, player aid, module, visual, background art, prop library, art assets table	Assets	
+soundtrack_table.tsv	assets, maps, art, soundtrack, handouts, VTT modules, props, visuals, sound, music, prop library, resources, visuals, handouts, module, tokens, background art, player aids, media, soundtrack table	Assets	
+vtt_module_table.tsv	vehicles, cars, motorcycles, AVs, trucks, bikes, rides, chases, combat vehicles, ACPA, mechs, mods, upgrades, transport, wheels, rides, getaway, armored vehicle, hovercar, chase rules, vtt module table	Vehicles / ACPA	
+prop_library.tsv	assets, maps, art, soundtrack, handouts, VTT modules, props, visuals, sound, music, prop library, resources, visuals, handouts, module, tokens, background art, player aids, media, prop library	Assets	
+prebuilt_characters.tsv	prebuilt characters, sample characters, templates, pregenerated PCs, ready-made, player templates, archetypes, NPCs, canon characters, statlines, starter builds, character selection, example PC, player options, fast start, sample NPC, prebuilt characters	Misc	
