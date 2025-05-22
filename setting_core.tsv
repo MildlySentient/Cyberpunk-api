@@ -5,3 +5,6 @@ political_hooks_table.tsv
 region_economy_table.tsv
 region_encounters_table.tsv
 region_npc_stat_table.tsv
+rules_checklists.tsv
+team_gen_table.tsv
+system_core.tsv
