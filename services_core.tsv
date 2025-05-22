@@ -4,3 +4,7 @@ ripperdoc_contacts.tsv
 ripperdoc_table.tsv
 service_price_table.tsv
 street_surgery_complications.tsv
+ripperdoc_contacts_table.tsv
+ripperdoc_jobs.tsv
+ripperdoc_loyalty_hooks.tsv
+other_brokers_table.tsv
