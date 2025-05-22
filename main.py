@@ -1,7 +1,8 @@
+
 import logging
 import os
 import json
-from typing import List, Union, Optional, Dict, Any
+from typing import List, Union, Optional, Dict, Any, Tuple
 
 import pandas as pd
 import spacy
@@ -17,8 +18,8 @@ from combat_tracker import start_combat, next_turn, get_current_turn
 from combat_resolution import resolve_attack
 
 # --- Config ---
-MAX_RESULTS = 25  # Max results per response (override via page_size)
-ALLOWED_PAGE_SIZE = 50  # Hard cap
+MAX_RESULTS = 25
+ALLOWED_PAGE_SIZE = 50
 
 # --- Logging ---
 logging.basicConfig(level=logging.INFO)
@@ -38,10 +39,15 @@ cache = {"bootloader": "", "index": None, "cores": {}}
 
 # --- Synonyms for fuzzy matching ---
 synonyms = {
-    "steal": ["rob", "robbery", "theft"],
-    "fight": ["attack", "punch", "strike"],
-    "alarm": ["alert", "siren"],
-    # ... add more as needed
+    "roll": ["dice", "rolls", "rolling", "throw", "toss", "cast", "drop", "flip", "chuck", "shake", "d10", "d6", "d100", "percentile", "random", "test", "check", "try my luck", "luck roll", "death roll", "combat roll"],
+    "d10": ["ten-sided", "1d10", "d 10", "ten die", "roll d10", "nat 10", "natural 10", "critical roll"],
+    "d6": ["six-sided", "1d6", "d 6", "six die", "roll d6"],
+    "d100": ["percentile", "1d100", "hundred-sided", "d 100", "roll d100", "percent roll"],
+    "initiative": ["combat order", "who goes first", "turn order", "init", "move order", "who acts first", "combat initiative"],
+    "hack": ["netrun", "breach", "jack in", "netrunning", "run the net", "crack", "intrude", "exploit", "penetrate", "bypass", "ICE breaker", "cyberjack", "data tap", "deck", "backdoor", "console cowboy", "run a hack"],
+    "netrunner": ["hacker", "net jockey", "decker", "cyberjack", "runner", "console cowboy", "sysop", "black hat", "white hat", "cowboy", "cracker", "data thief", "script kiddie", "netrat", "netscape"],
+    "cyberware": ["cyberwear", "chrome", "implant", "ware", "cybertech", "augmentation", "aug", "cybermod", "cybernetics", "hardware", "wetware", "nanoware", "neuralware", "mod", "modded", "chrome up", "socket", "cyber up", "plug-in"],
+    # ... (include all expanded terms as previously provided)
 }
 
 # --- spaCy model ---
@@ -56,7 +62,6 @@ def lemmatize(text):
         return str(text) if text is not None else ""
     return " ".join(token.lemma_ for token in nlp(str(text)))
 
-# --- File Loader ---
 def load_files():
     data_folder = os.path.dirname(__file__)
     try:
@@ -83,23 +88,19 @@ def load_files():
             except Exception:
                 pass
 
-# --- Query Matching ---
 def match_query(query, col, df):
     if df is None or df.empty or col not in df.columns:
         return {}
     query_lem = lemmatize(query)
-    # Synonym match
     for base, syns in synonyms.items():
         if any(term in query_lem for term in [base] + syns):
-            mask = df[col].str.contains(base, na=False)
+            mask = df[col].str.contains(base, na=False, case=False)
             match = df[mask]
             if not match.empty:
                 return match.iloc[0].to_dict()
-    # Fuzzy match
     fuzz_scores = df[col].apply(lambda x: fuzz.partial_ratio(query_lem, str(x)))
     if fuzz_scores.max() > 85:
         return df.iloc[fuzz_scores.idxmax()].to_dict()
-    # Cosine similarity
     if nlp:
         q_vec = nlp(query_lem).vector.reshape(1, -1)
         best = None
@@ -116,6 +117,22 @@ def match_query(query, col, df):
         if best:
             return best
     return {}
+
+def get_best_matches(query: str, col: str, df: pd.DataFrame, top_n: int = 3) -> Tuple[list, list]:
+    if df is None or df.empty or col not in df.columns:
+        return [], []
+    query_lem = lemmatize(query)
+    for base, syns in synonyms.items():
+        if any(term in query_lem for term in [base] + syns):
+            mask = df[col].str.contains(base, na=False, case=False)
+            match = df[mask]
+            if not match.empty:
+                return match.head(top_n).to_dict(orient='records'), [100]*min(top_n, len(match))
+    fuzz_scores = df[col].apply(lambda x: fuzz.partial_ratio(query_lem, str(x)))
+    top_idx = fuzz_scores.nlargest(top_n).index
+    top_rows = df.loc[top_idx].to_dict(orient='records')
+    scores = fuzz_scores.loc[top_idx].tolist()
+    return top_rows, scores
 
 # --- Models ---
 class QueryRequest(BaseModel):
@@ -153,7 +170,6 @@ class CombatResultModel(BaseModel):
     result: Optional[Any] = None
     error: Optional[str] = None
 
-# --- Save folder ---
 SAVE_DIR = os.path.join(os.path.dirname(__file__), "saves")
 os.makedirs(SAVE_DIR, exist_ok=True)
 
@@ -168,18 +184,11 @@ def reload_files():
 
 @app.post("/get-data", response_model=DataResultModel)
 async def get_data(payload: QueryRequest = Body(...)):
-    """
-    Flexible search endpoint with pagination and field filtering.
-    Dice intent (roll d10, roll d6, roll d100, etc) is handled directly.
-    """
     query = payload.query.strip()
     page = max(payload.page or 1, 1)
     page_size = min(payload.page_size or MAX_RESULTS, ALLOWED_PAGE_SIZE)
     fields = [f.strip() for f in (payload.fields or "").split(",") if f.strip()] if payload.fields else None
-
-    # ---- DICE SHORT-CIRCUIT BLOCK ----
     qlow = query.lower()
-    # Supported patterns: "roll d10", "roll 1d6", "roll d100", etc.
     if any(
         kw in qlow
         for kw in [
@@ -194,41 +203,29 @@ async def get_data(payload: QueryRequest = Body(...)):
             return DataResultModel(source="dice", result={"roll": roll_d100()}, note="Rolled d100")
         if "d6" in qlow:
             return DataResultModel(source="dice", result={"roll": roll_d6()}, note="Rolled d6")
-    # ---- END DICE SHORT-CIRCUIT ----
-
-    # Handle intro
     if any(kw in qlow for kw in ["boot", "what is this", "intro"]):
         return DataResultModel(source="Bootloader.md", result=cache["bootloader"])
     index = cache.get("index")
     if index is None or index.empty:
         return DataResultModel(source="index.tsv", result={}, note="Index is empty or not loaded.")
-
-    # Find best match in index
     index_row = match_query(query, "LemDescription", index)
     core_file = index_row.get("Filename", "")
     if not core_file:
         return DataResultModel(source="index.tsv", result=index_row, note="No matching index.")
-
     core_df = cache["cores"].get(core_file)
     if core_df is None or "LemTrigger" not in core_df.columns:
         return DataResultModel(source="index.tsv", result=index_row, note="No valid core trigger.")
-
-    # Find best match in core table
     core_row = match_query(query, "LemTrigger", core_df)
     sub_file = core_row.get("Filename", "")
-
-    # If there’s a subfile, try to load it and search
     if sub_file:
         sub_path = os.path.join(os.path.dirname(__file__), sub_file)
         if os.path.exists(sub_path):
             sub_df = pd.read_csv(sub_path, sep="\t")
-            # Try to match the query to a row in sub_df
             match_row = match_query(query, "LemTrigger", sub_df) if "LemTrigger" in sub_df.columns else None
             if match_row:
                 if fields:
                     match_row = {k: v for k, v in match_row.items() if k in fields}
                 return DataResultModel(source=sub_file, result=match_row)
-            # Fallback: list mode
             mask = sub_df.apply(lambda row: query.lower() in str(row).lower(), axis=1)
             results = sub_df[mask] if not sub_df.empty else pd.DataFrame()
             total = len(results)
@@ -244,11 +241,31 @@ async def get_data(payload: QueryRequest = Body(...)):
             return DataResultModel(source=sub_file, result=[], note="No results found in sub-table.")
         else:
             return DataResultModel(source=core_file, result=core_row, note=f"Linked file {sub_file} not found.")
-
-    # No subfile: just return matched row, possibly filtered
     if fields and isinstance(core_row, dict):
         core_row = {k: v for k, v in core_row.items() if k in fields}
     return DataResultModel(source=core_file, result=core_row)
+
+@app.post("/smart-query", response_model=DataResultModel)
+async def smart_query(payload: QueryRequest = Body(...)):
+    query = payload.query.strip()
+    index = cache.get("index")
+    if index is None or index.empty:
+        return DataResultModel(source="index.tsv", result={}, note="Index is empty or not loaded.")
+    index_row = match_query(query, "LemDescription", index)
+    core_file = index_row.get("Filename", "")
+    if not core_file or core_file not in cache["cores"]:
+        return DataResultModel(source="index.tsv", result=index_row, note="No matching index/core.")
+    core_df = cache["cores"][core_file]
+    core_row = match_query(query, "LemTrigger", core_df)
+    sub_file = core_row.get("Filename", "")
+    if not sub_file or not os.path.exists(os.path.join(os.path.dirname(__file__), sub_file)):
+        matches, scores = get_best_matches(query, "LemTrigger", core_df, top_n=3)
+        return DataResultModel(source=core_file, result=matches, note="No subfile found; best core matches.")
+    sub_df = pd.read_csv(os.path.join(os.path.dirname(__file__), sub_file), sep="\t")
+    col = "LemTrigger" if "LemTrigger" in sub_df.columns else sub_df.columns[0]
+    matches, scores = get_best_matches(query, col, sub_df, top_n=3)
+    note = f"Top 3 from {sub_file} (scores: {scores})" if matches else f"No matches in {sub_file}"
+    return DataResultModel(source=sub_file, result=matches, note=note)
 
 @app.get("/roll", response_model=DiceResultModel)
 def roll_dice(type: str = Query(..., description="Type of die: d6, d10, or d100")):
