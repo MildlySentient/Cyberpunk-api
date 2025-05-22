@@ -1,6 +1,6 @@
-File Name	Description	Status	Linked Files/Notes
-map_assets_table.tsv	Maps, floorplans, battlegrids for campaigns	TBD	
-art_assets_table.tsv	NPC portraits, character art, handouts	TBD	
-soundtrack_table.tsv	Soundtracks, ambient sound, in-game music	TBD	
-vtt_module_table.tsv	VTT asset packs, tokens, modules	TBD	
-prop_library.tsv	Handout props, digital/printable assets	TBD	
+map_assets_table.tsv
+art_assets_table.tsv
+soundtrack_table.tsv
+vtt_module_table.tsv
+prop_library.tsv
+prebuilt_characters.tsv
