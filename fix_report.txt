@@ -1,0 +1,159 @@
+ammo_table.tsv: OK - Fixed and saved to ./fixed/ammo_table.tsv
+corporate_relationships_matrix.tsv: OK - Fixed and saved to ./fixed/corporate_relationships_matrix.tsv
+lifepath_generator.tsv: OK - Fixed and saved to ./fixed/lifepath_generator.tsv
+vehicle_core.tsv: REVIEW - Still single column after split; check delimiter
+net_law_table.tsv: OK - Fixed and saved to ./fixed/net_law_table.tsv
+cop_role.tsv: FAIL - Cannot parse: 
+map_assets_table.tsv: FAIL - Cannot parse: 
+external_integration_table.tsv: FAIL - Cannot parse: 
+gear_core.tsv: REVIEW - Still single column after split; check delimiter
+relationship_matrix.tsv: OK - Fixed and saved to ./fixed/relationship_matrix.tsv
+ice_table.tsv: OK - Fixed and saved to ./fixed/ice_table.tsv
+npc_core.tsv: REVIEW - Still single column after split; check delimiter
+urban_encounters.tsv: OK - Fixed and saved to ./fixed/urban_encounters.tsv
+ cyberdecks_virtuality_core.tsv: REVIEW - Still single column after split; check delimiter
+street_jobs.tsv: OK - Fixed and saved to ./fixed/street_jobs.tsv
+cyberware_glitch_table.tsv: OK - Fixed and saved to ./fixed/cyberware_glitch_table.tsv
+media_role.tsv: FAIL - Cannot parse: 
+nomad_pack_jobs.tsv: OK - Fixed and saved to ./fixed/nomad_pack_jobs.tsv
+campaign_notes.tsv: OK - Fixed and saved to ./fixed/campaign_notes.tsv
+rockerboy_role.tsv: FAIL - Cannot parse: 
+ripperdoc_jobs.tsv: OK - Fixed and saved to ./fixed/ripperdoc_jobs.tsv
+other_brokers_table.tsv: OK - Fixed and saved to ./fixed/other_brokers_table.tsv
+weapon_mods_table.tsv: OK - Fixed and saved to ./fixed/weapon_mods_table.tsv
+services_core.tsv: REVIEW - Still single column after split; check delimiter
+corp_security_gear.tsv: OK - Fixed and saved to ./fixed/corp_security_gear.tsv
+education_sin_table.tsv: OK - Fixed and saved to ./fixed/education_sin_table.tsv
+fixer_jobs.tsv: OK - Fixed and saved to ./fixed/fixer_jobs.tsv
+art_assets_table.tsv: FAIL - Cannot parse: 
+corporations_table.tsv: OK - Fixed and saved to ./fixed/corporations_table.tsv
+vehicles_table.tsv: OK - Fixed and saved to ./fixed/vehicles_table.tsv
+Medkit_table.tsv: OK - Fixed and saved to ./fixed/Medkit_table.tsv
+gang_contacts_table.tsv: OK - Fixed and saved to ./fixed/gang_contacts_table.tsv
+roles_table.tsv: OK - Fixed and saved to ./fixed/roles_table.tsv
+vehicle_catalog.tsv: OK - Fixed and saved to ./fixed/vehicle_catalog.tsv
+acpa_sensors_table.tsv: OK - Fixed and saved to ./fixed/acpa_sensors_table.tsv
+player_handouts.tsv: FAIL - Cannot parse: 
+fixer_role.tsv: FAIL - Cannot parse: 
+corpo_brokers_table.tsv: OK - Fixed and saved to ./fixed/corpo_brokers_table.tsv
+npc_encounter_generator.tsv: OK - Fixed and saved to ./fixed/npc_encounter_generator.tsv
+ripperdoc_table.tsv: OK - Fixed and saved to ./fixed/ripperdoc_table.tsv
+media_brokers_table.tsv: OK - Fixed and saved to ./fixed/media_brokers_table.tsv
+corp_npc_templates.tsv: OK - Fixed and saved to ./fixed/corp_npc_templates.tsv
+faction_reactions.tsv: OK - Fixed and saved to ./fixed/faction_reactions.tsv
+location_generator.tsv: OK - Fixed and saved to ./fixed/location_generator.tsv
+surveillance_table.tsv: OK - Fixed and saved to ./fixed/surveillance_table.tsv
+techie_tools_table.tsv: OK - Fixed and saved to ./fixed/techie_tools_table.tsv
+encounters_core.tsv: REVIEW - Still single column after split; check delimiter
+cop_jobs.tsv: OK - Fixed and saved to ./fixed/cop_jobs.tsv
+industrial_personnel_table.tsv: OK - Fixed and saved to ./fixed/industrial_personnel_table.tsv
+region_encounters_table.tsv: OK - Fixed and saved to ./fixed/region_encounters_table.tsv
+netrunner_trauma_table.tsv: OK - Fixed and saved to ./fixed/netrunner_trauma_table.tsv
+soundtrack_table.tsv: FAIL - Cannot parse: 
+weapons_table.tsv: OK - Fixed and saved to ./fixed/weapons_table.tsv
+city_event_generator.tsv: OK - Fixed and saved to ./fixed/city_event_generator.tsv
+data_fortress.tsv: OK - Fixed and saved to ./fixed/data_fortress.tsv
+gear_table.tsv: OK - Fixed and saved to ./fixed/gear_table.tsv
+net_npc_personality_table.tsv: OK - Fixed and saved to ./fixed/net_npc_personality_table.tsv
+prop_library.tsv: FAIL - Cannot parse: 
+setting_core.tsv: REVIEW - Still single column after split; check delimiter
+vr_deck_mod_table.tsv: OK - Fixed and saved to ./fixed/vr_deck_mod_table.tsv
+black_market_table.tsv: OK - Fixed and saved to ./fixed/black_market_table.tsv
+cyberpets_table.tsv: OK - Fixed and saved to ./fixed/cyberpets_table.tsv
+gang_npcs.tsv: OK - Fixed and saved to ./fixed/gang_npcs.tsv
+medtech_role.tsv: FAIL - Cannot parse: 
+political_hooks_table.tsv: OK - Fixed and saved to ./fixed/political_hooks_table.tsv
+scenario_jobs.tsv: OK - Fixed and saved to ./fixed/scenario_jobs.tsv
+ai_tools_table.tsv: FAIL - Cannot parse: 
+vehicle_combat_table.tsv: OK - Fixed and saved to ./fixed/vehicle_combat_table.tsv
+corporate_jobs.tsv: OK - Fixed and saved to ./fixed/corporate_jobs.tsv
+fixers_table.tsv: OK - Fixed and saved to ./fixed/fixers_table.tsv
+npc_templates.tsv: OK - Fixed and saved to ./fixed/npc_templates.tsv
+corp_scenario_generator.tsv: OK - Fixed and saved to ./fixed/corp_scenario_generator.tsv
+novelty_items_table.tsv: OK - Fixed and saved to ./fixed/novelty_items_table.tsv
+ripperdoc_contacts.tsv: OK - Fixed and saved to ./fixed/ripperdoc_contacts.tsv
+team_gen_table.tsv: OK - Fixed and saved to ./fixed/team_gen_table.tsv
+explosives_table.tsv: OK - Fixed and saved to ./fixed/explosives_table.tsv
+nomad_factions.tsv: OK - Fixed and saved to ./fixed/nomad_factions.tsv
+regional_encounters.tsv: OK - Fixed and saved to ./fixed/regional_encounters.tsv
+street_events.tsv: OK - Fixed and saved to ./fixed/street_events.tsv
+downtime_table.tsv: OK - Fixed and saved to ./fixed/downtime_table.tsv
+heavy_weapons_table.tsv: OK - Fixed and saved to ./fixed/heavy_weapons_table.tsv
+netrunner_jobs.tsv: OK - Fixed and saved to ./fixed/netrunner_jobs.tsv
+solo_jobs.tsv: OK - Fixed and saved to ./fixed/solo_jobs.tsv
+vtt_plugin_table.tsv: FAIL - Cannot parse: 
+campaign_manifest.tsv: OK - Fixed and saved to ./fixed/campaign_manifest.tsv
+gangs_table.tsv: OK - Fixed and saved to ./fixed/gangs_table.tsv
+price_reference.tsv: OK - Fixed and saved to ./fixed/price_reference.tsv
+mission_complication_table.tsv: OK - Fixed and saved to ./fixed/mission_complication_table.tsv
+service_price_table.tsv: OK - Fixed and saved to ./fixed/service_price_table.tsv
+vehicle_mods_table.tsv: OK - Fixed and saved to ./fixed/vehicle_mods_table.tsv
+armor_table.tsv: OK - Fixed and saved to ./fixed/armor_table.tsv
+Corporate_role.tsv: FAIL - Cannot parse: 
+fullborg_statlines.tsv: OK - Fixed and saved to ./fixed/fullborg_statlines.tsv
+medical_supplies_table.tsv: OK - Fixed and saved to ./fixed/medical_supplies_table.tsv
+petrochem_hazard_table.tsv: OK - Fixed and saved to ./fixed/petrochem_hazard_table.tsv
+roles_core.tsv: REVIEW - Still single column after split; check delimiter
+acpa_catalog_table.tsv: OK - Fixed and saved to ./fixed/acpa_catalog_table.tsv
+utility_items_table.tsv: OK - Fixed and saved to ./fixed/utility_items_table.tsv
+corp_war_timeline.tsv: OK - Fixed and saved to ./fixed/corp_war_timeline.tsv
+martial_arts_table.tsv: OK - Fixed and saved to ./fixed/martial_arts_table.tsv
+npc_directory.tsv: OK - Fixed and saved to ./fixed/npc_directory.tsv
+ripperdoc_loyalty_hooks.tsv: OK - Fixed and saved to ./fixed/ripperdoc_loyalty_hooks.tsv
+techie_role.tsv: FAIL - Cannot parse: 
+corp_asset_tracker.tsv: OK - Fixed and saved to ./fixed/corp_asset_tracker.tsv
+facility_security_layout.tsv: OK - Fixed and saved to ./fixed/facility_security_layout.tsv
+location_event_generator.tsv: OK - Fixed and saved to ./fixed/location_event_generator.tsv
+nomad_relationships_matrix.tsv: OK - Fixed and saved to ./fixed/nomad_relationships_matrix.tsv
+reputation_tracker.tsv: OK - Fixed and saved to ./fixed/reputation_tracker.tsv
+street_surgery_complications.tsv: OK - Fixed and saved to ./fixed/street_surgery_complications.tsv
+contract_management_table.tsv: OK - Fixed and saved to ./fixed/contract_management_table.tsv
+index.tsv: OK - Fixed and saved to ./fixed/index.tsv
+emp_devices_table.tsv: OK - Fixed and saved to ./fixed/emp_devices_table.tsv
+netrunner_role.tsv: FAIL - Cannot parse: 
+region_economy_table.tsv: OK - Fixed and saved to ./fixed/region_economy_table.tsv
+solo_role.tsv: FAIL - Cannot parse: 
+weapons_core.tsv: REVIEW - Still single column after split; check delimiter
+campaigns_core.tsv: FAIL - Cannot parse: Error tokenizing data. C error: Expected 1 fields in line 6, saw 2
+
+gear_maintenance_table.tsv: OK - Fixed and saved to ./fixed/gear_maintenance_table.tsv
+cyberware_table.tsv: OK - Fixed and saved to ./fixed/cyberware_table.tsv
+net_map_generator.tsv: OK - Fixed and saved to ./fixed/net_map_generator.tsv
+virtuality_overlay_table.tsv: FAIL - Cannot parse: Error tokenizing data. C error: Expected 10 fields in line 12, saw 11
+
+assets_core.tsv: REVIEW - Still single column after split; check delimiter
+crime_sentencing_table.tsv: OK - Fixed and saved to ./fixed/crime_sentencing_table.tsv
+gang_jobs.tsv: OK - Fixed and saved to ./fixed/gang_jobs.tsv
+plugins_core.tsv: FAIL - Cannot parse: 
+rules_checklists.tsv: OK - Fixed and saved to ./fixed/rules_checklists.tsv
+vehicle_chase_rules.tsv: OK - Fixed and saved to ./fixed/vehicle_chase_rules.tsv
+acpa_table.tsv: OK - Fixed and saved to ./fixed/acpa_table.tsv
+corporate_core.tsv: REVIEW - Still single column after split; check delimiter
+fixers_master_index.tsv: OK - Fixed and saved to ./fixed/fixers_master_index.tsv
+media_jobs.tsv: OK - Fixed and saved to ./fixed/media_jobs.tsv
+npc_quirks.tsv: OK - Fixed and saved to ./fixed/npc_quirks.tsv
+road_encounters.tsv: OK - Fixed and saved to ./fixed/road_encounters.tsv
+trauma_team_jobs.tsv: OK - Fixed and saved to ./fixed/trauma_team_jobs.tsv
+corp_personnel_table.tsv: OK - Fixed and saved to ./fixed/corp_personnel_table.tsv
+faults_table.tsv: OK - Fixed and saved to ./fixed/faults_table.tsv
+macro_scripts_table.tsv: FAIL - Cannot parse: 
+nomad_role.tsv: FAIL - Cannot parse: 
+ripperdoc_contacts_table.tsv: OK - Fixed and saved to ./fixed/ripperdoc_contacts_table.tsv
+system_core.tsv: REVIEW - Still single column after split; check delimiter
+cop_npc_templates.tsv: OK - Fixed and saved to ./fixed/cop_npc_templates.tsv
+event_randomizers.tsv: OK - Fixed and saved to ./fixed/event_randomizers.tsv
+night_city_locations.tsv: OK - Fixed and saved to ./fixed/night_city_locations.tsv
+region_npc_stat_table.tsv: OK - Fixed and saved to ./fixed/region_npc_stat_table.tsv
+story_hooks.tsv: OK - Fixed and saved to ./fixed/story_hooks.tsv
+clothing_and_wearables_table.tsv: OK - Fixed and saved to ./fixed/clothing_and_wearables_table.tsv
+difficulty_table.tsv: OK - Fixed and saved to ./fixed/difficulty_table.tsv
+gear_upgrade_table.tsv: OK - Fixed and saved to ./fixed/gear_upgrade_table.tsv
+net_social_events_table.tsv: OK - Fixed and saved to ./fixed/net_social_events_table.tsv
+psych_loss_table.tsv: OK - Fixed and saved to ./fixed/psych_loss_table.tsv
+social_encounters.tsv: OK - Fixed and saved to ./fixed/social_encounters.tsv
+vtt_module_table.tsv: FAIL - Cannot parse: 
+cyberpsychosis_progression.tsv: OK - Fixed and saved to ./fixed/cyberpsychosis_progression.tsv
+gang_relationships_matrix.tsv: OK - Fixed and saved to ./fixed/gang_relationships_matrix.tsv
+medtech_tools_table.tsv: OK - Fixed and saved to ./fixed/medtech_tools_table.tsv
+prebuilt_characters.tsv: OK - Fixed and saved to ./fixed/prebuilt_characters.tsv
+scenario_timeline_table.tsv: OK - Fixed and saved to ./fixed/scenario_timeline_table.tsv

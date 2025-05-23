@@ -1,6 +1,6 @@
-Template Name	Division/Role	Rank/Type	Quirk/Complication	Statline (REF/BODY/COOL/INT/EMP/TECH)	Encounter/Use Hook
+Template_Name	Division/Role	Rank/Type	Quirk/Complication	Statline_(REF/BODY/COOL/INT/EMP/TECH)	Encounter/Use_Hook
 Security Chief	Security	Managerial	Ex-military, keeps backup plans for backup plans	7/8/7/6/5/6	Always has off-the-books muscle; will sell out boss for right price
-Junior Exec	Administration	Low-level Climbs corp ladder by blackmail, avoids risk	6/5/6/8/7/5	Fearful of losing position, may hire PCs for dirty work
+Junior Exec	Administration	Low-level Climbs corp ladder by blackmail, avoids risk	6/5/6/8/7/5	Fearful of losing position, may hire PCs for dirty work	
 Corporate Assassin	Special Projects	Solo	Quiet, hates unnecessary talk, obsessed with clean kills	9/8/8/7/4/6	Will betray employer if outbid; leaves no witnesses
 Legal Counsel	Legal	Attorney	Believes in corporate law as religion, secretly sabotages rivals	5/4/7/9/7/6	Knows every loophole, can erase (or forge) a record
 Black Ops Handler	Covert Ops	Director	Paranoid, maintains multiple fake identities, trusts no one	7/7/8/8/5/7	Uses layers of cutouts; if exposed, burns all assets
@@ -21,11 +21,9 @@ Boardroom Shark	Executive	Board Member	Always smiling, collects rivals' weakness
 Sleeper Agent	External/Black Ops	Field Agent	Thinks they’re still loyal—recently sold out by corp	7/6/7/7/5/7	Can supply intel, double-cross both sides in a pinch
 Legal Intern	Legal	Clerk	Desperate to impress, secretly in over their head	5/4/5/8/8/6	Easy to trick/bribe, can steal contracts (but panics under pressure)
 Corpo Driver	Transport	Logistics	Drives “like a Nomad,” moonlights as gunrunner	8/6/6/7/6/7	Has side job info, may smuggle PCs if cut in
----
-
-**Instructions:**
-- Copy/paste directly into your `corp_npc_templates.tsv`.
-- Every row is systematized and canon-aligned—statlines, quirks, and encounter hooks for drop-in play.
-- Expand or replace entries with your own for specific megacorps or special ops as needed.
-
-Say **“next”** for the next missing NPC/contact table (`npc_directory.tsv`), or specify another file/category to generate or expand.
+---					
+**Instructions:**					
+- Copy/paste directly into your `corp_npc_templates.tsv`.					
+- Every row is systematized and canon-aligned—statlines, quirks, and encounter hooks for drop-in play.					
+- Expand or replace entries with your own for specific megacorps or special ops as needed.					
+Say **“next”** for the next missing NPC/contact table (`npc_directory.tsv`), or specify another file/category to generate or expand.					

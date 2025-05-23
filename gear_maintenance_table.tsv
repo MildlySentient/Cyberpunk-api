@@ -1,20 +1,20 @@
-Item	Type	Maintenance Interval	Failure Mode	Repair Cost	Source
-Cyberarm	Chrome	Monthly	Jam, lose function	200eb	Chromebook 1
-Cyberleg	Chrome	Quarterly	Hydraulic leak, -2 Move	180eb	Chromebook 2
-Optic Suite	Chrome	Bi-annually	Visual static, -2 Awareness	200eb	Chromebook 1
-Reflex Booster	Cyberware	Annually	Short circuit, -1 Initiative	350eb	Chromebook 2
-Heavy Pistol	Weapon	Quarterly	Misfire, accuracy loss	50eb	Core
-Assault Rifle	Weapon	Quarterly	Jam, autofire fails	70eb	Blackhand’s
-Sniper Rifle	Weapon	After 50 shots	Barrel warps, -2 to hit	160eb	Blackhand’s
-Satchel Charge	Explosive	N/A	Moisture, fails to detonate	80eb	Blackhand’s
-Minigun	Heavy Gun	After 2000 rounds	Barrel melt, ceases fire	400eb	Maximum Metal
-Armor Vest	Armor	After 10 hits	Tears, loses SP	100eb	Core
-Light Armorjack	Armor	Quarterly	Nanoweave frays, -1 SP	150eb	Chromebook 2
-Combat Helmet	Armor	Annually	HUD glitches, vision loss	60eb	Core
-Vehicle Drone	Drone	Every mission	Circuit short, crash	300eb	Chromebook 2
-Stealth Drone	Drone	Monthly	Battery fails, falls mid-mission	250eb	Chromebook 3+4
-Medibee NanoSwarm	Drone	Every use	Motor stalls, no medical effect	150eb	Chromebook 3+4
-Cyberdeck	Gear	Bi-annually	Chip socket failure, slot dead	180eb	Core
-Pain Editor	Cyberware	Annually	Glitch loop, no pain response	400eb	Chromebook 3+4
-NanoArm	Chrome	Monthly	Motor fault, tremors	250eb	Chromebook 3+4
-Shield	Armor	Bi-annually	Shock field shorts, no stun	90eb	Maximum Metal
+Source	Item	Type	Maintenance_Interval	Failure_Mode	Repair_Cost
+Chromebook 1	Cyberarm	Chrome	Monthly	Jam, lose function	200eb
+Chromebook 2	Cyberleg	Chrome	Quarterly	Hydraulic leak, -2 Move	180eb
+Chromebook 1	Optic Suite	Chrome	Bi-annually	Visual static, -2 Awareness	200eb
+Chromebook 2	Reflex Booster	Cyberware	Annually	Short circuit, -1 Initiative	350eb
+Core	Heavy Pistol	Weapon	Quarterly	Misfire, accuracy loss	50eb
+Blackhand’s	Assault Rifle	Weapon	Quarterly	Jam, autofire fails	70eb
+Blackhand’s	Sniper Rifle	Weapon	After 50 shots	Barrel warps, -2 to hit	160eb
+Blackhand’s	Satchel Charge	Explosive		Moisture, fails to detonate	80eb
+Maximum Metal	Minigun	Heavy Gun	After 2000 rounds	Barrel melt, ceases fire	400eb
+Core	Armor Vest	Armor	After 10 hits	Tears, loses SP	100eb
+Chromebook 2	Light Armorjack	Armor	Quarterly	Nanoweave frays, -1 SP	150eb
+Core	Combat Helmet	Armor	Annually	HUD glitches, vision loss	60eb
+Chromebook 2	Vehicle Drone	Drone	Every mission	Circuit short, crash	300eb
+Chromebook 3+4	Stealth Drone	Drone	Monthly	Battery fails, falls mid-mission	250eb
+Chromebook 3+4	Medibee NanoSwarm	Drone	Every use	Motor stalls, no medical effect	150eb
+Core	Cyberdeck	Gear	Bi-annually	Chip socket failure, slot dead	180eb
+Chromebook 3+4	Pain Editor	Cyberware	Annually	Glitch loop, no pain response	400eb
+Chromebook 3+4	NanoArm	Chrome	Monthly	Motor fault, tremors	250eb
+Maximum Metal	Shield	Armor	Bi-annually	Shock field shorts, no stun	90eb

@@ -1,4 +1,4 @@
-Job Type	Division/Unit	Target/Main Faction	Main Task	Complication	Reward	Resist/Check
+Job_Type	Division/Unit	Target/Main_Faction	Main_Task	Complication	Reward	Resist/Check
 Sting Operation	Narcotics/Undercover	Drug syndicate	Infiltrate and bust dealers	Dealers are wired, rival gang hits back	Reputation, promotion, asset	COOL vs. 13 to maintain cover; Fixer: reroll
 Crime Scene Cleanup	Forensics	Trauma Team/Medtech	Secure evidence, avoid contamination	Biohazard leak, media presence	Merit, lab bonus, favor	TECH vs. 13 to sanitize; Medtech: reroll
 Hostage Negotiation	PsyOps/Negotiator	Gang, disgruntled corp	Free hostages, avoid violence	Sniper, inside mole, demands	Reputation, hazard pay, commendation	EMP vs. 14 to de-escalate; Rockerboy: reroll

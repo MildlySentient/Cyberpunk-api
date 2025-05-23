@@ -1,59 +1,59 @@
-Item	Type	Upgrade	Description	Effect/Modifier	Source
-Cyberarm	Chrome	Hydraulic Jacks	Enhances limb strength with hydraulics	+2 Strength	Chromebook 1
-Cyberarm	Chrome	Pop-up Blade	Concealed forearm blade	1d6 melee damage	Chromebook 1
-Cyberarm	Chrome	Grapple Hand	Built-in grappling hook	Allows grappling/pulling	Chromebook 2
-Cyberarm	Chrome	Magnetic Grip	Magnetic pads in palms	+2 climb metal	Chromebook 2
-Cyberarm	Chrome	Shock Palm	Delivers electric shock on contact	2d6 stun damage	Chromebook 3+4
-Cyberarm	Chrome	Tool Hand	Integrated hand tools (+screwdriver, pliers)	+1 repair, lockpick	Core
-Cyberleg	Chrome	Jump Booster	Augmented servos for jumping	+2 Jump checks	Chromebook 1
-Cyberleg	Chrome	Roller Feet	Retractable wheels for speed	+10m movement (flat)	Chromebook 2
-Cyberleg	Chrome	Weapon Compartment	Hidden compartment for weapon	Concealment	Chromebook 1
-Cyberoptics	Chrome	Low-Light Vision	Enhances vision in low-light	See in dim light	Core
-Cyberoptics	Chrome	Thermal Overlay	Detects heat signatures	See heat signatures	Chromebook 1
-Cyberoptics	Chrome	Targeting Scope	Auto-aim for ranged weapons	+1 to ranged attacks	Core
-Cyberoptics	Chrome	Anti-Dazzle	Reduces flash/blinding	Immune to flash	Chromebook 1
-Cyberoptics	Chrome	Video Recorder	Records what you see	Stores 3 hours	Core
-Cyberaudio Suite	Chrome	Audio Recorder	Records ambient sound	Stores 60 min audio	Core
-Cyberaudio Suite	Chrome	Radio Communicator	Short-range comms	2km range	Core
-Cyberaudio Suite	Chrome	Scrambler/Descrambler	Secure/encrypt comms	Blocks interception	Chromebook 2
-Cyberaudio Suite	Chrome	Sound Editing Suite	Filters/edits audio	+2 audio deception	Chromebook 2
-Cyberaudio Suite	Chrome	Amplifier	Enhanced hearing	+2 awareness (audio)	Core
-Cyberaudio Suite	Chrome	Audio Vox	Voice changer	+2 disguise	Chromebook 2
-Heavy Pistol	Weapon	Smartgun Link	Auto-aim, HUD linkage	No penalty for moving shots	Chromebook 1
-Heavy Pistol	Weapon	Silencer	Suppresses gunfire	-2 detect gunfire	Core
-Heavy Pistol	Weapon	Extended Mag	Increased ammo capacity	+6 ammo	Chromebook 1
-Heavy Pistol	Weapon	Quick-Draw Holster	Hidden spring holster	+2 initiative (draw)	Chromebook 2
-Assault Rifle	Weapon	Smartgun Link	Integrated targeting	+1 to hit, moving shots	Chromebook 1
-Assault Rifle	Weapon	Grenade Launcher UB	Underbarrel grenade launcher	Can fire grenades	Blackhand’s
-Assault Rifle	Weapon	Recoil Compensator	Reduces recoil, faster fire	No autofire penalty	Chromebook 2
-Assault Rifle	Weapon	Extended Magazine	Increase mag size	+10 ammo	Blackhand’s
-Shotgun	Weapon	Smart Choke	Auto adjusts spread	Choose spread pattern	Chromebook 2
-Sniper Rifle	Weapon	Laser Sight	Improves aim	+1 aim, medium range	Blackhand’s
-Sniper Rifle	Weapon	Silencer	Quiet, reduced muzzle flash	-3 detect, -1 damage	Blackhand’s
-Armor Vest	Armor	Quick Release	Quick removal in emergencies	Remove instantly	Core
-Light Armorjack	Armor	Nanoweave	Reinforced fibers	+2 SP, halve maintenance	Chromebook 2
-Light Armorjack	Armor	Reactive Plating	Hardens on impact	-1d4 first hit per round	Maximum Metal
-Combat Helmet	Armor	HUD Display	Tactical HUD overlay	+1 Awareness	Core
-Combat Helmet	Armor	Night Vision Visor	See in darkness	Full vision in dark	Chromebook 2
-Combat Helmet	Armor	Targeting Link	Integrates with Smartgun	+1 to Smartgun weapons	Chromebook 2
-Shield	Armor	Shock Field	Electrified for melee defense	2d6 shock on touch	Maximum Metal
-Cyberdeck	Gear	Speed Chip	Faster program execution	+2 initiative (net)	Chromebook 2
-Cyberdeck	Gear	Memory Expansion	More storage/program slots	+4 slots	Core
-Cyberdeck	Gear	Firewall Booster	Enhanced defense	+2 vs net attacks	Chromebook 2
-Cyberdeck	Gear	Stealth Module	Reduces ICE detection	+2 stealth (net)	Virtual Front
-Cybermodem	Gear	AI Assistant	Automates simple net actions	Acts on routine tasks	Virtual Front
-Vehicle Drone	Drone	Auto-Repair Module	Self-repair over time	Regain 1 HP/hr	Chromebook 2
-Vehicle Drone	Drone	Enhanced Sensors	Upgraded detection systems	+2 perception (drone)	Chromebook 2
-Vehicle Drone	Drone	Cloaking Device	Temporary sensor invisibility	+2 stealth checks	Chromebook 3+4
-Vehicle Drone	Drone	Weapon Mount	Adds weapon capability	Allows ranged attack	Maximum Metal
-Exoskeleton	Suit	Strength Boost	Enhanced servos	+4 Strength	Maximum Metal
-Exoskeleton	Suit	Speed Booster	Powered mobility	+10m speed	Maximum Metal
-Borg Chassis	Chrome	Modular Mounts	Plug-and-play upgrade slots	Quick swap gear	Maximum Metal
-Medscanner	Gear	Upgrade Sensor	Reads blood chems, toxins	Detects poison/drugs	Core
-Medscanner	Gear	Databank Expansion	Add patient record capacity	+100 records	Chromebook 2
-Reflex Booster	Cyberware	Overclocked Upgrade	Enhanced reflexes	+1 REF	Chromebook 2
-Pain Editor	Cyberware	Adrenaline Surge	No stun, ignore shock	Chromebook 3+4
-Neural Processor	Cyberware	Fast Interface Plug	Faster plug switching	Swap chips as free action	Chromebook 2
-Neural Processor	Cyberware	Multislot	More chip slots	+2 chip slots	Chromebook 2
-Dermal Plating	Cyberware	Shock Pads	Conducts away electrical damage	Ignore 1st shock each day	Chromebook 3+4
-Cyberfingers	Chrome	Fine Tools	Fine motor, picks/locks	+1 lockpick/repair	Chromebook 1
+Source	Item	Type	Upgrade	Description	Effect/Modifier
+Chromebook 1	Cyberarm	Chrome	Hydraulic Jacks	Enhances limb strength with hydraulics	+2 Strength
+Chromebook 1	Cyberarm	Chrome	Pop-up Blade	Concealed forearm blade	1d6 melee damage
+Chromebook 2	Cyberarm	Chrome	Grapple Hand	Built-in grappling hook	Allows grappling/pulling
+Chromebook 2	Cyberarm	Chrome	Magnetic Grip	Magnetic pads in palms	+2 climb metal
+Chromebook 3+4	Cyberarm	Chrome	Shock Palm	Delivers electric shock on contact	2d6 stun damage
+Core	Cyberarm	Chrome	Tool Hand	Integrated hand tools (+screwdriver, pliers)	+1 repair, lockpick
+Chromebook 1	Cyberleg	Chrome	Jump Booster	Augmented servos for jumping	+2 Jump checks
+Chromebook 2	Cyberleg	Chrome	Roller Feet	Retractable wheels for speed	+10m movement (flat)
+Chromebook 1	Cyberleg	Chrome	Weapon Compartment	Hidden compartment for weapon	Concealment
+Core	Cyberoptics	Chrome	Low-Light Vision	Enhances vision in low-light	See in dim light
+Chromebook 1	Cyberoptics	Chrome	Thermal Overlay	Detects heat signatures	See heat signatures
+Core	Cyberoptics	Chrome	Targeting Scope	Auto-aim for ranged weapons	+1 to ranged attacks
+Chromebook 1	Cyberoptics	Chrome	Anti-Dazzle	Reduces flash/blinding	Immune to flash
+Core	Cyberoptics	Chrome	Video Recorder	Records what you see	Stores 3 hours
+Core	Cyberaudio Suite	Chrome	Audio Recorder	Records ambient sound	Stores 60 min audio
+Core	Cyberaudio Suite	Chrome	Radio Communicator	Short-range comms	2km range
+Chromebook 2	Cyberaudio Suite	Chrome	Scrambler/Descrambler	Secure/encrypt comms	Blocks interception
+Chromebook 2	Cyberaudio Suite	Chrome	Sound Editing Suite	Filters/edits audio	+2 audio deception
+Core	Cyberaudio Suite	Chrome	Amplifier	Enhanced hearing	+2 awareness (audio)
+Chromebook 2	Cyberaudio Suite	Chrome	Audio Vox	Voice changer	+2 disguise
+Chromebook 1	Heavy Pistol	Weapon	Smartgun Link	Auto-aim, HUD linkage	No penalty for moving shots
+Core	Heavy Pistol	Weapon	Silencer	Suppresses gunfire	-2 detect gunfire
+Chromebook 1	Heavy Pistol	Weapon	Extended Mag	Increased ammo capacity	+6 ammo
+Chromebook 2	Heavy Pistol	Weapon	Quick-Draw Holster	Hidden spring holster	+2 initiative (draw)
+Chromebook 1	Assault Rifle	Weapon	Smartgun Link	Integrated targeting	+1 to hit, moving shots
+Blackhand’s	Assault Rifle	Weapon	Grenade Launcher UB	Underbarrel grenade launcher	Can fire grenades
+Chromebook 2	Assault Rifle	Weapon	Recoil Compensator	Reduces recoil, faster fire	No autofire penalty
+Blackhand’s	Assault Rifle	Weapon	Extended Magazine	Increase mag size	+10 ammo
+Chromebook 2	Shotgun	Weapon	Smart Choke	Auto adjusts spread	Choose spread pattern
+Blackhand’s	Sniper Rifle	Weapon	Laser Sight	Improves aim	+1 aim, medium range
+Blackhand’s	Sniper Rifle	Weapon	Silencer	Quiet, reduced muzzle flash	-3 detect, -1 damage
+Core	Armor Vest	Armor	Quick Release	Quick removal in emergencies	Remove instantly
+Chromebook 2	Light Armorjack	Armor	Nanoweave	Reinforced fibers	+2 SP, halve maintenance
+Maximum Metal	Light Armorjack	Armor	Reactive Plating	Hardens on impact	-1d4 first hit per round
+Core	Combat Helmet	Armor	HUD Display	Tactical HUD overlay	+1 Awareness
+Chromebook 2	Combat Helmet	Armor	Night Vision Visor	See in darkness	Full vision in dark
+Chromebook 2	Combat Helmet	Armor	Targeting Link	Integrates with Smartgun	+1 to Smartgun weapons
+Maximum Metal	Shield	Armor	Shock Field	Electrified for melee defense	2d6 shock on touch
+Chromebook 2	Cyberdeck	Gear	Speed Chip	Faster program execution	+2 initiative (net)
+Core	Cyberdeck	Gear	Memory Expansion	More storage/program slots	+4 slots
+Chromebook 2	Cyberdeck	Gear	Firewall Booster	Enhanced defense	+2 vs net attacks
+Virtual Front	Cyberdeck	Gear	Stealth Module	Reduces ICE detection	+2 stealth (net)
+Virtual Front	Cybermodem	Gear	AI Assistant	Automates simple net actions	Acts on routine tasks
+Chromebook 2	Vehicle Drone	Drone	Auto-Repair Module	Self-repair over time	Regain 1 HP/hr
+Chromebook 2	Vehicle Drone	Drone	Enhanced Sensors	Upgraded detection systems	+2 perception (drone)
+Chromebook 3+4	Vehicle Drone	Drone	Cloaking Device	Temporary sensor invisibility	+2 stealth checks
+Maximum Metal	Vehicle Drone	Drone	Weapon Mount	Adds weapon capability	Allows ranged attack
+Maximum Metal	Exoskeleton	Suit	Strength Boost	Enhanced servos	+4 Strength
+Maximum Metal	Exoskeleton	Suit	Speed Booster	Powered mobility	+10m speed
+Maximum Metal	Borg Chassis	Chrome	Modular Mounts	Plug-and-play upgrade slots	Quick swap gear
+Core	Medscanner	Gear	Upgrade Sensor	Reads blood chems, toxins	Detects poison/drugs
+Chromebook 2	Medscanner	Gear	Databank Expansion	Add patient record capacity	+100 records
+Chromebook 2	Reflex Booster	Cyberware	Overclocked Upgrade	Enhanced reflexes	+1 REF
+	Pain Editor	Cyberware	Adrenaline Surge	No stun, ignore shock	Chromebook 3+4
+Chromebook 2	Neural Processor	Cyberware	Fast Interface Plug	Faster plug switching	Swap chips as free action
+Chromebook 2	Neural Processor	Cyberware	Multislot	More chip slots	+2 chip slots
+Chromebook 3+4	Dermal Plating	Cyberware	Shock Pads	Conducts away electrical damage	Ignore 1st shock each day
+Chromebook 1	Cyberfingers	Chrome	Fine Tools	Fine motor, picks/locks	+1 lockpick/repair

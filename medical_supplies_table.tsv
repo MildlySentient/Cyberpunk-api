@@ -1,5 +1,5 @@
-uuid,created_at,created_longitude,created_latitude,modified_at,modified_longitude,modified_latitude,accessed_at,content,tags,folder,flagged,languageGrammar
-"6C259E4B-77E3-41BC-A1E4-8ECB8288EB5A",2025-05-21T08:29:21Z,0.0,0.0,2025-05-21T08:30:00Z,0.0,0.0,2025-05-21T08:29:21Z,"Item Name	Supply Type	Description/Function	Effect/Modifier	Stat/Skill	Cost (eb)	Weight (kg)	Power/Maint	Avail	Source	Special Notes
+uuid	created_at	created_longitude	created_latitude	modified_at	modified_longitude	modified_latitude	accessed_at	content	tags	folder	flagged	languageGrammar
+6C259E4B-77E3-41BC-A1E4-8ECB8288EB5A	2025-05-21T08:29:21Z	0.0	0.0	2025-05-21T08:30:00Z	0.0	0.0	2025-05-21T08:29:21Z	"Item Name	Supply Type	Description/Function	Effect/Modifier	Stat/Skill	Cost (eb)	Weight (kg)	Power/Maint	Avail	Source	Special Notes
 Blood Substitute	Consumable	Synthetic universal blood	+1 Stabilize mortally wounded	Medtech	150	per pint	None	Common	Chromebook 3, p.6	Breaks down after use
 RapiDetox	Consumable	Neutralizes drugs/poisons after Medtech/Pharm check	Neutralizes toxin on success	Medtech/Pharma	1500	0.1	None/Single use	Uncommon	Chromebook 3, p.6	Acts in 3 turns
 AutoMed SprayBandage	Consumable	Spray-on clotting bandage	+1 Stabilize, stops minor bleeding	Medtech	40	0.1	None/Single use	Common	Chromebook 4, p.19	Waterproof, 2 sizes
@@ -14,4 +14,4 @@ NanoPatch Anti-Bug	Consumable	Repellent patch, 12h insect protection	+1 Survival
 NanoMark Stain Tag	Consumable	Detects blood/bio residue	+1 Medtech/Forensics (detect)	Medtech/Forensics	12	0.01	None/Single use	Common	V3.0 Core, p.194	Pack of 5
 Standard Medkit (Consumables)	Consumable/Kit	Restock: bandages, drugs, 10 uses	+2 Stabilize (10 uses)	Medtech	500	2	None/Restock after 10 uses	Common	Core Rulebook, p.78	Standard field kit
 Combat Drug Kit	Consumable/Kit	Field-use painkiller/stimulant	+1 Recovery roll, instant pain relief	Medtech	300	1	None/Single use	Rare	Chromebook 1, p.15	Field/trauma only
-DocGuard TraumaCard (Battery)	Consumable/Support	Battery for AI triage card	Required for TraumaCard use	None	15	0.01	Battery/2yr	Common	V3.0 Core, p.194	Card-sized","",0,false,Markdown
+DocGuard TraumaCard (Battery)	Consumable/Support	Battery for AI triage card	Required for TraumaCard use	None	15	0.01	Battery/2yr	Common	V3.0 Core, p.194	Card-sized"		0	false	Markdown

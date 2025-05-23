@@ -1,4 +1,4 @@
-Job Type	Location	Target/Main Faction	Main Task	Complication	Reward	Fixer	Resist/Check
+Job_Type	Location	Target/Main_Faction	Main_Task	Complication	Reward	Fixer	Resist/Check
 Extraction	Japantown	Corpo exec	Get the exec out of a gang trap	Target’s data is wanted by rival fixer	Credits, rare cyberware	Wakako Okada	COOL vs. 13 to spot betrayal; Solo: reroll
 Delivery	Watson	Maelstrom gang	Deliver illegal package to back alley	Police checkpoint, package is a decoy	Reputation, favor, gear	Dexter DeShawn	REF vs. 13 to avoid checkpoint; Nomad: reroll, Fixer: +1
 Sabotage	Old Downtown	Arasaka lab	Plant bug, escape undetected	Facility lockdown, rival crew	Stock, secrets, fixer favor	Regina Jones	TECH vs. 14 to bypass security; Netrunner: reroll

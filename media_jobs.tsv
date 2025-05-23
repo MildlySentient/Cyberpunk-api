@@ -1,4 +1,4 @@
-Job Type	Media/Broker	Target/Main Faction	Main Task	Complication	Reward/Outcome	Resist/Check
+Job_Type	Media/Broker	Target/Main_Faction	Main_Task	Complication	Reward/Outcome	Resist/Check
 Expose	Regina Jones	Corpo exec	Uncover and publish illegal deal	Target threatens legal action, source disappears	Cash, fame, street rep	COOL vs. 14 to avoid legal fallout; Fixer: reroll
 Rumor Hunt	Blue Glass	Gang leader	Track down and confirm explosive rumor	Rival media leaks fake info first	Inside tip, story credit, fixer contact	INT vs. 13 to spot fake; Netrunner: reroll
 Sabotage PR	Roxanne “Red” Delacroix	Arasaka	Run smear campaign against corp	Corp launches counter-campaign, hackers attack	Cash, media boost, corp grudge	COOL vs. 14 to manage spin; Rockerboy: reroll

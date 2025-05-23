@@ -1,8 +1,8 @@
-Category	Weapon	Type	Damage	Ammo	RoF	Range (m)	Cost (eb)	Weight (kg)	Reliability	Availability	Concealability	Skill Used	Vs Stat/Check	DV	Special Notes	Source
-Explosive	Frag Grenade	Grenade	5d6	N/A	N/A	5	300	0.5	Standard	Common	Pocket	Throwing	REF + Throw vs. DV	10	Area effect; 3m blast radius	Core Rulebook
-Explosive	Smoke Grenade	Grenade	N/A	N/A	N/A	5	150	0.5	Standard	Common	Pocket	Throwing	REF vs. DV	8	Obscures vision, lasts 1d6 rounds	Core Rulebook
-Explosive	EMP Grenade	Grenade	–	N/A	N/A	5	400	1.0	Single Use	Rare	Pocket	TECH	TECH vs. DV	12	Disables electronics in 5m radius	Chromebook 1
-Explosive	Satchel Charge	Explosive	8d6	N/A	N/A	—	800	2.0	Special	Rare	Bag	TECH	TECH vs. DV	15	Timed or remote detonation, demolitions required	Blackhand’s
-Explosive	Tear Gas Canister	Grenade	3d6 (stun)	N/A	N/A	10	200	0.7	Standard	Common	Pocket	Throwing	REF vs. DV	9	Inhalation effect, -2 to REF and COOL	Chromebook 2
-Explosive	Flashbang	Grenade	Stun	N/A	N/A	5	250	0.5	Standard	Common	Pocket	Throwing	REF vs. DV	10	Blinds and deafens for 1 round	Core Rulebook
-Explosive	Neural Disruptor Mine	Mine	2d6+Stun	N/A	N/A	—	900	2.5	High	Rare	Bag	TECH	TECH vs. DV	14	Overloads cyberware within 3m	Blackhand’s
+Source	Category	Weapon	Type	Damage	Ammo	RoF	Range_(m)	Cost_(eb)	Weight_(kg)	Reliability	Availability	Concealability	Skill_Used	Vs_Stat/Check	DV	Special_Notes
+Core Rulebook	Explosive	Frag Grenade	Grenade	5d6			5	300	0.5	Standard	Common	Pocket	Throwing	REF + Throw vs. DV	10	Area effect; 3m blast radius
+Core Rulebook	Explosive	Smoke Grenade	Grenade				5	150	0.5	Standard	Common	Pocket	Throwing	REF vs. DV	8	Obscures vision, lasts 1d6 rounds
+Chromebook 1	Explosive	EMP Grenade	Grenade	–			5	400	1.0	Single Use	Rare	Pocket	TECH	TECH vs. DV	12	Disables electronics in 5m radius
+Blackhand’s	Explosive	Satchel Charge	Explosive	8d6			—	800	2.0	Special	Rare	Bag	TECH	TECH vs. DV	15	Timed or remote detonation, demolitions required
+Chromebook 2	Explosive	Tear Gas Canister	Grenade	3d6 (stun)			10	200	0.7	Standard	Common	Pocket	Throwing	REF vs. DV	9	Inhalation effect, -2 to REF and COOL
+Core Rulebook	Explosive	Flashbang	Grenade	Stun			5	250	0.5	Standard	Common	Pocket	Throwing	REF vs. DV	10	Blinds and deafens for 1 round
+Blackhand’s	Explosive	Neural Disruptor Mine	Mine	2d6+Stun			—	900	2.5	High	Rare	Bag	TECH	TECH vs. DV	14	Overloads cyberware within 3m

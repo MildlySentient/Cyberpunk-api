@@ -1,5 +1,5 @@
-uuid,created_at,created_longitude,created_latitude,modified_at,modified_longitude,modified_latitude,accessed_at,content,tags,folder,flagged,languageGrammar
-"646F2DF4-AECF-4D39-B00C-D584AD005B11",2025-05-23T00:48:37Z,0.0,0.0,2025-05-23T00:48:44Z,0.0,0.0,2025-05-23T00:48:37Z,"@directive
+uuid	created_at	created_longitude	created_latitude	modified_at	modified_longitude	modified_latitude	accessed_at	content	tags	folder	flagged	languageGrammar
+646F2DF4-AECF-4D39-B00C-D584AD005B11	2025-05-23T00:48:37Z	0.0	0.0	2025-05-23T00:48:44Z	0.0	0.0	2025-05-23T00:48:37Z	"@directive
 
 Task: Create a structured campaign notes table for tracking session-level progress, unresolved hooks, secret events, PC/GM notes, and session logs in Cyberpunk 2020 campaigns.
 
@@ -26,4 +26,4 @@ Table: `campaign_notes.tsv`
 - If a column is not specified for a given entry, flag as “[TBD].”
 - Output as TSV, header row first.
 
-@/directive","",0,false,Markdown
+@/directive"		0	false	Markdown

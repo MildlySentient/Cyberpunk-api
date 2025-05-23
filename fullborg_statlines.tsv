@@ -1,4 +1,4 @@
-Model/Type	Borg Archetype	Statline/Quirk	Complication/Event	Resist/Check
+Model/Type	Borg_Archetype	Statline/Quirk	Complication/Event	Resist/Check
 Gladiator	Battle/Solo	BODY/REF max, melee focus, showboat	EMP loss, show-off flaw	EMP vs. 14 to resist psych loss; Solo: reroll
 Sapper/Demolitions	Demo/Heavy	BODY/TECH max, armor, blast gear	Explosive mishap, trauma	BODY vs. 14 to avoid injury; Techie: reroll, Medtech: +1 for patch
 Assassin	Bioform/Stealth	REF/INT high, camo, nanoblade	Paranoia, memory wipes	INT vs. 14 for mission recall; Netrunner: reroll, Solo: +1 for pursuit

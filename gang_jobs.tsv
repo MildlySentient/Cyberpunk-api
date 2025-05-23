@@ -1,4 +1,4 @@
-Job Type	Gang	Target/Main Faction	Main Task	Complication	Reward	Resist/Check
+Job_Type	Gang	Target/Main_Faction	Main_Task	Complication	Reward	Resist/Check
 Turf War	Maelstrom	Valentinos	Attack/hold rival hangout	Cops tipped off, innocent bystanders	Weapons, cred, gang rank	COOL vs. 13 to avoid heat; Solo: reroll
 Shakedown	Animals	Street vendors	Collect “protection” money	Rival gang shadowing, victim fights back	Drugs, rep, cut of earnings	COOL vs. 12 to keep cool; Fixer: reroll
 Sabotage	Tyger Claws	Arasaka business	Burn/ruin a store or facility	Corporate security on-site, internal snitch	Gear, bike upgrades, reputation	TECH vs. 14 to bypass security; Netrunner: reroll

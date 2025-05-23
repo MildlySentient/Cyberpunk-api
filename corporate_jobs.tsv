@@ -1,4 +1,4 @@
-Job Type	Corporation/Division	Target/Main Faction	Main Task	Complication	Reward/Outcome	Resist/Check
+Job_Type	Corporation/Division	Target/Main_Faction	Main_Task	Complication	Reward/Outcome	Resist/Check
 Espionage	Arasaka	Biotechnica	Steal R&D data, leave no trace	ICE is AI, Biotechnica’s agent infiltrated	Stock, rare cyber, corp favor	INT vs. 14 to avoid ICE; Netrunner: reroll
 Sabotage	Petrochem	SovOil	Disrupt fuel line, cause supply delay	SovOil counter-saboteurs on site, Nomads watching	Cash, inside info, asset	COOL vs. 13 to evade detection; Nomad: reroll
 Data Heist	Kang Tao	Militech	Steal prototype specs, exfil in one night	Specs are split on three servers, Netrunner rival	Credits, high-end weapons, secrets	INT vs. 14 to hack servers; Netrunner: reroll
@@ -12,7 +12,7 @@ Frame Rival	Kang Tao	Arasaka exec	Plant evidence of illegal activity	Exec’s fi
 PR Campaign	Night Corp	Citizens, public	Stage PR event, improve image	Event goes viral wrong, activists disrupt	Pay, gear, inside contact	COOL vs. 14 to recover; Rockerboy: reroll
 Secret Project	GREX International	Gang (Maelstrom)	Recruit gang to test prototype	Prototype malfunctions, gang double-crosses	Rare cyber, gang loyalty, payout	TECH vs. 14 to fix; Techie: reroll
 Elimination	Militech	Tyger Claws	Remove rival’s street enforcer	Gang is expecting hit, full protection	Weapons, corp rep, risk	REF vs. 14 to escape; Solo: reroll
-Cybersecurity Audit	Biotechnica	Rival netrunner	Trace hack, patch vulnerabilities	Netrunner is PC’s ally, hidden data	INT vs. 14 to find threat; Netrunner: reroll
+Cybersecurity Audit	Biotechnica	Rival netrunner	Trace hack, patch vulnerabilities	Netrunner is PC’s ally, hidden data	INT vs. 14 to find threat; Netrunner: reroll	
 Trade Deal	Petrochem	Nomad tribe	Negotiate/sabotage trade deal	Tribe is hostile, fixer intervenes	Fuel, smuggling routes, debt	COOL vs. 13 to negotiate; Fixer: reroll, Nomad: +1
 Product Recall	Kang Tao	Customers, media	Quietly recall defective smartguns	Media sniffs scandal, gang won’t return guns	Stock, clean PR, debt erased	EMP vs. 13 to calm buyers; Medtech: reroll
 Steal R&D	Arasaka	Biotechnica	Smuggle samples, erase records	Lab is watched by rival corp, samples are unstable	Rare bio, cash, new contract	COOL vs. 13 to bluff guards; Solo: reroll

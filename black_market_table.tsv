@@ -1,15 +1,15 @@
-Item	Type	Source	Cost	Risk	Reference
-Hot Cyberarm	Chrome	Stolen cargo	1000eb	May be tracked	Wildside
-Illegal Biochip	Neural	Ex-corp asset	2000eb	Street use only	Wildside
-NanoSkin Patch	Medical	Foreign supplier	500eb	1 in 6 fails	Chromebook 2
-Ghost Ammo	Ammo	Experimental	300eb	Jams in standard guns	Blackhand’s
-Ripoff Optics	Chrome	Counterfeit	400eb	50% glitch chance	Wildside
-Saboteur Grenade	Explosive	Homebrew	600eb	Misfires on 1, explodes on 20	Blackhand’s
-PsychoStim Dose	Drug	Unregistered	200eb	Chance of psychosis	Wildside
-Unregistered Medscanner	Gear	Fake/knockoff	350eb	Gives false readings	Chromebook 3+4
-CorpSec Uniform	Armor	Black market dealer	800eb	Arrest if caught	Wildside
-Street Deck	Cyberdeck	Salvaged netgear	600eb	Already ICE-flagged	Virtual Front
-Hacked Datachip	Storage	Corporate leak	400eb	May contain malware	Wildside
-Scavenged Drone	Drone	Rust-belt fixer	1000eb	Malfunctions 1 in 8	Chromebook 2
-Borg Blackbox	Borg Part	Corp battlefield	3500eb	Traceable, may have data	Maximum Metal
-Illegal Gas Sprayer	Weapon	Street gang	700eb	Explodes on mishap	Blackhand’s
+Source	Item	Type	Cost	Risk	Reference
+Stolen cargo	Hot Cyberarm	Chrome	1000eb	May be tracked	Wildside
+Ex-corp asset	Illegal Biochip	Neural	2000eb	Street use only	Wildside
+Foreign supplier	NanoSkin Patch	Medical	500eb	1 in 6 fails	Chromebook 2
+Experimental	Ghost Ammo	Ammo	300eb	Jams in standard guns	Blackhand’s
+Counterfeit	Ripoff Optics	Chrome	400eb	50% glitch chance	Wildside
+Homebrew	Saboteur Grenade	Explosive	600eb	Misfires on 1, explodes on 20	Blackhand’s
+Unregistered	PsychoStim Dose	Drug	200eb	Chance of psychosis	Wildside
+Fake/knockoff	Unregistered Medscanner	Gear	350eb	Gives false readings	Chromebook 3+4
+Black market dealer	CorpSec Uniform	Armor	800eb	Arrest if caught	Wildside
+Salvaged netgear	Street Deck	Cyberdeck	600eb	Already ICE-flagged	Virtual Front
+Corporate leak	Hacked Datachip	Storage	400eb	May contain malware	Wildside
+Rust-belt fixer	Scavenged Drone	Drone	1000eb	Malfunctions 1 in 8	Chromebook 2
+Corp battlefield	Borg Blackbox	Borg Part	3500eb	Traceable, may have data	Maximum Metal
+Street gang	Illegal Gas Sprayer	Weapon	700eb	Explodes on mishap	Blackhand’s

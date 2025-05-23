@@ -1,4 +1,4 @@
-Downtime Event	Type/Activity	Complication/Quirk	Outcome/Reward	Stat/Role Hook
+Downtime_Event	Type/Activity	Complication/Quirk	Outcome/Reward	Stat/Role_Hook
 Street Recovery	Heal, lay low, patch wounds	Local gang claims “protection” fees or new PC in the zone	Cash loss, safe healing, or new feud	BODY vs. 13 to avoid mugging; Medtech: reroll
 Cyberware Maintenance	Tune-up, upgrade, debug	Street doc botches install, gear glitches	+1 gear, risk cyberpsychosis	TECH vs. 13 to fix; Techie: reroll
 Gear Repair	Techie/garage fix, salvage	Parts are faulty, scavenger offers swap	Cheap fix or gear breaks next job	TECH vs. 13 to spot bad part; Techie: reroll

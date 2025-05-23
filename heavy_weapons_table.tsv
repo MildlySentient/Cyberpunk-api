@@ -1,21 +1,21 @@
-Weapon	Type	Damage	Ammo	Notes	Source
-Militech RPG-7	Rocket Launcher	6d6	1	Area, blast radius	Blackhand’s
-Arasaka Minigun	Heavy Gun	4d6/round	100	Requires tripod	Blackhand’s
-Satchel Charge	Explosive	8d6	N/A	Timed, demolition	Blackhand’s
-C-22 Toxin Gas	Launcher	3d6/round	2	Persistent, inhalation	Blackhand’s
-Militech Hydra	Grenade Launcher	5d6	6	Multi-type grenades	Blackhand’s
-Rossi Striker 20mm	Anti-Materiel Rifle	7d6	5	Penetrates armor, huge recoil	Maximum Metal
-Steyr Raketenfaust	Multiple Rocket Launcher	4d6 per rocket	4	Vehicle or tripod only	Maximum Metal
-Thunderbolt Railgun	Railgun	9d6	1	Requires power armor, anti-vehicle	Maximum Metal
-Metalstorm Sentry	Autocannon	5d6/round	200	Automated defense mount	Maximum Metal
-Armatech HAVOC	Borg Cannon	10d6	3	Requires cyber/borg mount	Maximum Metal
-AAI 90mm Recoilless	Heavy Cannon	12d6	1	Vehicle/borg mount only	Maximum Metal
-MetalGear Snake Launcher	Heavy Launcher	8d6	1	Infrared guided, one-shot	Chromebook 3+4
-Militech Reaper	Chain Gun	6d6/round	300	Vehicle/borg mount, massive ammo	Maximum Metal
-M-80 Tact Grenade	Grenade	4d6	1	Flash, smoke, or frag options	Blackhand’s
-Neurachem War Gas	Gas Weapon	3d6/round	5	Persistent, neural disruption	Blackhand’s
-Arasaka HMG-70	Heavy Machine Gun	5d6/round	50	Tripod or vehicle required	Blackhand’s
-Mikoshi Rail Mortar	Mortar	10d6	1	Huge, vehicle mount, indirect fire	Maximum Metal
-Saab FireSpear	Missile Launcher	7d6	1	Heat-seeking, anti-vehicle	Blackhand’s
-Rossi HAVOK	Chemical Sprayer	Variable	10	Disperses acid or foam, area effect	Chromebook 3+4
-Militech C-22 Toxin Mine	Mine	3d6/round	N/A	Area denial, persistent gas	Blackhand’s
+Notes	Source	Weapon	Type	Damage	Ammo
+Area, blast radius	Blackhand’s	Militech RPG-7	Rocket Launcher	6d6	1
+Requires tripod	Blackhand’s	Arasaka Minigun	Heavy Gun	4d6/round	100
+Timed, demolition	Blackhand’s	Satchel Charge	Explosive	8d6	
+Persistent, inhalation	Blackhand’s	C-22 Toxin Gas	Launcher	3d6/round	2
+Multi-type grenades	Blackhand’s	Militech Hydra	Grenade Launcher	5d6	6
+Penetrates armor, huge recoil	Maximum Metal	Rossi Striker 20mm	Anti-Materiel Rifle	7d6	5
+Vehicle or tripod only	Maximum Metal	Steyr Raketenfaust	Multiple Rocket Launcher	4d6 per rocket	4
+Requires power armor, anti-vehicle	Maximum Metal	Thunderbolt Railgun	Railgun	9d6	1
+Automated defense mount	Maximum Metal	Metalstorm Sentry	Autocannon	5d6/round	200
+Requires cyber/borg mount	Maximum Metal	Armatech HAVOC	Borg Cannon	10d6	3
+Vehicle/borg mount only	Maximum Metal	AAI 90mm Recoilless	Heavy Cannon	12d6	1
+Infrared guided, one-shot	Chromebook 3+4	MetalGear Snake Launcher	Heavy Launcher	8d6	1
+Vehicle/borg mount, massive ammo	Maximum Metal	Militech Reaper	Chain Gun	6d6/round	300
+Flash, smoke, or frag options	Blackhand’s	M-80 Tact Grenade	Grenade	4d6	1
+Persistent, neural disruption	Blackhand’s	Neurachem War Gas	Gas Weapon	3d6/round	5
+Tripod or vehicle required	Blackhand’s	Arasaka HMG-70	Heavy Machine Gun	5d6/round	50
+Huge, vehicle mount, indirect fire	Maximum Metal	Mikoshi Rail Mortar	Mortar	10d6	1
+Heat-seeking, anti-vehicle	Blackhand’s	Saab FireSpear	Missile Launcher	7d6	1
+Disperses acid or foam, area effect	Chromebook 3+4	Rossi HAVOK	Chemical Sprayer	Variable	10
+Area denial, persistent gas	Blackhand’s	Militech C-22 Toxin Mine	Mine	3d6/round	
