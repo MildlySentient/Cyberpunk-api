@@ -65,6 +65,7 @@ class DataCache:
         logger.info(f"Found {len(self.tsv_files)} TSV files in canon.")
         self.canon_map = {}
         for tsv in self.tsv_files:
+            logger.info(f"Attempting to read {os.path.basename(tsv)}")
             try:
                 df = pd.read_csv(tsv, sep='\t', dtype=str).fillna("")
                 if "Role" in df.columns and "Gender" in df.columns:
