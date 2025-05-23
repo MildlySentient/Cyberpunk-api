@@ -93,6 +93,21 @@ def load_files():
     except Exception:
         cache["index"] = pd.DataFrame([{"Filename": "", "Description": "", "LemDescription": ""}])
     cache["cores"] = {}
+
+    cache["canon_map"] = {}
+    for file in os.listdir(data_folder):
+        if file.endswith("_core.tsv"):
+            try:
+                df = pd.read_csv(os.path.join(data_folder, file), sep="\t")
+                if "Role" in df.columns:
+                    for _, row in df.iterrows():
+                        role = str(row.get("Role", "")).lower()
+                        gender = str(row.get("Gender", "")).lower()
+                        if role:
+                            cache["canon_map"].setdefault(role, {}).setdefault(gender, []).append((file, row.to_dict()))
+            except Exception:
+                continue
+
     for file in os.listdir(data_folder):
         if file.endswith("_core.tsv"):
             try:
@@ -104,6 +119,50 @@ def load_files():
                 pass
 
 def match_query(query, col, df):
+    if df is None or df.empty or col not in df.columns:
+        return {}
+    query_lem = lemmatize(query)
+
+    # Synonym matching
+    for base, syns in synonyms.items():
+        if any(term in query_lem for term in [base] + syns):
+            mask = df[col].str.contains(base, na=False, case=False)
+            match = df[mask]
+            if not match.empty:
+                return match.iloc[0].to_dict()
+
+    # Fuzzy match
+    fuzz_scores = df[col].apply(lambda x: fuzz.partial_ratio(query_lem, str(x)))
+    if fuzz_scores.max() > 85:
+        return df.iloc[fuzz_scores.idxmax()].to_dict()
+
+    # Vector similarity
+    if nlp:
+        q_vec = nlp(query_lem).vector.reshape(1, -1)
+        best = None
+        best_score = -1
+        for idx, row in df.iterrows():
+            text = row[col]
+            if not isinstance(text, str) or not text.strip():
+                continue
+            row_vec = nlp(text).vector.reshape(1, -1)
+            sim = cosine_similarity(q_vec, row_vec)[0][0]
+            if sim > best_score:
+                best_score = sim
+                best = row.to_dict()
+        if best:
+            return best
+
+    # Role + Gender fallback
+    if "Role" in df.columns and "Gender" in df.columns:
+        terms = query.lower().split()
+        possible_role = next((term.capitalize() for term in terms if term.capitalize() in df["Role"].unique()), None)
+        possible_gender = next((g.capitalize() for g in terms if g.lower() in ["male", "female"]), None)
+        if possible_role and possible_gender:
+            role_match = df[(df["Role"] == possible_role) & (df["Gender"] == possible_gender)]
+            if not role_match.empty:
+                return role_match.iloc[0].to_dict()
+    return {}
     if df is None or df.empty or col not in df.columns:
         return {}
     query_lem = lemmatize(query)
@@ -388,3 +447,8 @@ if __name__ == "__main__":
             print(f"[OK] {os.path.basename(tsv)} — {df.shape[0]} rows, {df.shape[1]} columns")
         except Exception as e:
             print(f"[ERROR] {os.path.basename(tsv)} — {e}")
+
+
+@app.get("/canon-map-keys")
+def get_canon_map_keys():
+    return {"roles": list(cache.get("canon_map", {}).keys())}
