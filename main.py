@@ -105,6 +105,34 @@ SYNONYMS = {
     "initiative": ["combat order", "who goes first", "turn order", "init", "move order", "who acts first"],
 }
 
+# ----------- PREBUILT CHARACTER HANDLER -----------
+
+def find_prebuilt_character(query: str, canon_map: Dict[str, Dict[str, list]]) -> Optional[Dict[str, Any]]:
+    """
+    Special handler: if query contains 'prebuilt character', search canon_map for available prebuilt roles/genders.
+    """
+    query_lower = query.lower()
+    if "prebuilt character" in query_lower:
+        # Remove 'prebuilt character' to get the real role/gender
+        parts = query_lower.replace("prebuilt character", "").strip().split()
+        role = next((t for t in parts if t in canon_map), None)
+        gender = next((t for t in parts if t in ["male", "female"]), None)
+        if role and gender and role in canon_map and gender in canon_map[role]:
+            # Return the first prebuilt matching role/gender
+            return canon_map[role][gender][0]
+        # No specific role/gender: list all available combos
+        available = []
+        for role in canon_map:
+            for gender in canon_map[role]:
+                available.append(f"{role.title()} {gender.title()}")
+        return {
+            "message": "Specify a role/gender (e.g., 'Solo male'). Available prebuilt characters: " +
+                       ", ".join(available)
+        }
+    return None
+
+# ----------- QUERY MATCHING -----------
+
 def match_query(
     query: str,
     df: Optional[pd.DataFrame],
@@ -195,17 +223,20 @@ def lookup(
     nlp_model = Depends(get_nlp)
 ):
     """Main record lookup endpoint."""
+    # --- SPECIAL HANDLING: "Prebuilt Character" Queries ---
+    result = find_prebuilt_character(query, cache.canon_map)
+    if result:
+        return sanitize_for_json(result)
+    # --- REGULAR LOGIC FOLLOWS ---
     file_path = os.path.join(settings.data_dir, file)
     if not os.path.isfile(file_path):
         logger.error(f"File not found: {file_path}")
         raise HTTPException(status_code=404, detail=f"File '{file}' not found")
-
     try:
         df = pd.read_csv(file_path, sep="\t", dtype=str).fillna("")
     except Exception as e:
         logger.error(f"Failed to read file '{file_path}': {e}", exc_info=True)
         raise HTTPException(status_code=500, detail="File loading error")
-
     result = match_query(query, df, cache.canon_map, nlp_model)
     if result:
         return sanitize_for_json(result)
