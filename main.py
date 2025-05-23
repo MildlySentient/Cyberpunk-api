@@ -126,7 +126,17 @@ fuzzy_processors = {}
 
 def match_query(query, col, df, file_id=None):
     if df is None or df.empty or col not in df.columns:
-        return {}
+    
+    # Canon map fallback: role + gender
+    if "canon_map" in cache:
+        terms = query.lower().split()
+        role = next((t for t in terms if t in cache["canon_map"]), None)
+        gender = next((t for t in terms if t in ["male", "female"]), None)
+        if role and gender:
+            candidates = cache["canon_map"][role].get(gender, [])
+            if candidates:
+                return candidates[0][1]  # return the first matching row dict
+    return {}
 
     query_lem = lemmatize(query)
 
@@ -172,6 +182,16 @@ def match_query(query, col, df, file_id=None):
             if not role_match.empty:
                 return role_match.iloc[0].to_dict()
 
+
+    # Canon map fallback: role + gender
+    if "canon_map" in cache:
+        terms = query.lower().split()
+        role = next((t for t in terms if t in cache["canon_map"]), None)
+        gender = next((t for t in terms if t in ["male", "female"]), None)
+        if role and gender:
+            candidates = cache["canon_map"][role].get(gender, [])
+            if candidates:
+                return candidates[0][1]  # return the first matching row dict
     return {}
 
 
@@ -427,11 +447,19 @@ if __name__ == "__main__":
     for tsv in tsv_files:
         try:
             df = pd.read_csv(tsv, sep="\t")
-            print(f"[OK] {os.path.basename(tsv)} â {df.shape[0]} rows, {df.shape[1]} columns")
+            print(f"[OK] {os.path.basename(tsv)} Ã¢ÂÂ {df.shape[0]} rows, {df.shape[1]} columns")
         except Exception as e:
-            print(f"[ERROR] {os.path.basename(tsv)} â {e}")
+            print(f"[ERROR] {os.path.basename(tsv)} Ã¢ÂÂ {e}")
 
 
 @app.get("/canon-map-keys")
 def get_canon_map_keys():
     return {"roles": list(cache.get("canon_map", {}).keys())}
+
+@app.get("/debug-canon-map", response_model=DataResultModel)
+def debug_canon_map():
+    try:
+        roles = list(cache.get("canon_map", {}).keys())
+        return DataResultModel(source="canon_map", result={"roles": roles}, note="Canon map roles loaded.")
+    except Exception as e:
+        return DataResultModel(source="canon_map", result={}, note=f"Error: {str(e)}")
