@@ -4,8 +4,7 @@ import logging
 import logging.config
 import math
 import yaml
-from typing import List, Dict, Any, Optional
-
+from typing import List, Dict, Any, Optional, Set
 import pandas as pd
 import spacy
 from fastapi import FastAPI, HTTPException, Query, Depends
@@ -16,8 +15,8 @@ from rapidfuzz import fuzz
 # ----------- CONFIGURATION -----------
 
 class Settings(BaseSettings):
-    cors_origins: List[str] = ["*"]  # Restrict for production!
-    data_dir: str = os.path.dirname(__file__)  # Flat repo: all .tsv in project root
+    cors_origins: List[str] = ["*"]
+    data_dir: str = os.path.dirname(__file__)
     logging_config: str = os.path.join(os.path.dirname(__file__), 'logging.yaml')
     spacy_model: str = "en_core_web_md"
     class Config:
@@ -84,11 +83,9 @@ cache.load_tsv_files(settings.data_dir)
 
 # ----------- INDEX-BASED ROUTING LOGIC -----------
 
-# Load index file as dataframe
 index_path = os.path.join(settings.data_dir, "Index.tsv")
 if os.path.isfile(index_path):
     index_df = pd.read_csv(index_path, sep="\t", dtype=str).fillna("")
-    # Build keyword-to-file mapping
     keyword_to_file = {}
     for _, row in index_df.iterrows():
         keywords = [w.strip().lower() for w in row['Description'].split(',')]
@@ -100,7 +97,6 @@ else:
     keyword_to_file = {}
 
 def route_query_to_files(user_query: str) -> List[str]:
-    """Return list of files in index that match keywords from user query."""
     words = set(user_query.lower().split())
     candidate_files = set()
     for word in words:
@@ -108,10 +104,19 @@ def route_query_to_files(user_query: str) -> List[str]:
             candidate_files.update(keyword_to_file[word])
     return list(candidate_files)
 
+# ----------- SYNONYMS -----------
+
+SYNONYMS = {
+    "roll": ["dice", "rolls", "rolling", "throw", "toss", "cast", "drop", "flip", "chuck", "shake", "d10", "d6", "d100", "percentile", "random", "test", "check", "try my luck", "luck roll", "death roll", "combat roll"],
+    "d10": ["ten-sided", "1d10", "d 10", "ten die", "roll d10", "nat 10", "natural 10", "critical roll"],
+    "d6": ["six-sided", "1d6", "d 6", "six die", "roll d6"],
+    "d100": ["percentile", "1d100", "hundred-sided", "d 100", "roll d100", "percent roll"],
+    "initiative": ["combat order", "who goes first", "turn order", "init", "move order", "who acts first"],
+}
+
 # ----------- UTILITY FUNCTIONS -----------
 
 def sanitize_for_json(obj: Any) -> Any:
-    """Ensure data is serializable for JSON responses."""
     if isinstance(obj, dict):
         return {k: sanitize_for_json(v) for k, v in obj.items()}
     elif isinstance(obj, list):
@@ -123,30 +128,16 @@ def sanitize_for_json(obj: Any) -> Any:
     else:
         return obj
 
-SYNONYMS = {
-    "roll": ["dice", "rolls", "rolling", "throw", "toss", "cast", "drop", "flip", "chuck", "shake", "d10", "d6", "d100", "percentile", "random", "test", "check", "try my luck", "luck roll", "death roll", "combat roll"],
-    "d10": ["ten-sided", "1d10", "d 10", "ten die", "roll d10", "nat 10", "natural 10", "critical roll"],
-    "d6": ["six-sided", "1d6", "d 6", "six die", "roll d6"],
-    "d100": ["percentile", "1d100", "hundred-sided", "d 100", "roll d100", "percent roll"],
-    "initiative": ["combat order", "who goes first", "turn order", "init", "move order", "who acts first"],
-}
-
 # ----------- PREBUILT CHARACTER HANDLER -----------
 
 def find_prebuilt_character(query: str, canon_map: Dict[str, Dict[str, list]]) -> Optional[Dict[str, Any]]:
-    """
-    Special handler: if query contains 'prebuilt character', search canon_map for available prebuilt roles/genders.
-    """
     query_lower = query.lower()
     if "prebuilt character" in query_lower:
-        # Remove 'prebuilt character' to get the real role/gender
         parts = query_lower.replace("prebuilt character", "").strip().split()
         role = next((t for t in parts if t in canon_map), None)
         gender = next((t for t in parts if t in ["male", "female"]), None)
         if role and gender and role in canon_map and gender in canon_map[role]:
-            # Return the first prebuilt matching role/gender
             return canon_map[role][gender][0]
-        # No specific role/gender: list all available combos
         available = []
         for role in canon_map:
             for gender in canon_map[role]:
@@ -157,65 +148,104 @@ def find_prebuilt_character(query: str, canon_map: Dict[str, Dict[str, list]]) -
         }
     return None
 
-# ----------- QUERY MATCHING -----------
+# ----------- RECURSIVE QUERY OVERKILL -----------
 
-def match_query(
+def match_query_recursive(
     query: str,
     df: Optional[pd.DataFrame],
     canon_map: Dict[str, Dict[str, list]],
     nlp_model,
+    depth=0,
+    tried: Optional[Set[str]] = None,
+    max_depth=3,
+    partials: Optional[List[str]] = None,
 ) -> Optional[Dict[str, Any]]:
-    """Return the best-matching row from the dataframe or canon_map, or None."""
-    if df is None or not isinstance(df, pd.DataFrame) or df.empty:
-        logger.warning("No DataFrame provided or DataFrame is empty.")
+    """
+    A total, maximum effort matcher. Tries direct, synonym, fuzzy, vector, role/gender, and recursively retries up to 3 layers.
+    Returns result or best-effort "close matches" as last resort.
+    """
+    if tried is None:
+        tried = set()
+    if partials is None:
+        partials = []
+    if query in tried or depth > max_depth:
         return None
+    tried.add(query)
+    logger.info(f"[Depth {depth}] Attempting to match query: {query!r}")
 
     query_lower = query.lower()
 
     # 1. Direct string match
-    mask = df.apply(lambda row: query_lower in " ".join(str(x).lower() for x in row), axis=1)
-    if mask.any():
-        return df[mask].iloc[0].to_dict()
+    if df is not None and not df.empty:
+        mask = df.apply(lambda row: query_lower in " ".join(str(x).lower() for x in row), axis=1)
+        if mask.any():
+            logger.info(f"[Depth {depth}] Direct match found")
+            return df[mask].iloc[0].to_dict()
+        # Collect partials for recursion
+        partials += [str(row["Name"]) for _, row in df[mask].iterrows() if "Name" in row]
 
     # 2. Synonym match
     for word, syns in SYNONYMS.items():
         if any(s in query_lower for s in syns):
-            mask = df.apply(lambda row: word in " ".join(str(x).lower() for x in row), axis=1)
-            if mask.any():
-                return df[mask].iloc[0].to_dict()
+            if df is not None and not df.empty:
+                mask = df.apply(lambda row: word in " ".join(str(x).lower() for x in row), axis=1)
+                if mask.any():
+                    logger.info(f"[Depth {depth}] Synonym match found for '{word}'")
+                    return df[mask].iloc[0].to_dict()
+                partials += [str(row["Name"]) for _, row in df[mask].iterrows() if "Name" in row]
 
-    # 3. Fuzzy match (partial ratio >90)
-    for idx, row in df.iterrows():
-        try:
-            score = fuzz.partial_ratio(query_lower, " ".join(str(x).lower() for x in row))
-            if score > 90:
-                return row.to_dict()
-        except Exception as e:
-            logger.error(f"Fuzzy match error at row {idx}: {e}")
+    # 3. Fuzzy match (>90)
+    if df is not None and not df.empty:
+        for idx, row in df.iterrows():
+            try:
+                score = fuzz.partial_ratio(query_lower, " ".join(str(x).lower() for x in row))
+                if score > 90:
+                    logger.info(f"[Depth {depth}] Fuzzy match found: score={score}")
+                    return row.to_dict()
+                elif score > 70:
+                    # Only use higher partials, not every single low score
+                    partials.append(str(row.get("Name", "")))
+            except Exception as e:
+                logger.error(f"Fuzzy match error at row {idx}: {e}")
 
-    # 4. Semantic vector similarity
-    if nlp_model:
+    # 4. Vector similarity (>0.92)
+    if nlp_model and df is not None and not df.empty:
         try:
             query_doc = nlp_model(query_lower)
             row_docs = [nlp_model(" ".join(str(x).lower() for x in row)) for _, row in df.iterrows()]
             sims = [query_doc.similarity(row_doc) for row_doc in row_docs]
             if sims and max(sims) > 0.92:
                 best_idx = sims.index(max(sims))
+                logger.info(f"[Depth {depth}] Vector similarity match found")
                 return df.iloc[best_idx].to_dict()
         except Exception as e:
             logger.error(f"Vector similarity error: {e}")
 
-    # 5. Fallback: use canon_map role+gender if present
+    # 5. Role+Gender fallback
     terms = query_lower.split()
     role = next((t for t in terms if t in canon_map), None)
     gender = next((t for t in terms if t in ["male", "female"]), None)
     if role and gender:
         try:
+            logger.info(f"[Depth {depth}] Role+Gender fallback used")
             return canon_map[role][gender][0]
         except Exception:
             pass
 
-    logger.info(f"No match for query: '{query}'")
+    # 6. Try partials recursively (the "madman" fallback)
+    if depth < max_depth:
+        # Remove empties/duplicates
+        next_partials = [p for p in set(partials) if p and p not in tried]
+        for part in next_partials:
+            logger.info(f"[Depth {depth}] Recursively matching on partial: {part!r}")
+            result = match_query_recursive(part, df, canon_map, nlp_model, depth+1, tried, max_depth)
+            if result:
+                return result
+
+    if depth == 0:
+        logger.info("Total query exhaustion: returning all partials as fallback.")
+        return {"close_matches": list(set(partials)), "message": "No canonical match, these partials were tried."}
+
     return None
 
 # ----------- FASTAPI APP SETUP -----------
@@ -234,11 +264,8 @@ def get_cache():
 def get_nlp():
     return nlp
 
-# ----------- API ENDPOINTS -----------
-
 @app.get("/canon-map-keys", response_model=Dict[str, List[str]])
 def get_canon_map_keys(cache: DataCache = Depends(get_cache)):
-    """Get all roles from the canonical map (for debugging/discovery)."""
     return {"roles": list(cache.canon_map.keys())}
 
 @app.get("/lookup")
@@ -248,19 +275,16 @@ def lookup(
     cache: DataCache = Depends(get_cache),
     nlp_model = Depends(get_nlp)
 ):
-    """Main record lookup endpoint."""
-    # --- SPECIAL HANDLING: "Prebuilt Character" Queries ---
+    # Special prebuilt handler
     result = find_prebuilt_character(query, cache.canon_map)
     if result:
         return sanitize_for_json(result)
-    
-    # --- ROUTING LOGIC: Use Index.tsv if no file provided ---
+
     files_to_search = [file] if file else route_query_to_files(query)
     if not files_to_search:
         logger.error("Could not find relevant data file for query.")
         raise HTTPException(status_code=404, detail="No relevant file found for query.")
 
-    # Search all candidate files until a match is found
     for file_path in files_to_search:
         path = os.path.join(settings.data_dir, file_path)
         if not os.path.isfile(path):
@@ -268,7 +292,7 @@ def lookup(
             continue
         try:
             df = pd.read_csv(path, sep="\t", dtype=str).fillna("")
-            result = match_query(query, df, cache.canon_map, nlp_model)
+            result = match_query_recursive(query, df, cache.canon_map, nlp_model)
             if result:
                 return sanitize_for_json(result)
         except Exception as e:
@@ -279,15 +303,12 @@ def lookup(
 
 @app.get("/healthz")
 def health_check():
-    """Liveness probe."""
     return {"status": "ok"}
 
 @app.post("/reload")
 def reload_data(cache: DataCache = Depends(get_cache)):
-    """Manual reload of TSV data (admin/dev endpoint)."""
     cache.load_tsv_files(settings.data_dir)
     return {"status": "reloaded"}
 
-# ---- Initial data load on startup ----
 if __name__ == "__main__":
     cache.load_tsv_files(settings.data_dir)
