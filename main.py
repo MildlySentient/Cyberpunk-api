@@ -82,6 +82,32 @@ class DataCache:
 cache = DataCache()
 cache.load_tsv_files(settings.data_dir)
 
+# ----------- INDEX-BASED ROUTING LOGIC -----------
+
+# Load index file as dataframe
+index_path = os.path.join(settings.data_dir, "Index.tsv")
+if os.path.isfile(index_path):
+    index_df = pd.read_csv(index_path, sep="\t", dtype=str).fillna("")
+    # Build keyword-to-file mapping
+    keyword_to_file = {}
+    for _, row in index_df.iterrows():
+        keywords = [w.strip().lower() for w in row['Description'].split(',')]
+        for kw in keywords:
+            if kw:
+                keyword_to_file.setdefault(kw, set()).add(row['File_Name'])
+else:
+    logger.warning("Index.tsv not found; keyword routing will not work.")
+    keyword_to_file = {}
+
+def route_query_to_files(user_query: str) -> List[str]:
+    """Return list of files in index that match keywords from user query."""
+    words = set(user_query.lower().split())
+    candidate_files = set()
+    for word in words:
+        if word in keyword_to_file:
+            candidate_files.update(keyword_to_file[word])
+    return list(candidate_files)
+
 # ----------- UTILITY FUNCTIONS -----------
 
 def sanitize_for_json(obj: Any) -> Any:
@@ -218,7 +244,7 @@ def get_canon_map_keys(cache: DataCache = Depends(get_cache)):
 @app.get("/lookup")
 def lookup(
     query: str = Query(..., description="Search query"),
-    file: str = Query(..., description="TSV filename (e.g., acpa_table.tsv)"),
+    file: str = Query(None, description="TSV filename (optional)"),
     cache: DataCache = Depends(get_cache),
     nlp_model = Depends(get_nlp)
 ):
@@ -227,20 +253,29 @@ def lookup(
     result = find_prebuilt_character(query, cache.canon_map)
     if result:
         return sanitize_for_json(result)
-    # --- REGULAR LOGIC FOLLOWS ---
-    file_path = os.path.join(settings.data_dir, file)
-    if not os.path.isfile(file_path):
-        logger.error(f"File not found: {file_path}")
-        raise HTTPException(status_code=404, detail=f"File '{file}' not found")
-    try:
-        df = pd.read_csv(file_path, sep="\t", dtype=str).fillna("")
-    except Exception as e:
-        logger.error(f"Failed to read file '{file_path}': {e}", exc_info=True)
-        raise HTTPException(status_code=500, detail="File loading error")
-    result = match_query(query, df, cache.canon_map, nlp_model)
-    if result:
-        return sanitize_for_json(result)
-    raise HTTPException(status_code=404, detail="No matching record found.")
+    
+    # --- ROUTING LOGIC: Use Index.tsv if no file provided ---
+    files_to_search = [file] if file else route_query_to_files(query)
+    if not files_to_search:
+        logger.error("Could not find relevant data file for query.")
+        raise HTTPException(status_code=404, detail="No relevant file found for query.")
+
+    # Search all candidate files until a match is found
+    for file_path in files_to_search:
+        path = os.path.join(settings.data_dir, file_path)
+        if not os.path.isfile(path):
+            logger.warning(f"File not found: {path}")
+            continue
+        try:
+            df = pd.read_csv(path, sep="\t", dtype=str).fillna("")
+            result = match_query(query, df, cache.canon_map, nlp_model)
+            if result:
+                return sanitize_for_json(result)
+        except Exception as e:
+            logger.error(f"Failed to read file '{path}': {e}", exc_info=True)
+            continue
+
+    raise HTTPException(status_code=404, detail="No matching record found in any relevant file.")
 
 @app.get("/healthz")
 def health_check():
