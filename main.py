@@ -12,6 +12,21 @@ from pydantic import BaseModel, Field
 from rapidfuzz import fuzz
 from sklearn.metrics.pairwise import cosine_similarity
 
+
+import math
+
+def sanitize_for_json(obj):
+    if isinstance(obj, dict):
+        return {k: sanitize_for_json(v) for k, v in obj.items()}
+    elif isinstance(obj, list):
+        return [sanitize_for_json(v) for v in obj]
+    elif isinstance(obj, float):
+        return 0.0 if not math.isfinite(obj) else obj
+    elif pd.isna(obj):
+        return ""
+    else:
+        return obj
+
 # --- Combat modules ---
 from cyberpunk2020_engine import roll_d6, roll_d10, roll_d100
 from combat_tracker import start_combat, next_turn, get_current_turn
@@ -231,7 +246,7 @@ async def get_data(payload: QueryRequest = Body(...)):
                         if match_row:
                             if fields:
                                 match_row = {k: v for k, v in match_row.items() if k in fields}
-                            return DataResultModel(source=sub_file, result=match_row)
+                            return DataResultModel(source=sub_file, result=sanitize_for_json(match_row))
                         mask = sub_df.apply(lambda row: query.lower() in str(row).lower(), axis=1)
                         results = sub_df[mask] if not sub_df.empty else pd.DataFrame()
                         total = len(results)
@@ -243,13 +258,13 @@ async def get_data(payload: QueryRequest = Body(...)):
                                 paged = paged[fields]
                             out = paged.to_dict(orient="records")
                             note = f"{total} results; page {page}, page size {page_size}" + ("; truncated" if total > page_size else "")
-                            return DataResultModel(source=sub_file, result=out, note=note)
+                            return DataResultModel(source=sub_file, result=sanitize_for_json(out), note=note)
                         return DataResultModel(source=sub_file, result=[], note="No results found in sub-table.")
                     else:
                         return DataResultModel(source=core_file, result=core_row, note=f"Linked file {sub_file} not found.")
             if fields and isinstance(core_row, dict):
                 core_row = {k: v for k, v in core_row.items() if k in fields}
-            return DataResultModel(source=core_file, result=core_row)
+            return DataResultModel(source=core_file, result=sanitize_for_json(core_row))
     # --- Hybrid Fallback: Directory-wide Scan ---
     data_folder = os.path.dirname(__file__)
     file, df = fallback_file_lookup(query, data_folder)
@@ -258,10 +273,10 @@ async def get_data(payload: QueryRequest = Body(...)):
         mask = df.apply(lambda row: query.lower() in str(row).lower(), axis=1)
         results = df[mask] if not df.empty else pd.DataFrame()
         if not results.empty:
-            return DataResultModel(source=file, result=results.head(page_size).to_dict(orient="records"),
+            return DataResultModel(source=file, result=sanitize_for_json(results.head(page_size).to_dict(orient="records")),
                                    note="Result from direct file scan (hybrid fallback).")
         # Fallback: Just return top N rows
-        return DataResultModel(source=file, result=df.head(page_size).to_dict(orient="records"),
+        return DataResultModel(source=file, result=sanitize_for_json(df.head(page_size).to_dict(orient="records")),
                                note="Result from direct file scan, no strong row match.")
     return DataResultModel(source="none", result={}, note="No matching file or data found.")
 
