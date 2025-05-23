@@ -2,6 +2,7 @@ import logging
 import os
 import glob
 import json
+import traceback
 from typing import List, Union, Optional, Dict, Any, Tuple
 
 import pandas as pd
@@ -51,7 +52,7 @@ synonyms = {
 try:
     nlp = spacy.load("en_core_web_md")
 except Exception as e:
-    logger.error(f"Failed to load spaCy model: {e}")
+    logger.error(f"Failed to load spaCy model: {e}\n{traceback.format_exc()}")
     nlp = None
 
 def sanitize_for_json(obj):
@@ -80,9 +81,9 @@ def load_files():
                     if not role or not gender:
                         continue
                     cache["canon_map"].setdefault(role, {}).setdefault(gender, []).append((os.path.basename(tsv), row.to_dict()))
-            logger.info(f"[OK] {os.path.basename(tsv)} â {df.shape[0]} rows, {df.shape[1]} columns")
+            logger.info(f"[OK] {os.path.basename(tsv)} – {df.shape[0]} rows, {df.shape[1]} columns")
         except Exception as e:
-            logger.error(f"[ERROR] {os.path.basename(tsv)} â {e}")
+            logger.error(f"[ERROR] {os.path.basename(tsv)} – {e}\n{traceback.format_exc()}")
 
 @app.get("/canon-map-keys")
 def get_canon_map_keys():
@@ -95,43 +96,62 @@ def match_query(query: str, df: Optional[pd.DataFrame] = None) -> Optional[Dict[
 
     query_lower = query.lower()
 
-    mask = df.apply(lambda row: query_lower in " ".join(str(x).lower() for x in row), axis=1)
-    if mask.any():
-        return df[mask].iloc[0].to_dict()
+    # 1. Direct match
+    try:
+        mask = df.apply(lambda row: query_lower in " ".join(str(x).lower() for x in row), axis=1)
+        if mask.any():
+            return df[mask].iloc[0].to_dict()
+    except Exception as e:
+        logger.error(f"Direct match error: {e}\n{traceback.format_exc()}")
 
-    for word, syns in synonyms.items():
-        if any(s in query_lower for s in syns):
-            mask = df.apply(lambda row: word in " ".join(str(x).lower() for x in row), axis=1)
-            if mask.any():
-                return df[mask].iloc[0].to_dict()
+    # 2. Synonym match
+    try:
+        for word, syns in synonyms.items():
+            if any(s in query_lower for s in syns):
+                mask = df.apply(lambda row: word in " ".join(str(x).lower() for x in row), axis=1)
+                if mask.any():
+                    return df[mask].iloc[0].to_dict()
+    except Exception as e:
+        logger.error(f"Synonym match error: {e}\n{traceback.format_exc()}")
 
-    for idx, row in df.iterrows():
-        try:
-            score = fuzz.partial_ratio(query_lower, " ".join(str(x).lower() for x in row))
-            if score > 90:
-                return row.to_dict()
-        except Exception as e:
-            logger.error(f"Fuzzy match error at row {idx}: {e}")
+    # 3. Fuzzy match
+    try:
+        for idx, row in df.iterrows():
+            try:
+                score = fuzz.partial_ratio(query_lower, " ".join(str(x).lower() for x in row))
+                if score > 90:
+                    return row.to_dict()
+            except Exception as e:
+                logger.error(f"Fuzzy match error at row {idx}: {e}\n{traceback.format_exc()}")
+    except Exception as e:
+        logger.error(f"Fuzzy match loop error: {e}\n{traceback.format_exc()}")
 
+    # 4. Vector similarity (if NLP model loaded)
     if nlp:
         try:
             query_doc = nlp(query_lower)
             row_docs = [nlp(" ".join(str(x).lower() for x in row)) for _, row in df.iterrows()]
             sims = [query_doc.similarity(row_doc) for row_doc in row_docs]
-            if max(sims) > 0.92:
+            if sims and max(sims) > 0.92:
                 best_idx = sims.index(max(sims))
                 return df.iloc[best_idx].to_dict()
         except Exception as e:
-            logger.error(f"Vector similarity error: {e}")
+            logger.error(f"Vector similarity error: {e}\n{traceback.format_exc()}")
 
-    terms = query_lower.split()
-    role = next((t for t in terms if t in cache["canon_map"]), None)
-    gender = next((t for t in terms if t in ["male", "female"]), None)
-    if role and gender:
-        try:
-            return cache["canon_map"][role][gender][0][1]
-        except Exception as e:
-            logger.error(f"Canon map fallback error: {e}")
+    # 5. Canonical role/gender fallback (for queries like 'female medtech')
+    try:
+        terms = query_lower.split()
+        role = next((t for t in terms if t in cache["canon_map"]), None)
+        gender = next((t for t in terms if t in ["male", "female"]), None)
+        if role and gender:
+            try:
+                return cache["canon_map"][role][gender][0][1]
+            except KeyError:
+                logger.warning(f"No canonical entry for role '{role}' and gender '{gender}'.")
+            except Exception as e:
+                logger.error(f"Canon map fallback error: {e}\n{traceback.format_exc()}")
+    except Exception as e:
+        logger.error(f"Canon map block error: {e}\n{traceback.format_exc()}")
 
     logger.info(f"No match for query: '{query}'")
     return None
@@ -141,10 +161,10 @@ def lookup(query: str, file: str):
     try:
         df = pd.read_csv(file, sep="\t", dtype=str).fillna("")
     except FileNotFoundError as e:
-        logger.error(f"File not found: {file} â {e}")
+        logger.error(f"File not found: {file} – {e}")
         raise HTTPException(status_code=404, detail=f"File '{file}' not found")
     except Exception as e:
-        logger.error(f"Error loading file '{file}': {e}")
+        logger.error(f"Error loading file '{file}': {e}\n{traceback.format_exc()}")
         raise HTTPException(status_code=500, detail="File loading error")
     result = match_query(query, df)
     if result:
