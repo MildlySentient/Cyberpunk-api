@@ -16,8 +16,8 @@ from rapidfuzz import fuzz
 # ----------- CONFIGURATION -----------
 
 class Settings(BaseSettings):
-    cors_origins: List[str] = ["*"]  # For production, specify your allowed origins.
-    data_dir: str = os.path.join(os.path.dirname(__file__), 'data')
+    cors_origins: List[str] = ["*"]  # Restrict for production!
+    data_dir: str = os.path.dirname(__file__)  # Flat repo: all .tsv in project root
     logging_config: str = os.path.join(os.path.dirname(__file__), 'logging.yaml')
     spacy_model: str = "en_core_web_md"
     class Config:
@@ -46,6 +46,7 @@ logger = logging.getLogger("cyberpunk_api")
 
 try:
     nlp = spacy.load(settings.spacy_model)
+    logger.info(f"Loaded spaCy model: {settings.spacy_model}")
 except Exception as e:
     logger.error(f"Failed to load spaCy model: {e}", exc_info=True)
     nlp = None
@@ -58,7 +59,9 @@ class DataCache:
         self.tsv_files: List[str] = []
 
     def load_tsv_files(self, data_dir: str):
-        self.tsv_files = glob.glob(os.path.join(data_dir, '**', '*.tsv'), recursive=True)
+        tsv_pattern = os.path.join(data_dir, '*.tsv')
+        self.tsv_files = glob.glob(tsv_pattern)
+        logger.info(f"Scanning for .tsv files in: {data_dir}")
         logger.info(f"Found {len(self.tsv_files)} TSV files in canon.")
         self.canon_map = {}
         for tsv in self.tsv_files:
@@ -93,7 +96,6 @@ def sanitize_for_json(obj: Any) -> Any:
     else:
         return obj
 
-# Synonym dictionary for flexible lookup.
 SYNONYMS = {
     "roll": ["dice", "rolls", "rolling", "throw", "toss", "cast", "drop", "flip", "chuck", "shake", "d10", "d6", "d100", "percentile", "random", "test", "check", "try my luck", "luck roll", "death roll", "combat roll"],
     "d10": ["ten-sided", "1d10", "d 10", "ten die", "roll d10", "nat 10", "natural 10", "critical roll"],
@@ -171,8 +173,6 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# ----------- DEPENDENCY INJECTION -----------
-
 def get_cache():
     return cache
 
@@ -189,7 +189,7 @@ def get_canon_map_keys(cache: DataCache = Depends(get_cache)):
 @app.get("/lookup")
 def lookup(
     query: str = Query(..., description="Search query"),
-    file: str = Query(..., description="Relative path to TSV file, from /data"),
+    file: str = Query(..., description="TSV filename (e.g., acpa_table.tsv)"),
     cache: DataCache = Depends(get_cache),
     nlp_model = Depends(get_nlp)
 ):
