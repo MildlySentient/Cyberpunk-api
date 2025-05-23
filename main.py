@@ -335,7 +335,7 @@ def load_game(data: LoadGameRequest):
 
 # --- System Health and Index Routes ---
 
-@app.get("/", response_model=DataResultModel)
+@app.api_route("/", methods=["GET", "HEAD"], response_model=DataResultModel)
 def root():
     logger.info("Root route accessed")
     return DataResultModel(
