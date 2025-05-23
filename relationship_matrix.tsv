@@ -1,4 +1,4 @@
-Relationship	Type/Event	Positive Outcome	Negative Outcome	Resist/Check
+Relationship	Type/Event	Positive_Outcome	Negative_Outcome	Resist/Check
 New Ally	Job/Hook	Access to new resources, job, or gear	Potential betrayal	COOL vs. 12 to build trust; Fixer: reroll, Solo: +1 for intimidation
 Rivalry Emerges	Conflict/Past	Boost to skill in competition	Chance of sabotage	EMP vs. 13 to avoid paranoia; Solo: reroll, Nomad: +1 to outmaneuver
 Old Flame Returns	Drama/History	Renewed bond, secret aid	Jealousy, betrayal	COOL vs. 13 to maintain focus; Rockerboy: reroll, Fixer: +1 to social

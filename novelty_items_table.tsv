@@ -1,5 +1,5 @@
-uuid,created_at,created_longitude,created_latitude,modified_at,modified_longitude,modified_latitude,accessed_at,content,tags,folder,flagged,languageGrammar
-"CAD5C719-D791-4901-980F-0C7B66C1EF94",2025-05-21T08:32:53Z,0.0,0.0,2025-05-21T08:32:56Z,0.0,0.0,2025-05-21T08:32:53Z,"Item Name	Gear Type	Description/Function	Effect/Modifier	Required Stat/Skill	Cost (eb)	Weight (kg)	Power Requirement	Maintenance/Failure	Availability	Source	Special Notes
+uuid	created_at	created_longitude	created_latitude	modified_at	modified_longitude	modified_latitude	accessed_at	content	tags	folder	flagged	languageGrammar
+CAD5C719-D791-4901-980F-0C7B66C1EF94	2025-05-21T08:32:53Z	0.0	0.0	2025-05-21T08:32:56Z	0.0	0.0	2025-05-21T08:32:53Z	"Item Name	Gear Type	Description/Function	Effect/Modifier	Required Stat/Skill	Cost (eb)	Weight (kg)	Power Requirement	Maintenance/Failure	Availability	Source	Special Notes
 Utopian Small Wonders NanoAgents	Novelty/Utility	Programmable micro cleaning agents (e.g., Kleen Bore, Nanair, AutoGloss)	Cleans/waxes/etc. per application	None	50 per tube	0.01	None	Single use	Common	Chromebook 3, p.3	10 uses per tube
 Banzai Bonsai	Novelty/Decorative	Genetically engineered houseplant	None—decor only	None	50	0.3	None	Weekly watering	Common	Chromebook 2, p.37	Color-changing leaves
 PartyPopper Fetti-Grenade	Novelty/Party	Self-contained confetti popper	Bursts in lights and noise	None	10	0.1	None	Single use	Common	Chromebook 2, p.38	No damage, just fun
@@ -29,4 +29,4 @@ PatchMark Glow Marker	Novelty/Personal	Pen-size, paint-on, glows 24h	No effect�
 MoodShade Desk Light	Novelty/Personal	Smart, color-shifting desk lamp	No effect—style/stress	Fashion	27	0.23	Battery	Recharge monthly	Common	V3.0 Core, p.115	Touch, voice, or app
 GlowTag Safety Patch	Clothing/Utility	Clip-on, LED for visibility on bag/clothes	No effect—safety only	Fashion	8	0.01	Battery	Replace yearly	Common	V3.0 Core, p.142	Red, green, yellow, blue
 SnapMark Key Label	Novelty/Personal	Color-coded, writable, reusable key label ring	No effect—organization only	None	3	0.01	None	None	Common	V3.0 Core, p.113	Pack of 8
-PulseKey Wireless Key Finder	Novelty/Personal	Finds lost keys/wallet up to 50m	Beep/flash to fob	None	35	0.02	Battery	Replace yearly	Common	V3.0 Core, p.113	Fob, card, sticker versions","",0,false,Markdown
+PulseKey Wireless Key Finder	Novelty/Personal	Finds lost keys/wallet up to 50m	Beep/flash to fob	None	35	0.02	Battery	Replace yearly	Common	V3.0 Core, p.113	Fob, card, sticker versions"		0	false	Markdown

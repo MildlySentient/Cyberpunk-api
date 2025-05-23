@@ -1,5 +1,5 @@
-uuid,created_at,created_longitude,created_latitude,modified_at,modified_longitude,modified_latitude,accessed_at,content,tags,folder,flagged,languageGrammar
-"A83D465F-8943-40EF-839A-5DC995469153",2025-05-21T08:27:12Z,0.0,0.0,2025-05-21T08:27:27Z,0.0,0.0,2025-05-21T08:27:12Z,"Item Name	Gear Type	Description/Function	Effect/Modifier	Stat/Skill	Cost (eb)	Weight (kg)	Power/Maint	Avail	Source	Special Notes
+uuid	created_at	created_longitude	created_latitude	modified_at	modified_longitude	modified_latitude	accessed_at	content	tags	folder	flagged	languageGrammar
+A83D465F-8943-40EF-839A-5DC995469153	2025-05-21T08:27:12Z	0.0	0.0	2025-05-21T08:27:27Z	0.0	0.0	2025-05-21T08:27:12Z	"Item Name	Gear Type	Description/Function	Effect/Modifier	Stat/Skill	Cost (eb)	Weight (kg)	Power/Maint	Avail	Source	Special Notes
 Techie’s Deluxe Tool Roll	Tool/Kit	Comprehensive field tool roll	+1 Tech field repairs	Tech	950	3	None/Clean after use	Common	Chromebook 2, p.14	Diagnostics, torque, micro-tools
 Field Diagnostic Kit	Tool	Portable kit for field technical diagnosis	+1 repair/diagnose	Tech	500	1.5	None/Clean after use	Common	Chromebook 1, p.14	Common tools/testers
 Portable Repair Kit	Tool	General-purpose tech repair kit	+1 field repairs	Tech	200	1.1	None/Clean after use	Common	Chromebook 1, p.14	Spares/multi-use tools
@@ -25,4 +25,4 @@ Mister Micro Maintenance Bot	Utility/Field Tool	Programmable micro repair drone	
 BubbleMesh Shelter	Utility/Field Gear	Inflatable personal tent, weather-resistant	+2 Endurance vs. cold/rain	—	450	1.7	None/Air-dry	Uncommon	V3.0 Core, p.193	Sleeps 2, glows at night
 GlowPen Personal Light	Utility/Accessory	LED marker pen/flashlight	Small work illumination	—	10	0.02	Battery/200h	Common	Chromebook 4, p.22	Pen cap style
 SolarSkin Personal Panel	Utility	Clip-on wearable solar cell	Charges small gadgets	—	60	0.12	None/Wipe clean	Common	V3.0 Core, p.23	Weatherproof
-FlexNote Sticky Tablet	Personal Electronics	Peel-off, digital notepad, 20 reusable sheets	+1 Education note-taking	Education	24	0.04	Battery/Monthly	Common	V3.0 Core, p.113	Sync to phone","",0,false,Markdown
+FlexNote Sticky Tablet	Personal Electronics	Peel-off, digital notepad, 20 reusable sheets	+1 Education note-taking	Education	24	0.04	Battery/Monthly	Common	V3.0 Core, p.113	Sync to phone"		0	false	Markdown

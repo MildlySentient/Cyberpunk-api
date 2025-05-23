@@ -1,4 +1,4 @@
-Job Type	Scenario/Specialist Contact	Target/Location	Main Task	Complication	Reward/Outcome	Resist/Check
+Job_Type	Scenario/Specialist_Contact	Target/Location	Main_Task	Complication	Reward/Outcome	Resist/Check
 Political Assassination	Corp Handler	City Council Member	Eliminate political rival discreetly	Target is heavily guarded, media watching	Cash, corp favor, power shift	COOL vs. 14 to avoid suspicion; Solo: reroll
 Experimental Extraction	Black Ops Team	Secret Research Lab	Extract prototype tech before sabotage	Facility is on lockdown, AI defense active	Cash, rare tech, intel	TECH vs. 14 to bypass security; Techie: reroll
 Diplomatic Sabotage	Corporate Spy	Foreign Embassy	Disrupt trade talks covertly	Embassy under surveillance, double agents	Cash, blackmail, political leverage	COOL vs. 13 to handle double agents; Fixer: reroll

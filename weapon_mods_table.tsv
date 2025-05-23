@@ -1,20 +1,20 @@
-Mod Name	Compatible Weapons	Effect	Cost (eb)	Weight (kg)	Availability	DV Modifier	Notes	Source
-Silencer	Handguns, SMGs	Reduces firing noise, -2 detection rolls	800	0.5	Common	-2	Requires regular cleaning	Blackhand’s
-Extended Magazine	Handguns, SMGs, Rifles	Increases ammo capacity by 50%	500	0.7	Common	0	May increase reload time	Core Rulebook
-Smartgun Link	Smartguns	Auto-aim assistance, +2 to hit	1500	0.3	Uncommon	+2	Requires compatible optics	Chromebook 3/4
-Laser Sight	Handguns, SMGs, Rifles	Improves hip-fire accuracy, +1 to hit	400	0.2	Common	+1	Visible red beam	Chromebook 2
-Gyroscopic Stabilizer	SMGs, Rifles	Reduces recoil, -1 recoil penalty	1200	1.0	Rare	-1	Complex installation	Blackhand’s
-Biometric Grip	Handguns, SMGs	Requires user fingerprint, prevents theft	900	0.4	Uncommon	0	Locks gun to owner	Core Rulebook
-Recoil Compensator	Rifles, SMGs	Improves burst control, +1 accuracy	1000	1.2	Rare	+1	Helps maintain accuracy in bursts	Chromebook 3
-Smart Ammo Compatibility	Smartguns	Allows use of smart ammo types	2000	0.1	Very Rare	0	Enhances ammo performance	Chromebook 4
-Heat Dissipation System	Heavy Weapons	Prevents overheating in sustained fire	3500	2.5	Rare	0	Critical for heavy weapons	Maximum Metal
-Quick-Detach Stock	Rifles	Allows rapid removal of stock	600	0.8	Common	0	Favors mobility	Blackhand’s
-Silicon Trigger	Handguns	Softens trigger pull, +1 accuracy	700	0.1	Uncommon	+1	Requires gunsmithing	Core Rulebook
-Underbarrel Grenade Launcher	Rifles	Adds explosive capability	2500	3.5	Rare	+2	Uses 40mm grenades	Blackhand’s
-Thermal Scope	Rifles	Detects heat signatures, +2 to spotting	1800	0.9	Rare	+2	Requires power supply	Chromebook 3
-Night Vision Scope	Rifles	Improves vision in darkness, +1 to spotting	1400	0.8	Uncommon	+1	Requires power supply	Chromebook 2
-Laser Designator	Heavy Weapons	Marks targets for smart weapons	2300	1.5	Rare	+1	Works with smart ammo	Blackhand’s
-Tactical Flashlight	Handguns, Rifles	Illuminates target, -1 concealment	150	0.3	Common	0	Can give away position	Core Rulebook
-Silencer (Heavy)	Heavy Weapons	Reduces noise, -3 detection rolls	2500	1.5	Rare	-3	Requires specialist installation	Maximum Metal
-Shock Stock	Rifles	Delivers electric shock on melee hit	1200	1.2	Rare	+1	May stun target	Chromebook 4
-Quick Reload Mechanism	Handguns, SMGs	Reduces reload time by 1 action	900	0.3	Common	0	Requires training	Blackhand’s
+Notes	Source	Mod_Name	Compatible_Weapons	Effect	Cost_(eb)	Weight_(kg)	Availability	DV_Modifier
+Requires regular cleaning	Blackhand’s	Silencer	Handguns, SMGs	Reduces firing noise, -2 detection rolls	800	0.5	Common	-2
+May increase reload time	Core Rulebook	Extended Magazine	Handguns, SMGs, Rifles	Increases ammo capacity by 50%	500	0.7	Common	0
+Requires compatible optics	Chromebook 3/4	Smartgun Link	Smartguns	Auto-aim assistance, +2 to hit	1500	0.3	Uncommon	+2
+Visible red beam	Chromebook 2	Laser Sight	Handguns, SMGs, Rifles	Improves hip-fire accuracy, +1 to hit	400	0.2	Common	+1
+Complex installation	Blackhand’s	Gyroscopic Stabilizer	SMGs, Rifles	Reduces recoil, -1 recoil penalty	1200	1.0	Rare	-1
+Locks gun to owner	Core Rulebook	Biometric Grip	Handguns, SMGs	Requires user fingerprint, prevents theft	900	0.4	Uncommon	0
+Helps maintain accuracy in bursts	Chromebook 3	Recoil Compensator	Rifles, SMGs	Improves burst control, +1 accuracy	1000	1.2	Rare	+1
+Enhances ammo performance	Chromebook 4	Smart Ammo Compatibility	Smartguns	Allows use of smart ammo types	2000	0.1	Very Rare	0
+Critical for heavy weapons	Maximum Metal	Heat Dissipation System	Heavy Weapons	Prevents overheating in sustained fire	3500	2.5	Rare	0
+Favors mobility	Blackhand’s	Quick-Detach Stock	Rifles	Allows rapid removal of stock	600	0.8	Common	0
+Requires gunsmithing	Core Rulebook	Silicon Trigger	Handguns	Softens trigger pull, +1 accuracy	700	0.1	Uncommon	+1
+Uses 40mm grenades	Blackhand’s	Underbarrel Grenade Launcher	Rifles	Adds explosive capability	2500	3.5	Rare	+2
+Requires power supply	Chromebook 3	Thermal Scope	Rifles	Detects heat signatures, +2 to spotting	1800	0.9	Rare	+2
+Requires power supply	Chromebook 2	Night Vision Scope	Rifles	Improves vision in darkness, +1 to spotting	1400	0.8	Uncommon	+1
+Works with smart ammo	Blackhand’s	Laser Designator	Heavy Weapons	Marks targets for smart weapons	2300	1.5	Rare	+1
+Can give away position	Core Rulebook	Tactical Flashlight	Handguns, Rifles	Illuminates target, -1 concealment	150	0.3	Common	0
+Requires specialist installation	Maximum Metal	Silencer (Heavy)	Heavy Weapons	Reduces noise, -3 detection rolls	2500	1.5	Rare	-3
+May stun target	Chromebook 4	Shock Stock	Rifles	Delivers electric shock on melee hit	1200	1.2	Rare	+1
+Requires training	Blackhand’s	Quick Reload Mechanism	Handguns, SMGs	Reduces reload time by 1 action	900	0.3	Common	0

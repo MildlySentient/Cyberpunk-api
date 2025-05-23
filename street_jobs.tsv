@@ -1,4 +1,4 @@
-Job Type	Broker/Source	Target/Main Faction	Main Task	Complication	Reward/Outcome	Resist/Check
+Job_Type	Broker/Source	Target/Main_Faction	Main_Task	Complication	Reward/Outcome	Resist/Check
 Street Race	Chopshop fixer	Rival racer	Win illegal street race	Police patrol route, sabotage	Cash, car parts, rep	REF vs. 14 to win; Nomad: reroll
 Pawn Hustle	Pawnshop owner	Desperate seller	Flip stolen goods for quick profit	Stolen item is tracked, seller is NCPD snitch	Cash, gear, risk	COOL vs. 13 to spot setup; Fixer: reroll
 Scavenger Run	Street kid	Abandoned site	Salvage tech before gangers arrive	Gangers show up early, site is booby-trapped	Gear, info, favor	TECH vs. 13 to spot trap; Techie: reroll

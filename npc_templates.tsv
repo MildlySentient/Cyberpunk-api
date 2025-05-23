@@ -1,15 +1,15 @@
-Type	Role	Statline/Quirk	Complication/Event	Resist/Check
-Gang Enforcer	Solo	High REF/BODY, loyal, aggressive	May escalate to violence	COOL vs. 13 to defuse; Solo: reroll, Nomad: +1 streetwise
-Fixer	Broker	High COOL/EMP, networked, manipulative	May sell out PCs or demand bribe	INT vs. 13 to spot con; Fixer: reroll, Netrunner: +1
-Street Doc	Medtech	High TECH/EMP, scarred, practical	Risky surgery, possible data theft	TECH vs. 12 for safe op; Medtech: reroll, Techie: +1
-Ripperdoc	Black Market Medtech	Low ethics, experimental, well-armed	Cyberware glitch, law trouble	COOL vs. 14 to resist blackmail; Techie: reroll
-Corporate Agent	Corpo/Exec	High INT/COOL, ruthless, two-faced	May frame or exploit PCs	INT vs. 14 for negotiation; Netrunner: reroll, Fixer: +1
-Netrunner	Cyber Ops	High INT/REF, erratic, info-junky	ICE trace, blackmail	REF vs. 13 for hacks; Netrunner: reroll, Techie: +1
-Nomad Courier	Transport	High MA/BODY, family ties, secretive	Rival ambush, family obligation	BODY vs. 13 to escape; Nomad: reroll, Solo: +1
-Solo Merc	Combat Specialist	High REF/COOL, thrill-seeker, paranoid	Betrayal, emotional trauma	COOL vs. 13 to resist flaw; Solo: reroll
-Street Kid	Wild Card	High MA, resourceful, loyal/troubled	Gets PCs into trouble	INT vs. 12 to spot trap; Fixer: reroll
-Media	Journalist/Spin	High ATTR/INT, driven, vain	Spins story, leaks info	COOL vs. 12 to control story; Rockerboy: reroll, Netrunner: +1
-Police	Authority	High REF/COOL, rigid, suspicious	Corruption, bribe demand	COOL vs. 13 to avoid arrest; Fixer: reroll, Netrunner: +1 for systems
-Borg	Full Conversion	BODY/REF maxed, alien empathy	EMP loss, system glitch	EMP vs. 14 to resist flaw; Techie: reroll, Solo: +1 for combat
-Fixer Rival	Street Broker	High COOL, networked, vengeful	Spreads rumors, jobs dry up	COOL vs. 13 to manage fallout; Fixer: reroll
-AI	Network/Weird	High INT/COOL, unpredictable, secret goals	System shock, digital betrayal	INT vs. 15 to detect plan; Netrunner: reroll
+Role	Type	Statline/Quirk	Complication/Event	Resist/Check
+Solo	Gang Enforcer	High REF/BODY, loyal, aggressive	May escalate to violence	COOL vs. 13 to defuse; Solo: reroll, Nomad: +1 streetwise
+Broker	Fixer	High COOL/EMP, networked, manipulative	May sell out PCs or demand bribe	INT vs. 13 to spot con; Fixer: reroll, Netrunner: +1
+Medtech	Street Doc	High TECH/EMP, scarred, practical	Risky surgery, possible data theft	TECH vs. 12 for safe op; Medtech: reroll, Techie: +1
+Black Market Medtech	Ripperdoc	Low ethics, experimental, well-armed	Cyberware glitch, law trouble	COOL vs. 14 to resist blackmail; Techie: reroll
+Corpo/Exec	Corporate Agent	High INT/COOL, ruthless, two-faced	May frame or exploit PCs	INT vs. 14 for negotiation; Netrunner: reroll, Fixer: +1
+Cyber Ops	Netrunner	High INT/REF, erratic, info-junky	ICE trace, blackmail	REF vs. 13 for hacks; Netrunner: reroll, Techie: +1
+Transport	Nomad Courier	High MA/BODY, family ties, secretive	Rival ambush, family obligation	BODY vs. 13 to escape; Nomad: reroll, Solo: +1
+Combat Specialist	Solo Merc	High REF/COOL, thrill-seeker, paranoid	Betrayal, emotional trauma	COOL vs. 13 to resist flaw; Solo: reroll
+Wild Card	Street Kid	High MA, resourceful, loyal/troubled	Gets PCs into trouble	INT vs. 12 to spot trap; Fixer: reroll
+Journalist/Spin	Media	High ATTR/INT, driven, vain	Spins story, leaks info	COOL vs. 12 to control story; Rockerboy: reroll, Netrunner: +1
+Authority	Police	High REF/COOL, rigid, suspicious	Corruption, bribe demand	COOL vs. 13 to avoid arrest; Fixer: reroll, Netrunner: +1 for systems
+Full Conversion	Borg	BODY/REF maxed, alien empathy	EMP loss, system glitch	EMP vs. 14 to resist flaw; Techie: reroll, Solo: +1 for combat
+Street Broker	Fixer Rival	High COOL, networked, vengeful	Spreads rumors, jobs dry up	COOL vs. 13 to manage fallout; Fixer: reroll
+Network/Weird	AI	High INT/COOL, unpredictable, secret goals	System shock, digital betrayal	INT vs. 15 to detect plan; Netrunner: reroll

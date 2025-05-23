@@ -1,4 +1,4 @@
-Job Type	Contact/Team	Target/Location	Main Task	Complication	Reward/Outcome	Role/Stat Effect
+Job_Type	Contact/Team	Target/Location	Main_Task	Complication	Reward/Outcome	Role/Stat_Effect
 Emergency Extraction	Trauma Team	City Center	Rescue wounded exec under fire	Hostiles engage, crowd blocks route	High pay, corporate favor, medical supplies	REF vs. 13 to evade fire; Solo/Nomad: +2; Medtech: speed treat for bonus
 Black Market Ambulance	Underground Medic	Combat Zone	Transport injured fixer without detection	Police checkpoints, rival medics tailing	Cash, rare meds, fixer loyalty	TECH vs. 12 to bypass sensors; Fixer: reroll social checks
 Hostage Medical Aid	Trauma Team	Valentinos safehouse	Treat injured hostage on-site	Hostage is a decoy, gang attacks	Pay, contacts, trauma gear	COOL vs. 14 to keep hostage calm; Medtech: +1 to treatment

@@ -1,4 +1,4 @@
-Job Type	Nomad Pack/Broker	Target/Location	Main Task	Complication	Reward/Outcome	Resist/Check
+Job_Type	Nomad_Pack/Broker	Target/Location	Main_Task	Complication	Reward/Outcome	Resist/Check
 Convoy Escort	Aldecaldos	Interstate Route	Protect family convoy from attack	Road pirates set ambush, storm ahead	Cash, gear, nomad favor	REF vs. 14 to avoid ambush; Nomad: reroll
 Smuggling Run	Jodes	Mexico border	Move tech/payload past customs	Border patrol is bribed, rival Nomads waiting	Cash, rare gear, black market favor	COOL vs. 13 to bluff patrol; Nomad: reroll
 Sabotage Run	Steel Vaqueros	Rival convoy	Hit rival, steal cargo, escape	Nomad is an undercover cop, cargo is trapped	Cash, vehicle, “owed” job	COOL vs. 13 to spot setup; Fixer: reroll

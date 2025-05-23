@@ -1,10 +1,10 @@
-Doc	Name	Specialty	Reputation	Base Cost	Contact	Source
-Razor Jules	Chrome install	High-end, clean	1500eb	ripperdoc_contacts.tsv	Wildside
-Mama Trauma	Street surgery	Cheap, risky	400eb	ripperdoc_contacts.tsv	Wildside
-“Splicer” Wong	Cyberware repair	Quick, quiet	750eb	ripperdoc_contacts.tsv	Wildside
-Dr. Malhotra	Black market mods	Experimental	3000eb	ripperdoc_contacts.tsv	Wildside
-Crash Panda	Cyberlimb salvage	Works out of van	500eb	ripperdoc_contacts.tsv	Chromebook 2
-Stitches	Cheap chrome, fixers	Low price, mob ties	250eb	ripperdoc_contacts.tsv	Wildside
-Midnight Doc	Cortex rewires, psych mods	Discreet, no questions	2200eb	ripperdoc_contacts.tsv	Wildside
-Viktor Kharms	Ex-corp surgeon	High skill, expensive	5000eb	ripperdoc_contacts.tsv	Chromebook 3+4
-Night Market Crew	Team install jobs	Fast, dangerous, group	800eb	ripperdoc_contacts.tsv	Wildside
+Name	Source	Doc	Specialty	Reputation	Base_Cost	Contact
+Chrome install		Razor Jules	High-end, clean	1500eb	ripperdoc_contacts.tsv	Wildside
+Street surgery		Mama Trauma	Cheap, risky	400eb	ripperdoc_contacts.tsv	Wildside
+Cyberware repair		“Splicer” Wong	Quick, quiet	750eb	ripperdoc_contacts.tsv	Wildside
+Black market mods		Dr. Malhotra	Experimental	3000eb	ripperdoc_contacts.tsv	Wildside
+Cyberlimb salvage		Crash Panda	Works out of van	500eb	ripperdoc_contacts.tsv	Chromebook 2
+Cheap chrome, fixers		Stitches	Low price, mob ties	250eb	ripperdoc_contacts.tsv	Wildside
+Cortex rewires, psych mods		Midnight Doc	Discreet, no questions	2200eb	ripperdoc_contacts.tsv	Wildside
+Ex-corp surgeon		Viktor Kharms	High skill, expensive	5000eb	ripperdoc_contacts.tsv	Chromebook 3+4
+Team install jobs		Night Market Crew	Fast, dangerous, group	800eb	ripperdoc_contacts.tsv	Wildside

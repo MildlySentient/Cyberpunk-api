@@ -1,4 +1,4 @@
-Name	Specialty	Reputation	Base Cost	Quirk/Complication	Resist/Check
+Name	Specialty	Reputation	Base_Cost	Quirk/Complication	Resist/Check
 Razor Jules	High-end chrome installs	Elite, discreet	1500eb	Insists on upgrades, possible loyalty test	COOL vs. 13 to refuse upsell; Fixer: reroll
 Mama Trauma	Street surgery, emergency	Cheap, risky	400eb	Operates under fire, risk of infection	BODY vs. 13 to avoid infection; Medtech: reroll
 “Splicer” Wong	Cyberware repair, patchwork	Quick, quiet	750eb	Glitchy installs, rumor monger	TECH vs. 13 to check work; Techie: reroll, Fixer: +1 for blackmail

@@ -1,4 +1,4 @@
-Job Type	Broker/Contact	Target/Location	Main Task	Complication	Reward/Outcome	Resist/Check
+Job_Type	Broker/Contact	Target/Location	Main_Task	Complication	Reward/Outcome	Resist/Check
 Assassination	Fixer/Corp Handler	Corpo exec	Silence target, leave no trace	Exec’s bodyguard is ex-Solo, media tail	Cash, rare weapon, rep	COOL vs. 13 to avoid tail; Solo: reroll
 Protection Detail	Pads Forrester	Media star	Guard at club or event	Fan is assassin, rival corp tries hit	Cash, fame, gear	REF vs. 13 to spot threat; Solo: reroll
 Extraction	Nomad fixer	Hostage/Solo in hiding	Get target out of killzone	Target resists, gang controls escape route	Cash, safehouse, contact	COOL vs. 13 to persuade; Solo: reroll

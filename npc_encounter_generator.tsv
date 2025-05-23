@@ -1,11 +1,11 @@
 NPC	Type	Hook/Request	Complication/Flavor	Resolution/Reward
-Haggard Netrunner	Wants you to plug a mysterious drive	“Totally safe, promise!”	Is it malware, or pay data?
-Paranoid Fixer	Offers cheap gear—too cheap	Stolen from gang, traceable	Quick profit, gang heat
-Burned Cop	Asks you to hide evidence	Senior detective is watching	Rep boost, or future favor
-Augmented Solo	Needs backup on urgent hit	Gear is prototype, prone to fail	Split loot, chance of upgrade
-Wounded Nomad	Needs ride out of city	Enemy nomads chasing, wants to barter	Discounted goods, new convoy contact
-Bozo Clown	Offers “prank job” on rival	Humiliating or deadly, but pays	Infamy, chance at media attention
-Street Kid	Pickpockets PC, drops info chip	Chip leads to local job, or cop sting	Clue to major quest, or trouble
-Jaded Corpo	Drinks alone, vents secrets	Rival spies nearby, possible double-cross	New job offer, or framed
-Lone Media	Needs footage of a riot	PCs become the story, or source of leak	Fame, bribe, or future blackmail
-Random Drone	Malfunctions, drops valuable tech	Owner tracks PC by GPS	Quick money, but trouble if found
+Haggard Netrunner	Wants you to plug a mysterious drive	“Totally safe, promise!”	Is it malware, or pay data?	
+Paranoid Fixer	Offers cheap gear—too cheap	Stolen from gang, traceable	Quick profit, gang heat	
+Burned Cop	Asks you to hide evidence	Senior detective is watching	Rep boost, or future favor	
+Augmented Solo	Needs backup on urgent hit	Gear is prototype, prone to fail	Split loot, chance of upgrade	
+Wounded Nomad	Needs ride out of city	Enemy nomads chasing, wants to barter	Discounted goods, new convoy contact	
+Bozo Clown	Offers “prank job” on rival	Humiliating or deadly, but pays	Infamy, chance at media attention	
+Street Kid	Pickpockets PC, drops info chip	Chip leads to local job, or cop sting	Clue to major quest, or trouble	
+Jaded Corpo	Drinks alone, vents secrets	Rival spies nearby, possible double-cross	New job offer, or framed	
+Lone Media	Needs footage of a riot	PCs become the story, or source of leak	Fame, bribe, or future blackmail	
+Random Drone	Malfunctions, drops valuable tech	Owner tracks PC by GPS	Quick money, but trouble if found	

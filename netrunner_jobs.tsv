@@ -1,4 +1,4 @@
-Job Type	Broker/Contact	Target/System	Main Task	Complication	Reward/Outcome	Resist/Check
+Job_Type	Broker/Contact	Target/System	Main_Task	Complication	Reward/Outcome	Resist/Check
 Data Heist	Fixer Netrunner	Arasaka subnet	Extract research data, leave no trace	ICE is adaptive AI, rival netrunner watching	Cash, code, fixer favor	INT vs. 14 to hack; Netrunner: reroll
 System Sabotage	Corporate handler	Biotechnica R&D	Crash test server, plant malware	Sysadmin logs in early, alert triggers lockdown	Cash, blackmail, custom program	TECH vs. 14 to plant safely; Techie: reroll
 Deep Dive	Old-school netrunner	Underground archive	Find lost data cache	Archive has psychic ICE, partial deletion	Cash, fame, rare software	INT vs. 14 to resist psychic ICE; Netrunner: reroll

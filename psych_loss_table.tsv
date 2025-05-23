@@ -1,4 +1,4 @@
-Trigger	Event/Psych Trauma	Effect	Resist/Check
+Trigger	Event/Psych_Trauma	Effect	Resist/Check
 Killed Someone	PC/NPC dies by your hand	-1 Humanity, possible Fault	EMP vs. 14 to avoid Fault (Solo/Nomad: +2)
 Cyberpsychosis Threshold	Humanity loss below 5	Roll on cyberpsychosis_progression.tsv	EMP vs. 15 (Medtech: +1, Techie: stabilize hardware psych)
 Witnessed Surgical Mishap	Botched surgery, street doc	Disadvantage on trust, -1 EMP	COOL vs. 13 (Medtech: reroll once)

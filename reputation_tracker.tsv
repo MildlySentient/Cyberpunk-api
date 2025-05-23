@@ -1,4 +1,4 @@
-Category	Tracker/Metric	Effect/Usage	Stat/Role Interaction
+Category	Tracker/Metric	Effect/Usage	Stat/Role_Interaction
 Street Rep	Reputation Score	Influences gang/fixer reactions, job offers	COOL vs. 12 for street checks; Fixer: reroll, Solo: +1 intimidation, Nomad: +1 with Nomads
 IP (Improvement)	IP Points	Used to buy skill/rank increases	None directly; INT vs. 13 to fast-learn, Techie: +1 to technical IP gain
 Role Rank	Current Level	Tracks advancement in role-specific abilities	Role bonus: +2 to role-specific checks; see role table for details

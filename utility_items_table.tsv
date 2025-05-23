@@ -1,41 +1,41 @@
-Item Name	Gear Type	Description/Function	Effect/Modifier	Stat/Skill	Cost (eb)	Weight (kg)	Power Requirement	Maintenance/Failure	Availability	Source	Special Notes
-Pocket Secretary	Personal	Handheld digital notebook/organizer	Stores data, contacts, memos	None	400	0.4	Battery	Weekly charge	Common	Core Rulebook, p.82	Voice memo, address book, calendar
-Personal Diary	Personal	Portable voice diary, records audio	Daily logs, voice memos	None	75	0.2	Battery	Weekly charge	Common	Core Rulebook, p.82	Voice-activated recording
-Polaroid Camera	Personal	Instant camera, self-developing film	Physical pictures	Photography	150	0.5	Battery	Replace monthly	Common	Core Rulebook, p.82	-
-Digital Watch	Clothing/Personal	Alarm/timer, digital time	None	20	0.05	Battery	Yearly battery	Common	Core Rulebook, p.82	-
-Stun Baton (Off)	Personal/Crowd Control	Threat display only (not active weapon)	No effect	None	250	1	Battery	Monthly charge	Restricted	Core Rulebook, p.83	Weapon stats if active
-Rover Mini-Vac	Utility	Auto-vacuum, programmable paths	Floor cleaning	None	90	0.8	Battery	Charge 12h use	Common	Chromebook 2, p.12	Cute animal shell
-Lumos Emergency Lantern	Utility	Portable high-intensity lantern	Illuminates work site	None	150	0.7	Battery	Recharge after 24h	Common	Chromebook 2, p.18	Weather-resistant
-AquaScan Water Purifier	Utility	Removes toxins from water	Clean water, filter after 50L	None	200	0.4	Battery	Change filter	Common	Chromebook 2, p.21	Removable filters
-C/Net Digital Notepad	Personal Electronics	Rugged, lightweight notepad	Stores written/voice/drawn notes	None	100	0.15	Battery	Weekly charge	Common	Chromebook 2, p.16	Waterproof
-ComSet Personal Pager	Personal	Message beeper, network text/voice	Receives short messages	None	35	0.05	Battery	Monthly charge	Common	Chromebook 4, p.25	Tone or vibration
-FlexFrame Carry Case	Utility	Expandable armored case, up to 25kg	Resists break-in, custom inserts	None	340	1.9	None	Clean as needed	Common	V3.0 Core, p.194	-
-ChillPack Food Cooler	Utility	Battery-cooled lunchbox, 1L for 12h	Chills food/drink	None	55	0.6	Battery	Charge after use	Common	V3.0 Core, p.190	Leakproof seal
-SolarSkin Personal Panel	Utility	Wearable solar cell	Charges small gadgets/phones	None	60	0.12	None	Clean after use	Common	V3.0 Core, p.23	Weatherproof
-QuickDrape Privacy Sheet	Utility/Field	2x1.5m opaque field/camp sheet	No effect—privacy	None	11	0.22	None	Wash after use	Common	V3.0 Core, p.195	Pouch case
-SnapMesh Utility Net	Utility	Foldable net, bags, cargo, pets, sports	No effect—travel	None	9	0.13	None	Wash after use	Common	V3.0 Core, p.195	1.5x2m
-SnapBite Cutlery Set	Utility/Food	All-in-one travel cutlery (fork/spoon/knife)	No effect—camp use	None	10	0.06	None	Wash after use	Common	V3.0 Core, p.195	Case included
-CleanFoam InstaSoap	Utility	No-rinse, instant foaming soap	No effect—convenience	None	7	0.01	None	None	Common	V3.0 Core, p.195	Removes most grime
-NanoDry Laptop Sleeve	Utility	Water/shockproof, fits up to 15” device	No effect—protection	None	18	0.14	None	Wash after use	Common	V3.0 Core, p.113	Magnetic closure
-PatchMate Adhesive Dot	Utility	Removable strong adhesive	No effect—organization	None	3	0.01	None	None	Common	V3.0 Core, p.113	Pack of 20
-QuickSeal Storage Pouch	Utility	Waterproof, reusable storage bag	No effect—storage	None	7	0.02	None	Wash after use	Common	V3.0 Core, p.195	Assorted sizes
-NanoWick Dry Pad	Utility	Absorbs 10x weight, dries gear fast	No effect—utility	None	6	0.01	None	Wash after use	Common	V3.0 Core, p.195	Pack of 4
-GlowCord Signal Rope	Utility	LED color-changing rope, rescue/search	+1 Awareness for rescue/search	Awareness	19	0.07	Battery	Replace yearly	Common	V3.0 Core, p.115	4m, 5 patterns
-BubbleMesh Shelter	Field Gear	Inflatable tent, weather-resistant	+2 Endurance vs. cold/rain	None	450	1.7	None	Air-dry after use	Uncommon	V3.0 Core, p.193	Sleeps 2, glows at night
-HeatSync Thermo-Mug	Utility	Self-heating/cooling drink mug	Maintains temp for 24h	None	30	0.25	Battery	Charge monthly	Common	V3.0 Core, p.190	Auto-stirs
-MultiJack Data Adapter	Utility	Universal digital port adapter	Access most legacy devices	Tech	140	0.06	None	None	Common	V3.0 Core, p.197	Pocket tool
-IDStamp Marking Pen	Utility/Personal	UV/RFID marker, gear/valuables	+1 to ID lost/stolen property	None	22	0.01	None	Replace ink yearly	Common	V3.0 Core, p.197	Stealth or visible
-FlexNote Sticky Tablet	Utility/Personal	Peel-off digital notepad, 20 sheets	+1 Education, note-taking	Education	24	0.04	Battery	Recharge monthly	Common	V3.0 Core, p.113	Syncs to phone
-PatchBand Wrist Wrap	Clothing/Utility	Absorbent, for sweat, mild injury, marking	No effect—comfort	None	8	0.02	None	Wash after use	Common	V3.0 Core, p.142	Set of 2
-HeatWrap Wrist Heater	Clothing/Utility	Rechargeable, hand heater	+1 Endurance for cold/fatigue	Endurance	14	0.02	Battery	Charge weekly	Common	V3.0 Core, p.142	Fits under glove
-PatchLight Mini Lantern	Utility	LED lantern, 3 modes	No effect—illumination	None	10	0.06	Battery	Recharge monthly	Common	V3.0 Core, p.115	Magnetic base, hook
-FlexGuard Utility Band	Utility	Clip-on band, holds pens/tools/keys	No effect—organization	None	13	0.02	None	Wash after use	Common	V3.0 Core, p.113	Fits wrist/ankle
-NanoDry Ear Protectors	Clothing/Utility	Moisture block, keeps ears dry in rain	No effect—comfort	None	5	0.01	None	Wash after use	Common	V3.0 Core, p.142	One size
-AutoChef Food Prep System	Utility	Food processing/cooking unit	Automated meal prep	None	800	3	Power	Clean after 10 uses	Uncommon	Chromebook 2, p.12	Voice-activated, multi-dish
-AutoWeld MiniTorch	Utility/Tool	Handheld battery micro-welder	+1 Quick field welds	Tech	160	0.45	Battery	Charge after use	Common	V3.0 Core, p.197	Mini-gas optional
-Saf-T-Blade Utility Cutter	Utility/Tool	Retractable blade, industrial grade	+1 Field repairs/cutting	Tech	22	0.11	None	Clean after use	Common	V3.0 Core, p.197	Belt clip
-ClipTag Asset Marker	Utility/Personal	Color/RFID/QR clip for tracking	+1 Security/Awareness asset tracking	Security/Awareness	8	0.01	None	Replace yearly	Common	V3.0 Core, p.113	Pack of 12
-FastPatch Self-Adhesive Tape	Utility	Multi-use, waterproof, strong tape	+1 Jury-rig/field repairs	Tech	7	0.01	None	None	Common	V3.0 Core, p.197	6 colors
-NanoGuard Soap Sheet	Utility/Personal	Anti-bacterial, single-use soap	No effect—sterility	None	4	0.01	None	Single use	Common	V3.0 Core, p.195	Pack of 20
-QuickDot Marking Bead	Utility/Personal	Colored, removable, sticky bead	No effect—organization	None	3	0.01	None	None	Common	V3.0 Core, p.113	Box of 20
-NanoBuff Glass Wipe	Utility/Personal	Anti-static, anti-streak lens/screen wipe	No effect—cleaning	None	2	0.01	None	Single use	Common	V3.0 Core, p.197	Pack of 10
+Source	Item_Name	Gear_Type	Description/Function	Effect/Modifier	Stat/Skill	Cost_(eb)	Weight_(kg)	Power_Requirement	Maintenance/Failure	Availability	Special_Notes
+Core Rulebook, p.82	Pocket Secretary	Personal	Handheld digital notebook/organizer	Stores data, contacts, memos		400	0.4	Battery	Weekly charge	Common	Voice memo, address book, calendar
+Core Rulebook, p.82	Personal Diary	Personal	Portable voice diary, records audio	Daily logs, voice memos		75	0.2	Battery	Weekly charge	Common	Voice-activated recording
+Core Rulebook, p.82	Polaroid Camera	Personal	Instant camera, self-developing film	Physical pictures	Photography	150	0.5	Battery	Replace monthly	Common	-
+-	Digital Watch	Clothing/Personal	Alarm/timer, digital time		20	0.05	Battery	Yearly battery	Common	Core Rulebook, p.82	
+Core Rulebook, p.83	Stun Baton (Off)	Personal/Crowd Control	Threat display only (not active weapon)	No effect		250	1	Battery	Monthly charge	Restricted	Weapon stats if active
+Chromebook 2, p.12	Rover Mini-Vac	Utility	Auto-vacuum, programmable paths	Floor cleaning		90	0.8	Battery	Charge 12h use	Common	Cute animal shell
+Chromebook 2, p.18	Lumos Emergency Lantern	Utility	Portable high-intensity lantern	Illuminates work site		150	0.7	Battery	Recharge after 24h	Common	Weather-resistant
+Chromebook 2, p.21	AquaScan Water Purifier	Utility	Removes toxins from water	Clean water, filter after 50L		200	0.4	Battery	Change filter	Common	Removable filters
+Chromebook 2, p.16	C/Net Digital Notepad	Personal Electronics	Rugged, lightweight notepad	Stores written/voice/drawn notes		100	0.15	Battery	Weekly charge	Common	Waterproof
+Chromebook 4, p.25	ComSet Personal Pager	Personal	Message beeper, network text/voice	Receives short messages		35	0.05	Battery	Monthly charge	Common	Tone or vibration
+V3.0 Core, p.194	FlexFrame Carry Case	Utility	Expandable armored case, up to 25kg	Resists break-in, custom inserts		340	1.9		Clean as needed	Common	-
+V3.0 Core, p.190	ChillPack Food Cooler	Utility	Battery-cooled lunchbox, 1L for 12h	Chills food/drink		55	0.6	Battery	Charge after use	Common	Leakproof seal
+V3.0 Core, p.23	SolarSkin Personal Panel	Utility	Wearable solar cell	Charges small gadgets/phones		60	0.12		Clean after use	Common	Weatherproof
+V3.0 Core, p.195	QuickDrape Privacy Sheet	Utility/Field	2x1.5m opaque field/camp sheet	No effect—privacy		11	0.22		Wash after use	Common	Pouch case
+V3.0 Core, p.195	SnapMesh Utility Net	Utility	Foldable net, bags, cargo, pets, sports	No effect—travel		9	0.13		Wash after use	Common	1.5x2m
+V3.0 Core, p.195	SnapBite Cutlery Set	Utility/Food	All-in-one travel cutlery (fork/spoon/knife)	No effect—camp use		10	0.06		Wash after use	Common	Case included
+V3.0 Core, p.195	CleanFoam InstaSoap	Utility	No-rinse, instant foaming soap	No effect—convenience		7	0.01			Common	Removes most grime
+V3.0 Core, p.113	NanoDry Laptop Sleeve	Utility	Water/shockproof, fits up to 15” device	No effect—protection		18	0.14		Wash after use	Common	Magnetic closure
+V3.0 Core, p.113	PatchMate Adhesive Dot	Utility	Removable strong adhesive	No effect—organization		3	0.01			Common	Pack of 20
+V3.0 Core, p.195	QuickSeal Storage Pouch	Utility	Waterproof, reusable storage bag	No effect—storage		7	0.02		Wash after use	Common	Assorted sizes
+V3.0 Core, p.195	NanoWick Dry Pad	Utility	Absorbs 10x weight, dries gear fast	No effect—utility		6	0.01		Wash after use	Common	Pack of 4
+V3.0 Core, p.115	GlowCord Signal Rope	Utility	LED color-changing rope, rescue/search	+1 Awareness for rescue/search	Awareness	19	0.07	Battery	Replace yearly	Common	4m, 5 patterns
+V3.0 Core, p.193	BubbleMesh Shelter	Field Gear	Inflatable tent, weather-resistant	+2 Endurance vs. cold/rain		450	1.7		Air-dry after use	Uncommon	Sleeps 2, glows at night
+V3.0 Core, p.190	HeatSync Thermo-Mug	Utility	Self-heating/cooling drink mug	Maintains temp for 24h		30	0.25	Battery	Charge monthly	Common	Auto-stirs
+V3.0 Core, p.197	MultiJack Data Adapter	Utility	Universal digital port adapter	Access most legacy devices	Tech	140	0.06			Common	Pocket tool
+V3.0 Core, p.197	IDStamp Marking Pen	Utility/Personal	UV/RFID marker, gear/valuables	+1 to ID lost/stolen property		22	0.01		Replace ink yearly	Common	Stealth or visible
+V3.0 Core, p.113	FlexNote Sticky Tablet	Utility/Personal	Peel-off digital notepad, 20 sheets	+1 Education, note-taking	Education	24	0.04	Battery	Recharge monthly	Common	Syncs to phone
+V3.0 Core, p.142	PatchBand Wrist Wrap	Clothing/Utility	Absorbent, for sweat, mild injury, marking	No effect—comfort		8	0.02		Wash after use	Common	Set of 2
+V3.0 Core, p.142	HeatWrap Wrist Heater	Clothing/Utility	Rechargeable, hand heater	+1 Endurance for cold/fatigue	Endurance	14	0.02	Battery	Charge weekly	Common	Fits under glove
+V3.0 Core, p.115	PatchLight Mini Lantern	Utility	LED lantern, 3 modes	No effect—illumination		10	0.06	Battery	Recharge monthly	Common	Magnetic base, hook
+V3.0 Core, p.113	FlexGuard Utility Band	Utility	Clip-on band, holds pens/tools/keys	No effect—organization		13	0.02		Wash after use	Common	Fits wrist/ankle
+V3.0 Core, p.142	NanoDry Ear Protectors	Clothing/Utility	Moisture block, keeps ears dry in rain	No effect—comfort		5	0.01		Wash after use	Common	One size
+Chromebook 2, p.12	AutoChef Food Prep System	Utility	Food processing/cooking unit	Automated meal prep		800	3	Power	Clean after 10 uses	Uncommon	Voice-activated, multi-dish
+V3.0 Core, p.197	AutoWeld MiniTorch	Utility/Tool	Handheld battery micro-welder	+1 Quick field welds	Tech	160	0.45	Battery	Charge after use	Common	Mini-gas optional
+V3.0 Core, p.197	Saf-T-Blade Utility Cutter	Utility/Tool	Retractable blade, industrial grade	+1 Field repairs/cutting	Tech	22	0.11		Clean after use	Common	Belt clip
+V3.0 Core, p.113	ClipTag Asset Marker	Utility/Personal	Color/RFID/QR clip for tracking	+1 Security/Awareness asset tracking	Security/Awareness	8	0.01		Replace yearly	Common	Pack of 12
+V3.0 Core, p.197	FastPatch Self-Adhesive Tape	Utility	Multi-use, waterproof, strong tape	+1 Jury-rig/field repairs	Tech	7	0.01			Common	6 colors
+V3.0 Core, p.195	NanoGuard Soap Sheet	Utility/Personal	Anti-bacterial, single-use soap	No effect—sterility		4	0.01		Single use	Common	Pack of 20
+V3.0 Core, p.113	QuickDot Marking Bead	Utility/Personal	Colored, removable, sticky bead	No effect—organization		3	0.01			Common	Box of 20
+V3.0 Core, p.197	NanoBuff Glass Wipe	Utility/Personal	Anti-static, anti-streak lens/screen wipe	No effect—cleaning		2	0.01		Single use	Common	Pack of 10

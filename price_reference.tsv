@@ -1,24 +1,24 @@
-Item	Type	Base Price	Source
-Cyberarm	Chrome	1500eb	Chromebook 1
-Cyberleg	Chrome	1300eb	Chromebook 2
-Optic Suite	Chrome	1100eb	Chromebook 1
-Reflex Booster	Cyberware	3500eb	Chromebook 2
-Heavy Pistol	Weapon	250eb	Core
-Assault Rifle	Weapon	650eb	Blackhand’s
-Sniper Rifle	Weapon	900eb	Blackhand’s
-Satchel Charge	Explosive	1200eb	Blackhand’s
-Minigun	Heavy Gun	6000eb	Maximum Metal
-Armor Vest	Armor	350eb	Core
-Light Armorjack	Armor	700eb	Chromebook 2
-Combat Helmet	Armor	120eb	Core
-Vehicle Drone	Drone	2200eb	Chromebook 2
-Stealth Drone	Drone	3400eb	Chromebook 3+4
-Medibee NanoSwarm	Drone	3000eb	Chromebook 3+4
-Cyberdeck	Gear	2500eb	Core
-Pain Editor	Cyberware	2800eb	Chromebook 3+4
-NanoArm	Chrome	1600eb	Chromebook 3+4
-Shield	Armor	700eb	Maximum Metal
-RavenBot	Drone	2000eb	Chromebook 2
-RatSpy	Drone	900eb	Chromebook 1
-PantherSynth	Biopet	8000eb	Chromebook 3+4
-GuardSnake	Robopet	1200eb	Chromebook 1
+Source	Item	Type	Base_Price
+Chromebook 1	Cyberarm	Chrome	1500eb
+Chromebook 2	Cyberleg	Chrome	1300eb
+Chromebook 1	Optic Suite	Chrome	1100eb
+Chromebook 2	Reflex Booster	Cyberware	3500eb
+Core	Heavy Pistol	Weapon	250eb
+Blackhand’s	Assault Rifle	Weapon	650eb
+Blackhand’s	Sniper Rifle	Weapon	900eb
+Blackhand’s	Satchel Charge	Explosive	1200eb
+Maximum Metal	Minigun	Heavy Gun	6000eb
+Core	Armor Vest	Armor	350eb
+Chromebook 2	Light Armorjack	Armor	700eb
+Core	Combat Helmet	Armor	120eb
+Chromebook 2	Vehicle Drone	Drone	2200eb
+Chromebook 3+4	Stealth Drone	Drone	3400eb
+Chromebook 3+4	Medibee NanoSwarm	Drone	3000eb
+Core	Cyberdeck	Gear	2500eb
+Chromebook 3+4	Pain Editor	Cyberware	2800eb
+Chromebook 3+4	NanoArm	Chrome	1600eb
+Maximum Metal	Shield	Armor	700eb
+Chromebook 2	RavenBot	Drone	2000eb
+Chromebook 1	RatSpy	Drone	900eb
+Chromebook 3+4	PantherSynth	Biopet	8000eb
+Chromebook 1	GuardSnake	Robopet	1200eb
