@@ -331,3 +331,45 @@ def load_game(data: LoadGameRequest):
         return {"status": "loaded", "game_id": data.game_id, "state": state}
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
+
+
+# --- System Health and Index Routes ---
+
+@app.get("/", response_model=DataResultModel)
+def root():
+    logger.info("Root route accessed")
+    return DataResultModel(
+        source="root",
+        result="Cyberpunk 2020 API is live",
+        note="Try /get-data, /combat/start, or /roll?type=d10"
+    )
+
+@app.get("/health")
+def health_check():
+    return {"status": "ok"}
+
+@app.get("/list-files", response_model=DataResultModel)
+def list_files():
+    data_folder = os.path.dirname(__file__)
+    files = sorted([f for f in os.listdir(data_folder) if f.endswith(".tsv") or f.endswith(".md")])
+    return DataResultModel(source="list-files", result=files)
+
+
+# --- CLI: TSV Validation Tool ---
+
+if __name__ == "__main__":
+    import argparse
+
+    parser = argparse.ArgumentParser(description="Validate all .tsv files in the directory")
+    parser.add_argument("--folder", type=str, default=os.path.dirname(__file__), help="Folder to scan for .tsv files")
+    args = parser.parse_args()
+
+    tsv_files = glob.glob(os.path.join(args.folder, "*.tsv"))
+    print(f"[INFO] Found {len(tsv_files)} TSV files in '{args.folder}'\n")
+
+    for tsv in tsv_files:
+        try:
+            df = pd.read_csv(tsv, sep="\t")
+            print(f"[OK] {os.path.basename(tsv)} — {df.shape[0]} rows, {df.shape[1]} columns")
+        except Exception as e:
+            print(f"[ERROR] {os.path.basename(tsv)} — {e}")
