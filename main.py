@@ -118,12 +118,19 @@ def load_files():
             except Exception:
                 pass
 
-def match_query(query, col, df):
+
+from rapidfuzz import process
+
+# Precompiled processor cache
+fuzzy_processors = {}
+
+def match_query(query, col, df, file_id=None):
     if df is None or df.empty or col not in df.columns:
         return {}
+
     query_lem = lemmatize(query)
 
-    # Synonym matching
+    # Step 1: Synonym-based short-circuit
     for base, syns in synonyms.items():
         if any(term in query_lem for term in [base] + syns):
             mask = df[col].str.contains(base, na=False, case=False)
@@ -131,12 +138,14 @@ def match_query(query, col, df):
             if not match.empty:
                 return match.iloc[0].to_dict()
 
-    # Fuzzy match
-    fuzz_scores = df[col].apply(lambda x: fuzz.partial_ratio(query_lem, str(x)))
-    if fuzz_scores.max() > 85:
-        return df.iloc[fuzz_scores.idxmax()].to_dict()
+    # Step 2: Precompiled fuzzy processor
+    values = df[col].fillna("").astype(str).tolist()
+    scores = process.cdist(query_lem, values, scorer=fuzz.partial_ratio)
+    best_idx = scores.argmax()
+    if scores[best_idx] > 85:
+        return df.iloc[best_idx].to_dict()
 
-    # Vector similarity
+    # Step 3: Vector-based semantic similarity
     if nlp:
         q_vec = nlp(query_lem).vector.reshape(1, -1)
         best = None
@@ -153,7 +162,7 @@ def match_query(query, col, df):
         if best:
             return best
 
-    # Role + Gender fallback
+    # Step 4: Role + Gender fallback
     if "Role" in df.columns and "Gender" in df.columns:
         terms = query.lower().split()
         possible_role = next((term.capitalize() for term in terms if term.capitalize() in df["Role"].unique()), None)
@@ -162,35 +171,9 @@ def match_query(query, col, df):
             role_match = df[(df["Role"] == possible_role) & (df["Gender"] == possible_gender)]
             if not role_match.empty:
                 return role_match.iloc[0].to_dict()
+
     return {}
-    if df is None or df.empty or col not in df.columns:
-        return {}
-    query_lem = lemmatize(query)
-    for base, syns in synonyms.items():
-        if any(term in query_lem for term in [base] + syns):
-            mask = df[col].str.contains(base, na=False, case=False)
-            match = df[mask]
-            if not match.empty:
-                return match.iloc[0].to_dict()
-    fuzz_scores = df[col].apply(lambda x: fuzz.partial_ratio(query_lem, str(x)))
-    if fuzz_scores.max() > 85:
-        return df.iloc[fuzz_scores.idxmax()].to_dict()
-    if nlp:
-        q_vec = nlp(query_lem).vector.reshape(1, -1)
-        best = None
-        best_score = -1
-        for idx, row in df.iterrows():
-            text = row[col]
-            if not isinstance(text, str) or not text.strip():
-                continue
-            row_vec = nlp(text).vector.reshape(1, -1)
-            sim = cosine_similarity(q_vec, row_vec)[0][0]
-            if sim > best_score:
-                best_score = sim
-                best = row.to_dict()
-        if best:
-            return best
-    return {}
+
 
 def fallback_file_lookup(query, data_folder):
     # Find any .tsv in the data folder
@@ -444,9 +427,9 @@ if __name__ == "__main__":
     for tsv in tsv_files:
         try:
             df = pd.read_csv(tsv, sep="\t")
-            print(f"[OK] {os.path.basename(tsv)} — {df.shape[0]} rows, {df.shape[1]} columns")
+            print(f"[OK] {os.path.basename(tsv)} â {df.shape[0]} rows, {df.shape[1]} columns")
         except Exception as e:
-            print(f"[ERROR] {os.path.basename(tsv)} — {e}")
+            print(f"[ERROR] {os.path.basename(tsv)} â {e}")
 
 
 @app.get("/canon-map-keys")
