@@ -1,0 +1,28 @@
+uuid,created_at,created_longitude,created_latitude,modified_at,modified_longitude,modified_latitude,accessed_at,content,tags,folder,flagged,languageGrammar
+"3C9E4C5F-7C3C-470F-A212-3FB846740860",2025-05-23T00:48:00Z,0.0,0.0,2025-05-23T00:48:03Z,0.0,0.0,2025-05-23T00:48:00Z,"@directive
+
+Task: Create a canonical manifest table for Cyberpunk 2020 campaigns—tracking campaign title, scope, timeline, major storylines, included modules, required factions, and all cross-referenced resources (scenario/event/mission tables).
+
+Table: `campaign_manifest.tsv`
+
+**Schema—Columns (required):**
+- Campaign Title
+- Campaign Scope (one-shot, mini-series, epic, etc.)
+- Start/End Date (in-world or OOC, if tracked)
+- Main Location(s) (city, region, etc.)
+- Major Story Arcs/Plots
+- Required/Recommended Tables (cross-link to scenario, event, complication, and hook files)
+- Key Factions/NPCs
+- Included Modules (if any)
+- Lead Ref/Author (optional)
+- Status (planned, in progress, completed, archived)
+- Special Notes/Warnings
+- Source (if adapted or canon)
+
+**Rules:**
+- Link directly to relevant scenario/event/hook TSVs in the “Required/Recommended Tables” column.
+- All rows must be system-usable, not just narrative.
+- If a column is not specified for a given campaign, flag as “[TBD].”
+- Output as TSV, header row first.
+
+@/directive","",0,false,Markdown

@@ -1,0 +1,29 @@
+uuid,created_at,created_longitude,created_latitude,modified_at,modified_longitude,modified_latitude,accessed_at,content,tags,folder,flagged,languageGrammar
+"646F2DF4-AECF-4D39-B00C-D584AD005B11",2025-05-23T00:48:37Z,0.0,0.0,2025-05-23T00:48:44Z,0.0,0.0,2025-05-23T00:48:37Z,"@directive
+
+Task: Create a structured campaign notes table for tracking session-level progress, unresolved hooks, secret events, PC/GM notes, and session logs in Cyberpunk 2020 campaigns.
+
+Table: `campaign_notes.tsv`
+
+**Schema—Columns (required):**
+- Campaign Title (cross-link to campaign_manifest.tsv)
+- Session/Log ID (or Date)
+- Scene/Session Summary
+- PCs Present
+- Major NPCs/Antags Involved
+- Key Decisions/Branch Points
+- Used Hooks/Events (cross-link to scenario, event, complication, or hook files)
+- Unresolved Threads/Cliffhangers
+- GM Notes/Prep
+- Player Notes (if shared)
+- Next Steps/Agenda
+- Special Rewards/XP/Consequences
+- Status (planned, played, resolved, archived)
+
+**Rules:**
+- Link to all relevant city/scenario/event TSVs in “Used Hooks/Events” or “Unresolved Threads.”
+- All rows must be actionable for GM and AI tracking.
+- If a column is not specified for a given entry, flag as “[TBD].”
+- Output as TSV, header row first.
+
+@/directive","",0,false,Markdown

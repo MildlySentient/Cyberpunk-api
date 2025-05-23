@@ -1,0 +1,11 @@
+Core File
+rules_checklists.tsv
+difficulty_table.tsv
+save_data_table.tsv
+character_creation_table.tsv
+progression_tables.tsv
+event_randomizers.tsv
+encounter_tables.tsv
+system_settings.tsv
+input_validation.tsv
+output_filtering.tsv
