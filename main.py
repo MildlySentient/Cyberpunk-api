@@ -1,4 +1,3 @@
-# main.py
 import os
 import logging
 import logging.config
@@ -7,7 +6,7 @@ import yaml
 import re
 from typing import List, Dict, Any, Optional, Set, Tuple
 import pandas as pd
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseSettings
 from rapidfuzz import fuzz
@@ -148,8 +147,8 @@ SYNONYMS = {
 }
 
 def extract_role_gender(query: str, df: pd.DataFrame) -> Tuple[Optional[str], Optional[str]]:
-    roles = [r.lower().strip() for r in df["Role"].dropna().unique()]
-    genders = [g.lower().strip() for g in df["Gender"].dropna().unique()]
+    roles = [r.lower().strip() for r in df["Role"].dropna().unique()] if "Role" in df else []
+    genders = [g.lower().strip() for g in df["Gender"].dropna().unique()] if "Gender" in df else []
     terms = set(re.findall(r'\w+', query.lower()))
     role = next((r for r in roles if r in terms), None)
     gender = next((g for g in genders if g in terms), None)
@@ -200,7 +199,7 @@ def match_query(query: str, df: pd.DataFrame, depth: int = 0, tried=None, partia
             if not filtered.empty:
                 return filtered.iloc[0].to_dict()
 
-    return {"message": "No match, tried variants", "variants": partials}
+    return {"message": "No match, tried variants", "names": partials}
 
 app = FastAPI()
 app.add_middleware(
@@ -224,32 +223,45 @@ def lookup(query: str, file: Optional[str] = None):
             continue
         df = data_tables[f]
         result = match_query(query, df)
+        # Canonical match: has Name field, return directly
         if result and "Name" in result:
             return {
                 "source": f,
                 "result": sanitize(result),
                 "note": f"Returned for query '{query}'"
             }
-        if result and "variants" in result:
+        # Ambiguous result: return with roles/genders/names arrays
+        if result and "names" in result:
             roles = sorted(df["Role"].dropna().str.title().unique().tolist()) if "Role" in df else []
+            genders = sorted(df["Gender"].dropna().str.title().unique().tolist()) if "Gender" in df else []
+            names = result.get("names", [])
             return {
                 "code": "ambiguous",
                 "message": "Ambiguous query. Please specify role, gender, or consult /canon-map-keys.",
-                "available_roles": roles,
+                "roles": roles,
+                "genders": genders,
+                "names": names
             }
 
+    # Prebuilt clarification (force roles/genders/names)
     if prebuilt_queried and "prebuilt_characters.tsv" in data_tables:
         df = data_tables["prebuilt_characters.tsv"]
-        roles = sorted(df["Role"].dropna().str.title().unique().tolist())
-        genders = sorted(df["Gender"].dropna().str.title().unique().tolist())
+        roles = sorted(df["Role"].dropna().str.title().unique().tolist()) if "Role" in df else []
+        genders = sorted(df["Gender"].dropna().str.title().unique().tolist()) if "Gender" in df else []
+        names = sorted(df["Name"].dropna().unique().tolist()) if "Name" in df else []
         return {
             "code": "clarification_required",
             "message": "Which role and gender do you want for the prebuilt character? Specify as e.g. 'Solo male', 'Netrunner female'.",
-            "available_roles": roles,
-            "available_genders": genders,
+            "roles": roles,
+            "genders": genders,
+            "names": names
         }
 
+    # Not found: always return arrays
     return {
         "code": "not_found",
-        "message": "No canonical match. Consult index.tsv."
+        "message": "No canonical match. Consult index.tsv.",
+        "roles": [],
+        "genders": [],
+        "names": []
     }
