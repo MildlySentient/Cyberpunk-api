@@ -4,7 +4,7 @@ import logging
 import logging.config
 import math
 import yaml
-from typing import List, Dict, Any, Optional, Set
+from typing import List, Dict, Any, Optional, Set, Tuple
 import pandas as pd
 import spacy
 from fastapi import FastAPI, HTTPException, Query, Depends
