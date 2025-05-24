@@ -62,7 +62,6 @@ keyword_to_file: Dict[str, Set[str]] = {}
 
 # ----------- DATA LOADING -----------
 def prepare_for_matching(df: pd.DataFrame, filename: str) -> pd.DataFrame:
-    # Generic column concat for vector search and substring search
     df["__match_text_internal__"] = df.astype(str).apply(" ".join, axis=1).str.lower()
     return df
 
@@ -204,6 +203,19 @@ def on_startup():
 
 @app.get("/lookup")
 def lookup(query: str, file: Optional[str] = None):
+    # --- Added: Clarify vague prebuilt requests ---
+    if is_prebuilt_query(query):
+        df = data_tables.get("prebuilt_characters.tsv")
+        roles = sorted(df["Role"].str.title().unique()) if df is not None else []
+        genders = sorted(df["Gender"].str.title().unique()) if df is not None else ["Male", "Female"]
+        return {
+            "message": (
+                "Which role and gender do you want for the prebuilt character? "
+                "Specify as e.g. 'Solo male', 'Netrunner female', etc."
+            ),
+            "roles": roles,
+            "genders": genders,
+        }
     files = [file] if file else route_files(query)
     for f in files:
         if f not in data_tables:
