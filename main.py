@@ -185,7 +185,7 @@ def match_query(
             if mask.any():
                 return df[mask].iloc[0].to_dict()
 
-    return {"message": "No match, tried variants", "variants": partials}
+    return {"variants": partials}
 
 # ----------- FASTAPI APP -----------
 app = FastAPI()
@@ -222,9 +222,26 @@ def lookup(query: str, file: Optional[str] = None):
             continue
         df = data_tables[f]
         result = match_query(query, df)
-        if result:
-            return sanitize(result)
-    raise HTTPException(status_code=404, detail="No match found")
+        if result and "Name" in result:
+            # Canonical, exact match: return DataResultModel
+            return {
+                "source": f,
+                "result": sanitize(result),
+                "note": f"Returned for query '{query}'"
+            }
+        if result and "variants" in result:
+            # Ambiguous match (e.g., multiple candidates, or vague query)
+            roles = sorted(df["Role"].dropna().str.title().unique().tolist()) if "Role" in df else []
+            return {
+                "code": "ambiguous",
+                "message": "Ambiguous query. Please specify role, gender, or consult /canon-map-keys.",
+                "available_roles": roles,
+            }
+    # No match found in any file
+    return {
+        "code": "not_found",
+        "message": "No canonical match. Consult index.tsv."
+    }
 
 @app.get("/healthz")
 def health():
