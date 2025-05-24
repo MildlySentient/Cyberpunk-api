@@ -9,6 +9,7 @@ from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseSettings
 from rapidfuzz import fuzz
+import re
 
 from vector_cache import VectorCache
 
@@ -156,6 +157,45 @@ SYNONYMS = {
     "roll": ["dice", "rolling", "throw", "cast", "d10", "d6", "d100"],
 }
 
+# --- Role+Gender Matching & Regex Parsing ---
+def extract_role_gender(query: str, df: pd.DataFrame) -> Tuple[Optional[str], Optional[str]]:
+    """Extracts role and gender using regex and normalization."""
+    roles = [r.lower().strip() for r in df["Role"].unique()]
+    genders = [g.lower().strip() for g in df["Gender"].unique()] if "Gender" in df.columns else []
+    ql = query.lower().strip()
+    # Regex: find gender then role, or role then gender, or gender in parens
+    patterns = [
+        r"\b({genders})\b.*?\b({roles})\b".format(genders="|".join(genders), roles="|".join(roles)),
+        r"\b({roles})\b.*?\b({genders})\b".format(roles="|".join(roles), genders="|".join(genders)),
+        r"\b({roles})\s*\((?P<gender>{genders})\)".format(roles="|".join(roles), genders="|".join(genders)),
+        r"\b(?P<gender>{genders})\b".format(genders="|".join(genders)),
+        r"\b(?P<role>{roles})\b".format(roles="|".join(roles)),
+    ]
+    for pat in patterns:
+        m = re.search(pat, ql)
+        if m:
+            # Try to get explicit groups if available
+            gender = m.groupdict().get('gender', None)
+            role = m.groupdict().get('role', None)
+            # If not in named groups, fallback to positional
+            if not gender:
+                for g in genders:
+                    if g in m.groups():
+                        gender = g
+                        break
+            if not role:
+                for r in roles:
+                    if r in m.groups():
+                        role = r
+                        break
+            if role or gender:
+                return (role, gender)
+    # Fallback: brute force
+    terms = set(ql.split())
+    matched_role = next((r for r in roles if r in terms), None)
+    matched_gender = next((g for g in genders if g in terms), None)
+    return (matched_role, matched_gender)
+
 def match_query(
     query: str,
     df: pd.DataFrame,
@@ -199,15 +239,19 @@ def match_query(
         except Exception:
             continue
 
-    # 4) Role+Gender fallback for prebuilt_characters
+    # 4) Role+Gender fallback for prebuilt_characters.tsv, now with Regex!
     if "Role" in df.columns and "Gender" in df.columns:
-        terms = ql.split()
-        role = next((t for t in terms if t in df["Role"].str.lower().unique()), None)
-        gender = next((t for t in terms if t in ["male", "female"]), None)
+        role, gender = extract_role_gender(query, df)
         if role and gender:
-            mask = (df["Role"].str.lower() == role) & (df["Gender"].str.lower() == gender)
-            if mask.any():
-                return df[mask].iloc[0].to_dict()
+            mask = (
+                df["Role"].str.lower().str.strip() == role
+            ) & (
+                df["Gender"].str.lower().str.strip() == gender
+            )
+            filtered = df[mask]
+            if not filtered.empty:
+                logger.info(f"Role+Gender fallback matched: Role={role}, Gender={gender}")
+                return filtered.iloc[0].to_dict()
 
     return {"message": "No match, tried variants", "variants": partials}
 
@@ -237,7 +281,6 @@ def lookup(query: str, file: Optional[str] = None):
         result = match_query(query, df)
 
         if result and "Name" in result:
-            # Canonical, exact match: return DataResultModel
             return {
                 "source": f,
                 "result": sanitize(result),
@@ -245,7 +288,6 @@ def lookup(query: str, file: Optional[str] = None):
             }
 
         if result and "variants" in result:
-            # Ambiguous match (e.g., multiple candidates, or vague query)
             roles = sorted(df["Role"].dropna().str.title().unique().tolist()) if "Role" in df else []
             return {
                 "code": "ambiguous",
@@ -254,7 +296,6 @@ def lookup(query: str, file: Optional[str] = None):
             }
         responded = True
 
-    # Fallback: if query was for prebuilt character(s) and file exists, return options
     if prebuilt_queried and "prebuilt_characters.tsv" in data_tables:
         df = data_tables["prebuilt_characters.tsv"]
         roles = sorted(df["Role"].dropna().str.title().unique().tolist()) if "Role" in df else []
@@ -270,7 +311,6 @@ def lookup(query: str, file: Optional[str] = None):
                 "available_genders": genders,
             }
 
-    # No match found in any file
     return {
         "code": "not_found",
         "message": "No canonical match. Consult index.tsv."
@@ -298,7 +338,6 @@ def match_character(
     role: Optional[str] = None,
     gender: Optional[str] = None
 ):
-    # Only prebuilt_characters.tsv is vectorized
     fname = "prebuilt_characters.tsv"
     if fname not in vector_tables:
         raise HTTPException(status_code=503, detail="Vector cache not initialized.")
@@ -316,7 +355,6 @@ def match_character(
         row["_source_file"] = fname
         row["_score"] = round(score, 4)
         matches.append(row)
-    # Dedupe by Name+Role
     seen: Set[str] = set()
     final: List[Dict[str, Any]] = []
     for m in matches:
@@ -347,7 +385,6 @@ def reload_vector_file(file: str):
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Failed to reload vectors for '{file}': {e}")
 
-# ---- Bootloader.md endpoint (not loaded into data cache) ----
 @app.get("/bootloader")
 def show_bootloader():
     path = os.path.join(settings.data_dir, "Bootloader.md")
