@@ -146,7 +146,6 @@ SYNONYMS = {
     "roll": ["dice", "rolling", "throw", "cast", "d10", "d6", "d100"],
 }
 
-# ----- PATCHED FUNCTION -----
 def extract_role_gender(query: str, df: pd.DataFrame) -> Tuple[Optional[str], Optional[str]]:
     roles = [r.lower().strip() for r in df["Role"].dropna().unique()] if "Role" in df else []
     genders = [g.lower().strip() for g in df["Gender"].dropna().unique()] if "Gender" in df else []
@@ -160,11 +159,12 @@ def extract_role_gender(query: str, df: pd.DataFrame) -> Tuple[Optional[str], Op
             found_gender = term
     print(f"DEBUG: extracted role={found_role}, gender={found_gender}")
     return found_role, found_gender
-# ----------------------------
 
 def match_query(query: str, df: pd.DataFrame, depth: int = 0, tried=None, partials=None) -> Optional[Dict[str, Any]]:
-    if tried is None: tried = set()
-    if partials is None: partials = []
+    if tried is None:
+        tried = set()
+    if partials is None:
+        partials = []
     ql = query.lower()
     if ql in tried or depth > 3:
         return None
@@ -194,22 +194,21 @@ def match_query(query: str, df: pd.DataFrame, depth: int = 0, tried=None, partia
         except Exception:
             continue
 
-if "Role" in df.columns and "Gender" in df.columns:
-    role, gender = extract_role_gender(query, df)
-    logger.info(f"[DEBUG] Extracted role={role}, gender={gender} from query='{query}'")
-    print(f"DEBUG: Filtering for role='{role}', gender='{gender}'")
-    # Print all roles and genders for every row (sanity check)
-    print("All rows:", df[["Name", "Role", "Gender"]].to_dict(orient="records"))
-    if role and gender:
-        mask = (
-            (df["Role"].str.lower().str.strip() == role) &
-            (df["Gender"].str.lower().str.strip() == gender)
-        )
-        filtered = df[mask]
-        print("Filtered result:", filtered[["Name", "Role", "Gender"]].to_dict(orient="records"))
-        logger.info(f"[DEBUG] Fallback match count: {filtered.shape[0]}")
-        if not filtered.empty:
-            return filtered.iloc[0].to_dict()
+    if "Role" in df.columns and "Gender" in df.columns:
+        role, gender = extract_role_gender(query, df)
+        logger.info(f"[DEBUG] Extracted role={role}, gender={gender} from query='{query}'")
+        print(f"DEBUG: Filtering for role='{role}', gender='{gender}'")
+        print("All rows:", df[["Name", "Role", "Gender"]].to_dict(orient="records"))
+        if role and gender:
+            mask = (
+                (df["Role"].str.lower().str.strip() == role) &
+                (df["Gender"].str.lower().str.strip() == gender)
+            )
+            filtered = df[mask]
+            print("Filtered result:", filtered[["Name", "Role", "Gender"]].to_dict(orient="records"))
+            logger.info(f"[DEBUG] Fallback match count: {filtered.shape[0]}")
+            if not filtered.empty:
+                return filtered.iloc[0].to_dict()
 
     return {"message": "No match, tried variants", "names": partials}
 
@@ -277,12 +276,12 @@ def lookup(query: str, file: Optional[str] = None):
         "genders": [],
         "names": []
     }
+
 @app.get("/sanity")
 def sanity():
     df = data_tables.get("prebuilt_characters.tsv")
     if df is None:
         return {"error": "No data"}
-    # Print all roles/genders combos
     return {
         "rows": df[["Name", "Role", "Gender"]].to_dict(orient="records")
     }
