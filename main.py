@@ -13,8 +13,6 @@ from rapidfuzz import fuzz
 
 from vector_cache import VectorCache
 
-print("########### MAIN.PY IS REDEPLOYED ###########")
-
 # ----------- CONFIGURATION -----------
 class Settings(BaseSettings):
     cors_origins: List[str] = ["*"]
@@ -56,7 +54,6 @@ REQUIRED_FILES = [
     "roles_core.tsv",
     "gear_core.tsv",
     "npc_core.tsv",
-    # Add any other core/role/rule/tool TSVs here
 ]
 
 data_tables: Dict[str, pd.DataFrame] = {}
@@ -108,44 +105,41 @@ def sanitize(obj: Any) -> Any:
         return ""
     return obj
 
-# --- Canon role names and prebuilt synonyms ---
-PREBUILT_ROLES = {"solo", "netrunner", "techie", "nomad", "fixer", "cop", "media", "medtech", "rockerboy", "corp"}
 PREBUILT_SYNONYMS = [
     "prebuilt character", "prebuilt characters", "pregens",
     "sample character", "starter build", "template", "archetype",
     "statline", "player template", "ready-made", "pregenerated pc",
-    "canon character", "npc template", "npc", "character"
+    "canon character", "npc template"
 ]
 
 def is_prebuilt_query(query: str) -> bool:
-    ql = query.lower()
-    words = set(ql.split())
-    # If both a role word and a gender are present, likely a pregen request
-    if (words & PREBUILT_ROLES) and ({"male", "female"} & words):
+    q = query.lower()
+    idx_df = data_tables.get("Index.tsv", pd.DataFrame())
+    desc_tokens = []
+    for _, row in idx_df.iterrows():
+        if row.get("File_Name", "").strip().lower() == "prebuilt_characters.tsv":
+            desc = row.get("Description", "")
+            for token in desc.split(","):
+                token = token.strip().lower()
+                if token:
+                    desc_tokens.append(token)
+            break
+    if any(token in q for token in desc_tokens):
         return True
-    # If any prebuilt synonym is present, it's a pregen request
-    if any(x in ql for x in PREBUILT_SYNONYMS):
-        return True
-    return False
+    return any(x in q for x in PREBUILT_SYNONYMS)
 
 def route_files(query: str) -> List[str]:
-    ql = query.lower()
-    words = set(ql.split())
     if is_prebuilt_query(query):
-        logger.info(f"Routing to prebuilt_characters.tsv for query='{query}'")
         return ["prebuilt_characters.tsv"]
-    # Otherwise, route by keywords
+    words = set(query.lower().split())
     candidates: Set[str] = set()
     for w in words:
         candidates.update(keyword_to_file.get(w, set()))
-    # Fallback: if nothing, look for direct file names containing the role
-    if not candidates:
-        for role in PREBUILT_ROLES:
-            if role in words:
-                # E.g. techie -> techie_role.tsv or similar
-                fname = f"{role}_role.tsv"
-                if fname in data_tables:
-                    candidates.add(fname)
+    if not candidates and any(x in query.lower() for x in ['character', 'npc']):
+        for k, v in keyword_to_file.items():
+            if any(x in k for x in ['character', 'npc']):
+                candidates.update(v)
+        candidates.add('prebuilt_characters.tsv')
     return [f for f in candidates if f in data_tables]
 
 SYNONYMS = {
@@ -163,7 +157,7 @@ def extract_role_gender(query: str, df: pd.DataFrame) -> Tuple[Optional[str], Op
             found_role = term
         if (not found_gender) and (term in genders):
             found_gender = term
-    print(f"DEBUG: extracted role={found_role}, gender={found_gender}")
+    print(f"[DEBUG] extract_role_gender: terms={terms}, roles={roles}, genders={genders}, found_role={found_role}, found_gender={found_gender}")
     return found_role, found_gender
 
 def match_query(query: str, df: pd.DataFrame, depth: int = 0, tried=None, partials=None) -> Optional[Dict[str, Any]]:
@@ -177,12 +171,14 @@ def match_query(query: str, df: pd.DataFrame, depth: int = 0, tried=None, partia
     tried.add(ql)
     logger.info(f"[Depth {depth}] Matching: {ql}")
 
+    # 1. Fulltext search
     if not df.empty:
         mask = df.apply(lambda r: ql in " ".join(str(x).lower() for x in r), axis=1)
         if mask.any():
             return df[mask].iloc[0].to_dict()
         partials += [str(row.get("Name", "")) for _, row in df[mask].iterrows()]
 
+    # 2. Synonym search
     for word, syns in SYNONYMS.items():
         if any(s in ql for s in syns):
             mask = df.apply(lambda r: word in " ".join(str(x).lower() for x in r), axis=1)
@@ -190,6 +186,7 @@ def match_query(query: str, df: pd.DataFrame, depth: int = 0, tried=None, partia
                 return df[mask].iloc[0].to_dict()
             partials += [str(row.get("Name", "")) for _, row in df[mask].iterrows()]
 
+    # 3. Fuzzy match
     for idx, row in df.iterrows():
         try:
             score = fuzz.partial_ratio(ql, " ".join(str(x).lower() for x in row))
@@ -200,21 +197,27 @@ def match_query(query: str, df: pd.DataFrame, depth: int = 0, tried=None, partia
         except Exception:
             continue
 
+    # 4. Role+Gender fallback
     if "Role" in df.columns and "Gender" in df.columns:
         role, gender = extract_role_gender(query, df)
-        logger.info(f"[DEBUG] Extracted role={role}, gender={gender} from query='{query}'")
-        print(f"DEBUG: Filtering for role='{role}', gender='{gender}'")
-        print("All rows:", df[["Name", "Role", "Gender"]].to_dict(orient="records"))
+        print(f"[DEBUG] Query: '{query}' | Extracted role: '{role}' | Extracted gender: '{gender}'")
+        print("[DEBUG] Unique roles in data:", [repr(x) for x in df["Role"].unique()])
+        print("[DEBUG] Unique genders in data:", [repr(x) for x in df["Gender"].unique()])
         if role and gender:
             mask = (
                 (df["Role"].str.lower().str.strip() == role) &
                 (df["Gender"].str.lower().str.strip() == gender)
             )
             filtered = df[mask]
-            print("Filtered result:", filtered[["Name", "Role", "Gender"]].to_dict(orient="records"))
+            print(f"[DEBUG] Masking for Role == '{role}', Gender == '{gender}' | Result count: {filtered.shape[0]}")
+            print("[DEBUG] Filtered candidates:", filtered[["Name", "Role", "Gender"]].to_dict(orient="records"))
             logger.info(f"[DEBUG] Fallback match count: {filtered.shape[0]}")
             if not filtered.empty:
                 return filtered.iloc[0].to_dict()
+            else:
+                print("[DEBUG] No filtered rows found for requested role+gender!")
+        else:
+            print("[DEBUG] Did not extract valid role+gender.")
 
     return {"message": "No match, tried variants", "names": partials}
 
@@ -233,28 +236,35 @@ def on_startup():
 
 @app.get("/lookup")
 def lookup(query: str, file: Optional[str] = None):
-    print(f"###### LOOKUP ROUTE CALLED: query={query}, file={file}")
+    # -- ADDED DEBUG OUTPUT --
     files = [file] if file else route_files(query)
+    print(f'{"#"*10} LOOKUP ROUTE CALLED: query={query}, file={file}')
+    print(f"[DEBUG] routed_files: {files}")
     prebuilt_queried = any(f == "prebuilt_characters.tsv" for f in files)
-    print(f"###### LOOKUP ROUTED FILES: {files}, prebuilt_queried={prebuilt_queried}")
     for f in files:
         if f not in data_tables:
             continue
         df = data_tables[f]
         result = match_query(query, df)
+        # Canonical match: has Name field, return directly
         if result and "Name" in result:
             return {
                 "debug_msg": f"LOOKUP ROUTE CALLED: query={query}, file={file}",
+                "routed_files": files,
+                "prebuilt_queried": prebuilt_queried,
                 "source": f,
                 "result": sanitize(result),
                 "note": f"Returned for query '{query}'"
             }
+        # Ambiguous result: return with roles/genders/names arrays
         if result and "names" in result:
             roles = sorted(df["Role"].dropna().str.title().unique().tolist()) if "Role" in df else []
             genders = sorted(df["Gender"].dropna().str.title().unique().tolist()) if "Gender" in df else []
             names = result.get("names", [])
             return {
                 "debug_msg": f"LOOKUP ROUTE CALLED: query={query}, file={file}",
+                "routed_files": files,
+                "prebuilt_queried": prebuilt_queried,
                 "code": "ambiguous",
                 "message": "Ambiguous query. Please specify role, gender, or consult /canon-map-keys.",
                 "roles": roles,
@@ -262,6 +272,7 @@ def lookup(query: str, file: Optional[str] = None):
                 "names": names
             }
 
+    # Prebuilt clarification (force roles/genders/names)
     if prebuilt_queried and "prebuilt_characters.tsv" in data_tables:
         df = data_tables["prebuilt_characters.tsv"]
         roles = sorted(df["Role"].dropna().str.title().unique().tolist()) if "Role" in df else []
@@ -269,6 +280,8 @@ def lookup(query: str, file: Optional[str] = None):
         names = sorted(df["Name"].dropna().unique().tolist()) if "Name" in df else []
         return {
             "debug_msg": f"LOOKUP ROUTE CALLED: query={query}, file={file}",
+            "routed_files": files,
+            "prebuilt_queried": prebuilt_queried,
             "code": "clarification_required",
             "message": "Which role and gender do you want for the prebuilt character? Specify as e.g. 'Solo male', 'Netrunner female'.",
             "roles": roles,
@@ -276,6 +289,7 @@ def lookup(query: str, file: Optional[str] = None):
             "names": names
         }
 
+    # Not found: always return arrays
     return {
         "debug_msg": f"LOOKUP ROUTE CALLED: query={query}, file={file}",
         "routed_files": files,
