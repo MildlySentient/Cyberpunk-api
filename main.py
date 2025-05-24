@@ -28,7 +28,7 @@ def load_yaml_config(filepath: str) -> Optional[Dict[str, Any]]:
         with open(filepath, "r") as f:
             return yaml.safe_load(f)
     except Exception as e:
-        print(f"Failed to load YAML config '{filepath}': {e}")
+        logger.info(f"Failed to load YAML config '{filepath}': {e}")
         return None
 
 config = load_yaml_config(settings.logging_config)
@@ -157,7 +157,7 @@ def extract_role_gender(query: str, df: pd.DataFrame) -> Tuple[Optional[str], Op
             found_role = term
         if (not found_gender) and (term in genders):
             found_gender = term
-    print(f"DEBUG: extracted role={found_role}, gender={found_gender}")
+    logger.info(f"DEBUG: extracted role={found_role}, gender={found_gender}")
     return found_role, found_gender
 
 def match_query(query: str, df: pd.DataFrame, depth: int = 0, tried=None, partials=None) -> Optional[Dict[str, Any]]:
@@ -196,16 +196,15 @@ def match_query(query: str, df: pd.DataFrame, depth: int = 0, tried=None, partia
 
     if "Role" in df.columns and "Gender" in df.columns:
         role, gender = extract_role_gender(query, df)
-        logger.info(f"[DEBUG] Extracted role={role}, gender={gender} from query='{query}'")
-        print(f"DEBUG: Filtering for role='{role}', gender='{gender}'")
-        print("All rows:", df[["Name", "Role", "Gender"]].to_dict(orient="records"))
+        logger.info(f"DEBUG: Filtering for role='{role}', gender='{gender}'")
+        logger.info("All rows: %s", df[["Name", "Role", "Gender"]].to_dict(orient="records"))
         if role and gender:
             mask = (
                 (df["Role"].str.lower().str.strip() == role) &
                 (df["Gender"].str.lower().str.strip() == gender)
             )
             filtered = df[mask]
-            print("Filtered result:", filtered[["Name", "Role", "Gender"]].to_dict(orient="records"))
+            logger.info("Filtered result: %s", filtered[["Name", "Role", "Gender"]].to_dict(orient="records"))
             logger.info(f"[DEBUG] Fallback match count: {filtered.shape[0]}")
             if not filtered.empty:
                 return filtered.iloc[0].to_dict()
