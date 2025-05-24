@@ -4,4 +4,5 @@ pandas==2.2.3
 spacy==3.8.6
 rapidfuzz==3.13.0
 scikit-learn==1.6.1
+duckdb==0.10.2
 en_core_web_md @ https://github.com/explosion/spacy-models/releases/download/en_core_web_md-3.8.0/en_core_web_md-3.8.0-py3-none-any.whl
