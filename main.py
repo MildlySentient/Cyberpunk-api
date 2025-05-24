@@ -226,50 +226,53 @@ def on_startup():
     
 @app.get("/lookup")
 def lookup(query: str, file: Optional[str] = None):
-    print(f"###### LOOKUP ROUTE CALLED: query={query}, file={file}")
+    debug_msg = f"LOOKUP ROUTE CALLED: query={query}, file={file}"
     files = [file] if file else route_files(query)
     prebuilt_queried = any(f == "prebuilt_characters.tsv" for f in files)
+    debug_info = {
+        "debug_msg": debug_msg,
+        "routed_files": files,
+        "prebuilt_queried": prebuilt_queried,
+    }
     for f in files:
         if f not in data_tables:
             continue
         df = data_tables[f]
         result = match_query(query, df)
-        # Canonical match: has Name field, return directly
         if result and "Name" in result:
             return {
+                **debug_info,
                 "source": f,
                 "result": sanitize(result),
                 "note": f"Returned for query '{query}'"
             }
-        # Ambiguous result: return with roles/genders/names arrays
         if result and "names" in result:
             roles = sorted(df["Role"].dropna().str.title().unique().tolist()) if "Role" in df else []
             genders = sorted(df["Gender"].dropna().str.title().unique().tolist()) if "Gender" in df else []
             names = result.get("names", [])
             return {
+                **debug_info,
                 "code": "ambiguous",
                 "message": "Ambiguous query. Please specify role, gender, or consult /canon-map-keys.",
                 "roles": roles,
                 "genders": genders,
                 "names": names
             }
-
-    # Prebuilt clarification (force roles/genders/names)
     if prebuilt_queried and "prebuilt_characters.tsv" in data_tables:
         df = data_tables["prebuilt_characters.tsv"]
         roles = sorted(df["Role"].dropna().str.title().unique().tolist()) if "Role" in df else []
         genders = sorted(df["Gender"].dropna().str.title().unique().tolist()) if "Gender" in df else []
         names = sorted(df["Name"].dropna().unique().tolist()) if "Name" in df else []
         return {
+            **debug_info,
             "code": "clarification_required",
             "message": "Which role and gender do you want for the prebuilt character? Specify as e.g. 'Solo male', 'Netrunner female'.",
             "roles": roles,
             "genders": genders,
             "names": names
         }
-
-    # Not found: always return arrays
     return {
+        **debug_info,
         "code": "not_found",
         "message": "No canonical match. Consult index.tsv.",
         "roles": [],
