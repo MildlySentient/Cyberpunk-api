@@ -1,23 +1,22 @@
 import os
-import glob
 import logging
 import logging.config
 import math
 import yaml
 from typing import List, Dict, Any, Optional, Set, Tuple
 import pandas as pd
-import spacy
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseSettings
 from rapidfuzz import fuzz
+
+from vector_cache import VectorCache
 
 # ----------- CONFIGURATION -----------
 class Settings(BaseSettings):
     cors_origins: List[str] = ["*"]
     data_dir: str = os.path.dirname(__file__)
     logging_config: str = os.path.join(os.path.dirname(__file__), 'logging.yaml')
-    spacy_model: str = "en_core_web_md"
     class Config:
         env_file = ".env"
 
@@ -38,55 +37,65 @@ else:
     logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger("cyberpunk_api")
 
-# ----------- NLP MODEL LOADING -----------
-try:
-    nlp = spacy.load(settings.spacy_model)
-    logger.info(f"Loaded spaCy model: {settings.spacy_model}")
-except Exception as e:
-    logger.error(f"Failed to load spaCy model: {e}", exc_info=True)
-    nlp = None
+# ----------- DATA FILES TO LOAD -----------
+REQUIRED_FILES = [
+    "Index.tsv",
+    "prebuilt_characters.tsv",
+    "services_core.tsv",
+    "plugins_core.tsv",
+    "campaigns_core.tsv",
+    "corporate_core.tsv",
+    "encounters_core.tsv",
+    "setting_core.tsv",
+    "weapons_core.tsv",
+    "assets_core.tsv",
+    "system_core.tsv",
+    "roles_core.tsv",
+    "gear_core.tsv",
+    "npc_core.tsv",
+]
 
-# ----------- DATA CACHE -----------
-class DataCache:
-    def __init__(self):
-        self.canon_map: Dict[str, Dict[str, List[Dict[str, Any]]]] = {}
-        self.tsv_files: List[str] = []
+# ----------- DATA CACHE STRUCTURES -----------
+data_tables: Dict[str, pd.DataFrame] = {}
+vector_tables: Dict[str, Tuple[pd.DataFrame, VectorCache]] = {}
+keyword_to_file: Dict[str, Set[str]] = {}
 
-    def load_tsv_files(self, data_dir: str):
-        tsv_pattern = os.path.join(data_dir, '*.tsv')
-        self.tsv_files = glob.glob(tsv_pattern)
-        logger.info(f"Found {len(self.tsv_files)} TSV files")
-        self.canon_map = {}
-        for tsv in self.tsv_files:
-            try:
-                df = pd.read_csv(tsv, sep='\t', dtype=str).fillna("")
-                if "Role" in df.columns and "Gender" in df.columns:
-                    for _, row in df.iterrows():
-                        role = row["Role"].strip().lower()
-                        gender = row["Gender"].strip().lower()
-                        if not role or not gender:
-                            continue
-                        self.canon_map.setdefault(role, {}).setdefault(gender, []).append(row.to_dict())
-                logger.info(f"Loaded {os.path.basename(tsv)} ({df.shape[0]} rows)")
-            except Exception as e:
-                logger.error(f"Failed to read {tsv}: {e}", exc_info=True)
+# ----------- DATA LOADING -----------
+def prepare_for_matching(df: pd.DataFrame, filename: str) -> pd.DataFrame:
+    # Generic column concat for vector search and substring search
+    df["__match_text_internal__"] = df.astype(str).apply(" ".join, axis=1).str.lower()
+    return df
 
-cache = DataCache()
-cache.load_tsv_files(settings.data_dir)
+def load_core_files():
+    data_tables.clear()
+    vector_tables.clear()
+    for file in REQUIRED_FILES:
+        path = os.path.join(settings.data_dir, file)
+        if not os.path.isfile(path):
+            logger.warning(f"{file} not found, skipping.")
+            continue
+        try:
+            df = pd.read_csv(path, sep="\t", dtype=str).fillna("")
+            if file == "prebuilt_characters.tsv":
+                df = prepare_for_matching(df, file)
+                vc = VectorCache()
+                vc.preload_vectors(df)
+                vector_tables[file] = (df, vc)
+            data_tables[file] = df
+            logger.info(f"Loaded {file} ({df.shape[0]} rows)")
+        except Exception as e:
+            logger.error(f"Failed to load {file}: {e}")
 
-# ----------- INDEX LOADING -----------
-index_path = os.path.join(settings.data_dir, "Index.tsv")
-if os.path.isfile(index_path):
-    index_df = pd.read_csv(index_path, sep="\t", dtype=str).fillna("")
-    keyword_to_file: Dict[str, Set[str]] = {}
-    for _, row in index_df.iterrows():
-        for word in row['Description'].split(','):
-            keyword = word.strip().lower()
-            if keyword:
-                keyword_to_file.setdefault(keyword, set()).add(row['File_Name'])
-else:
-    logger.warning("Index.tsv not found; routing will degrade.")
-    keyword_to_file = {}
+    # Index.tsv loads keyword routing
+    if "Index.tsv" in data_tables:
+        idx = data_tables["Index.tsv"]
+        for _, row in idx.iterrows():
+            for word in row['Description'].split(','):
+                keyword = word.strip().lower()
+                if keyword:
+                    keyword_to_file.setdefault(keyword, set()).add(row['File_Name'])
+    else:
+        logger.warning("Index.tsv not loaded; keyword routing will degrade.")
 
 # ----------- UTILITIES -----------
 def sanitize(obj: Any) -> Any:
@@ -122,7 +131,7 @@ def route_files(query: str) -> List[str]:
             if any(x in k for x in ['character', 'npc']):
                 candidates.update(v)
         candidates.add('prebuilt_characters.tsv')
-    return list(candidates)
+    return [f for f in candidates if f in data_tables]
 
 def match_query(
     query: str,
@@ -135,7 +144,6 @@ def match_query(
         tried = set()
     if partials is None:
         partials = []
-
     ql = query.lower()
     if ql in tried or depth > 3:
         return None
@@ -168,39 +176,19 @@ def match_query(
         except Exception:
             continue
 
-    # 4) Vector similarity
-    if nlp:
-        try:
-            doc = nlp(ql)
-            docs = [nlp(" ".join(str(x).lower() for x in row)) for _, row in df.iterrows()]
-            sims = [doc.similarity(d) for d in docs]
-            if sims and max(sims) > 0.92:
-                return df.iloc[sims.index(max(sims))].to_dict()
-        except Exception as e:
-            logger.warning(f"NLP error: {e}")
-
-    # 5) Recursive partials
-    if depth < 3:
-        for p in set(partials) - tried:
-            res = match_query(p, df, depth + 1, tried, partials)
-            if res:
-                return res
-
-    # 6) Role+Gender fallback
-    terms = ql.split()
-    role = next((t for t in terms if t in cache.canon_map), None)
-    gender = next((t for t in terms if t in ["male", "female"]), None)
-    if role and gender:
-        try:
-            return cache.canon_map[role][gender][0]
-        except Exception as e:
-            logger.warning(f"Role+Gender fallback failed: {e}")
+    # 4) Role+Gender fallback for prebuilt_characters
+    if "Role" in df.columns and "Gender" in df.columns:
+        terms = ql.split()
+        role = next((t for t in terms if t in df["Role"].str.lower().unique()), None)
+        gender = next((t for t in terms if t in ["male", "female"]), None)
+        if role and gender:
+            mask = (df["Role"].str.lower() == role) & (df["Gender"].str.lower() == gender)
+            if mask.any():
+                return df[mask].iloc[0].to_dict()
 
     return {"message": "No match, tried variants", "variants": partials}
 
-# ----------- FASTAPI SETUP -----------
-from vector_cache import VectorCache
-
+# ----------- FASTAPI APP -----------
 app = FastAPI()
 app.add_middleware(
     CORSMiddleware,
@@ -209,20 +197,21 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+@app.on_event("startup")
+def on_startup():
+    load_core_files()
+    logger.info("Loaded minimal core files.")
+
 @app.get("/lookup")
 def lookup(query: str, file: Optional[str] = None):
     files = [file] if file else route_files(query)
     for f in files:
-        path = os.path.join(settings.data_dir, f)
-        if not os.path.isfile(path):
+        if f not in data_tables:
             continue
-        try:
-            df = pd.read_csv(path, sep="\t", dtype=str).fillna("")
-            result = match_query(query, df)
-            if result:
-                return sanitize(result)
-        except Exception as e:
-            logger.error(f"Failed to read {f}: {e}", exc_info=True)
+        df = data_tables[f]
+        result = match_query(query, df)
+        if result:
+            return sanitize(result)
     raise HTTPException(status_code=404, detail="No match found")
 
 @app.get("/healthz")
@@ -231,40 +220,12 @@ def health():
 
 @app.post("/reload")
 def reload_data():
-    cache.load_tsv_files(settings.data_dir)
-    load_vector_sources()
+    load_core_files()
     return {"status": "reloaded"}
 
-@app.get("/canon-map-keys")
-def get_canon_map_keys():
-    return {"roles": list(cache.canon_map.keys())}
-
-# ----------- VECTOR CACHE INTEGRATION -----------
-vector_tables: Dict[str, Tuple[pd.DataFrame, VectorCache]] = {}
-
-def load_vector_sources():
-    global vector_tables
-    vector_tables.clear()
-    for file in os.listdir(settings.data_dir):
-        if file.endswith(".tsv"):
-            full_path = os.path.join(settings.data_dir, file)
-            try:
-                df = pd.read_csv(full_path, sep="\t", dtype=str).fillna("")
-                try:
-                    from preprocessing import prepare_for_matching
-                    df = prepare_for_matching(df, file)
-                except ImportError:
-                    pass
-                vc = VectorCache()
-                vc.preload_vectors(df)
-                vector_tables[file] = (df, vc)
-                logger.info(f"Vectorized {file} ({df.shape[0]} rows)")
-            except Exception as e:
-                logger.warning(f"Failed to load {file} into vector cache: {e}")
-
-@app.on_event("startup")
-def load_all_vectors():
-    load_vector_sources()
+@app.get("/vector-manifest")
+def vector_manifest():
+    return {"files": list(vector_tables.keys())}
 
 @app.get("/match")
 def match_character(
@@ -275,21 +236,24 @@ def match_character(
     role: Optional[str] = None,
     gender: Optional[str] = None
 ):
+    # Only prebuilt_characters.tsv is vectorized
+    fname = "prebuilt_characters.tsv"
+    if fname not in vector_tables:
+        raise HTTPException(status_code=503, detail="Vector cache not initialized.")
+    df, vc = vector_tables[fname]
+    raw_results = vc.find_best_match(query, top_k=top_k * 2)
     matches: List[Dict[str, Any]] = []
-    for fname, (df, vc) in vector_tables.items():
-        if use_semantics:
-            raw_results = vc.find_best_match(query, top_k=top_k * 2)
-            for idx, score in raw_results:
-                if score < score_threshold:
-                    continue
-                row = df.iloc[idx].to_dict()
-                if role and role.lower() not in str(row.get("Role", "")).lower():
-                    continue
-                if gender and gender.lower() not in str(row.get("Gender", "")).lower():
-                    continue
-                row["_source_file"] = fname
-                row["_score"] = round(score, 4)
-                matches.append(row)
+    for idx, score in raw_results:
+        if score < score_threshold:
+            continue
+        row = df.iloc[idx].to_dict()
+        if role and role.lower() not in str(row.get("Role", "")).lower():
+            continue
+        if gender and gender.lower() not in str(row.get("Gender", "")).lower():
+            continue
+        row["_source_file"] = fname
+        row["_score"] = round(score, 4)
+        matches.append(row)
     # Dedupe by Name+Role
     seen: Set[str] = set()
     final: List[Dict[str, Any]] = []
@@ -304,22 +268,15 @@ def match_character(
         raise HTTPException(status_code=404, detail="No suitable match found.")
     return final if top_k > 1 else final[0]
 
-@app.get("/vector-manifest")
-def vector_manifest():
-    return {"files": list(vector_tables.keys())}
-
 @app.post("/vector-reload")
 def reload_vector_file(file: str):
-    global vector_tables
-    try:
-        from preprocessing import prepare_for_matching
-    except ImportError:
-        prepare_for_matching = lambda df, _: df
-    full_path = os.path.join(settings.data_dir, file)
-    if not os.path.isfile(full_path):
+    if file != "prebuilt_characters.tsv":
+        raise HTTPException(status_code=400, detail="Only prebuilt_characters.tsv is vectorized.")
+    path = os.path.join(settings.data_dir, file)
+    if not os.path.isfile(path):
         raise HTTPException(status_code=404, detail=f"TSV file '{file}' not found.")
     try:
-        df = pd.read_csv(full_path, sep="\t", dtype=str).fillna("")
+        df = pd.read_csv(path, sep="\t", dtype=str).fillna("")
         df = prepare_for_matching(df, file)
         vc = VectorCache()
         vc.preload_vectors(df)
@@ -327,3 +284,13 @@ def reload_vector_file(file: str):
         return {"status": "reloaded", "file": file, "rows": df.shape[0]}
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Failed to reload vectors for '{file}': {e}")
+
+# ---- Bootloader.md endpoint (not loaded into data cache) ----
+@app.get("/bootloader")
+def show_bootloader():
+    path = os.path.join(settings.data_dir, "Bootloader.md")
+    if not os.path.isfile(path):
+        raise HTTPException(status_code=404, detail="Bootloader.md not found")
+    with open(path, "r", encoding="utf-8") as f:
+        content = f.read()
+    return {"filename": "Bootloader.md", "markdown": content}
