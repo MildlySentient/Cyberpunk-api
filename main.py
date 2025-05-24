@@ -12,7 +12,7 @@ from pydantic import BaseSettings
 from rapidfuzz import fuzz
 
 from vector_cache import VectorCache
-print("########### MAIN.PY IS REDEPLOYED ###########")
+
 # ----------- CONFIGURATION -----------
 class Settings(BaseSettings):
     cors_origins: List[str] = ["*"]
@@ -223,9 +223,10 @@ app.add_middleware(
 def on_startup():
     load_core_files()
     logger.info("Loaded core files.")
-
+    
 @app.get("/lookup")
 def lookup(query: str, file: Optional[str] = None):
+    print(f"###### LOOKUP ROUTE CALLED: query={query}, file={file}")
     files = [file] if file else route_files(query)
     prebuilt_queried = any(f == "prebuilt_characters.tsv" for f in files)
     for f in files:
