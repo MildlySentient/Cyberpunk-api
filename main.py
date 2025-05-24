@@ -228,3 +228,139 @@ def reload_data():
 @app.get("/canon-map-keys")
 def get_canon_map_keys():
     return {"roles": list(cache.canon_map.keys())}
+
+
+
+
+# ----------- VECTOR CACHE INTEGRATION -----------
+
+from vector_cache import VectorCache
+
+vector_cache = VectorCache()
+vector_df = None  # Will hold the DataFrame used for semantic search
+
+
+@app.on_event("startup")
+def extended_startup_event():
+    global vector_df
+    from preprocessing import prepare_for_matching  # Re-import in case of reload
+    tsv_path = os.path.join(settings.data_dir, "prebuilt_characters.tsv")
+    if os.path.isfile(tsv_path):
+        df = pd.read_csv(tsv_path, sep="\t", dtype=str).fillna("")
+        df = prepare_for_matching(df, "prebuilt_characters.tsv")
+        vector_df = df
+        vector_cache.preload_vectors(df)
+    else:
+        raise RuntimeError("Required TSV not found for vector search.")
+
+
+@app.get("/match")
+def match_character(query: str, use_semantics: bool = True, top_k: int = 1):
+    global vector_df
+    if vector_df is None:
+        raise HTTPException(status_code=503, detail="Vector cache not initialized.")
+
+    # Try semantic match
+    if use_semantics:
+        results = vector_cache.find_best_match(query, top_k=top_k)
+        matches = [vector_df.iloc[i].to_dict() | {"_score": round(score, 4)} for i, score in results]
+        return matches if top_k > 1 else matches[0]
+
+    # Fallback: Exact match search in __match_text_internal__
+    mask = vector_df["__match_text_internal__"].str.contains(query.lower())
+    if mask.any():
+        return vector_df[mask].iloc[0].to_dict()
+
+    raise HTTPException(status_code=404, detail="No match found.")
+
+# ----------- EXPANDED VECTOR MATCHING -----------
+
+vector_cache = VectorCache()
+vector_tables = {}  # filename -> (DataFrame, embedded vectors)
+
+def load_vector_sources():
+    global vector_tables
+    vector_tables.clear()
+    for file in os.listdir(settings.data_dir):
+        if file.endswith(".tsv"):
+            full_path = os.path.join(settings.data_dir, file)
+            try:
+                df = pd.read_csv(full_path, sep="\t", dtype=str).fillna("")
+                from preprocessing import prepare_for_matching
+                df = prepare_for_matching(df, file)
+                cache = VectorCache()
+                cache.preload_vectors(df)
+                vector_tables[file] = (df, cache)
+            except Exception as e:
+                logger.warning(f"Failed to load {file} into vector cache: {e}")
+
+@app.on_event("startup")
+def extended_startup_event():
+    load_vector_sources()
+
+@app.get("/match")
+def match_character(
+    query: str,
+    use_semantics: bool = True,
+    top_k: int = 3,
+    score_threshold: float = 0.65,
+    role: Optional[str] = None,
+    gender: Optional[str] = None
+):
+    matches = []
+
+    for fname, (df, cache) in vector_tables.items():
+        if use_semantics:
+            raw_results = cache.find_best_match(query, top_k=top_k * 2)
+            for idx, score in raw_results:
+                if score < score_threshold:
+                    continue
+                row = df.iloc[idx].to_dict()
+                if role and role.lower() not in str(row.get("Role", "")).lower():
+                    continue
+                if gender and gender.lower() not in str(row.get("Gender", "")).lower():
+                    continue
+                row["_source_file"] = fname
+                row["_score"] = round(score, 4)
+                matches.append(row)
+
+    # Deduplicate by name if possible
+    seen = set()
+    final = []
+    for m in matches:
+        key = m.get("Name", "") + m.get("Role", "")
+        if key not in seen:
+            final.append(m)
+            seen.add(key)
+        if len(final) >= top_k:
+            break
+
+    if not final:
+        raise HTTPException(status_code=404, detail="No suitable match found.")
+
+    return final if top_k > 1 else final[0]
+
+@app.get("/vector-manifest")
+def vector_manifest():
+    return {
+        "files": list(vector_tables.keys())
+    }
+
+@app.post("/vector-reload")
+def reload_vector_file(file: str):
+    global vector_tables
+    from preprocessing import prepare_for_matching
+
+    full_path = os.path.join(settings.data_dir, file)
+    if not os.path.isfile(full_path):
+        raise HTTPException(status_code=404, detail=f"TSV file '{file}' not found.")
+
+    try:
+        df = pd.read_csv(full_path, sep="\t", dtype=str).fillna("")
+        df = prepare_for_matching(df, file)
+        cache = VectorCache()
+        cache.preload_vectors(df)
+        vector_tables[file] = (df, cache)
+        return {"status": "reloaded", "file": file, "rows": df.shape[0]}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Failed to reload vectors for '{file}': {e}")
