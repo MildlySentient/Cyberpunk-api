@@ -194,7 +194,7 @@ def match_query(query: str, df: pd.DataFrame, depth: int = 0, tried=None, partia
         except Exception:
             continue
 
-    if "Role" in df.columns and "Gender" in df.columns:
+if "Role" in df.columns and "Gender" in df.columns:
     role, gender = extract_role_gender(query, df)
     logger.info(f"[DEBUG] Extracted role={role}, gender={gender} from query='{query}'")
     print(f"DEBUG: Filtering for role='{role}', gender='{gender}'")
