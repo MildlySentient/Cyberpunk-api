@@ -273,3 +273,12 @@ def lookup(query: str, file: Optional[str] = None):
         "genders": [],
         "names": []
     }
+    @app.get("/sanity")
+def sanity():
+    df = data_tables.get("prebuilt_characters.tsv")
+    if df is None:
+        return {"error": "No data"}
+    # Print all roles/genders combos
+    return {
+        "rows": df[["Name", "Role", "Gender"]].to_dict(orient="records")
+    }
