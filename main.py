@@ -109,18 +109,38 @@ def sanitize(obj: Any) -> Any:
     return obj
 
 # ----------- DOMAIN LOGIC -----------
-SYNONYMS = {
-    "roll": ["dice", "rolling", "throw", "cast", "d10", "d6", "d100"],
-}
-PREBUILT_SYNONYMS = ["prebuilt character", "pregens", "sample character", "starter build"]
+PREBUILT_SYNONYMS = [
+    "prebuilt character", "prebuilt characters",
+    "pregens", "sample character", "sample characters",
+    "starter build", "starter builds",
+    "template", "templates",
+    "archetype", "archetypes",
+    "statline", "statlines",
+    "player template", "player templates",
+    "ready-made", "ready made", "pregenerated pc", "pregenerated pcs",
+    "canon character", "canon characters",
+    "npc template", "npc templates"
+]
 
 def is_prebuilt_query(query: str) -> bool:
     q = query.lower()
+    idx_df = data_tables.get("Index.tsv", pd.DataFrame())
+    desc_tokens = []
+    for _, row in idx_df.iterrows():
+        if row.get("File_Name", "").strip().lower() == "prebuilt_characters.tsv":
+            desc = row.get("Description", "")
+            for token in desc.split(","):
+                token = token.strip().lower()
+                if token:
+                    desc_tokens.append(token)
+            break
+    if any(token in q for token in desc_tokens):
+        return True
     return any(x in q for x in PREBUILT_SYNONYMS)
 
 def route_files(query: str) -> List[str]:
     if is_prebuilt_query(query):
-        return ['prebuilt_characters.tsv']
+        return ["prebuilt_characters.tsv"]
     words = set(query.lower().split())
     candidates: Set[str] = set()
     for w in words:
@@ -131,6 +151,10 @@ def route_files(query: str) -> List[str]:
                 candidates.update(v)
         candidates.add('prebuilt_characters.tsv')
     return [f for f in candidates if f in data_tables]
+
+SYNONYMS = {
+    "roll": ["dice", "rolling", "throw", "cast", "d10", "d6", "d100"],
+}
 
 def match_query(
     query: str,
@@ -185,7 +209,7 @@ def match_query(
             if mask.any():
                 return df[mask].iloc[0].to_dict()
 
-    return {"variants": partials}
+    return {"message": "No match, tried variants", "variants": partials}
 
 # ----------- FASTAPI APP -----------
 app = FastAPI()
@@ -203,25 +227,13 @@ def on_startup():
 
 @app.get("/lookup")
 def lookup(query: str, file: Optional[str] = None):
-    # --- Added: Clarify vague prebuilt requests ---
-    if is_prebuilt_query(query):
-        df = data_tables.get("prebuilt_characters.tsv")
-        roles = sorted(df["Role"].str.title().unique()) if df is not None else []
-        genders = sorted(df["Gender"].str.title().unique()) if df is not None else ["Male", "Female"]
-        return {
-            "message": (
-                "Which role and gender do you want for the prebuilt character? "
-                "Specify as e.g. 'Solo male', 'Netrunner female', etc."
-            ),
-            "roles": roles,
-            "genders": genders,
-        }
     files = [file] if file else route_files(query)
     for f in files:
         if f not in data_tables:
             continue
         df = data_tables[f]
         result = match_query(query, df)
+
         if result and "Name" in result:
             # Canonical, exact match: return DataResultModel
             return {
@@ -229,6 +241,7 @@ def lookup(query: str, file: Optional[str] = None):
                 "result": sanitize(result),
                 "note": f"Returned for query '{query}'"
             }
+
         if result and "variants" in result:
             # Ambiguous match (e.g., multiple candidates, or vague query)
             roles = sorted(df["Role"].dropna().str.title().unique().tolist()) if "Role" in df else []
@@ -237,6 +250,7 @@ def lookup(query: str, file: Optional[str] = None):
                 "message": "Ambiguous query. Please specify role, gender, or consult /canon-map-keys.",
                 "available_roles": roles,
             }
+
     # No match found in any file
     return {
         "code": "not_found",
