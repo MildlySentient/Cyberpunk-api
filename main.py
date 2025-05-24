@@ -103,6 +103,7 @@ def extract_role_gender(query: str, df: pd.DataFrame) -> Tuple[Optional[str], Op
     roles = [r.lower().strip() for r in df["Role"].dropna().unique()] if "Role" in df else []
     genders = [g.lower().strip() for g in df["Gender"].dropna().unique()] if "Gender" in df else []
     terms = set([t.lower().strip() for t in re.findall(r'\w+', query)])
+    print("DEBUG extract_role_gender:", {"roles": roles, "genders": genders, "terms": list(terms)})
     found_role = None
     found_gender = None
     for term in terms:
@@ -110,6 +111,7 @@ def extract_role_gender(query: str, df: pd.DataFrame) -> Tuple[Optional[str], Op
             found_role = term
         if (not found_gender) and (term in genders):
             found_gender = term
+    print("  found_role:", found_role, "found_gender:", found_gender)
     return found_role, found_gender
 
 # ----------- FASTAPI APP -----------
@@ -254,5 +256,36 @@ def sanity():
     try:
         df = duckdb_conn.execute("SELECT * FROM prebuilt_characters").fetchdf()
         return {"rows": df[["Name", "Role", "Gender"]].to_dict(orient="records")}
+    except Exception as e:
+        return {"error": str(e)}
+
+@app.get("/sanity-dump")
+def sanity_dump():
+    try:
+        df = duckdb_conn.execute("SELECT * FROM prebuilt_characters").fetchdf()
+        roles = sorted(df["Role"].dropna().unique())
+        genders = sorted(df["Gender"].dropna().unique())
+        names = sorted(df["Name"].dropna().unique())
+        return {
+            "rows": df[["Name", "Role", "Gender"]].to_dict(orient="records"),
+            "roles": roles,
+            "genders": genders,
+            "names": names,
+        }
+    except Exception as e:
+        return {"error": str(e)}
+
+@app.get("/sanity-extract")
+def sanity_extract(q: str):
+    try:
+        df = duckdb_conn.execute("SELECT * FROM prebuilt_characters").fetchdf()
+        role, gender = extract_role_gender(q, df)
+        return {
+            "query": q,
+            "extracted_role": role,
+            "extracted_gender": gender,
+            "roles": sorted(df["Role"].dropna().unique()),
+            "genders": sorted(df["Gender"].dropna().unique()),
+        }
     except Exception as e:
         return {"error": str(e)}
