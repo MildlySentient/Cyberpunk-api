@@ -7,7 +7,7 @@ import yaml
 from typing import List, Dict, Any, Optional, Set, Tuple
 import pandas as pd
 import spacy
-from fastapi import FastAPI, HTTPException, Query, Depends
+from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseSettings
 from rapidfuzz import fuzz
@@ -196,10 +196,11 @@ def match_query(
         except Exception as e:
             logger.warning(f"Role+Gender fallback failed: {e}")
 
-    # ---- Final return must be *inside* the function ----
     return {"message": "No match, tried variants", "variants": partials}
 
-# ----------- FASTAPI -----------
+# ----------- FASTAPI SETUP -----------
+from vector_cache import VectorCache
+
 app = FastAPI()
 app.add_middleware(
     CORSMiddleware,
@@ -231,6 +232,7 @@ def health():
 @app.post("/reload")
 def reload_data():
     cache.load_tsv_files(settings.data_dir)
+    load_vector_sources()
     return {"status": "reloaded"}
 
 @app.get("/canon-map-keys")
@@ -238,39 +240,6 @@ def get_canon_map_keys():
     return {"roles": list(cache.canon_map.keys())}
 
 # ----------- VECTOR CACHE INTEGRATION -----------
-from vector_cache import VectorCache
-
-vector_cache = VectorCache()
-vector_df: Optional[pd.DataFrame] = None
-
-@app.on_event("startup")
-def extended_startup_event():
-    global vector_df
-    from preprocessing import prepare_for_matching
-    tsv_path = os.path.join(settings.data_dir, "prebuilt_characters.tsv")
-    if os.path.isfile(tsv_path):
-        df = pd.read_csv(tsv_path, sep="\t", dtype=str).fillna("")
-        df = prepare_for_matching(df, "prebuilt_characters.tsv")
-        vector_df = df
-        vector_cache.preload_vectors(df)
-    else:
-        raise RuntimeError("Required TSV not found for vector search.")
-
-@app.get("/match")
-def match_character(query: str, use_semantics: bool = True, top_k: int = 1):
-    global vector_df
-    if vector_df is None:
-        raise HTTPException(status_code=503, detail="Vector cache not initialized.")
-    if use_semantics:
-        results = vector_cache.find_best_match(query, top_k=top_k)
-        matches = [vector_df.iloc[i].to_dict() | {"_score": round(score, 4)} for i, score in results]
-        return matches if top_k > 1 else matches[0]
-    mask = vector_df["__match_text_internal__"].str.contains(query.lower())
-    if mask.any():
-        return vector_df[mask].iloc[0].to_dict()
-    raise HTTPException(status_code=404, detail="No match found.")
-
-# ----------- EXPANDED VECTOR MATCHING -----------
 vector_tables: Dict[str, Tuple[pd.DataFrame, VectorCache]] = {}
 
 def load_vector_sources():
@@ -281,11 +250,15 @@ def load_vector_sources():
             full_path = os.path.join(settings.data_dir, file)
             try:
                 df = pd.read_csv(full_path, sep="\t", dtype=str).fillna("")
-                from preprocessing import prepare_for_matching
-                df = prepare_for_matching(df, file)
+                try:
+                    from preprocessing import prepare_for_matching
+                    df = prepare_for_matching(df, file)
+                except ImportError:
+                    pass
                 vc = VectorCache()
                 vc.preload_vectors(df)
                 vector_tables[file] = (df, vc)
+                logger.info(f"Vectorized {file} ({df.shape[0]} rows)")
             except Exception as e:
                 logger.warning(f"Failed to load {file} into vector cache: {e}")
 
@@ -338,7 +311,10 @@ def vector_manifest():
 @app.post("/vector-reload")
 def reload_vector_file(file: str):
     global vector_tables
-    from preprocessing import prepare_for_matching
+    try:
+        from preprocessing import prepare_for_matching
+    except ImportError:
+        prepare_for_matching = lambda df, _: df
     full_path = os.path.join(settings.data_dir, file)
     if not os.path.isfile(full_path):
         raise HTTPException(status_code=404, detail=f"TSV file '{file}' not found.")
