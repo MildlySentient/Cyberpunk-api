@@ -3,20 +3,22 @@ import logging
 import logging.config
 import math
 import yaml
-from typing import List, Dict, Any, Optional
-import duckdb
+import re
+from typing import List, Dict, Any, Optional, Set, Tuple
 import pandas as pd
+import duckdb
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseSettings
 
-# ----- CONFIGURATION -----
+# ----------- CONFIGURATION -----------
 class Settings(BaseSettings):
     cors_origins: List[str] = ["*"]
     data_dir: str = os.path.dirname(__file__)
     logging_config: str = os.path.join(os.path.dirname(__file__), 'logging.yaml')
     class Config:
         env_file = ".env"
+
 settings = Settings()
 
 def load_yaml_config(filepath: str) -> Optional[Dict[str, Any]]:
@@ -34,7 +36,7 @@ else:
     logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger("cyberpunk_api")
 
-# ----- DATA LOADING -----
+# ----------- DATA FILES TO LOAD -----------
 REQUIRED_FILES = [
     "Index.tsv",
     "prebuilt_characters.tsv",
@@ -54,18 +56,21 @@ REQUIRED_FILES = [
 
 duckdb_conn = duckdb.connect(database=":memory:")
 
-def load_all_files():
-    for fname in REQUIRED_FILES:
-        fpath = os.path.join(settings.data_dir, fname)
-        if not os.path.isfile(fpath):
-            logger.warning(f"{fname} not found, skipping.")
+def load_duckdb_tables():
+    for file in REQUIRED_FILES:
+        path = os.path.join(settings.data_dir, file)
+        tablename = os.path.splitext(file)[0]
+        if not os.path.isfile(path):
+            logger.warning(f"{file} not found, skipping.")
             continue
-        logger.info(f"Loading {fname} into DuckDB as '{fname.replace('.tsv','')}'")
-        df = pd.read_csv(fpath, sep='\t', dtype=str).fillna("")
-        duckdb_conn.register(fname.replace('.tsv',''), df)
+        try:
+            logger.info(f"Loading {file} into DuckDB as '{tablename}'")
+            df = pd.read_csv(path, sep="\t", dtype=str).fillna("")
+            duckdb_conn.execute(f"CREATE OR REPLACE TABLE {tablename} AS SELECT * FROM df")
+        except Exception as e:
+            logger.error(f"Failed to load {file}: {e}")
     logger.info("DuckDB tables loaded.")
 
-# ----- SANITIZATION -----
 def sanitize(obj: Any) -> Any:
     if isinstance(obj, dict):
         return {k: sanitize(v) for k, v in obj.items()}
@@ -77,7 +82,30 @@ def sanitize(obj: Any) -> Any:
         return ""
     return obj
 
-# ----- APP -----
+PREBUILT_SYNONYMS = [
+    "prebuilt character", "prebuilt characters", "pregens", "sample character", "starter build", 
+    "template", "archetype", "statline", "player template", "ready-made", "pregenerated pc", 
+    "canon character", "npc template"
+]
+
+def is_prebuilt_synonym(query: str) -> bool:
+    q = (query or "").lower().strip()
+    return any(s in q for s in PREBUILT_SYNONYMS)
+
+def extract_role_gender(query: str, df: pd.DataFrame) -> Tuple[Optional[str], Optional[str]]:
+    roles = [r.lower().strip() for r in df["Role"].dropna().unique()] if "Role" in df else []
+    genders = [g.lower().strip() for g in df["Gender"].dropna().unique()] if "Gender" in df else []
+    terms = set([t.lower().strip() for t in re.findall(r'\w+', query)])
+    found_role = None
+    found_gender = None
+    for term in terms:
+        if (not found_role) and (term in roles):
+            found_role = term
+        if (not found_gender) and (term in genders):
+            found_gender = term
+    return found_role, found_gender
+
+# ----------- FASTAPI APP -----------
 app = FastAPI()
 app.add_middleware(
     CORSMiddleware,
@@ -88,69 +116,87 @@ app.add_middleware(
 
 @app.on_event("startup")
 def on_startup():
-    load_all_files()
-    logger.info("Loaded all core files.")
+    load_duckdb_tables()
+    logger.info("Loaded core files.")
 
 @app.get("/lookup")
-def lookup(query: str = "", role: Optional[str] = None, gender: Optional[str] = None):
-    debug = {"query": query, "role": role, "gender": gender}
-    try:
-        tablename = "prebuilt_characters"
-        params = []
-        where_clauses = []
+def lookup(query: Optional[str] = None, file: Optional[str] = None):
+    debug = {}
+    q = (query or "").strip()
+    tablename = "prebuilt_characters"
+    debug["query"] = q
 
-        # SMART ROLE/GENDER DETECTION FROM QUERY
-        if query and (not role or not gender):
-            roles = duckdb_conn.execute("SELECT DISTINCT lower(Role) FROM prebuilt_characters").fetchall()
-            roles = {r[0] for r in roles}
-            genders = duckdb_conn.execute("SELECT DISTINCT lower(Gender) FROM prebuilt_characters").fetchall()
-            genders = {g[0] for g in genders}
-            tokens = [t.lower() for t in query.strip().replace(",", " ").split()]
-            role_token = next((t for t in tokens if t in roles), None)
-            gender_token = next((t for t in tokens if t in genders), None)
-            if role_token:
-                role = role_token
-            if gender_token:
-                gender = gender_token
-            debug["autodetected_role"] = role
-            debug["autodetected_gender"] = gender
+    # --- If query is a prebuilt character synonym or empty, return roles/genders/names menu ---
+    if is_prebuilt_synonym(q) or not q:
+        df = duckdb_conn.execute(f"SELECT * FROM {tablename}").fetchdf()
+        roles = sorted(df["Role"].dropna().str.title().unique())
+        genders = sorted(df["Gender"].dropna().str.title().unique())
+        names = sorted(df["Name"].dropna().unique())
+        debug["ambiguous"] = True
+        return {
+            "debug": debug,
+            "clarification_required": True,
+            "roles": roles,
+            "genders": genders,
+            "names": names,
+            "message": "Which role and gender? Specify as e.g. 'Solo male', 'Netrunner female'."
+        }
 
-        if role:
-            where_clauses.append("lower(Role) = ?")
-            params.append(role.lower())
-        if gender:
-            where_clauses.append("lower(Gender) = ?")
-            params.append(gender.lower())
+    # --- Try to detect role/gender from the query ---
+    df = duckdb_conn.execute(f"SELECT * FROM {tablename}").fetchdf()
+    role, gender = extract_role_gender(q, df)
+    debug["role"] = role
+    debug["gender"] = gender
 
-        if not where_clauses and query:
-            where_clauses.append(
-                "(lower(Name) LIKE ? OR lower(Role) LIKE ? OR lower(Gender) LIKE ?)"
-            )
-            q_like = f"%{query.lower()}%"
-            params.extend([q_like, q_like, q_like])
-
-        sql = f"SELECT * FROM {tablename}"
-        if where_clauses:
-            sql += " WHERE " + " AND ".join(where_clauses)
-        sql += " LIMIT 10"
-
-        logger.info(f"RUNNING SQL: {sql} PARAMS: {params}")
+    # --- If both role and gender are detected, search for exact match ---
+    if role and gender:
+        sql = f"SELECT * FROM {tablename} WHERE lower(Role) = ? AND lower(Gender) = ? LIMIT 10"
+        params = [role, gender]
+        debug["autodetected_role"] = role
+        debug["autodetected_gender"] = gender
         debug["sql"] = sql
         debug["params"] = params
-
-        results = duckdb_conn.execute(sql, tuple(params)).fetchdf()
+        results = duckdb_conn.execute(sql, params).fetchdf()
         debug["n_results"] = len(results)
-        return {"debug": debug, "rows": sanitize(results.to_dict(orient="records"))}
+        if not results.empty:
+            return {
+                "debug": debug,
+                "rows": results.to_dict(orient="records")
+            }
+        # If not found, fall through to partial/ambiguous result
 
-    except Exception as e:
-        logger.exception("Error during lookup")
-        debug["error"] = str(e)
-        return {"debug": debug, "error": str(e)}
+    # --- Otherwise, do a broad LIKE match over all text columns (including role/gender/name) ---
+    sql = f"""SELECT * FROM {tablename} 
+        WHERE (lower(Name) LIKE lower(?) OR lower(Role) LIKE lower(?) OR lower(Gender) LIKE lower(?)) LIMIT 10"""
+    params = [f"%{q}%", f"%{q}%", f"%{q}%"]
+    debug["sql"] = sql
+    debug["params"] = params
+    results = duckdb_conn.execute(sql, params).fetchdf()
+    debug["n_results"] = len(results)
+    if not results.empty:
+        return {
+            "debug": debug,
+            "rows": results.to_dict(orient="records")
+        }
+
+    # --- If still nothing, return the menu to prompt clarification ---
+    df = duckdb_conn.execute(f"SELECT * FROM {tablename}").fetchdf()
+    roles = sorted(df["Role"].dropna().str.title().unique())
+    genders = sorted(df["Gender"].dropna().str.title().unique())
+    names = sorted(df["Name"].dropna().unique())
+    debug["fallback_to_clarification"] = True
+    return {
+        "debug": debug,
+        "clarification_required": True,
+        "roles": roles,
+        "genders": genders,
+        "names": names,
+        "message": "No direct match. Specify as e.g. 'Solo male', 'Netrunner female'."
+    }
 
 @app.get("/sanity")
 def sanity():
-    try:
-        df = duckdb_conn.execute("SELECT Name, Role, Gender FROM prebuilt_characters").fetchdf()
-        return {"rows": sanitize(df.to_dict(orient="records"))}
-    except Exception as e:
-        return {"error": str(e)}
+    df = duckdb_conn.execute("SELECT * FROM prebuilt_characters").fetchdf()
+    return {
+        "rows": df[["Name", "Role", "Gender"]].to_dict(orient="records")
+    }
