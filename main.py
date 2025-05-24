@@ -146,13 +146,21 @@ SYNONYMS = {
     "roll": ["dice", "rolling", "throw", "cast", "d10", "d6", "d100"],
 }
 
+# ----- PATCHED FUNCTION -----
 def extract_role_gender(query: str, df: pd.DataFrame) -> Tuple[Optional[str], Optional[str]]:
     roles = [r.lower().strip() for r in df["Role"].dropna().unique()] if "Role" in df else []
     genders = [g.lower().strip() for g in df["Gender"].dropna().unique()] if "Gender" in df else []
-    terms = set(re.findall(r'\w+', query.lower()))
-    role = next((r for r in roles if r in terms), None)
-    gender = next((g for g in genders if g in terms), None)
-    return role, gender
+    terms = set([t.lower().strip() for t in re.findall(r'\w+', query)])
+    found_role = None
+    found_gender = None
+    for term in terms:
+        if (not found_role) and (term in roles):
+            found_role = term
+        if (not found_gender) and (term in genders):
+            found_gender = term
+    print(f"DEBUG: extracted role={found_role}, gender={found_gender}")
+    return found_role, found_gender
+# ----------------------------
 
 def match_query(query: str, df: pd.DataFrame, depth: int = 0, tried=None, partials=None) -> Optional[Dict[str, Any]]:
     if tried is None: tried = set()
