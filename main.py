@@ -12,7 +12,7 @@ from pydantic import BaseSettings
 from rapidfuzz import fuzz
 
 from vector_cache import VectorCache
-
+print("########### MAIN.PY IS REDEPLOYED ###########")
 # ----------- CONFIGURATION -----------
 class Settings(BaseSettings):
     cors_origins: List[str] = ["*"]
