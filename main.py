@@ -13,7 +13,6 @@ from pydantic import BaseSettings
 from rapidfuzz import fuzz
 
 # ----------- CONFIGURATION -----------
-
 class Settings(BaseSettings):
     cors_origins: List[str] = ["*"]
     data_dir: str = os.path.dirname(__file__)
@@ -40,7 +39,6 @@ else:
 logger = logging.getLogger("cyberpunk_api")
 
 # ----------- NLP MODEL LOADING -----------
-
 try:
     nlp = spacy.load(settings.spacy_model)
     logger.info(f"Loaded spaCy model: {settings.spacy_model}")
@@ -49,7 +47,6 @@ except Exception as e:
     nlp = None
 
 # ----------- DATA CACHE -----------
-
 class DataCache:
     def __init__(self):
         self.canon_map: Dict[str, Dict[str, List[Dict[str, Any]]]] = {}
@@ -78,11 +75,10 @@ cache = DataCache()
 cache.load_tsv_files(settings.data_dir)
 
 # ----------- INDEX LOADING -----------
-
 index_path = os.path.join(settings.data_dir, "Index.tsv")
 if os.path.isfile(index_path):
     index_df = pd.read_csv(index_path, sep="\t", dtype=str).fillna("")
-    keyword_to_file = {}
+    keyword_to_file: Dict[str, Set[str]] = {}
     for _, row in index_df.iterrows():
         for word in row['Description'].split(','):
             keyword = word.strip().lower()
@@ -93,7 +89,6 @@ else:
     keyword_to_file = {}
 
 # ----------- UTILITIES -----------
-
 def sanitize(obj: Any) -> Any:
     if isinstance(obj, dict):
         return {k: sanitize(v) for k, v in obj.items()}
@@ -106,7 +101,6 @@ def sanitize(obj: Any) -> Any:
     return obj
 
 # ----------- DOMAIN LOGIC -----------
-
 SYNONYMS = {
     "roll": ["dice", "rolling", "throw", "cast", "d10", "d6", "d100"],
 }
@@ -120,7 +114,7 @@ def route_files(query: str) -> List[str]:
     if is_prebuilt_query(query):
         return ['prebuilt_characters.tsv']
     words = set(query.lower().split())
-    candidates = set()
+    candidates: Set[str] = set()
     for w in words:
         candidates.update(keyword_to_file.get(w, set()))
     if not candidates and any(x in query.lower() for x in ['character', 'npc']):
@@ -130,21 +124,32 @@ def route_files(query: str) -> List[str]:
         candidates.add('prebuilt_characters.tsv')
     return list(candidates)
 
-def match_query(query: str, df: pd.DataFrame, depth=0, tried=None, partials=None) -> Optional[Dict[str, Any]]:
-    if tried is None: tried = set()
-    if partials is None: partials = []
+def match_query(
+    query: str,
+    df: pd.DataFrame,
+    depth: int = 0,
+    tried: Optional[Set[str]] = None,
+    partials: Optional[List[str]] = None
+) -> Optional[Dict[str, Any]]:
+    if tried is None:
+        tried = set()
+    if partials is None:
+        partials = []
+
     ql = query.lower()
     if ql in tried or depth > 3:
         return None
     tried.add(ql)
     logger.info(f"[Depth {depth}] Matching: {ql}")
 
+    # 1) Direct substring match
     if not df.empty:
         mask = df.apply(lambda r: ql in " ".join(str(x).lower() for x in r), axis=1)
         if mask.any():
             return df[mask].iloc[0].to_dict()
         partials += [str(row.get("Name", "")) for _, row in df[mask].iterrows()]
 
+    # 2) Synonym match
     for word, syns in SYNONYMS.items():
         if any(s in ql for s in syns):
             mask = df.apply(lambda r: word in " ".join(str(x).lower() for x in r), axis=1)
@@ -152,6 +157,7 @@ def match_query(query: str, df: pd.DataFrame, depth=0, tried=None, partials=None
                 return df[mask].iloc[0].to_dict()
             partials += [str(row.get("Name", "")) for _, row in df[mask].iterrows()]
 
+    # 3) Fuzzy match
     for idx, row in df.iterrows():
         try:
             score = fuzz.partial_ratio(ql, " ".join(str(x).lower() for x in row))
@@ -162,6 +168,7 @@ def match_query(query: str, df: pd.DataFrame, depth=0, tried=None, partials=None
         except Exception:
             continue
 
+    # 4) Vector similarity
     if nlp:
         try:
             doc = nlp(ql)
@@ -172,13 +179,14 @@ def match_query(query: str, df: pd.DataFrame, depth=0, tried=None, partials=None
         except Exception as e:
             logger.warning(f"NLP error: {e}")
 
+    # 5) Recursive partials
     if depth < 3:
         for p in set(partials) - tried:
-            res = match_query(p, df, depth+1, tried)
+            res = match_query(p, df, depth + 1, tried, partials)
             if res:
                 return res
-    
-    # Role+Gender fallback
+
+    # 6) Role+Gender fallback
     terms = ql.split()
     role = next((t for t in terms if t in cache.canon_map), None)
     gender = next((t for t in terms if t in ["male", "female"]), None)
@@ -188,10 +196,10 @@ def match_query(query: str, df: pd.DataFrame, depth=0, tried=None, partials=None
         except Exception as e:
             logger.warning(f"Role+Gender fallback failed: {e}")
 
-return {"message": "No match, tried variants", "variants": partials}
+    # ---- Final return must be *inside* the function ----
+    return {"message": "No match, tried variants", "variants": partials}
 
 # ----------- FASTAPI -----------
-
 app = FastAPI()
 app.add_middleware(
     CORSMiddleware,
@@ -229,21 +237,16 @@ def reload_data():
 def get_canon_map_keys():
     return {"roles": list(cache.canon_map.keys())}
 
-
-
-
 # ----------- VECTOR CACHE INTEGRATION -----------
-
 from vector_cache import VectorCache
 
 vector_cache = VectorCache()
-vector_df = None  # Will hold the DataFrame used for semantic search
-
+vector_df: Optional[pd.DataFrame] = None
 
 @app.on_event("startup")
 def extended_startup_event():
     global vector_df
-    from preprocessing import prepare_for_matching  # Re-import in case of reload
+    from preprocessing import prepare_for_matching
     tsv_path = os.path.join(settings.data_dir, "prebuilt_characters.tsv")
     if os.path.isfile(tsv_path):
         df = pd.read_csv(tsv_path, sep="\t", dtype=str).fillna("")
@@ -253,30 +256,22 @@ def extended_startup_event():
     else:
         raise RuntimeError("Required TSV not found for vector search.")
 
-
 @app.get("/match")
 def match_character(query: str, use_semantics: bool = True, top_k: int = 1):
     global vector_df
     if vector_df is None:
         raise HTTPException(status_code=503, detail="Vector cache not initialized.")
-
-    # Try semantic match
     if use_semantics:
         results = vector_cache.find_best_match(query, top_k=top_k)
         matches = [vector_df.iloc[i].to_dict() | {"_score": round(score, 4)} for i, score in results]
         return matches if top_k > 1 else matches[0]
-
-    # Fallback: Exact match search in __match_text_internal__
     mask = vector_df["__match_text_internal__"].str.contains(query.lower())
     if mask.any():
         return vector_df[mask].iloc[0].to_dict()
-
     raise HTTPException(status_code=404, detail="No match found.")
 
 # ----------- EXPANDED VECTOR MATCHING -----------
-
-vector_cache = VectorCache()
-vector_tables = {}  # filename -> (DataFrame, embedded vectors)
+vector_tables: Dict[str, Tuple[pd.DataFrame, VectorCache]] = {}
 
 def load_vector_sources():
     global vector_tables
@@ -288,14 +283,14 @@ def load_vector_sources():
                 df = pd.read_csv(full_path, sep="\t", dtype=str).fillna("")
                 from preprocessing import prepare_for_matching
                 df = prepare_for_matching(df, file)
-                cache = VectorCache()
-                cache.preload_vectors(df)
-                vector_tables[file] = (df, cache)
+                vc = VectorCache()
+                vc.preload_vectors(df)
+                vector_tables[file] = (df, vc)
             except Exception as e:
                 logger.warning(f"Failed to load {file} into vector cache: {e}")
 
 @app.on_event("startup")
-def extended_startup_event():
+def load_all_vectors():
     load_vector_sources()
 
 @app.get("/match")
@@ -307,11 +302,10 @@ def match_character(
     role: Optional[str] = None,
     gender: Optional[str] = None
 ):
-    matches = []
-
-    for fname, (df, cache) in vector_tables.items():
+    matches: List[Dict[str, Any]] = []
+    for fname, (df, vc) in vector_tables.items():
         if use_semantics:
-            raw_results = cache.find_best_match(query, top_k=top_k * 2)
+            raw_results = vc.find_best_match(query, top_k=top_k * 2)
             for idx, score in raw_results:
                 if score < score_threshold:
                     continue
@@ -323,10 +317,9 @@ def match_character(
                 row["_source_file"] = fname
                 row["_score"] = round(score, 4)
                 matches.append(row)
-
-    # Deduplicate by name if possible
-    seen = set()
-    final = []
+    # Dedupe by Name+Role
+    seen: Set[str] = set()
+    final: List[Dict[str, Any]] = []
     for m in matches:
         key = m.get("Name", "") + m.get("Role", "")
         if key not in seen:
@@ -334,33 +327,27 @@ def match_character(
             seen.add(key)
         if len(final) >= top_k:
             break
-
     if not final:
         raise HTTPException(status_code=404, detail="No suitable match found.")
-
     return final if top_k > 1 else final[0]
 
 @app.get("/vector-manifest")
 def vector_manifest():
-    return {
-        "files": list(vector_tables.keys())
-    }
+    return {"files": list(vector_tables.keys())}
 
 @app.post("/vector-reload")
 def reload_vector_file(file: str):
     global vector_tables
     from preprocessing import prepare_for_matching
-
     full_path = os.path.join(settings.data_dir, file)
     if not os.path.isfile(full_path):
         raise HTTPException(status_code=404, detail=f"TSV file '{file}' not found.")
-
     try:
         df = pd.read_csv(full_path, sep="\t", dtype=str).fillna("")
         df = prepare_for_matching(df, file)
-        cache = VectorCache()
-        cache.preload_vectors(df)
-        vector_tables[file] = (df, cache)
+        vc = VectorCache()
+        vc.preload_vectors(df)
+        vector_tables[file] = (df, vc)
         return {"status": "reloaded", "file": file, "rows": df.shape[0]}
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Failed to reload vectors for '{file}': {e}")
