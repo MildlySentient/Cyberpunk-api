@@ -13,6 +13,8 @@ from rapidfuzz import fuzz
 
 from vector_cache import VectorCache
 
+print("########## MAIN.PY IS REDEPLOYED ##########")
+
 # ----------- CONFIGURATION -----------
 class Settings(BaseSettings):
     cors_origins: List[str] = ["*"]
@@ -28,7 +30,7 @@ def load_yaml_config(filepath: str) -> Optional[Dict[str, Any]]:
         with open(filepath, "r") as f:
             return yaml.safe_load(f)
     except Exception as e:
-        logger.info(f"Failed to load YAML config '{filepath}': {e}")
+        print(f"Failed to load YAML config '{filepath}': {e}")
         return None
 
 config = load_yaml_config(settings.logging_config)
@@ -128,18 +130,19 @@ def is_prebuilt_query(query: str) -> bool:
         return True
     return any(x in q for x in PREBUILT_SYNONYMS)
 
+### PATCH: Always recognize role queries as prebuilt
+PREBUILT_ROLES = {"solo", "cop", "netrunner", "medtech", "techie", "fixer", "nomad", "rockerboy", "media", "corp"}
+
 def route_files(query: str) -> List[str]:
-    if is_prebuilt_query(query):
+    ql = query.lower()
+    words = set(ql.split())
+    # Route to prebuilt_characters.tsv for prebuilt-like queries or if a role is present
+    if is_prebuilt_query(ql) or words & PREBUILT_ROLES or any(x in ql for x in ['character', 'npc']):
         return ["prebuilt_characters.tsv"]
-    words = set(query.lower().split())
+    # Fallback: route by keyword map
     candidates: Set[str] = set()
     for w in words:
         candidates.update(keyword_to_file.get(w, set()))
-    if not candidates and any(x in query.lower() for x in ['character', 'npc']):
-        for k, v in keyword_to_file.items():
-            if any(x in k for x in ['character', 'npc']):
-                candidates.update(v)
-        candidates.add('prebuilt_characters.tsv')
     return [f for f in candidates if f in data_tables]
 
 SYNONYMS = {
@@ -157,7 +160,7 @@ def extract_role_gender(query: str, df: pd.DataFrame) -> Tuple[Optional[str], Op
             found_role = term
         if (not found_gender) and (term in genders):
             found_gender = term
-    logger.info(f"DEBUG: extracted role={found_role}, gender={found_gender}")
+    print(f"DEBUG: extracted role={found_role}, gender={found_gender}")
     return found_role, found_gender
 
 def match_query(query: str, df: pd.DataFrame, depth: int = 0, tried=None, partials=None) -> Optional[Dict[str, Any]]:
@@ -196,15 +199,13 @@ def match_query(query: str, df: pd.DataFrame, depth: int = 0, tried=None, partia
 
     if "Role" in df.columns and "Gender" in df.columns:
         role, gender = extract_role_gender(query, df)
-        logger.info(f"DEBUG: Filtering for role='{role}', gender='{gender}'")
-        logger.info("All rows: %s", df[["Name", "Role", "Gender"]].to_dict(orient="records"))
+        logger.info(f"[DEBUG] Extracted role={role}, gender={gender} from query='{query}'")
         if role and gender:
             mask = (
                 (df["Role"].str.lower().str.strip() == role) &
                 (df["Gender"].str.lower().str.strip() == gender)
             )
             filtered = df[mask]
-            logger.info("Filtered result: %s", filtered[["Name", "Role", "Gender"]].to_dict(orient="records"))
             logger.info(f"[DEBUG] Fallback match count: {filtered.shape[0]}")
             if not filtered.empty:
                 return filtered.iloc[0].to_dict()
@@ -223,16 +224,16 @@ app.add_middleware(
 def on_startup():
     load_core_files()
     logger.info("Loaded core files.")
-    
+
 @app.get("/lookup")
 def lookup(query: str, file: Optional[str] = None):
-    debug_msg = f"LOOKUP ROUTE CALLED: query={query}, file={file}"
     files = [file] if file else route_files(query)
     prebuilt_queried = any(f == "prebuilt_characters.tsv" for f in files)
-    debug_info = {
-        "debug_msg": debug_msg,
+    ### PATCH: Debug output in JSON response
+    debug_obj = {
+        "debug_msg": f"LOOKUP ROUTE CALLED: query={query}, file={file}",
         "routed_files": files,
-        "prebuilt_queried": prebuilt_queried,
+        "prebuilt_queried": prebuilt_queried
     }
     for f in files:
         if f not in data_tables:
@@ -240,8 +241,7 @@ def lookup(query: str, file: Optional[str] = None):
         df = data_tables[f]
         result = match_query(query, df)
         if result and "Name" in result:
-            return {
-                **debug_info,
+            return {**debug_obj,
                 "source": f,
                 "result": sanitize(result),
                 "note": f"Returned for query '{query}'"
@@ -250,29 +250,28 @@ def lookup(query: str, file: Optional[str] = None):
             roles = sorted(df["Role"].dropna().str.title().unique().tolist()) if "Role" in df else []
             genders = sorted(df["Gender"].dropna().str.title().unique().tolist()) if "Gender" in df else []
             names = result.get("names", [])
-            return {
-                **debug_info,
+            return {**debug_obj,
                 "code": "ambiguous",
                 "message": "Ambiguous query. Please specify role, gender, or consult /canon-map-keys.",
                 "roles": roles,
                 "genders": genders,
                 "names": names
             }
+
     if prebuilt_queried and "prebuilt_characters.tsv" in data_tables:
         df = data_tables["prebuilt_characters.tsv"]
         roles = sorted(df["Role"].dropna().str.title().unique().tolist()) if "Role" in df else []
         genders = sorted(df["Gender"].dropna().str.title().unique().tolist()) if "Gender" in df else []
         names = sorted(df["Name"].dropna().unique().tolist()) if "Name" in df else []
-        return {
-            **debug_info,
+        return {**debug_obj,
             "code": "clarification_required",
             "message": "Which role and gender do you want for the prebuilt character? Specify as e.g. 'Solo male', 'Netrunner female'.",
             "roles": roles,
             "genders": genders,
             "names": names
         }
-    return {
-        **debug_info,
+
+    return {**debug_obj,
         "code": "not_found",
         "message": "No canonical match. Consult index.tsv.",
         "roles": [],
