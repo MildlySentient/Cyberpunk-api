@@ -228,6 +228,8 @@ def on_startup():
 @app.get("/lookup")
 def lookup(query: str, file: Optional[str] = None):
     files = [file] if file else route_files(query)
+    prebuilt_queried = any(f == "prebuilt_characters.tsv" for f in files)
+    responded = False
     for f in files:
         if f not in data_tables:
             continue
@@ -249,6 +251,23 @@ def lookup(query: str, file: Optional[str] = None):
                 "code": "ambiguous",
                 "message": "Ambiguous query. Please specify role, gender, or consult /canon-map-keys.",
                 "available_roles": roles,
+            }
+        responded = True
+
+    # Fallback: if query was for prebuilt character(s) and file exists, return options
+    if prebuilt_queried and "prebuilt_characters.tsv" in data_tables:
+        df = data_tables["prebuilt_characters.tsv"]
+        roles = sorted(df["Role"].dropna().str.title().unique().tolist()) if "Role" in df else []
+        genders = sorted(df["Gender"].dropna().str.title().unique().tolist()) if "Gender" in df else ["Male", "Female"]
+        if roles:
+            return {
+                "code": "clarification_required",
+                "message": (
+                    "Which role and gender do you want for the prebuilt character? "
+                    "Specify as e.g. 'Solo male', 'Netrunner female', etc."
+                ),
+                "available_roles": roles,
+                "available_genders": genders,
             }
 
     # No match found in any file
