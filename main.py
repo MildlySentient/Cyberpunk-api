@@ -12,7 +12,11 @@ from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseSettings
 from rapidfuzz import fuzz
 
-# ----------- CONFIGURATION -----------
+from vector_cache import VectorCache
+
+# --- CONFIGURATION ---
+VEC_ENABLED = True  # Set to False if you don't want semantic vector fallback
+
 class Settings(BaseSettings):
     cors_origins: List[str] = ["*"]
     data_dir: str = os.path.dirname(__file__)
@@ -37,7 +41,7 @@ else:
     logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger("cyberpunk_api")
 
-# ----------- PATCH HEADERS FOR _core.tsv FILES -----------
+# --- PATCH HEADERS FOR _core.tsv FILES ---
 def ensure_core_headers(data_dir, files):
     for fname in files:
         if fname.endswith('_core.tsv'):
@@ -48,16 +52,13 @@ def ensure_core_headers(data_dir, files):
                 lines = f.readlines()
             if not lines:
                 continue
-            # If first line is not 'File_Name', fix it
             if lines[0].strip().lower() != 'file_name':
                 logger.info(f"Adding 'File_Name' header to {fname}")
                 lines = ['File_Name\n'] + [line if line.endswith('\n') else line + '\n' for line in lines]
                 with open(fpath, 'w', encoding='utf-8') as f:
                     f.writelines(lines)
-            else:
-                logger.debug(f"{fname}: Header already present.")
 
-# ----------- SCHEMA VALIDATION -----------
+# --- SCHEMA VALIDATION ---
 EXPECTED_SCHEMAS = {
     "prebuilt_characters.tsv": [
         "Name", "Role", "Gender",
@@ -90,7 +91,7 @@ def validate_schema(filename: str, df: pd.DataFrame):
         logger.warning(warning)
         _schema_warnings.append(warning)
 
-# ----------- DATA FILES TO LOAD -----------
+# --- DATA FILES TO LOAD ---
 REQUIRED_FILES = [
     "Index.tsv",
     "prebuilt_characters.tsv",
@@ -112,11 +113,13 @@ DATA_DIR = settings.data_dir
 duckdb_conn = duckdb.connect(database=':memory:')
 
 data_tables: Dict[str, pd.DataFrame] = {}
+vector_tables: Dict[str, Tuple[pd.DataFrame, VectorCache]] = {}
 keyword_to_file: Dict[str, Set[str]] = {}
 
-# ----------- LOAD FILES (PANDAS + DUCKDB) -----------
+# --- LOAD FILES (PANDAS + DUCKDB) ---
 def load_core_files():
     data_tables.clear()
+    vector_tables.clear()
     keyword_to_file.clear()
     for file in REQUIRED_FILES:
         path = os.path.join(DATA_DIR, file)
@@ -133,6 +136,11 @@ def load_core_files():
             duckdb_conn.execute(
                 f"CREATE TABLE {table_name} AS SELECT * FROM read_csv_auto('{path}', delim='\t', header=True, IGNORE_ERRORS=TRUE)"
             )
+            # Vectorize prebuilt_characters if enabled
+            if VEC_ENABLED and file == "prebuilt_characters.tsv":
+                vc = VectorCache()
+                vc.preload_vectors(df)
+                vector_tables[file] = (df, vc)
         except Exception as e:
             logger.error(f"Failed to load {file}: {e}")
     # Build keyword to file map from Index.tsv
@@ -194,14 +202,18 @@ def route_files(query: str) -> List[str]:
         candidates.add('prebuilt_characters.tsv')
     return [f for f in candidates if f in data_tables]
 
-def extract_role_gender_any_order(query: str, df: pd.DataFrame) -> Tuple[Optional[str], Optional[str]]:
-    """Order-agnostic matching for role and gender."""
+SYNONYMS = {
+    "roll": ["dice", "rolling", "throw", "cast", "d10", "d6", "d100"],
+    # Add more synonym sets as needed
+}
+
+def extract_role_gender(query: str, df: pd.DataFrame) -> Tuple[Optional[str], Optional[str]]:
     roles = [r.lower().strip() for r in df["Role"].dropna().unique()]
     genders = [g.lower().strip() for g in df["Gender"].dropna().unique()]
-    terms = set(t.lower().strip() for t in re.findall(r'\w+', query))
-    found_role = next((t for t in terms if t in roles), None)
-    found_gender = next((t for t in terms if t in genders), None)
-    return found_role, found_gender
+    terms = set(re.findall(r'\w+', query.lower()))
+    role = next((r for r in roles if r in terms), None)
+    gender = next((g for g in genders if g in terms), None)
+    return role, gender
 
 def match_query(query: str, df: pd.DataFrame, depth: int = 0, tried=None, partials=None) -> Optional[Dict[str, Any]]:
     if tried is None: tried = set()
@@ -212,22 +224,22 @@ def match_query(query: str, df: pd.DataFrame, depth: int = 0, tried=None, partia
     tried.add(ql)
     logger.info(f"[Depth {depth}] Matching: {ql}")
 
+    # 1. Direct substring match
     if not df.empty:
-        # Try direct string match
         mask = df.apply(lambda r: ql in " ".join(str(x).lower() for x in r), axis=1)
         if mask.any():
             return df[mask].iloc[0].to_dict()
         partials += [str(row.get("Name", "")) for _, row in df[mask].iterrows()]
 
-    # Try synonym match
-    for word, syns in {"roll": ["dice", "rolling", "throw", "cast", "d10", "d6", "d100"]}.items():
+    # 2. Synonym expansion
+    for word, syns in SYNONYMS.items():
         if any(s in ql for s in syns):
             mask = df.apply(lambda r: word in " ".join(str(x).lower() for x in r), axis=1)
             if mask.any():
                 return df[mask].iloc[0].to_dict()
             partials += [str(row.get("Name", "")) for _, row in df[mask].iterrows()]
 
-    # Fuzzy
+    # 3. Fuzzy partial matching
     for idx, row in df.iterrows():
         try:
             score = fuzz.partial_ratio(ql, " ".join(str(x).lower() for x in row))
@@ -238,9 +250,9 @@ def match_query(query: str, df: pd.DataFrame, depth: int = 0, tried=None, partia
         except Exception:
             continue
 
-    # Order-agnostic role/gender match (key fix)
+    # 4. Explicit role/gender fallback (for prebuilt)
     if "Role" in df.columns and "Gender" in df.columns:
-        role, gender = extract_role_gender_any_order(query, df)
+        role, gender = extract_role_gender(query, df)
         logger.info(f"[DEBUG] Extracted role={role}, gender={gender} from query='{query}'")
         if role and gender:
             mask = (
@@ -252,9 +264,22 @@ def match_query(query: str, df: pd.DataFrame, depth: int = 0, tried=None, partia
             if not filtered.empty:
                 return filtered.iloc[0].to_dict()
 
+    # 5. Vector search fallback (semantic)
+    if VEC_ENABLED and "Name" in df.columns:
+        try:
+            file_name = "prebuilt_characters.tsv"  # Only vectorized on this
+            if file_name in vector_tables and len(df) == len(vector_tables[file_name][0]):
+                vec_cache = vector_tables[file_name][1]
+                idx_score_list = vec_cache.search(query, top_k=1)
+                if idx_score_list and idx_score_list[0][1] > 0.7:
+                    idx = idx_score_list[0][0]
+                    return df.iloc[idx].to_dict()
+        except Exception as e:
+            logger.warning(f"Vector search failed: {e}")
+
     return {"message": "No match, tried variants", "variants": partials}
 
-# ----------- FASTAPI APP -----------
+# --- FASTAPI APP ---
 app = FastAPI()
 app.add_middleware(
     CORSMiddleware,
@@ -315,7 +340,7 @@ def lookup(query: str, file: Optional[str] = None):
         "errors": errors,
     }
 
-# ----------- SANITY CHECKS FOR PREBUILT CHARACTERS -----------
+# --- SANITY CHECKS FOR PREBUILT CHARACTERS ---
 @app.get("/sanity")
 def sanity():
     df = data_tables.get("prebuilt_characters.tsv")
