@@ -16,7 +16,7 @@ from rapidfuzz import fuzz
 from vector_cache import VectorCache
 
 # --- CONFIGURATION ---
-VEC_ENABLED = True  # Set to False if you don't want semantic vector fallback
+VEC_ENABLED = True  # Toggle semantic search fallback
 
 class Settings(BaseSettings):
     cors_origins: List[str] = ["*"]
@@ -117,16 +117,11 @@ data_tables: Dict[str, pd.DataFrame] = {}
 vector_tables: Dict[str, Tuple[pd.DataFrame, VectorCache]] = {}
 keyword_to_file: Dict[str, Set[str]] = {}
 
-# --- Canon role/gender sets for routing ---
-canon_roles: Set[str] = set()
-canon_genders: Set[str] = set()
-
 # --- UTILITIES ---
 def normalize(text):
-    return text.strip().lower()
+    return text.strip().lower() if isinstance(text, str) else str(text).lower()
 
 def split_keywords(text):
-    """Split on whitespace and punctuation, lower and strip all tokens."""
     tokens = re.split(rf'[\s{re.escape(string.punctuation)}]+', str(text).lower())
     return set(t.strip() for t in tokens if t.strip())
 
@@ -137,13 +132,10 @@ PREBUILT_SYNONYMS = [
     "canon character", "npc template"
 ]
 
-# --- LOAD FILES (PANDAS + DUCKDB) ---
 def load_core_files():
     data_tables.clear()
     vector_tables.clear()
     keyword_to_file.clear()
-    canon_roles.clear()
-    canon_genders.clear()
     for file in REQUIRED_FILES:
         path = os.path.join(DATA_DIR, file)
         if not os.path.isfile(path):
@@ -159,16 +151,12 @@ def load_core_files():
             duckdb_conn.execute(
                 f"CREATE TABLE {table_name} AS SELECT * FROM read_csv_auto('{path}', delim='\t', header=True, IGNORE_ERRORS=TRUE)"
             )
-            # Vectorize prebuilt_characters if enabled
             if VEC_ENABLED and file == "prebuilt_characters.tsv":
                 vc = VectorCache()
                 vc.preload_vectors(df)
                 vector_tables[file] = (df, vc)
-                canon_roles.update(r.lower().strip() for r in df["Role"].dropna().unique())
-                canon_genders.update(g.lower().strip() for g in df["Gender"].dropna().unique())
         except Exception as e:
             logger.error(f"Failed to load {file}: {e}")
-    # Build keyword to file map from Index.tsv
     if "Index.tsv" in data_tables:
         idx = data_tables["Index.tsv"]
         for _, row in idx.iterrows():
@@ -176,7 +164,6 @@ def load_core_files():
             fname = row.get('File_Name', '').strip()
             for token in split_keywords(desc):
                 keyword_to_file.setdefault(token, set()).add(fname)
-            # Also map the lowercased filename as a keyword for explicit matches
             keyword_to_file.setdefault(normalize(fname), set()).add(fname)
     else:
         logger.warning("Index.tsv not loaded; keyword routing will degrade.")
@@ -190,7 +177,6 @@ def is_prebuilt_query(query: str) -> bool:
             desc = row.get("Description", "")
             desc_tokens.update(split_keywords(desc))
             break
-    # Match direct desc token or synonym
     if any(token in q for token in desc_tokens):
         return True
     return any(x in q for x in PREBUILT_SYNONYMS)
@@ -199,17 +185,11 @@ def route_files(query: str) -> List[str]:
     ql = normalize(query)
     words = split_keywords(ql)
     candidates: Set[str] = set()
-    # Keyword mapping
     for w in words:
         if w in keyword_to_file:
             candidates.update(keyword_to_file[w])
-    # Synonym mapping
     if not candidates and any(x in ql for x in PREBUILT_SYNONYMS):
         candidates.add('prebuilt_characters.tsv')
-    # Canon role/gender: critical new logic
-    if not candidates and (words & canon_roles or words & canon_genders):
-        candidates.add('prebuilt_characters.tsv')
-    # Fallback for 'character'/'npc'
     if not candidates and any(x in ql for x in ['character', 'npc']):
         for k, v in keyword_to_file.items():
             if any(x in k for x in ['character', 'npc']):
@@ -225,11 +205,12 @@ SYNONYMS = {
 }
 
 def extract_role_gender(query: str, df: pd.DataFrame) -> Tuple[Optional[str], Optional[str]]:
+    q = query.lower()
     roles = [r.lower().strip() for r in df["Role"].dropna().unique()]
     genders = [g.lower().strip() for g in df["Gender"].dropna().unique()]
-    terms = set(re.findall(r'\w+', query.lower()))
-    role = next((r for r in roles if r in terms), None)
-    gender = next((g for g in genders if g in terms), None)
+    role = next((r for r in roles if r in q), None)   # <--- substring match, not just 'in terms'
+    gender = next((g for g in genders if g in q), None)
+    logger.info(f"[extract_role_gender] Extracted role={role}, gender={gender} from query='{query}', roles={roles}, genders={genders}")
     return role, gender
 
 def match_query(query: str, df: pd.DataFrame, depth: int = 0, tried=None, partials=None) -> Optional[Dict[str, Any]]:
@@ -270,7 +251,6 @@ def match_query(query: str, df: pd.DataFrame, depth: int = 0, tried=None, partia
     # 4. Explicit role/gender fallback (for prebuilt)
     if "Role" in df.columns and "Gender" in df.columns:
         role, gender = extract_role_gender(query, df)
-        logger.info(f"[DEBUG] Extracted role={role}, gender={gender} from query='{query}'")
         if role and gender:
             mask = (
                 (df["Role"].str.lower().str.strip() == role) &
@@ -368,7 +348,6 @@ def lookup(query: str, file: Optional[str] = None):
         "errors": errors,
     }
 
-# --- SANITY CHECKS FOR PREBUILT CHARACTERS ---
 @app.get("/sanity")
 def sanity():
     df = data_tables.get("prebuilt_characters.tsv")
@@ -415,5 +394,4 @@ def schema_warnings():
 
 @app.get("/_debug-keywords")
 def debug_keywords():
-    # Inspect what keywords actually map to what files
     return {"keyword_to_file": {k: list(v) for k, v in keyword_to_file.items()}}
