@@ -4,6 +4,7 @@ import logging.config
 import math
 import yaml
 import re
+import string
 from typing import List, Dict, Any, Optional, Set, Tuple
 import pandas as pd
 import duckdb
@@ -116,6 +117,22 @@ data_tables: Dict[str, pd.DataFrame] = {}
 vector_tables: Dict[str, Tuple[pd.DataFrame, VectorCache]] = {}
 keyword_to_file: Dict[str, Set[str]] = {}
 
+# --- UTILITIES ---
+def normalize(text):
+    return text.strip().lower()
+
+def split_keywords(text):
+    """Split on whitespace and punctuation, lower and strip all tokens."""
+    tokens = re.split(rf'[\s{re.escape(string.punctuation)}]+', str(text).lower())
+    return set(t.strip() for t in tokens if t.strip())
+
+PREBUILT_SYNONYMS = [
+    "prebuilt character", "prebuilt characters", "pregens",
+    "sample character", "starter build", "template", "archetype",
+    "statline", "player template", "ready-made", "pregenerated pc",
+    "canon character", "npc template"
+]
+
 # --- LOAD FILES (PANDAS + DUCKDB) ---
 def load_core_files():
     data_tables.clear()
@@ -147,60 +164,49 @@ def load_core_files():
     if "Index.tsv" in data_tables:
         idx = data_tables["Index.tsv"]
         for _, row in idx.iterrows():
-            for word in str(row.get('Description', '')).split(','):
-                keyword = word.strip().lower()
-                if keyword:
-                    keyword_to_file.setdefault(keyword, set()).add(row['File_Name'])
+            desc = row.get('Description', '')
+            fname = row.get('File_Name', '').strip()
+            for token in split_keywords(desc):
+                keyword_to_file.setdefault(token, set()).add(fname)
+            # Also map the lowercased filename as a keyword for explicit matches
+            keyword_to_file.setdefault(normalize(fname), set()).add(fname)
     else:
         logger.warning("Index.tsv not loaded; keyword routing will degrade.")
 
-def sanitize(obj: Any) -> Any:
-    if isinstance(obj, dict):
-        return {k: sanitize(v) for k, v in obj.items()}
-    elif isinstance(obj, list):
-        return [sanitize(v) for v in obj]
-    elif isinstance(obj, float):
-        return 0.0 if not math.isfinite(obj) else obj
-    elif pd.isna(obj):
-        return ""
-    return obj
-
-PREBUILT_SYNONYMS = [
-    "prebuilt character", "prebuilt characters", "pregens",
-    "sample character", "starter build", "template", "archetype",
-    "statline", "player template", "ready-made", "pregenerated pc",
-    "canon character", "npc template"
-]
-
 def is_prebuilt_query(query: str) -> bool:
-    q = query.lower()
+    q = normalize(query)
     idx_df = data_tables.get("Index.tsv", pd.DataFrame())
-    desc_tokens = []
+    desc_tokens = set()
     for _, row in idx_df.iterrows():
-        if row.get("File_Name", "").strip().lower() == "prebuilt_characters.tsv":
+        if normalize(row.get("File_Name", "")) == "prebuilt_characters.tsv":
             desc = row.get("Description", "")
-            for token in desc.split(","):
-                token = token.strip().lower()
-                if token:
-                    desc_tokens.append(token)
+            desc_tokens.update(split_keywords(desc))
             break
+    # Match direct desc token or synonym
     if any(token in q for token in desc_tokens):
         return True
     return any(x in q for x in PREBUILT_SYNONYMS)
 
 def route_files(query: str) -> List[str]:
-    if is_prebuilt_query(query):
-        return ["prebuilt_characters.tsv"]
-    words = set(query.lower().split())
+    ql = normalize(query)
+    words = split_keywords(ql)
     candidates: Set[str] = set()
     for w in words:
-        candidates.update(keyword_to_file.get(w, set()))
-    if not candidates and any(x in query.lower() for x in ['character', 'npc']):
+        if w in keyword_to_file:
+            candidates.update(keyword_to_file[w])
+    # Fallback for prebuilt synonyms
+    if not candidates and any(x in ql for x in PREBUILT_SYNONYMS):
+        candidates.add('prebuilt_characters.tsv')
+    # Fallback for 'character'/'npc'
+    if not candidates and any(x in ql for x in ['character', 'npc']):
         for k, v in keyword_to_file.items():
             if any(x in k for x in ['character', 'npc']):
                 candidates.update(v)
         candidates.add('prebuilt_characters.tsv')
-    return [f for f in candidates if f in data_tables]
+    # Final: canonical check against loaded tables
+    files_found = [f for f in candidates if f in data_tables]
+    logger.info(f"route_files: Query='{query}' → files={files_found}, raw_candidates={candidates}")
+    return files_found
 
 SYNONYMS = {
     "roll": ["dice", "rolling", "throw", "cast", "d10", "d6", "d100"],
@@ -218,7 +224,7 @@ def extract_role_gender(query: str, df: pd.DataFrame) -> Tuple[Optional[str], Op
 def match_query(query: str, df: pd.DataFrame, depth: int = 0, tried=None, partials=None) -> Optional[Dict[str, Any]]:
     if tried is None: tried = set()
     if partials is None: partials = []
-    ql = query.lower()
+    ql = normalize(query)
     if ql in tried or depth > 3:
         return None
     tried.add(ql)
@@ -270,7 +276,7 @@ def match_query(query: str, df: pd.DataFrame, depth: int = 0, tried=None, partia
             file_name = "prebuilt_characters.tsv"  # Only vectorized on this
             if file_name in vector_tables and len(df) == len(vector_tables[file_name][0]):
                 vec_cache = vector_tables[file_name][1]
-                idx_score_list = vec_cache.search(query, top_k=1)
+                idx_score_list = vec_cache.find_best_match(query, top_k=1)
                 if idx_score_list and idx_score_list[0][1] > 0.7:
                     idx = idx_score_list[0][0]
                     return df.iloc[idx].to_dict()
@@ -278,6 +284,17 @@ def match_query(query: str, df: pd.DataFrame, depth: int = 0, tried=None, partia
             logger.warning(f"Vector search failed: {e}")
 
     return {"message": "No match, tried variants", "variants": partials}
+
+def sanitize(obj: Any) -> Any:
+    if isinstance(obj, dict):
+        return {k: sanitize(v) for k, v in obj.items()}
+    elif isinstance(obj, list):
+        return [sanitize(v) for v in obj]
+    elif isinstance(obj, float):
+        return 0.0 if not math.isfinite(obj) else obj
+    elif pd.isna(obj):
+        return ""
+    return obj
 
 # --- FASTAPI APP ---
 app = FastAPI()
@@ -297,7 +314,7 @@ def on_startup():
 @app.get("/lookup")
 def lookup(query: str, file: Optional[str] = None):
     files = [file] if file else route_files(query)
-    prebuilt_queried = any(f == "prebuilt_characters.tsv" for f in files)
+    prebuilt_queried = any(normalize(f) == "prebuilt_characters.tsv" for f in files)
     errors = []
     for f in files:
         if f not in data_tables:
@@ -384,3 +401,8 @@ def sanity_extract(q: str):
 @app.get("/schema-warnings")
 def schema_warnings():
     return {"schema_warnings": _schema_warnings}
+
+@app.get("/_debug-keywords")
+def debug_keywords():
+    # Inspect what keywords actually map to what files
+    return {"keyword_to_file": {k: list(v) for k, v in keyword_to_file.items()}}
