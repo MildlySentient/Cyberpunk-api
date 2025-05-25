@@ -38,9 +38,16 @@ logger = logging.getLogger("cyberpunk_api")
 
 # ----------- SCHEMA VALIDATION -----------
 EXPECTED_SCHEMAS = {
-    "prebuilt_characters": ["Name", "Role", "Gender"],
+    "prebuilt_characters": [
+        "Name", "Role", "Gender",
+        "INT", "REF", "TECH", "COOL", "ATTR", "LUCK", "MA", "BODY", "EMP",
+        "Special_Ability", "Special_Ability_Level", "Skills",
+        "Lifepath_Cultural_Origin", "Lifepath_Personality", "Lifepath_Family_Background",
+        "Lifepath_Motivation", "Lifepath_Friends", "Lifepath_Enemies", "Lifepath_Romance",
+        "Gear", "Notes", "Source", "Trigger"
+    ],
     "index": ["File_Name", "Description", "Category", "Status", "Parent_Core"],
-    # Add others as needed
+    # Add more if you want to strictly validate other tables
 }
 
 def validate_schema(tablename: str, df: pd.DataFrame):
@@ -52,29 +59,13 @@ def validate_schema(tablename: str, df: pd.DataFrame):
         logger.warning(f"Schema mismatch in '{tablename}': missing {missing}, extra {extra}")
 
 # ----------- CANONICAL FILES (Minimal Preload) -----------
-CORE_SYSTEM_PY = ["combat_tracker.py", "combat_resolution.py"]
+CANONICAL_FILES = {
+    "index": os.path.join(settings.data_dir, "Index.tsv"),
+    "prebuilt_characters": os.path.join(settings.data_dir, "prebuilt_characters.tsv"),
+    "combat_tracker": os.path.join(settings.data_dir, "combat_tracker.py"),
+    "combat_resolution": os.path.join(settings.data_dir, "combat_resolution.py"),
+}
 
-def get_canonical_files(index_path: str, data_dir: str) -> Dict[str, str]:
-    """Return mapping of 'core' file keys to file paths."""
-    idx_path = os.path.join(data_dir, index_path)
-    files = {}
-    if not os.path.isfile(idx_path):
-        raise FileNotFoundError(f"Index.tsv not found at {idx_path}")
-    df = pd.read_csv(idx_path, sep="\t", dtype=str).fillna("")
-    for row in df.to_dict(orient="records"):
-        fname = row["File_Name"].strip()
-        key = os.path.splitext(fname)[0].replace("-", "_")
-        if fname.lower().endswith(".py") and fname in CORE_SYSTEM_PY:
-            files[key] = os.path.join(data_dir, fname)
-        elif fname.lower() == "prebuilt_characters.tsv":
-            files[key] = os.path.join(data_dir, fname)
-        elif fname.lower() == "index.tsv":
-            files["index"] = os.path.join(data_dir, fname)
-    return files
-
-CANONICAL_FILES = get_canonical_files("Index.tsv", settings.data_dir)
-
-# ----------- DUCKDB SETUP (Minimal) -----------
 duckdb_conn = duckdb.connect(database=":memory:")
 
 def load_table_to_duckdb(tablename: str, file_path: str):
@@ -85,7 +76,6 @@ def load_table_to_duckdb(tablename: str, file_path: str):
             validate_schema(tablename, df)
             duckdb_conn.execute(f"CREATE OR REPLACE TABLE {tablename} AS SELECT * FROM df")
         elif file_path.lower().endswith(".py"):
-            # For .py files, store contents as a single-row table (for API, documentation, or exec)
             with open(file_path, "r") as f:
                 code = f.read()
             duckdb_conn.execute(f"CREATE OR REPLACE TABLE {tablename} (filename VARCHAR, code TEXT)")
@@ -98,24 +88,24 @@ def preload_minimal_tables():
         if os.path.isfile(path):
             load_table_to_duckdb(tablename, path)
         else:
-            logger.warning(f"{path} not found, skipping preload.")
+            logger.warning(f"{os.path.basename(path)} not found, skipping preload.")
 
-# ----------- ON-DEMAND TABLE LOADING -----------
-def load_table_on_demand(tablename: str) -> Optional[pd.DataFrame]:
-    # Always prefer loaded DuckDB table if present
+def get_table(tablename: str) -> Optional[pd.DataFrame]:
+    tablename = tablename.lower().replace("-", "_")
     tables = [t[0] for t in duckdb_conn.execute("SHOW TABLES").fetchall()]
     if tablename in tables:
         try:
             return duckdb_conn.execute(f"SELECT * FROM {tablename}").fetchdf()
         except Exception as e:
-            logger.error(f"DuckDB table error for {tablename}: {e}")
-    # If not present, try to load from file if listed in index
-    idx_path = CANONICAL_FILES.get("index")
-    if not idx_path or not os.path.isfile(idx_path):
+            logger.error(f"Failed to access {tablename}: {e}")
+            return None
+    # On-demand load from index if present
+    index_path = CANONICAL_FILES.get("index")
+    if not index_path or not os.path.isfile(index_path):
         logger.error("Index file missing; cannot perform file lookup.")
         return None
-    index_df = pd.read_csv(idx_path, sep="\t", dtype=str).fillna("")
-    files = {os.path.splitext(f)[0].replace("-", "_"): f for f in index_df["File_Name"]}
+    index_df = pd.read_csv(index_path, sep="\t", dtype=str).fillna("")
+    files = {os.path.splitext(f)[0].replace("-", "_").lower(): f for f in index_df["File_Name"]}
     file_name = files.get(tablename)
     if not file_name:
         logger.warning(f"File for '{tablename}' not found in Index.")
@@ -124,7 +114,6 @@ def load_table_on_demand(tablename: str) -> Optional[pd.DataFrame]:
     if not os.path.isfile(file_path):
         logger.warning(f"File {file_path} missing from disk.")
         return None
-    # Load and register in DuckDB
     try:
         df = pd.read_csv(file_path, sep="\t", dtype=str).fillna("")
         validate_schema(tablename, df)
@@ -148,87 +137,35 @@ def on_startup():
     preload_minimal_tables()
     logger.info("Loaded canonical files (minimal preload).")
 
-def get_table(tablename: str) -> Optional[pd.DataFrame]:
-    tablename = tablename.lower().replace("-", "_")
-    tables = [t[0] for t in duckdb_conn.execute("SHOW TABLES").fetchall()]
-    if tablename not in tables:
-        return load_table_on_demand(tablename)
-    try:
-        return duckdb_conn.execute(f"SELECT * FROM {tablename}").fetchdf()
-    except Exception as e:
-        logger.error(f"Failed to access {tablename}: {e}")
-        return None
-
-@app.get("/lookup")
-def lookup(query: Optional[str] = None, file: Optional[str] = None):
-    debug = {}
-    q = (query or "").strip().lower()
-    tablename = None
-    if file:
-        tablename = os.path.splitext(file)[0].replace("-", "_").lower()
-        df = get_table(tablename)
-        if df is None:
-            return {"error": f"File '{file}' not loaded or not canonical."}
-    else:
-        # Default to prebuilt_characters if asking about pregens, archetypes, etc.
-        prebuilt_terms = [
-            "prebuilt character", "prebuilt characters", "pregens", "sample character", "starter build",
-            "template", "archetype", "statline", "player template", "ready-made", "pregenerated pc",
-            "canon character", "npc template"
-        ]
-        if any(term in q for term in prebuilt_terms):
-            tablename = "prebuilt_characters"
-            df = get_table(tablename)
-        else:
-            # Try to search all loaded tables (index/prebuilt_characters/core .py files)
-            tables = [t[0] for t in duckdb_conn.execute("SHOW TABLES").fetchall()]
-            found_rows = []
-            for t in tables:
-                if t == "index":
-                    continue
-                try:
-                    df = duckdb_conn.execute(f"SELECT * FROM {t}").fetchdf()
-                    match = df.apply(lambda row: row.astype(str).str.lower().str.contains(q).any(), axis=1)
-                    results = df[match]
-                    if not results.empty:
-                        results["TableName"] = t
-                        found_rows.append(results)
-                except Exception as e:
-                    logger.warning(f"Search failed in table {t}: {e}")
-            if found_rows:
-                combined = pd.concat(found_rows, ignore_index=True)
-                return {"debug": debug, "rows": combined.to_dict(orient="records")}
-            return {"error": f"No canon data found for '{q}'. Please specify a file or broader term."}
-    if tablename and df is not None:
-        # Default: broad LIKE match over all text columns in chosen table
-        results = df[df.apply(lambda row: row.astype(str).str.lower().str.contains(q).any(), axis=1)]
-        if not results.empty:
-            return {
-                "debug": debug,
-                "rows": results.to_dict(orient="records")
-            }
-        return {"error": f"No canon match for '{q}' in '{tablename}'."}
-    return {"error": f"No data found for query."}
-
-@app.get("/query-canon")
-def query_canon(table: str = Query(..., description="TSV file name or canonical table"),
-                field: Optional[str] = None, value: Optional[str] = None):
-    safe_table = os.path.splitext(table)[0].replace("-", "_").lower()
-    df = get_table(safe_table)
+@app.get("/prebuilt")
+def get_prebuilt(role: str, gender: str):
+    df = get_table("prebuilt_characters")
     if df is None:
-        return {"error": f"Table '{safe_table}' not loaded or not canonical."}
-    if field and value:
-        if field not in df.columns:
-            return {"error": f"Column '{field}' not found in '{safe_table}'."}
-        results = df[df[field].astype(str).str.lower() == value.lower()]
-    else:
-        results = df
-    return {"rows": results.to_dict(orient="records")}
+        return {"error": "prebuilt_characters table not loaded."}
+    role_clean = role.strip().lower()
+    gender_clean = gender.strip().lower()
+    valid_roles = set(df["Role"].dropna().str.lower())
+    valid_genders = set(df["Gender"].dropna().str.lower())
+    if role_clean not in valid_roles:
+        return {"error": f"Role '{role}' not found in prebuilt_characters."}
+    if gender_clean not in valid_genders:
+        return {"error": f"Gender '{gender}' not found in prebuilt_characters."}
+    results = df[
+        (df["Role"].str.lower() == role_clean) &
+        (df["Gender"].str.lower() == gender_clean)
+    ]
+    if results.empty:
+        return {"error": f"No prebuilt character found for role '{role}' and gender '{gender}'."}
+    return {"character": results.iloc[0].to_dict()}
 
-@app.get("/canon-tables")
-def canon_tables():
-    tables = [t[0] for t in duckdb_conn.execute("SHOW TABLES").fetchall()]
-    return {"tables": tables}
+@app.get("/prebuilt-options")
+def prebuilt_options():
+    df = get_table("prebuilt_characters")
+    if df is None:
+        return {"error": "prebuilt_characters table not loaded."}
+    roles = sorted(set(df["Role"].dropna()))
+    genders = sorted(set(df["Gender"].dropna()))
+    return {"roles": roles, "genders": genders}
 
 @app.get("/sanity")
 def sanity():
@@ -237,7 +174,4 @@ def sanity():
         return {"error": "prebuilt_characters table not loaded."}
     return {"rows": df[["Name", "Role", "Gender"]].to_dict(orient="records")}
 
-# Optional: Endpoint to see schema warnings (requires in-memory log, otherwise check logs directly)
-# (If you want a /schema-warnings endpoint, let me know.)
-
-# End of main.py
+# You can add back broader search/query endpoints as needed, but this setup is bulletproof for prebuilt characters.
