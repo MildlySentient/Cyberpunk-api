@@ -117,6 +117,10 @@ data_tables: Dict[str, pd.DataFrame] = {}
 vector_tables: Dict[str, Tuple[pd.DataFrame, VectorCache]] = {}
 keyword_to_file: Dict[str, Set[str]] = {}
 
+# --- Canon role/gender sets for routing ---
+canon_roles: Set[str] = set()
+canon_genders: Set[str] = set()
+
 # --- UTILITIES ---
 def normalize(text):
     return text.strip().lower()
@@ -138,6 +142,8 @@ def load_core_files():
     data_tables.clear()
     vector_tables.clear()
     keyword_to_file.clear()
+    canon_roles.clear()
+    canon_genders.clear()
     for file in REQUIRED_FILES:
         path = os.path.join(DATA_DIR, file)
         if not os.path.isfile(path):
@@ -158,6 +164,8 @@ def load_core_files():
                 vc = VectorCache()
                 vc.preload_vectors(df)
                 vector_tables[file] = (df, vc)
+                canon_roles.update(r.lower().strip() for r in df["Role"].dropna().unique())
+                canon_genders.update(g.lower().strip() for g in df["Gender"].dropna().unique())
         except Exception as e:
             logger.error(f"Failed to load {file}: {e}")
     # Build keyword to file map from Index.tsv
@@ -191,11 +199,15 @@ def route_files(query: str) -> List[str]:
     ql = normalize(query)
     words = split_keywords(ql)
     candidates: Set[str] = set()
+    # Keyword mapping
     for w in words:
         if w in keyword_to_file:
             candidates.update(keyword_to_file[w])
-    # Fallback for prebuilt synonyms
+    # Synonym mapping
     if not candidates and any(x in ql for x in PREBUILT_SYNONYMS):
+        candidates.add('prebuilt_characters.tsv')
+    # Canon role/gender: critical new logic
+    if not candidates and (words & canon_roles or words & canon_genders):
         candidates.add('prebuilt_characters.tsv')
     # Fallback for 'character'/'npc'
     if not candidates and any(x in ql for x in ['character', 'npc']):
@@ -203,7 +215,6 @@ def route_files(query: str) -> List[str]:
             if any(x in k for x in ['character', 'npc']):
                 candidates.update(v)
         candidates.add('prebuilt_characters.tsv')
-    # Final: canonical check against loaded tables
     files_found = [f for f in candidates if f in data_tables]
     logger.info(f"route_files: Query='{query}' → files={files_found}, raw_candidates={candidates}")
     return files_found
