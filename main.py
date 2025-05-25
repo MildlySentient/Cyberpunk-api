@@ -37,6 +37,26 @@ else:
     logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger("cyberpunk_api")
 
+# ----------- PATCH HEADERS FOR _core.tsv FILES -----------
+def ensure_core_headers(data_dir, files):
+    for fname in files:
+        if fname.endswith('_core.tsv'):
+            fpath = os.path.join(data_dir, fname)
+            if not os.path.isfile(fpath):
+                continue
+            with open(fpath, 'r', encoding='utf-8') as f:
+                lines = f.readlines()
+            if not lines:
+                continue
+            # If first line is not 'File_Name', fix it
+            if lines[0].strip().lower() != 'file_name':
+                logger.info(f"Adding 'File_Name' header to {fname}")
+                lines = ['File_Name\n'] + [line if line.endswith('\n') else line + '\n' for line in lines]
+                with open(fpath, 'w', encoding='utf-8') as f:
+                    f.writelines(lines)
+            else:
+                logger.debug(f"{fname}: Header already present.")
+
 # ----------- SCHEMA VALIDATION -----------
 EXPECTED_SCHEMAS = {
     "prebuilt_characters.tsv": [
@@ -48,8 +68,16 @@ EXPECTED_SCHEMAS = {
         "Gear", "Notes", "Source", "Trigger"
     ],
     "Index.tsv": ["File_Name", "Description", "Category", "Status", "Parent_Core"],
-    # Add/expand schemas as needed for other critical files
+    # All _core.tsv files: single File_Name column
 }
+# Add single column schema for all _core.tsv files (auto-generated)
+for f in [
+    "services_core.tsv", "plugins_core.tsv", "campaigns_core.tsv", "corporate_core.tsv", "encounters_core.tsv",
+    "setting_core.tsv", "weapons_core.tsv", "assets_core.tsv", "system_core.tsv", "roles_core.tsv",
+    "gear_core.tsv", "npc_core.tsv"
+]:
+    EXPECTED_SCHEMAS[f] = ["File_Name"]
+
 _schema_warnings = []
 
 def validate_schema(filename: str, df: pd.DataFrame):
@@ -57,6 +85,9 @@ def validate_schema(filename: str, df: pd.DataFrame):
     found = list(df.columns)
     missing = [col for col in expected if col not in found]
     extra = [col for col in found if col not in expected]
+    # Suppress warning if it's a _core.tsv with only a File_Name column
+    if filename.endswith("_core.tsv") and expected == ["File_Name"] and (missing == [] and extra == []):
+        return
     if missing or extra:
         warning = f"Schema mismatch in '{filename}': missing {missing}, extra {extra}"
         logger.warning(warning)
@@ -80,27 +111,26 @@ REQUIRED_FILES = [
     "npc_core.tsv",
 ]
 
-DATA_DIR = os.path.dirname(__file__)
+DATA_DIR = settings.data_dir
 duckdb_conn = duckdb.connect(database=':memory:')
 
 data_tables: Dict[str, pd.DataFrame] = {}
 keyword_to_file: Dict[str, Set[str]] = {}
 
+# ----------- LOAD FILES (PANDAS + DUCKDB) -----------
 def load_core_files():
     data_tables.clear()
     keyword_to_file.clear()
     for file in REQUIRED_FILES:
-        path = os.path.join(settings.data_dir, file)
+        path = os.path.join(DATA_DIR, file)
         if not os.path.isfile(path):
             logger.warning(f"{file} not found, skipping.")
             continue
         try:
             logger.info(f"Loading {file} into DuckDB and pandas")
-            # Load with pandas for Python-side matching
             df = pd.read_csv(path, sep="\t", dtype=str).fillna("")
             validate_schema(file, df)
             data_tables[file] = df
-            # Load into DuckDB for advanced queries if needed
             table_name = os.path.splitext(file)[0].replace('.', '_')
             duckdb_conn.execute(f"DROP TABLE IF EXISTS {table_name}")
             duckdb_conn.execute(
@@ -108,7 +138,7 @@ def load_core_files():
             )
         except Exception as e:
             logger.error(f"Failed to load {file}: {e}")
-    # Build keyword to file map
+    # Build keyword to file map from Index.tsv
     if "Index.tsv" in data_tables:
         idx = data_tables["Index.tsv"]
         for _, row in idx.iterrows():
@@ -169,7 +199,6 @@ def route_files(query: str) -> List[str]:
 
 SYNONYMS = {
     "roll": ["dice", "rolling", "throw", "cast", "d10", "d6", "d100"],
-    # Expand as needed
 }
 
 def extract_role_gender(query: str, df: pd.DataFrame) -> Tuple[Optional[str], Optional[str]]:
@@ -238,6 +267,7 @@ app.add_middleware(
 
 @app.on_event("startup")
 def on_startup():
+    ensure_core_headers(DATA_DIR, REQUIRED_FILES)
     load_core_files()
     logger.info("Loaded core files.")
 
@@ -285,6 +315,47 @@ def lookup(query: str, file: Optional[str] = None):
         "code": "not_found",
         "message": "No canonical match. Consult index.tsv.",
         "errors": errors,
+    }
+
+# ----------- SANITY CHECKS FOR PREBUILT CHARACTERS -----------
+@app.get("/sanity")
+def sanity():
+    df = data_tables.get("prebuilt_characters.tsv")
+    if df is None:
+        return {"error": "prebuilt_characters.tsv not loaded."}
+    return {"rows": df[["Name", "Role", "Gender"]].to_dict(orient="records")}
+
+@app.get("/sanity-dump")
+def sanity_dump():
+    df = data_tables.get("prebuilt_characters.tsv")
+    if df is None:
+        return {"error": "prebuilt_characters.tsv not loaded."}
+    roles = sorted(df["Role"].dropna().unique())
+    genders = sorted(df["Gender"].dropna().unique())
+    names = sorted(df["Name"].dropna().unique())
+    return {
+        "rows": df[["Name", "Role", "Gender"]].to_dict(orient="records"),
+        "roles": roles,
+        "genders": genders,
+        "names": names,
+    }
+
+@app.get("/sanity-extract")
+def sanity_extract(q: str):
+    df = data_tables.get("prebuilt_characters.tsv")
+    if df is None:
+        return {"error": "prebuilt_characters.tsv not loaded."}
+    terms = set(t.strip().lower() for t in re.findall(r'\w+', q))
+    roles = [r.lower().strip() for r in df["Role"].dropna().unique()]
+    genders = [g.lower().strip() for g in df["Gender"].dropna().unique()]
+    found_role = next((t for t in terms if t in roles), None)
+    found_gender = next((t for t in terms if t in genders), None)
+    return {
+        "query": q,
+        "extracted_role": found_role,
+        "extracted_gender": found_gender,
+        "roles": sorted(set(roles)),
+        "genders": sorted(set(genders)),
     }
 
 @app.get("/schema-warnings")
