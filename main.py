@@ -7,7 +7,7 @@ import re
 from typing import List, Dict, Any, Optional, Set, Tuple
 import pandas as pd
 import duckdb
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseSettings
 from rapidfuzz import fuzz
@@ -68,9 +68,7 @@ EXPECTED_SCHEMAS = {
         "Gear", "Notes", "Source", "Trigger"
     ],
     "Index.tsv": ["File_Name", "Description", "Category", "Status", "Parent_Core"],
-    # All _core.tsv files: single File_Name column
 }
-# Add single column schema for all _core.tsv files (auto-generated)
 for f in [
     "services_core.tsv", "plugins_core.tsv", "campaigns_core.tsv", "corporate_core.tsv", "encounters_core.tsv",
     "setting_core.tsv", "weapons_core.tsv", "assets_core.tsv", "system_core.tsv", "roles_core.tsv",
@@ -85,7 +83,6 @@ def validate_schema(filename: str, df: pd.DataFrame):
     found = list(df.columns)
     missing = [col for col in expected if col not in found]
     extra = [col for col in found if col not in expected]
-    # Suppress warning if it's a _core.tsv with only a File_Name column
     if filename.endswith("_core.tsv") and expected == ["File_Name"] and (missing == [] and extra == []):
         return
     if missing or extra:
@@ -197,17 +194,14 @@ def route_files(query: str) -> List[str]:
         candidates.add('prebuilt_characters.tsv')
     return [f for f in candidates if f in data_tables]
 
-SYNONYMS = {
-    "roll": ["dice", "rolling", "throw", "cast", "d10", "d6", "d100"],
-}
-
-def extract_role_gender(query: str, df: pd.DataFrame) -> Tuple[Optional[str], Optional[str]]:
+def extract_role_gender_any_order(query: str, df: pd.DataFrame) -> Tuple[Optional[str], Optional[str]]:
+    """Order-agnostic matching for role and gender."""
     roles = [r.lower().strip() for r in df["Role"].dropna().unique()]
     genders = [g.lower().strip() for g in df["Gender"].dropna().unique()]
-    terms = set(re.findall(r'\w+', query.lower()))
-    role = next((r for r in roles if r in terms), None)
-    gender = next((g for g in genders if g in terms), None)
-    return role, gender
+    terms = set(t.lower().strip() for t in re.findall(r'\w+', query))
+    found_role = next((t for t in terms if t in roles), None)
+    found_gender = next((t for t in terms if t in genders), None)
+    return found_role, found_gender
 
 def match_query(query: str, df: pd.DataFrame, depth: int = 0, tried=None, partials=None) -> Optional[Dict[str, Any]]:
     if tried is None: tried = set()
@@ -219,18 +213,21 @@ def match_query(query: str, df: pd.DataFrame, depth: int = 0, tried=None, partia
     logger.info(f"[Depth {depth}] Matching: {ql}")
 
     if not df.empty:
+        # Try direct string match
         mask = df.apply(lambda r: ql in " ".join(str(x).lower() for x in r), axis=1)
         if mask.any():
             return df[mask].iloc[0].to_dict()
         partials += [str(row.get("Name", "")) for _, row in df[mask].iterrows()]
 
-    for word, syns in SYNONYMS.items():
+    # Try synonym match
+    for word, syns in {"roll": ["dice", "rolling", "throw", "cast", "d10", "d6", "d100"]}.items():
         if any(s in ql for s in syns):
             mask = df.apply(lambda r: word in " ".join(str(x).lower() for x in r), axis=1)
             if mask.any():
                 return df[mask].iloc[0].to_dict()
             partials += [str(row.get("Name", "")) for _, row in df[mask].iterrows()]
 
+    # Fuzzy
     for idx, row in df.iterrows():
         try:
             score = fuzz.partial_ratio(ql, " ".join(str(x).lower() for x in row))
@@ -241,8 +238,9 @@ def match_query(query: str, df: pd.DataFrame, depth: int = 0, tried=None, partia
         except Exception:
             continue
 
+    # Order-agnostic role/gender match (key fix)
     if "Role" in df.columns and "Gender" in df.columns:
-        role, gender = extract_role_gender(query, df)
+        role, gender = extract_role_gender_any_order(query, df)
         logger.info(f"[DEBUG] Extracted role={role}, gender={gender} from query='{query}'")
         if role and gender:
             mask = (
