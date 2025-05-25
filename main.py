@@ -47,8 +47,10 @@ EXPECTED_SCHEMAS = {
         "Gear", "Notes", "Source", "Trigger"
     ],
     "index": ["File_Name", "Description", "Category", "Status", "Parent_Core"],
-    # Add more if you want to strictly validate other tables
+    # Add/expand schemas as needed for other critical files
 }
+
+_schema_warnings = []
 
 def validate_schema(tablename: str, df: pd.DataFrame):
     expected = EXPECTED_SCHEMAS.get(tablename, [])
@@ -56,7 +58,9 @@ def validate_schema(tablename: str, df: pd.DataFrame):
     missing = [col for col in expected if col not in found]
     extra = [col for col in found if col not in expected]
     if missing or extra:
-        logger.warning(f"Schema mismatch in '{tablename}': missing {missing}, extra {extra}")
+        warning = f"Schema mismatch in '{tablename}': missing {missing}, extra {extra}"
+        logger.warning(warning)
+        _schema_warnings.append(warning)
 
 # ----------- CANONICAL FILES (Minimal Preload) -----------
 CANONICAL_FILES = {
@@ -167,6 +171,8 @@ def prebuilt_options():
     genders = sorted(set(df["Gender"].dropna()))
     return {"roles": roles, "genders": genders}
 
+# ----------- SANITY/DEBUG ENDPOINTS -----------
+
 @app.get("/sanity")
 def sanity():
     df = get_table("prebuilt_characters")
@@ -174,4 +180,39 @@ def sanity():
         return {"error": "prebuilt_characters table not loaded."}
     return {"rows": df[["Name", "Role", "Gender"]].to_dict(orient="records")}
 
-# You can add back broader search/query endpoints as needed, but this setup is bulletproof for prebuilt characters.
+@app.get("/sanity-dump")
+def sanity_dump():
+    df = get_table("prebuilt_characters")
+    if df is None:
+        return {"error": "prebuilt_characters table not loaded."}
+    roles = sorted(df["Role"].dropna().unique())
+    genders = sorted(df["Gender"].dropna().unique())
+    names = sorted(df["Name"].dropna().unique())
+    return {
+        "rows": df[["Name", "Role", "Gender"]].to_dict(orient="records"),
+        "roles": roles,
+        "genders": genders,
+        "names": names,
+    }
+
+@app.get("/sanity-extract")
+def sanity_extract(q: str):
+    df = get_table("prebuilt_characters")
+    if df is None:
+        return {"error": "prebuilt_characters table not loaded."}
+    terms = set(t.strip().lower() for t in re.findall(r'\w+', q))
+    roles = [r.lower().strip() for r in df["Role"].dropna().unique()]
+    genders = [g.lower().strip() for g in df["Gender"].dropna().unique()]
+    found_role = next((t for t in terms if t in roles), None)
+    found_gender = next((t for t in terms if t in genders), None)
+    return {
+        "query": q,
+        "extracted_role": found_role,
+        "extracted_gender": found_gender,
+        "roles": sorted(set(roles)),
+        "genders": sorted(set(genders)),
+    }
+
+@app.get("/schema-warnings")
+def schema_warnings():
+    return {"schema_warnings": _schema_warnings}
